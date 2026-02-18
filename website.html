@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salient Group — Professional Security Services</title>
+<meta name="description" content="Professional security services for businesses nationwide. Armed & unarmed officers, AI-powered technology, and dedicated account management.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#131F2D;--white:#FFFFFF;--slate:#314151;--steel:#D6D7D8;--gray:#606060;--transition:0.3s ease}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Poppins',sans-serif;color:var(--slate);line-height:1.6;overflow-x:hidden;background:var(--white)}
+h1,h2,h3,h4,h5,h6{text-transform:uppercase;font-weight:700;letter-spacing:0.15em;line-height:1.2}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+/* ANIMATIONS */
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease,transform 0.8s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+.fade-in-left{opacity:0;transform:translateX(-40px);transition:opacity 0.8s ease,transform 0.8s ease}
+.fade-in-left.visible{opacity:1;transform:translateX(0)}
+.fade-in-right{opacity:0;transform:translateX(40px);transition:opacity 0.8s ease,transform 0.8s ease}
+.fade-in-right.visible{opacity:1;transform:translateX(0)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--navy);padding:0 2rem;transition:box-shadow var(--transition)}
+nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.3)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
+.nav-logo{font-size:1.1rem;font-weight:800;letter-spacing:0.25em;color:var(--white);text-transform:uppercase}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.8);font-size:0.8rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;transition:color var(--transition)}
+.nav-links a:hover{color:var(--white)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px}
+.hamburger span{width:24px;height:2px;background:var(--white);transition:all var(--transition)}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+@media(max-width:768px){
+  .nav-links{position:fixed;top:70px;left:0;right:0;background:var(--navy);flex-direction:column;padding:2rem;gap:1.5rem;transform:translateY(-120%);transition:transform var(--transition);border-top:1px solid rgba(255,255,255,0.1)}
+  .nav-links.open{transform:translateY(0)}
+  .hamburger{display:flex}
+}
+
+/* BUTTONS */
+.btn{display:inline-block;padding:14px 32px;font-family:'Poppins',sans-serif;font-size:0.85rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer;transition:all var(--transition);border-radius:2px}
+.btn-primary{background:var(--white);color:var(--navy)}
+.btn-primary:hover{background:var(--steel);transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,0.2)}
+.btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,0.5)}
+.btn-outline:hover{border-color:var(--white);background:rgba(255,255,255,0.1);transform:translateY(-2px)}
+.btn-navy{background:var(--navy);color:var(--white)}
+.btn-navy:hover{background:var(--slate);transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,0.15)}
+
+/* SECTION DEFAULTS */
+section{padding:100px 2rem}
+.container{max-width:1200px;margin:0 auto}
+.section-label{font-size:0.75rem;font-weight:600;letter-spacing:0.3em;color:var(--gray);text-transform:uppercase;margin-bottom:1rem}
+.section-title{font-size:clamp(1.8rem,4vw,2.8rem);color:var(--navy);margin-bottom:1.5rem}
+.section-subtitle{font-size:1.05rem;color:var(--gray);max-width:600px;line-height:1.7;font-weight:300}
+
+/* HERO */
+#hero{background:var(--navy);min-height:100vh;display:flex;align-items:center;padding-top:70px;position:relative;overflow:hidden}
+#hero::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;border:1px solid rgba(255,255,255,0.04);border-radius:50%;pointer-events:none}
+#hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:400px;height:400px;border:1px solid rgba(255,255,255,0.03);border-radius:50%;pointer-events:none}
+.hero-content{max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:1}
+.hero-badge{display:inline-block;font-size:0.7rem;font-weight:600;letter-spacing:0.3em;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:2rem;padding:8px 20px;border:1px solid rgba(255,255,255,0.15);border-radius:2px}
+.hero-title{font-size:clamp(2.5rem,6vw,4.5rem);color:var(--white);line-height:1.05;margin-bottom:1.5rem;font-weight:800;max-width:800px}
+.hero-sub{font-size:clamp(1rem,2vw,1.25rem);color:rgba(255,255,255,0.6);font-weight:300;margin-bottom:3rem;max-width:550px;line-height:1.7}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
+.hero-phone{color:rgba(255,255,255,0.4);font-size:0.85rem;letter-spacing:0.05em}
+.hero-phone a{color:rgba(255,255,255,0.6);font-weight:500;transition:color var(--transition)}
+.hero-phone a:hover{color:var(--white)}
+.hero-geometric{position:absolute;right:5%;top:50%;transform:translateY(-50%);opacity:0.04}
+.hero-geometric .geo-line{stroke:var(--white);stroke-width:1;fill:none}
+
+/* SERVICES */
+#services{background:var(--white)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.service-card{background:var(--white);border:1px solid rgba(0,0,0,0.06);padding:2.5rem 2rem;transition:all var(--transition);position:relative;overflow:hidden}
+.service-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--navy);transform:scaleX(0);transition:transform var(--transition)}
+.service-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.08)}
+.service-card:hover::after{transform:scaleX(1)}
+.service-icon{font-size:2rem;margin-bottom:1.2rem}
+.service-card h3{font-size:0.85rem;letter-spacing:0.12em;color:var(--navy);margin-bottom:0.8rem}
+.service-card p{font-size:0.88rem;color:var(--gray);font-weight:300;line-height:1.6}
+@media(max-width:768px){.services-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.services-grid{grid-template-columns:1fr}}
+
+/* WHY SALIENT */
+#why{background:#F8F9FA;position:relative}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+.why-card{padding:2rem;background:var(--white);border:1px solid rgba(0,0,0,0.05)}
+.why-icon{width:48px;height:48px;background:var(--navy);display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;font-size:1.2rem;border-radius:2px}
+.why-card h3{font-size:0.8rem;letter-spacing:0.12em;color:var(--navy);margin-bottom:0.8rem}
+.why-card p{font-size:0.88rem;color:var(--gray);font-weight:300;line-height:1.6}
+@media(max-width:768px){.why-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.why-grid{grid-template-columns:1fr}}
+
+/* TRACK RECORD */
+#track{background:var(--navy);text-align:center}
+#track .section-label{color:rgba(255,255,255,0.4)}
+#track .section-title{color:var(--white)}
+.track-quote{font-size:clamp(1.1rem,2.5vw,1.4rem);color:rgba(255,255,255,0.75);max-width:800px;margin:2rem auto 3rem;line-height:1.8;font-weight:300;font-style:italic}
+.track-stats{display:flex;justify-content:center;gap:4rem;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-num{font-size:clamp(2rem,4vw,3rem);font-weight:800;color:var(--white);letter-spacing:0.05em}
+.stat-label{font-size:0.75rem;color:rgba(255,255,255,0.4);letter-spacing:0.15em;text-transform:uppercase;margin-top:0.5rem}
+
+/* TECHNOLOGY */
+#tech{background:var(--white)}
+.tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem}
+.tech-features{display:flex;flex-direction:column;gap:1.5rem}
+.tech-feature{display:flex;gap:1.2rem;align-items:flex-start}
+.tech-dot{width:8px;height:8px;background:var(--navy);border-radius:50%;margin-top:8px;flex-shrink:0}
+.tech-feature h4{font-size:0.8rem;letter-spacing:0.1em;color:var(--navy);margin-bottom:0.3rem}
+.tech-feature p{font-size:0.88rem;color:var(--gray);font-weight:300;line-height:1.5}
+.tech-visual{background:var(--navy);aspect-ratio:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border-radius:2px}
+.tech-visual-inner{color:rgba(255,255,255,0.08);font-size:6rem;font-weight:900;letter-spacing:0.1em}
+.tech-visual::before,.tech-visual::after{content:'';position:absolute;border:1px solid rgba(255,255,255,0.06);border-radius:50%}
+.tech-visual::before{width:80%;height:80%}
+.tech-visual::after{width:50%;height:50%}
+@media(max-width:768px){.tech-grid{grid-template-columns:1fr}.tech-visual{max-height:300px}}
+
+/* ASSESSMENT CTA */
+#assessment{background:var(--navy);text-align:center;padding:80px 2rem}
+.assessment-title{font-size:clamp(1.6rem,3.5vw,2.4rem);color:var(--white);margin-bottom:1rem}
+.assessment-sub{font-size:1.05rem;color:rgba(255,255,255,0.55);font-weight:300;margin-bottom:2.5rem}
+
+/* CONTACT */
+#contact{background:#F8F9FA}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:3rem}
+.contact-info{display:flex;flex-direction:column;gap:2rem}
+.contact-item{display:flex;align-items:center;gap:1rem}
+.contact-item-icon{width:44px;height:44px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:1rem;border-radius:2px;flex-shrink:0}
+.contact-item-text{font-size:0.9rem;color:var(--slate)}
+.contact-item-text span{display:block;font-size:0.7rem;color:var(--gray);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.2rem}
+.contact-form{display:flex;flex-direction:column;gap:1rem}
+.contact-form input,.contact-form textarea{font-family:'Poppins',sans-serif;padding:14px 18px;border:1px solid var(--steel);background:var(--white);font-size:0.9rem;color:var(--slate);outline:none;transition:border-color var(--transition);border-radius:2px}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--navy)}
+.contact-form textarea{resize:vertical;min-height:120px}
+.form-success{display:none;padding:1rem;background:var(--navy);color:var(--white);text-align:center;font-size:0.85rem;letter-spacing:0.05em;border-radius:2px}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
+
+/* FOOTER */
+footer{background:var(--navy);padding:3rem 2rem;text-align:center}
+.footer-logo{font-size:1rem;font-weight:800;letter-spacing:0.3em;color:var(--white);text-transform:uppercase;margin-bottom:1.5rem}
+.footer-links{display:flex;justify-content:center;gap:2rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.footer-links a{font-size:0.75rem;color:rgba(255,255,255,0.4);letter-spacing:0.1em;text-transform:uppercase;transition:color var(--transition)}
+.footer-links a:hover{color:var(--white)}
+.footer-copy{font-size:0.75rem;color:rgba(255,255,255,0.25);letter-spacing:0.05em}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">Salient Group</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#services" onclick="closeNav()">Services</a></li>
+      <li><a href="#why" onclick="closeNav()">Why Salient</a></li>
+      <li><a href="#tech" onclick="closeNav()">Technology</a></li>
+      <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+      <li><a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html" class="btn btn-primary" style="padding:10px 24px;font-size:0.75rem" onclick="closeNav()">Free Assessment</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Professional Security Services</div>
+    <h1 class="hero-title">Protecting What Matters Most</h1>
+    <p class="hero-sub">Professional security services for businesses nationwide. Trusted by industry leaders to safeguard their people, property, and operations.</p>
+    <div class="hero-actions">
+      <a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html" class="btn btn-primary">Get a Free Assessment</a>
+      <a href="https://cal.com/salient-group/quick-call" class="btn btn-outline">Schedule a Call</a>
+    </div>
+    <p class="hero-phone">Or call us directly: <a href="tel:+13179836601">(317) 983-6601</a></p>
+  </div>
+  <svg class="hero-geometric" width="400" height="400" viewBox="0 0 400 400"><circle class="geo-line" cx="200" cy="200" r="180"/><circle class="geo-line" cx="200" cy="200" r="120"/><circle class="geo-line" cx="200" cy="200" r="60"/><line class="geo-line" x1="200" y1="0" x2="200" y2="400"/><line class="geo-line" x1="0" y1="200" x2="400" y2="200"/></svg>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <p class="section-label fade-in">What We Protect</p>
+    <h2 class="section-title fade-in">Industries We Serve</h2>
+    <p class="section-subtitle fade-in">Tailored security programs designed for the unique challenges of your industry.</p>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <div class="service-icon">🏭</div>
+        <h3>Warehouse &amp; Distribution</h3>
+        <p>24/7 access control, cargo protection, and perimeter security for logistics facilities of every scale.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">🏢</div>
+        <h3>Commercial Real Estate</h3>
+        <p>Lobby management, tenant safety programs, and visitor screening for Class A office and mixed-use properties.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">🏥</div>
+        <h3>Healthcare</h3>
+        <p>Patient and staff safety, emergency response coordination, and sensitive area access management.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">🚧</div>
+        <h3>Construction</h3>
+        <p>Jobsite protection, equipment theft prevention, and after-hours patrol for active construction zones.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">🎪</div>
+        <h3>Events &amp; Venues</h3>
+        <p>Crowd management, VIP protection, and access control for concerts, conferences, and sporting events.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">🎓</div>
+        <h3>Education</h3>
+        <p>Campus safety programs, visitor management, and emergency preparedness for K-12 and higher education.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">🛍️</div>
+        <h3>Retail</h3>
+        <p>Loss prevention, customer safety, and visible deterrence for retail locations and shopping centers.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">🏨</div>
+        <h3>Hospitality</h3>
+        <p>Guest safety, property patrol, and discreet security presence for hotels, resorts, and entertainment venues.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">⚙️</div>
+        <h3>Manufacturing</h3>
+        <p>Facility access control, safety compliance support, and asset protection for manufacturing operations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY SALIENT -->
+<section id="why">
+  <div class="container">
+    <p class="section-label fade-in">The Salient Difference</p>
+    <h2 class="section-title fade-in">Why Salient</h2>
+    <p class="section-subtitle fade-in">We combine proven operational expertise with cutting-edge technology to deliver security that actually works.</p>
+    <div class="why-grid">
+      <div class="why-card fade-in">
+        <div class="why-icon">📍</div>
+        <h3>Real-Time Client Portal</h3>
+        <p>GPS-verified guard attendance, live dashboards, and full transparency into every shift — accessible from any device.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon">🤖</div>
+        <h3>AI-Powered Gate Management</h3>
+        <p>Nova Control technology automates visitor verification, credential checks, and access logging at scale.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon">⚡</div>
+        <h3>Rapid Deployment</h3>
+        <p>70+ officers mobilized in under 3 weeks. When you need security fast, our team delivers without compromising quality.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon">🇺🇸</div>
+        <h3>Nationwide Coverage</h3>
+        <p>Serving businesses across the United States with consistent standards and local expertise in every market.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon">👤</div>
+        <h3>Dedicated Account Management</h3>
+        <p>A single point of contact who knows your facility, your team, and your expectations — not a call center.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon">🛡️</div>
+        <h3>Armed &amp; Unarmed Officers</h3>
+        <p>Flexible staffing to match your risk profile, from uniformed presence to armed response teams.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACK RECORD -->
+<section id="track">
+  <div class="container">
+    <p class="section-label fade-in">Proven Results</p>
+    <h2 class="section-title fade-in">Track Record</h2>
+    <p class="track-quote fade-in">"We've managed security for one of the largest grocery distribution centers in the United States — over 2,180 guard hours per week across a 1.2 million square foot facility."</p>
+    <div class="track-stats fade-in">
+      <div class="stat">
+        <div class="stat-num">2,180+</div>
+        <div class="stat-label">Guard Hours / Week</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">1.2M</div>
+        <div class="stat-label">Sq Ft Secured</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">70+</div>
+        <div class="stat-label">Officers Deployed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Coverage</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGY -->
+<section id="tech">
+  <div class="container">
+    <p class="section-label fade-in-left">Innovation</p>
+    <h2 class="section-title fade-in-left">Security Powered by Technology</h2>
+    <p class="section-subtitle fade-in-left">Our proprietary security operating system gives you complete visibility and control — not just guards on-site.</p>
+    <div class="tech-grid">
+      <div class="tech-features">
+        <div class="tech-feature fade-in-left">
+          <div class="tech-dot"></div>
+          <div>
+            <h4>Client Portal</h4>
+            <p>Real-time dashboards with shift coverage, incident logs, and officer performance metrics at your fingertips.</p>
+          </div>
+        </div>
+        <div class="tech-feature fade-in-left">
+          <div class="tech-dot"></div>
+          <div>
+            <h4>GPS Guard Tracking</h4>
+            <p>Verified patrol routes and checkpoint confirmations so you always know your facility is covered.</p>
+          </div>
+        </div>
+        <div class="tech-feature fade-in-left">
+          <div class="tech-dot"></div>
+          <div>
+            <h4>AI Gate Management</h4>
+            <p>Automated credential verification and visitor logging powered by Nova Control technology.</p>
+          </div>
+        </div>
+        <div class="tech-feature fade-in-left">
+          <div class="tech-dot"></div>
+          <div>
+            <h4>Digital Incident Reporting</h4>
+            <p>Instant photo and video documentation with timestamped reports delivered to your inbox in real time.</p>
+          </div>
+        </div>
+        <div class="tech-feature fade-in-left">
+          <div class="tech-dot"></div>
+          <div>
+            <h4>Real-Time Analytics</h4>
+            <p>Data-driven insights on security patterns, response times, and coverage optimization opportunities.</p>
+          </div>
+        </div>
+      </div>
+      <div class="tech-visual fade-in-right">
+        <div class="tech-visual-inner">SG</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FREE ASSESSMENT CTA -->
+<section id="assessment">
+  <div class="container">
+    <h2 class="assessment-title fade-in">How Secure Is Your Facility?</h2>
+    <p class="assessment-sub fade-in">Find out in 2 minutes with our free security assessment.</p>
+    <a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html" class="btn btn-primary fade-in">Take the Free Assessment</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label fade-in">Get in Touch</p>
+    <h2 class="section-title fade-in">Contact Us</h2>
+    <div class="contact-grid">
+      <div class="contact-info fade-in-left">
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div class="contact-item-text">
+            <span>Phone</span>
+            <a href="tel:+13179836601">(317) 983-6601</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">✉️</div>
+          <div class="contact-item-text">
+            <span>Email</span>
+            <a href="mailto:info@salient-group.com">info@salient-group.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📅</div>
+          <div class="contact-item-text">
+            <span>Schedule</span>
+            <a href="https://cal.com/salient-group/quick-call">Book a call with our team</a>
+          </div>
+        </div>
+        <div style="margin-top:1rem">
+          <a href="https://cal.com/salient-group/quick-call" class="btn btn-navy">Schedule a Call</a>
+        </div>
+      </div>
+      <form class="contact-form fade-in-right" id="contactForm" onsubmit="handleSubmit(event)">
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="tel" name="phone" placeholder="Phone Number">
+        <textarea name="message" placeholder="How can we help?" required></textarea>
+        <button type="submit" class="btn btn-navy" style="width:100%;text-align:center">Send Message</button>
+        <div class="form-success" id="formSuccess">Thank you. Our team will be in touch shortly.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Salient Group</div>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#why">Why Salient</a>
+    <a href="#tech">Technology</a>
+    <a href="#contact">Contact</a>
+    <a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html">Free Assessment</a>
+  </div>
+  <p class="footer-copy">&copy; 2026 Salient Group. All rights reserved.</p>
+</footer>
+
+<script>
+// Nav
+const navbar=document.getElementById('navbar');
+const hamburger=document.getElementById('hamburger');
+const navLinks=document.getElementById('navLinks');
+window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',window.scrollY>50)});
+function toggleNav(){hamburger.classList.toggle('active');navLinks.classList.toggle('open')}
+function closeNav(){hamburger.classList.remove('active');navLinks.classList.remove('open')}
+
+// Intersection Observer for animations
+const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.fade-in,.fade-in-left,.fade-in-right').forEach(el=>observer.observe(el));
+
+// Contact form
+function handleSubmit(e){
+  e.preventDefault();
+  const form=e.target;
+  const data={name:form.name.value,email:form.email.value,phone:form.phone.value,message:form.message.value,date:new Date().toISOString()};
+  const leads=JSON.parse(localStorage.getItem('salient_leads')||'[]');
+  leads.push(data);
+  localStorage.setItem('salient_leads',JSON.stringify(leads));
+  form.reset();
+  document.getElementById('formSuccess').style.display='block';
+  setTimeout(()=>{document.getElementById('formSuccess').style.display='none'},5000);
+}
+</script>
+</body>
+</html>
