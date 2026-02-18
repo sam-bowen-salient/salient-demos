@@ -9,12 +9,11 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--navy:#131F2D;--white:#FFFFFF;--slate:#314151;--steel:#D6D7D8;--gray:#606060;--accent:#1a3a5c;--success:#2ecc71;--page-shadow:0 2px 20px rgba(0,0,0,.12)}
 body{font-family:'Poppins',sans-serif;background:#f0f2f5;color:var(--slate);min-height:100vh}
-/* FORM STYLES */
 .app-header{background:var(--navy);color:var(--white);padding:1rem 1.5rem;display:flex;align-items:center;gap:.75rem;position:sticky;top:0;z-index:100}
 .app-header svg{width:32px;height:32px;flex-shrink:0}
 .app-header h1{font-size:1.1rem;font-weight:600;letter-spacing:.5px}
 .app-header span{font-size:.7rem;font-weight:300;opacity:.7;display:block;margin-top:2px}
-.form-container{max-width:640px;margin:0 auto;padding:1rem}
+.form-container{max-width:700px;margin:0 auto;padding:1rem}
 .step-indicator{display:flex;gap:0;margin-bottom:1.5rem;background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08)}
 .step-dot{flex:1;text-align:center;padding:.75rem .25rem;font-size:.7rem;font-weight:500;color:var(--steel);background:var(--white);transition:.3s;cursor:pointer;border:none}
 .step-dot.active{background:var(--navy);color:var(--white)}
@@ -37,9 +36,6 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
 .radio-pill{display:flex;align-items:center;gap:.3rem;padding:.4rem .75rem;border:1.5px solid var(--steel);border-radius:20px;font-size:.78rem;cursor:pointer;transition:.2s}
 .radio-pill:has(input:checked){background:var(--navy);color:var(--white);border-color:var(--navy)}
 .radio-pill input{display:none}
-.hour-presets{display:flex;gap:.4rem;flex-wrap:wrap}
-.hour-preset{padding:.35rem .7rem;border:1.5px solid var(--steel);border-radius:8px;font-size:.75rem;cursor:pointer;transition:.2s;background:var(--white)}
-.hour-preset.active{background:var(--navy);color:var(--white);border-color:var(--navy)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;padding:.7rem 1.5rem;border:none;border-radius:8px;font-family:inherit;font-size:.85rem;font-weight:600;cursor:pointer;transition:.2s}
 .btn-primary{background:var(--navy);color:var(--white)}
 .btn-primary:hover{background:#1a2d3f}
@@ -48,6 +44,26 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
 .btn-row{display:flex;gap:.75rem;justify-content:flex-end;margin-top:1rem}
 .step{display:none}
 .step.active{display:block}
+/* Roster Builder */
+.roster-row{background:#f8f9fa;border-radius:8px;padding:1rem;margin-bottom:.75rem;position:relative;border:1px solid #eee}
+.roster-row .row{margin-bottom:.5rem}
+.roster-remove{position:absolute;top:.5rem;right:.5rem;background:none;border:none;cursor:pointer;color:#cc3333;font-size:1.1rem;padding:.2rem .4rem;border-radius:4px;line-height:1}
+.roster-remove:hover{background:rgba(204,51,51,.1)}
+.roster-totals{background:var(--navy);color:var(--white);border-radius:10px;padding:1.25rem;margin-top:1rem}
+.roster-totals .rt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.75rem;text-align:center}
+.roster-totals .rt-val{font-size:1.1rem;font-weight:700}
+.roster-totals .rt-label{font-size:.65rem;opacity:.7;margin-top:.15rem}
+.add-position-btn{display:flex;align-items:center;gap:.4rem;padding:.6rem 1rem;background:transparent;border:1.5px dashed var(--navy);border-radius:8px;color:var(--navy);font-family:inherit;font-size:.82rem;font-weight:500;cursor:pointer;transition:.2s;width:100%}
+.add-position-btn:hover{background:rgba(19,31,45,.05)}
+.rate-toggle{display:flex;gap:0;border-radius:6px;overflow:hidden;border:1.5px solid var(--steel);width:fit-content}
+.rate-toggle button{border:none;padding:.3rem .6rem;font-size:.7rem;font-family:inherit;cursor:pointer;background:var(--white);color:var(--slate);transition:.2s}
+.rate-toggle button.active{background:var(--navy);color:var(--white)}
+.rate-inputs{display:flex;gap:.4rem;align-items:center;margin-top:.3rem}
+.rate-inputs input{width:80px}
+.rate-inputs span{font-size:.75rem;color:var(--gray)}
+.hour-presets-inline{display:flex;gap:.3rem;margin-top:.3rem}
+.hour-presets-inline button{padding:.2rem .5rem;border:1px solid var(--steel);border-radius:4px;font-size:.68rem;cursor:pointer;background:var(--white);font-family:inherit;transition:.2s}
+.hour-presets-inline button.active{background:var(--navy);color:var(--white);border-color:var(--navy)}
 /* PROPOSAL STYLES */
 .proposal-view{display:none}
 .proposal-actions{position:sticky;top:0;z-index:100;background:var(--navy);padding:.75rem 1rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
@@ -65,7 +81,6 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
 .page-header-logo span{font-size:.7rem;font-weight:600;color:var(--navy);letter-spacing:.5px}
 .page-number{font-size:.65rem;color:var(--gray)}
 .page-footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--steel);font-size:.6rem;color:var(--gray);text-align:center}
-/* Cover */
 .cover{background:var(--navy);color:var(--white);min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
 .cover::before{content:'';position:absolute;top:-50%;right:-30%;width:80%;height:200%;background:radial-gradient(ellipse,rgba(255,255,255,.03) 0%,transparent 70%);pointer-events:none}
 .cover-logo svg{width:80px;height:80px;margin-bottom:2rem}
@@ -75,25 +90,21 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
 .cover .cover-company{font-size:1.5rem;font-weight:600;margin-bottom:3rem}
 .cover .cover-date{font-size:.8rem;opacity:.5}
 .cover .cover-footer{position:absolute;bottom:2rem;font-size:.7rem;opacity:.4}
-/* Sections */
 .section-title{font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
 .section-title svg{width:24px;height:24px;flex-shrink:0}
 .section-subtitle{font-size:.95rem;font-weight:600;color:var(--slate);margin:1.5rem 0 .75rem}
 p.prose{font-size:.85rem;line-height:1.7;color:var(--gray);margin-bottom:1rem}
-/* Tables */
 .p-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.8rem}
 .p-table th{background:var(--navy);color:var(--white);padding:.6rem .75rem;text-align:left;font-weight:500;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px}
 .p-table td{padding:.55rem .75rem;border-bottom:1px solid #eee;color:var(--slate)}
 .p-table tr:nth-child(even) td{background:#f8f9fa}
 .p-table th:first-child{border-radius:6px 0 0 0}.p-table th:last-child{border-radius:0 6px 0 0}
-/* Schedule Grid */
-.schedule-grid{display:grid;grid-template-columns:120px repeat(7,1fr);gap:2px;margin:1rem 0;font-size:.65rem}
+.schedule-grid{display:grid;grid-template-columns:140px repeat(7,1fr);gap:2px;margin:1rem 0;font-size:.65rem}
 .schedule-grid .sg-header{background:var(--navy);color:var(--white);padding:.4rem;text-align:center;font-weight:500}
 .schedule-grid .sg-label{background:#f8f9fa;padding:.4rem;font-weight:500;color:var(--slate);display:flex;align-items:center}
 .schedule-grid .sg-cell{padding:.4rem;text-align:center;border-radius:2px}
 .sg-active{background:#d4edda;color:#155724;font-weight:500}
 .sg-inactive{background:#f8f9fa;color:#ccc}
-/* Org Chart */
 .org-chart{display:flex;flex-direction:column;align-items:center;gap:0;margin:1.5rem 0}
 .org-node{background:var(--navy);color:var(--white);padding:.6rem 1.2rem;border-radius:8px;font-size:.78rem;font-weight:500;text-align:center;position:relative;min-width:160px}
 .org-node.support{background:var(--accent)}
@@ -102,44 +113,39 @@ p.prose{font-size:.85rem;line-height:1.7;color:var(--gray);margin-bottom:1rem}
 .org-row::before{content:'';position:absolute;top:0;left:25%;right:25%;height:2px;background:var(--navy)}
 .org-branch{display:flex;flex-direction:column;align-items:center}
 .org-branch .org-connector{height:16px}
-/* Timeline */
 .timeline{margin:1rem 0}
 .tl-item{display:flex;gap:1rem;margin-bottom:1.5rem;position:relative}
 .tl-dot{width:36px;height:36px;border-radius:50%;background:var(--navy);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600;flex-shrink:0;position:relative;z-index:1}
 .tl-item:not(:last-child) .tl-dot::after{content:'';position:absolute;top:36px;left:50%;width:2px;height:calc(100% + 12px);background:var(--steel);transform:translateX(-50%)}
 .tl-content h4{font-size:.85rem;font-weight:600;color:var(--navy);margin-bottom:.2rem}
 .tl-content p{font-size:.78rem;color:var(--gray);line-height:1.5}
-/* SLA */
 .sla-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1rem 0}
 .sla-item{background:#f8f9fa;border-radius:8px;padding:1rem;border-left:3px solid var(--navy)}
 .sla-item .sla-val{font-size:1.1rem;font-weight:700;color:var(--navy)}
 .sla-item .sla-label{font-size:.72rem;color:var(--gray);margin-top:.2rem}
-/* Why cards */
 .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1rem 0}
 .why-card{background:linear-gradient(135deg,#f8f9fa,#fff);border-radius:8px;padding:1rem;border:1px solid #eee}
 .why-card h4{font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:.3rem;display:flex;align-items:center;gap:.4rem}
 .why-card h4 svg{width:16px;height:16px}
 .why-card p{font-size:.75rem;color:var(--gray);line-height:1.5}
-/* ROI */
-.roi-box{background:var(--navy);color:var(--white);border-radius:10px;padding:1.5rem;margin:1.5rem 0;text-align:center}
-.roi-box h3{font-size:1rem;font-weight:600;margin-bottom:.5rem}
-.roi-box .roi-nums{display:flex;justify-content:center;gap:2rem;margin:.75rem 0}
-.roi-box .roi-num{font-size:1.5rem;font-weight:700}
-.roi-box .roi-label{font-size:.65rem;opacity:.7}
-.roi-box p{font-size:.75rem;opacity:.8;line-height:1.5}
-/* CTA */
+.roi-box{background:var(--navy);color:var(--white);border-radius:10px;padding:1.5rem;margin:1.5rem 0}
+.roi-box h3{font-size:1rem;font-weight:600;margin-bottom:.75rem;text-align:center}
+.roi-row{display:flex;justify-content:space-between;align-items:center;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.15);font-size:.85rem}
+.roi-row:last-child{border-bottom:none}
+.roi-row .roi-label{opacity:.85;font-size:.8rem}
+.roi-row .roi-val{font-weight:600;text-align:right}
+.roi-row.highlight{font-size:.95rem;padding:.75rem 0}
+.roi-row.highlight .roi-val{color:#2ecc71;font-size:1.1rem}
+.roi-note{font-size:.7rem;opacity:.6;margin-top:.75rem;line-height:1.5;text-align:center;font-style:italic}
 .cta-box{background:linear-gradient(135deg,var(--navy),#1a3a5c);color:var(--white);border-radius:12px;padding:2rem;text-align:center;margin:1.5rem 0}
 .cta-box h3{font-size:1.2rem;font-weight:700;margin-bottom:.5rem}
 .cta-box p{font-size:.85rem;opacity:.8;margin-bottom:1rem}
 .cta-btn{display:inline-block;background:var(--white);color:var(--navy);padding:.7rem 2rem;border-radius:8px;font-weight:600;font-size:.85rem;text-decoration:none;transition:.2s}
 .cta-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.2)}
-/* Pricing disclaimer */
 .disclaimer{background:#fff8e1;border:1px solid #ffe082;border-radius:8px;padding:.75rem 1rem;font-size:.75rem;color:#6d4c00;margin:1rem 0;line-height:1.5}
-/* Terms */
 .terms-list{list-style:none;padding:0}
 .terms-list li{font-size:.78rem;color:var(--gray);padding:.4rem 0;border-bottom:1px solid #f0f0f0;display:flex;align-items:flex-start;gap:.5rem;line-height:1.5}
 .terms-list li::before{content:'§';color:var(--navy);font-weight:600}
-/* Print */
 @media print{
 body{background:#fff}
 .proposal-actions,.app-header,.form-container{display:none!important}
@@ -153,26 +159,24 @@ body{background:#fff}
 .sla-grid,.why-grid{grid-template-columns:1fr}
 .schedule-grid{font-size:.55rem;grid-template-columns:80px repeat(7,1fr)}
 .cover h1{font-size:1.5rem}
-.roi-box .roi-nums{flex-direction:column;gap:.5rem}
 .org-row{flex-direction:column;align-items:center}
 .org-row::before{display:none}
+.roster-row .row-2,.roster-row .row-3{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="app-header" id="appHeader">
 <svg viewBox="0 0 40 40" fill="none"><path d="M20 2L4 10v12c0 9.33 6.82 18.06 16 20 9.18-1.94 16-10.67 16-20V10L20 2z" fill="#fff" opacity=".15"/><path d="M20 5L7 11.5v10.5c0 7.93 5.64 15.36 13 17 7.36-1.64 13-9.07 13-17V11.5L20 5z" stroke="#fff" stroke-width="1.5" fill="none"/><path d="M15 20l3 3 7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-<h1>Salient Group <span>Proposal Generator v2</span></h1>
+<h1>Salient Group <span>Proposal Generator v3</span></h1>
 </div>
 
-<!-- FORM -->
 <div class="form-container" id="formContainer">
 <div class="step-indicator">
 <button class="step-dot active" onclick="goStep(1)">1. Client</button>
 <button class="step-dot" onclick="goStep(2)">2. Site</button>
-<button class="step-dot" onclick="goStep(3)">3. Needs</button>
+<button class="step-dot" onclick="goStep(3)">3. Roster</button>
 <button class="step-dot" onclick="goStep(4)">4. Preview</button>
 </div>
 
@@ -212,7 +216,7 @@ body{background:#fff}
 <select id="facilityType"><option value="">Select…</option><option>Warehouse</option><option>Office Building</option><option>Campus</option><option>Retail</option><option>Hospital</option><option>Construction Site</option><option>Residential Community</option><option>Event Venue</option><option>Other</option></select></label>
 <div class="row row-2">
 <label class="field"><span class="lbl">Approx. Square Footage</span>
-<select id="sqft"><option value="">Select…</option><option>&lt;10,000</option><option>10,000–50,000</option><option>50,000–100,000</option><option>100,000–250,000</option><option>250,000–500,000</option><option>500,000+</option></select></label>
+<select id="sqft"><option value="">Select…</option><option value="<10,000">&lt;10,000</option><option value="10,000–50,000">10,000–50,000</option><option value="50,000–100,000">50,000–100,000</option><option value="100,000–250,000">100,000–250,000</option><option value="250,000–500,000">250,000–500,000</option><option value="500,000+">500,000+</option></select></label>
 <label class="field"><span class="lbl">Number of Entrances</span><input type="number" id="entrances" min="1" value="2"></label>
 </div>
 <div class="row row-2">
@@ -245,28 +249,24 @@ body{background:#fff}
 </div>
 </div>
 
-<!-- STEP 3 -->
+<!-- STEP 3: Guard Roster Builder -->
 <div class="step" id="step3">
 <div class="card">
-<h2><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Security Needs</h2>
-<div class="row row-2">
-<label class="field"><span class="lbl">Number of Guard Posts *</span><input type="number" id="numPosts" min="1" value="1"></label>
-<label class="field"><span class="lbl">Hours/Post/Week</span>
-<div class="hour-presets">
-<button type="button" class="hour-preset" onclick="setHours(40,this)">40</button>
-<button type="button" class="hour-preset" onclick="setHours(56,this)">56</button>
-<button type="button" class="hour-preset active" onclick="setHours(84,this)">84</button>
-<button type="button" class="hour-preset" onclick="setHours(168,this)">168</button>
+<h2><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Guard Roster Builder</h2>
+<div id="rosterRows"></div>
+<button type="button" class="add-position-btn" onclick="addRosterRow()">+ Add Position</button>
+<div class="roster-totals" id="rosterTotals">
+<div class="rt-grid">
+<div><div class="rt-val" id="rtPersonnel">0</div><div class="rt-label">Total Personnel</div></div>
+<div><div class="rt-val" id="rtHours">0</div><div class="rt-label">Weekly Hours</div></div>
+<div><div class="rt-val" id="rtWeekly">$0</div><div class="rt-label">Weekly Cost</div></div>
+<div><div class="rt-val" id="rtMonthly">$0</div><div class="rt-label">Monthly Cost</div></div>
+<div><div class="rt-val" id="rtAnnual">$0</div><div class="rt-label">Annual Cost</div></div>
 </div>
-<input type="number" id="hoursPerPost" min="1" max="168" value="84" style="margin-top:.4rem">
-</label>
 </div>
-<label class="field"><span class="lbl">Guard Type *</span>
-<div class="radio-group">
-<label class="radio-pill"><input type="radio" name="guardType" value="Unarmed" checked>Unarmed</label>
-<label class="radio-pill"><input type="radio" name="guardType" value="Armed">Armed</label>
-<label class="radio-pill"><input type="radio" name="guardType" value="Mix">Mix</label>
-</div></label>
+</div>
+<div class="card">
+<h2><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> Additional Services & Concerns</h2>
 <label class="field"><span class="lbl">Special Services</span>
 <div class="checkbox-grid">
 <label class="cb-item"><input type="checkbox" name="service" value="Access Control/Gate Management">Access Control / Gate Mgmt</label>
@@ -312,10 +312,168 @@ body{background:#fff}
 </div>
 
 <script>
-// State list
 const STATES=["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY","DC"];
 const stSel=document.getElementById('addrState');
 STATES.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;stSel.appendChild(o)});
+
+// Guard types config
+const GUARD_TYPES=[
+{id:'security_officer',label:'Security Officer (Unarmed)',rateMin:22,rateMax:25},
+{id:'armed_officer',label:'Armed Security Officer',rateMin:29,rateMax:34},
+{id:'shift_supervisor',label:'Shift Supervisor',rateMin:26,rateMax:30},
+{id:'site_manager',label:'Site Manager',rateMin:32,rateMax:38},
+{id:'asst_site_manager',label:'Assistant Site Manager',rateMin:28,rateMax:33},
+{id:'mobile_patrol',label:'Mobile Patrol Officer',rateMin:24,rateMax:28},
+{id:'access_control',label:'Access Control Specialist',rateMin:24,rateMax:28},
+{id:'fire_watch',label:'Fire Watch Officer',rateMin:24,rateMax:28},
+{id:'event_security',label:'Event Security Officer',rateMin:23,rateMax:27},
+{id:'executive_protection',label:'Executive Protection Agent',rateMin:45,rateMax:65}
+];
+
+const POSITION_DESCRIPTIONS={
+'site_manager':'Oversees all security operations, serves as primary client liaison, manages staffing and scheduling, conducts performance reviews, ensures compliance with post orders and company standards.',
+'asst_site_manager':'Supports the Site Manager in daily operations, fills in during absences, assists with training and quality assurance, handles incident escalation.',
+'shift_supervisor':'Leads guard team during assigned shift, conducts guard check-ins and inspections, manages break rotations, handles real-time incident response and reporting.',
+'security_officer':'Executes post orders, conducts patrols, monitors access points, documents incidents, provides visible security presence, reports to Shift Supervisor.',
+'armed_officer':'All Security Officer duties plus armed response capability, high-value asset protection, enhanced threat deterrence. State-licensed and firearms certified.',
+'mobile_patrol':'Conducts scheduled and random patrol routes across facility grounds, parking areas, and perimeter. Vehicle-based with GPS tracking and checkpoint verification.',
+'access_control':'Manages entry/exit points, verifies credentials, maintains visitor logs, operates gate systems, monitors vehicle and pedestrian traffic.',
+'fire_watch':'Conducts continuous fire hazard monitoring during hot work operations or when fire suppression systems are offline. Maintains fire watch logs per OSHA/NFPA requirements.',
+'event_security':'Crowd management, perimeter security, VIP protection, emergency evacuation coordination, and guest assistance for events and special occasions.',
+'executive_protection':'Close protection for executives and VIPs, advance route planning, threat assessment, secure transportation coordination.'
+};
+
+let rosterCounter=0;
+
+function addRosterRow(typeId){
+rosterCounter++;
+const id=rosterCounter;
+const container=document.getElementById('rosterRows');
+const div=document.createElement('div');
+div.className='roster-row';
+div.id='roster-'+id;
+div.innerHTML=`
+<button type="button" class="roster-remove" onclick="removeRosterRow(${id})" title="Remove">🗑</button>
+<div class="row row-2">
+<label class="field" style="margin-bottom:.5rem"><span class="lbl">Position Type</span>
+<select onchange="onTypeChange(${id})" id="rtype-${id}">
+<option value="">Select…</option>
+${GUARD_TYPES.map(g=>`<option value="${g.id}" ${typeId===g.id?'selected':''}>${g.label}</option>`).join('')}
+</select></label>
+<label class="field" style="margin-bottom:.5rem"><span class="lbl">Quantity</span>
+<input type="number" id="rqty-${id}" min="1" value="1" onchange="updateTotals()" oninput="updateTotals()"></label>
+</div>
+<div class="row row-2">
+<label class="field" style="margin-bottom:.5rem"><span class="lbl">Hours/Week per Person</span>
+<input type="number" id="rhrs-${id}" min="1" max="168" value="40" onchange="updateTotals()" oninput="updateTotals()">
+<div class="hour-presets-inline">
+<button type="button" onclick="setRowHours(${id},40,this)" class="active">40</button>
+<button type="button" onclick="setRowHours(${id},48,this)">48</button>
+<button type="button" onclick="setRowHours(${id},56,this)">56</button>
+<button type="button" onclick="setRowHours(${id},84,this)">84</button>
+<button type="button" onclick="setRowHours(${id},168,this)">168</button>
+</div></label>
+<label class="field" style="margin-bottom:.5rem"><span class="lbl">Rate</span>
+<div class="rate-toggle" id="rtoggle-${id}">
+<button type="button" class="active" onclick="setRateMode(${id},'range',this)">Range</button>
+<button type="button" onclick="setRateMode(${id},'exact',this)">Exact</button>
+</div>
+<div class="rate-inputs" id="rinputs-${id}">
+<span>$</span><input type="number" id="rmin-${id}" min="0" step="0.5" value="22" onchange="updateTotals()" oninput="updateTotals()">
+<span>–</span><input type="number" id="rmax-${id}" min="0" step="0.5" value="25" onchange="updateTotals()" oninput="updateTotals()">
+<span>/hr</span>
+</div></label>
+</div>
+<input type="hidden" id="rmode-${id}" value="range">
+`;
+container.appendChild(div);
+if(typeId) onTypeChange(id);
+updateTotals();
+}
+
+function removeRosterRow(id){
+const el=document.getElementById('roster-'+id);
+if(el) el.remove();
+updateTotals();
+}
+
+function onTypeChange(id){
+const sel=document.getElementById('rtype-'+id);
+const gt=GUARD_TYPES.find(g=>g.id===sel.value);
+if(gt){
+const mode=document.getElementById('rmode-'+id).value;
+document.getElementById('rmin-'+id).value=gt.rateMin;
+if(mode==='range') document.getElementById('rmax-'+id).value=gt.rateMax;
+else document.getElementById('rmax-'+id).value=gt.rateMin;
+}
+updateTotals();
+}
+
+function setRowHours(id,val,btn){
+document.getElementById('rhrs-'+id).value=val;
+const parent=btn.parentElement;
+parent.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+updateTotals();
+}
+
+function setRateMode(id,mode,btn){
+document.getElementById('rmode-'+id).value=mode;
+const toggle=document.getElementById('rtoggle-'+id);
+toggle.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+const inputs=document.getElementById('rinputs-'+id);
+const minEl=document.getElementById('rmin-'+id);
+const maxEl=document.getElementById('rmax-'+id);
+if(mode==='exact'){
+maxEl.style.display='none';
+inputs.querySelectorAll('span')[1].style.display='none'; // hide dash
+}else{
+maxEl.style.display='';
+inputs.querySelectorAll('span')[1].style.display='';
+const gt=GUARD_TYPES.find(g=>g.id===document.getElementById('rtype-'+id).value);
+if(gt) maxEl.value=gt.rateMax;
+}
+updateTotals();
+}
+
+function getRosterData(){
+const rows=[];
+document.querySelectorAll('.roster-row').forEach(el=>{
+const id=el.id.replace('roster-','');
+const typeId=document.getElementById('rtype-'+id).value;
+if(!typeId) return;
+const gt=GUARD_TYPES.find(g=>g.id===typeId);
+const qty=parseInt(document.getElementById('rqty-'+id).value)||1;
+const hrs=parseInt(document.getElementById('rhrs-'+id).value)||40;
+const mode=document.getElementById('rmode-'+id).value;
+const rateMin=parseFloat(document.getElementById('rmin-'+id).value)||0;
+const rateMax=mode==='exact'?rateMin:(parseFloat(document.getElementById('rmax-'+id).value)||rateMin);
+rows.push({typeId,label:gt?gt.label:typeId,qty,hrs,mode,rateMin,rateMax});
+});
+return rows;
+}
+
+function updateTotals(){
+const rows=getRosterData();
+let personnel=0,hours=0,weeklyMin=0,weeklyMax=0;
+rows.forEach(r=>{
+personnel+=r.qty;
+hours+=r.qty*r.hrs;
+weeklyMin+=r.qty*r.hrs*r.rateMin;
+weeklyMax+=r.qty*r.hrs*r.rateMax;
+});
+const fmt=n=>'$'+Math.round(n).toLocaleString();
+const fmtRange=(a,b)=>a===b?fmt(a):fmt(a)+'–'+fmt(b);
+document.getElementById('rtPersonnel').textContent=personnel;
+document.getElementById('rtHours').textContent=hours.toLocaleString();
+document.getElementById('rtWeekly').textContent=fmtRange(weeklyMin,weeklyMax);
+document.getElementById('rtMonthly').textContent=fmtRange(Math.round(weeklyMin*4.33),Math.round(weeklyMax*4.33));
+document.getElementById('rtAnnual').textContent=fmtRange(weeklyMin*52,weeklyMax*52);
+}
+
+// Init with one empty row
+addRosterRow();
 
 function goStep(n){
 document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
@@ -323,73 +481,55 @@ document.getElementById('step'+n).classList.add('active');
 document.querySelectorAll('.step-dot').forEach((d,i)=>{d.classList.remove('active','completed');if(i+1===n)d.classList.add('active');else if(i+1<n)d.classList.add('completed')});
 window.scrollTo(0,0);
 }
-function setHours(v,el){
-document.getElementById('hoursPerPost').value=v;
-document.querySelectorAll('.hour-preset').forEach(b=>b.classList.remove('active'));
-el.classList.add('active');
-}
 function getChecked(name){return[...document.querySelectorAll(`input[name="${name}"]:checked`)].map(c=>c.value)}
 function getRadio(name){const c=document.querySelector(`input[name="${name}"]:checked`);return c?c.value:''}
 function v(id){return document.getElementById(id).value.trim()}
 
-// DATA
 const INDUSTRY_DATA={
 "Logistics/Distribution":{
 threats:"The logistics and distribution sector faces significant security challenges. Industry reports indicate cargo theft costs businesses between $15 and $35 billion annually in the United States alone. Distribution facilities are particularly vulnerable to shrinkage, unauthorized access, and internal theft. With constant truck traffic, driver management and loading dock oversight remain critical pain points. High-value goods in transit and in storage require vigilant monitoring, and the 24/7 nature of logistics operations means security gaps can occur during shift transitions.",
-roiLabel:"Average Annual Shrinkage Loss",roiVal:"$125,000–$450,000",roiNote:"Industry data suggests logistics facilities without dedicated security programs experience 2-5% inventory shrinkage. A professional security presence typically reduces losses by 60-80%, delivering significant ROI within the first quarter."
+riskBySize:{'<10,000':[150000,400000],'10,000–50,000':[150000,400000],'50,000–100,000':[400000,800000],'100,000–250,000':[400000,1200000],'250,000–500,000':[1200000,3000000],'500,000+':[1200000,5000000],'default':[300000,1000000]}
 },
 "Commercial Real Estate":{
 threats:"Commercial real estate properties face a unique combination of security challenges. Property managers must balance tenant safety and satisfaction with liability mitigation and property value protection. After-hours security is critical — industry data shows that the majority of commercial property crimes occur between 6 PM and 6 AM. Unauthorized access, vandalism, and theft not only create direct losses but can reduce property values and increase insurance premiums. Multi-tenant environments require sophisticated access control and consistent security protocols across diverse business needs.",
-roiLabel:"Annual Liability & Loss Exposure",roiVal:"$80,000–$300,000",roiNote:"Commercial properties with professional security programs report up to 70% fewer incidents, lower insurance premiums, higher tenant retention rates, and stronger property valuations."
+riskBySize:{'<10,000':[75000,200000],'10,000–50,000':[100000,300000],'50,000–100,000':[150000,400000],'100,000–250,000':[200000,500000],'250,000–500,000':[300000,700000],'500,000+':[400000,900000],'default':[150000,450000]}
 },
 "Construction":{
 threats:"Construction sites are among the most vulnerable targets for theft and vandalism. Industry reports indicate that construction site theft exceeds $1 billion annually in the United States, with the average theft incident costing between $10,000 and $50,000 in materials and equipment. Unsecured sites also face risks from unauthorized access — creating OSHA compliance concerns and significant liability exposure. Vandalism can delay project timelines by weeks, and copper theft alone accounts for hundreds of millions in annual losses across the industry.",
-roiLabel:"Average Theft Loss Per Site",roiVal:"$10,000–$50,000",roiNote:"Construction sites with professional security presence report up to 90% fewer theft incidents. The cost of a single stolen piece of heavy equipment can exceed an entire year's security investment."
+riskBySize:{'<10,000':[100000,300000],'10,000–50,000':[150000,400000],'50,000–100,000':[200000,500000],'100,000–250,000':[300000,700000],'250,000–500,000':[400000,900000],'500,000+':[500000,1200000],'default':[200000,600000]}
 },
 "Healthcare":{
 threats:"Healthcare facilities operate under a complex security landscape that intersects patient safety, regulatory compliance, and workplace violence prevention. Emergency departments experience some of the highest rates of workplace violence of any industry. HIPAA compliance requires strict access control to protect patient information. Pharmacy security demands constant vigilance against theft of controlled substances. Infant abduction prevention, patient elopement, and visitor management add layers of complexity that require specialized security training and protocols.",
-roiLabel:"Workplace Violence & Compliance Costs",roiVal:"$150,000–$500,000",roiNote:"Healthcare facilities with comprehensive security programs report fewer OSHA incidents, reduced workplace violence claims, and improved patient satisfaction scores — all of which directly impact reimbursement rates and accreditation."
+riskBySize:{'<10,000':[150000,400000],'10,000–50,000':[200000,500000],'50,000–100,000':[300000,700000],'100,000–250,000':[400000,1000000],'250,000–500,000':[500000,1500000],'500,000+':[700000,2000000],'default':[300000,800000]}
 },
 "Education":{
 threats:"Educational institutions face an evolving threat landscape that demands proactive, layered security solutions. Campus safety concerns range from active threat preparedness to everyday access control challenges. Large campuses with multiple buildings, open grounds, and diverse populations require coordinated security strategies. Event security for athletic competitions, graduations, and public gatherings adds seasonal complexity. Industry data indicates that institutions with visible, professional security presence report improved student enrollment, parent confidence, and community relations.",
-roiLabel:"Liability & Incident Exposure",roiVal:"$100,000–$400,000",roiNote:"Educational institutions with professional security programs demonstrate reduced incident rates, faster emergency response times, and improved compliance with federal and state safety mandates."
+riskBySize:{'<10,000':[100000,300000],'10,000–50,000':[150000,400000],'50,000–100,000':[200000,500000],'100,000–250,000':[250000,600000],'250,000–500,000':[300000,800000],'500,000+':[400000,1000000],'default':[200000,500000]}
 },
 "Events/Entertainment":{
 threats:"Events and entertainment venues face high-intensity, concentrated security challenges. Crowd management, VIP protection, perimeter security, and emergency evacuation planning require experienced security professionals who can adapt to dynamic environments. Industry reports indicate that inadequate event security is a leading cause of liability claims in the entertainment sector. From concerts and festivals to corporate gatherings and sporting events, each venue presents unique challenges based on capacity, layout, and audience demographics.",
-roiLabel:"Average Liability Per Incident",roiVal:"$75,000–$250,000",roiNote:"Events with professional security planning experience significantly fewer incidents, reduced insurance claims, and improved attendee satisfaction and repeat attendance."
+riskBySize:{'<10,000':[100000,300000],'10,000–50,000':[150000,400000],'50,000–100,000':[200000,500000],'100,000–250,000':[250000,600000],'250,000–500,000':[300000,800000],'500,000+':[400000,1000000],'default':[150000,450000]}
 },
 "HOA/Residential":{
 threats:"Residential communities face distinct security challenges centered on access control, resident safety, and quality of life. Gate management and visitor verification are foundational requirements, while package theft, vehicle break-ins, and vandalism remain persistent concerns. HOA communities must balance visible security presence with a welcoming atmosphere. Industry data shows that communities with professional security programs report higher property values, improved resident satisfaction, and reduced crime rates compared to unguarded counterparts.",
-roiLabel:"Property Value & Loss Impact",roiVal:"$50,000–$200,000",roiNote:"Gated communities with professional security report property value premiums of 5-12% and significantly lower insurance claims per household."
+riskBySize:{'<10,000':[75000,200000],'10,000–50,000':[100000,300000],'50,000–100,000':[150000,400000],'100,000–250,000':[200000,500000],'250,000–500,000':[250000,600000],'500,000+':[300000,800000],'default':[125000,350000]}
 },
 "Hospitality":{
 threats:"The hospitality industry requires security solutions that protect guests, staff, and assets while maintaining the welcoming environment essential to guest satisfaction. Hotels and resorts face threats including guest room theft, parking lot incidents, trespassing, and late-night disturbances. Industry data indicates that properties with visible security presence receive higher guest satisfaction scores and fewer liability claims. The 24/7 nature of hospitality operations demands round-the-clock coverage with officers trained in customer service and de-escalation.",
-roiLabel:"Annual Loss & Liability Exposure",roiVal:"$60,000–$250,000",roiNote:"Hospitality properties with professional security programs report up to 50% fewer guest incidents, reduced insurance premiums, and measurably higher satisfaction scores."
+riskBySize:{'<10,000':[100000,250000],'10,000–50,000':[150000,400000],'50,000–100,000':[200000,500000],'100,000–250,000':[250000,600000],'250,000–500,000':[300000,700000],'500,000+':[400000,900000],'default':[150000,400000]}
 },
 "Retail":{
 threats:"Retail environments face ongoing challenges from organized retail crime, shoplifting, employee theft, and parking lot safety. Industry reports indicate that retail shrinkage exceeds $100 billion annually nationwide, with the average retailer losing 1.4% of revenue to theft and fraud. Loss prevention requires a combination of visible deterrence, access control, and technology-integrated monitoring. Parking lot incidents — including vehicle theft, assault, and slip-and-fall claims — represent a significant portion of retail liability exposure.",
-roiLabel:"Average Annual Shrinkage",roiVal:"$100,000–$350,000",roiNote:"Retail locations with dedicated security presence report 30-50% reductions in shrinkage and significantly fewer parking lot incidents, directly improving bottom-line profitability."
+riskBySize:{'<10,000':[100000,250000],'10,000–50,000':[150000,400000],'50,000–100,000':[200000,500000],'100,000–250,000':[300000,700000],'250,000–500,000':[400000,900000],'500,000+':[500000,1200000],'default':[200000,500000]}
 },
 "Manufacturing":{
 threats:"Manufacturing facilities face a range of security threats including intellectual property theft, equipment and material theft, hazardous materials compliance, and workforce safety concerns. Shift change management creates predictable vulnerability windows that require dedicated oversight. Industry data shows that manufacturing sites with comprehensive security programs experience fewer workplace incidents, reduced theft, and improved regulatory compliance. The high value of machinery, raw materials, and finished goods makes access control and perimeter security essential investments.",
-roiLabel:"Annual Theft & Safety Costs",roiVal:"$80,000–$300,000",roiNote:"Manufacturing facilities with professional security report fewer OSHA violations, reduced workers' compensation claims, and measurable decreases in material and product theft."
+riskBySize:{'<10,000':[100000,300000],'10,000–50,000':[150000,400000],'50,000–100,000':[200000,600000],'100,000–250,000':[300000,800000],'250,000–500,000':[400000,1000000],'500,000+':[500000,1500000],'default':[200000,600000]}
 },
 "Other":{
 threats:"Every facility faces unique security challenges shaped by its industry, location, operations, and workforce. From access control and perimeter security to emergency response and regulatory compliance, a comprehensive security program must be tailored to the specific risk profile of each environment. Industry data consistently shows that organizations with professional, dedicated security programs experience fewer incidents, lower liability costs, and improved operational efficiency.",
-roiLabel:"Annual Risk Exposure",roiVal:"$75,000–$300,000",roiNote:"Organizations with professional security programs typically see 40-60% reductions in security-related incidents and significant decreases in associated costs."
+riskBySize:{'<10,000':[100000,250000],'10,000–50,000':[150000,400000],'50,000–100,000':[200000,500000],'100,000–250,000':[250000,600000],'250,000–500,000':[300000,800000],'500,000+':[400000,1000000],'default':[200000,500000]}
 }
-};
-
-const FACILITY_POSTS={
-"Warehouse":["Main Gate","Loading Dock","Receiving Area","Patrol Unit"],
-"Office Building":["Main Lobby","Parking Garage","Building Patrol","After-Hours Desk"],
-"Campus":["Main Gate","Campus Patrol","Administration Building","Perimeter Unit"],
-"Retail":["Main Entrance","Loss Prevention Floor","Parking Lot Patrol","Receiving Dock"],
-"Hospital":["Emergency Department","Main Lobby","Parking Structure","Roving Patrol"],
-"Construction Site":["Site Entrance","Equipment Yard","Perimeter Patrol","Night Watch"],
-"Residential Community":["Main Gate","Community Patrol","Clubhouse","Roving Unit"],
-"Event Venue":["Main Entry","VIP Area","Perimeter Post","Crowd Management"],
-"Other":["Main Entry","Patrol Unit","Control Room","Perimeter Post"]
 };
 
 const SERVICE_DETAILS={
@@ -421,22 +561,36 @@ company:v('companyName'),contact:v('contactName'),title:v('contactTitle'),email:
 street:v('addrStreet'),city:v('addrCity'),state:v('addrState'),zip:v('addrZip'),
 industry:v('industry'),facility:v('facilityType'),sqft:v('sqft'),entrances:v('entrances')||'2',buildings:v('buildings')||'1',
 parking:v('parking'),hours:getRadio('hours'),currentProvider:v('currentProvider'),
-pains:getChecked('pain'),numPosts:parseInt(v('numPosts'))||1,hoursPerPost:parseInt(v('hoursPerPost'))||84,
-guardType:getRadio('guardType'),services:getChecked('service'),concerns:getChecked('concern')
+pains:getChecked('pain'),services:getChecked('service'),concerns:getChecked('concern'),
+roster:getRosterData()
 };
 if(!d.company||!d.industry){alert('Please fill in Company Name and Industry.');return}
+if(d.roster.length===0){alert('Please add at least one position to the roster.');return}
 const today=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
 const ind=INDUSTRY_DATA[d.industry]||INDUSTRY_DATA['Other'];
-const posts=generatePosts(d);
-const rateMin=d.guardType==='Armed'?29:d.guardType==='Mix'?25:22;
-const rateMax=d.guardType==='Armed'?34:d.guardType==='Mix'?30:25;
-const weeklyMin=d.numPosts*d.hoursPerPost*rateMin;
-const weeklyMax=d.numPosts*d.hoursPerPost*rateMax;
-const monthlyMin=Math.round(weeklyMin*4.33);
-const monthlyMax=Math.round(weeklyMax*4.33);
-const annualMin=weeklyMin*52;
-const annualMax=weeklyMax*52;
-const fmt=n=>'$'+n.toLocaleString();
+const fmt=n=>'$'+Math.round(n).toLocaleString();
+const fmtRange=(a,b)=>a===b?fmt(a):fmt(a)+'–'+fmt(b);
+
+// Calculate totals
+let totalPersonnel=0,totalHours=0,weeklyMin=0,weeklyMax=0;
+d.roster.forEach(r=>{totalPersonnel+=r.qty;totalHours+=r.qty*r.hrs;weeklyMin+=r.qty*r.hrs*r.rateMin;weeklyMax+=r.qty*r.hrs*r.rateMax});
+const monthlyMin=Math.round(weeklyMin*4.33),monthlyMax=Math.round(weeklyMax*4.33);
+const annualMin=weeklyMin*52,annualMax=weeklyMax*52;
+
+// ROI: get risk exposure from industry+sqft, ensure always > security cost
+const riskData=ind.riskBySize[d.sqft]||ind.riskBySize['default'];
+let riskMin=riskData[0],riskMax=riskData[1];
+// Ensure risk exposure is always meaningfully higher than security cost
+if(riskMin<=annualMin){riskMin=Math.round(annualMin*1.8)}
+if(riskMax<=annualMax){riskMax=Math.round(annualMax*2.5)}
+if(riskMin>=riskMax) riskMax=Math.round(riskMin*1.6);
+const savingsMin=riskMin-annualMax;
+const savingsMax=riskMax-annualMin;
+const roiLow=Math.max(1.5,(riskMin/annualMax)).toFixed(1);
+const roiHigh=(riskMax/annualMin).toFixed(1);
+
+// Determine guard type summary
+const hasArmed=d.roster.some(r=>r.typeId==='armed_officer'||r.typeId==='executive_protection');
 
 // Executive Summary
 let execSummary=`Salient Group is pleased to present this comprehensive security proposal for ${d.company}. `;
@@ -446,12 +600,12 @@ if(d.pains.includes('guards_no_show')||d.pains.includes('cant_reach'))execSummar
 else if(d.pains.includes('no_visibility'))execSummary+=`We recognize your need for greater transparency and accountability in your security program. `;
 else execSummary+=`Based on our understanding of your current challenges, we have designed a program that directly addresses your operational pain points. `;
 }
-execSummary+=`This proposal outlines a tailored security program for your ${d.facility?d.facility.toLowerCase():'facility'}${d.sqft?' spanning approximately '+d.sqft+' square feet':''}, featuring ${d.numPosts} dedicated security post${d.numPosts>1?'s':''} with ${d.hoursPerPost} hours of weekly coverage${d.guardType!=='Unarmed'?' including armed officer capabilities':''}. Salient Group combines experienced security professionals, advanced technology, and dedicated account management to deliver measurable results — not just a guard standing at a door.`;
+execSummary+=`This proposal outlines a tailored security program for your ${d.facility?d.facility.toLowerCase():'facility'}${d.sqft?' spanning approximately '+d.sqft+' square feet':''}, featuring ${totalPersonnel} dedicated security professional${totalPersonnel>1?'s':''} providing ${totalHours.toLocaleString()} hours of weekly coverage${hasArmed?' including armed officer capabilities':''}. Salient Group combines experienced security professionals, advanced technology, and dedicated account management to deliver measurable results — not just a guard standing at a door.`;
 
 // Site risk factors
 let siteRisks=`Your ${d.facility?d.facility.toLowerCase():'facility'}`;
 if(d.sqft)siteRisks+=` encompasses approximately ${d.sqft} square feet of operational space`;
-siteRisks+=` with ${d.entrances} access point${d.entrances>1?'s':''} and ${d.buildings} building${d.buildings>1?'s':''}`;
+siteRisks+=` with ${d.entrances} access point${parseInt(d.entrances)>1?'s':''} and ${d.buildings} building${parseInt(d.buildings)>1?'s':''}`;
 if(d.parking&&d.parking!=='No')siteRisks+=`, along with ${d.parking} parking area${d.parking!=='1'?'s':''}`;
 siteRisks+=`. `;
 if(parseInt(d.entrances)>=4)siteRisks+=`The multiple access points create additional vulnerability surfaces that require coordinated coverage and monitoring. `;
@@ -460,17 +614,51 @@ if(d.hours==='24/7')siteRisks+=`Your 24/7 operational schedule requires continuo
 else if(d.hours==='Business Hours')siteRisks+=`After-hours periods when the facility is unoccupied represent the highest-risk windows for unauthorized access and property crime. `;
 if(d.state)siteRisks+=`${d.state} regulatory requirements and local security licensing standards are fully incorporated into our staffing and training protocols.`;
 
-// Schedule
+// Coverage schedule
 const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-const hrsPerDay=Math.round(d.hoursPerPost/7);
-const is24=d.hoursPerPost>=140;
-const isBiz=d.hoursPerPost<=56;
 
 // Pain-based "Why" cards
 const whyCards=d.pains.filter(p=>PAIN_RESPONSES[p]).map(p=>PAIN_RESPONSES[p]);
-if(whyCards.length===0){
-whyCards.push(PAIN_RESPONSES['cant_reach'],PAIN_RESPONSES['no_visibility'],PAIN_RESPONSES['cookie_cutter']);
+if(whyCards.length===0) whyCards.push(PAIN_RESPONSES['cant_reach'],PAIN_RESPONSES['no_visibility'],PAIN_RESPONSES['cookie_cutter']);
+
+// Build roster table for proposal
+const rosterTableRows=d.roster.map(r=>{
+const desc=POSITION_DESCRIPTIONS[r.typeId]||'Site security, access control, patrol, incident response, reporting.';
+const rate=r.mode==='exact'?fmt(r.rateMin)+'/hr':fmt(r.rateMin)+'–'+fmt(r.rateMax)+'/hr';
+return`<tr><td><strong>${r.label}</strong></td><td>${r.qty}</td><td>${r.hrs}</td><td>${rate}</td></tr><tr><td colspan="4" style="font-size:.75rem;color:var(--gray);padding:.3rem .75rem .7rem;border-bottom:1px solid #ddd;font-style:italic">${desc}</td></tr>`;
+}).join('');
+
+// Coverage schedule rows
+const scheduleRows=d.roster.map(r=>{
+const hrsPerDay=r.hrs/7;
+const is24=r.hrs>=140;
+const isBiz=r.hrs<=56;
+let cells=days.map(day=>{
+if(is24) return`<div class="sg-cell sg-active">24h</div>`;
+if(isBiz){
+let isWeekend=day==='Sat'||day==='Sun';
+return isWeekend?`<div class="sg-cell sg-inactive">—</div>`:`<div class="sg-cell sg-active">${Math.round(r.hrs/5)}h</div>`;
 }
+return`<div class="sg-cell sg-active">${Math.round(hrsPerDay)}h</div>`;
+}).join('');
+return`<div class="sg-label">${r.label} (×${r.qty})</div>${cells}`;
+}).join('');
+
+// Pricing table
+const pricingRows=d.roster.map(r=>{
+const rate=r.mode==='exact'?fmt(r.rateMin)+'/hr':fmt(r.rateMin)+'–'+fmt(r.rateMax)+'/hr';
+const wMin=r.qty*r.hrs*r.rateMin,wMax=r.qty*r.hrs*r.rateMax;
+const mMin=Math.round(wMin*4.33),mMax=Math.round(wMax*4.33);
+const aMin=wMin*52,aMax=wMax*52;
+return`<tr><td>${r.label}</td><td>${r.qty}</td><td>${r.hrs}</td><td>${rate}</td><td>${fmtRange(wMin,wMax)}</td><td>${fmtRange(mMin,mMax)}</td><td>${fmtRange(aMin,aMax)}</td></tr>`;
+}).join('');
+
+// Org chart nodes based on roster
+const orgNodes=[];
+const hasMgr=d.roster.some(r=>r.typeId==='site_manager');
+const hasAsstMgr=d.roster.some(r=>r.typeId==='asst_site_manager');
+const hasSup=d.roster.some(r=>r.typeId==='shift_supervisor');
+const otherRoles=d.roster.filter(r=>!['site_manager','asst_site_manager','shift_supervisor'].includes(r.typeId));
 
 let html=`
 <!-- COVER -->
@@ -508,26 +696,16 @@ ${pageFooter(d.company)}
 <div class="page"><div class="page-inner">
 ${pageHeader(4)}
 <div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Recommended Security Plan</div>
-<div class="section-subtitle">Post Configuration</div>
+<div class="section-subtitle">Staffing Configuration</div>
 <table class="p-table">
-<thead><tr><th>Post</th><th>Type</th><th>Hours/Week</th><th>Key Responsibilities</th></tr></thead>
-<tbody>${posts.map(p=>`<tr><td><strong>${p.name}</strong></td><td>${p.type}</td><td>${d.hoursPerPost}</td><td>${p.duties}</td></tr>`).join('')}</tbody>
+<thead><tr><th>Position</th><th>Qty</th><th>Hrs/Wk</th><th>Rate</th></tr></thead>
+<tbody>${rosterTableRows}</tbody>
 </table>
 
 <div class="section-subtitle">Weekly Coverage Schedule</div>
 <div class="schedule-grid">
 <div class="sg-header"></div>${days.map(d=>`<div class="sg-header">${d}</div>`).join('')}
-${posts.map(p=>{
-let cells=days.map(day=>{
-if(is24)return`<div class="sg-cell sg-active">24h</div>`;
-if(isBiz){
-let isWeekend=day==='Sat'||day==='Sun';
-return isWeekend?`<div class="sg-cell sg-inactive">—</div>`:`<div class="sg-cell sg-active">${hrsPerDay>8?hrsPerDay+'h':'8h'}</div>`;
-}
-return`<div class="sg-cell sg-active">${hrsPerDay}h</div>`;
-}).join('');
-return`<div class="sg-label">${p.name}</div>${cells}`;
-}).join('')}
+${scheduleRows}
 </div>
 
 ${d.services.length?`<div class="section-subtitle">Specialized Services</div>${d.services.map(s=>`<p class="prose"><strong>${s}:</strong> ${SERVICE_DETAILS[s]||'Customized service delivery based on your specific operational requirements.'}</p>`).join('')}`:''}
@@ -560,15 +738,16 @@ ${pageHeader(6)}
 <div class="org-chart">
 <div class="org-node">Dedicated Account Manager</div>
 <div class="org-connector"></div>
+${hasMgr?'<div class="org-node">Site Manager</div><div class="org-connector"></div>':''}
+${hasAsstMgr?'<div class="org-node support">Assistant Site Manager</div><div class="org-connector"></div>':''}
 <div class="org-row">
-<div class="org-branch"><div class="org-connector"></div><div class="org-node">Site Supervisor</div><div class="org-connector"></div><div class="org-node" style="font-size:.7rem">Security Officers (${d.numPosts} Post${d.numPosts>1?'s':''})</div></div>
+${hasSup?'<div class="org-branch"><div class="org-connector"></div><div class="org-node">Shift Supervisor(s)</div><div class="org-connector"></div><div class="org-node" style="font-size:.7rem">Security Team ('+totalPersonnel+' Total)</div></div>':'<div class="org-branch"><div class="org-connector"></div><div class="org-node" style="font-size:.7rem">Security Team ('+totalPersonnel+' Total)</div></div>'}
 <div class="org-branch"><div class="org-connector"></div><div class="org-node support">24/7 Operations Center</div></div>
 </div>
 </div>
-<div class="section-subtitle">Account Manager</div>
-<p class="prose">Your dedicated account manager serves as your single point of contact for all security matters. They conduct regular business reviews, manage staffing decisions, and ensure your security program evolves with your needs.</p>
-<div class="section-subtitle">Site Supervisor</div>
-<p class="prose">An assigned site supervisor conducts weekly on-site visits, manages daily officer performance, handles scheduling, and ensures post orders are followed. They are your operational point of contact on the ground.</p>
+${hasMgr?`<div class="section-subtitle">Site Manager</div><p class="prose">${POSITION_DESCRIPTIONS['site_manager']}</p>`:'<div class="section-subtitle">Account Manager</div><p class="prose">Your dedicated account manager serves as your single point of contact for all security matters. They conduct regular business reviews, manage staffing decisions, and ensure your security program evolves with your needs.</p>'}
+${hasAsstMgr?`<div class="section-subtitle">Assistant Site Manager</div><p class="prose">${POSITION_DESCRIPTIONS['asst_site_manager']}</p>`:''}
+${hasSup?`<div class="section-subtitle">Shift Supervisors</div><p class="prose">${POSITION_DESCRIPTIONS['shift_supervisor']}</p>`:''}
 <div class="section-subtitle">Security Officers</div>
 <p class="prose">All Salient Group security officers undergo comprehensive background checks, drug testing, and state licensing verification. Officers receive initial training on your site-specific protocols and ongoing professional development throughout their assignment.</p>
 ${pageFooter(d.company)}
@@ -594,16 +773,10 @@ ${pageFooter(d.company)}
 ${pageHeader(8)}
 <div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg> Investment Summary</div>
 <table class="p-table">
-<thead><tr><th>Post</th><th>Type</th><th>Hours/Week</th><th>Rate Range</th><th>Weekly Est.</th></tr></thead>
-<tbody>${posts.map(p=>`<tr><td>${p.name}</td><td>${p.type}</td><td>${d.hoursPerPost}</td><td>${fmt(rateMin)}–${fmt(rateMax)}/hr</td><td>${fmt(d.hoursPerPost*rateMin)}–${fmt(d.hoursPerPost*rateMax)}</td></tr>`).join('')}
-<tr style="font-weight:600;background:#f0f4f8"><td colspan="3">Total Estimated Investment</td><td colspan="2"></td></tr>
-</tbody></table>
-<table class="p-table">
-<thead><tr><th>Period</th><th>Low Estimate</th><th>High Estimate</th></tr></thead>
+<thead><tr><th>Position</th><th>Qty</th><th>Hrs/Wk</th><th>Rate</th><th>Weekly</th><th>Monthly</th><th>Annual</th></tr></thead>
 <tbody>
-<tr><td>Weekly</td><td>${fmt(weeklyMin)}</td><td>${fmt(weeklyMax)}</td></tr>
-<tr><td>Monthly</td><td>${fmt(monthlyMin)}</td><td>${fmt(monthlyMax)}</td></tr>
-<tr style="font-weight:600"><td>Annual</td><td>${fmt(annualMin)}</td><td>${fmt(annualMax)}</td></tr>
+${pricingRows}
+<tr style="font-weight:700;background:#f0f4f8"><td colspan="4">Grand Total</td><td>${fmtRange(weeklyMin,weeklyMax)}</td><td>${fmtRange(monthlyMin,monthlyMax)}</td><td>${fmtRange(annualMin,annualMax)}</td></tr>
 </tbody></table>
 <div class="disclaimer">Final pricing determined after complimentary on-site security assessment. Rates reflect staffing complexity, scheduling requirements, and specialized service needs. No hidden fees or surprise charges.</div>
 ${pageFooter(d.company)}
@@ -627,7 +800,7 @@ ${pageHeader(9)}
 ${pageFooter(d.company)}
 </div></div>
 
-<!-- WHY SALIENT GROUP -->
+<!-- WHY SALIENT GROUP + ROI -->
 <div class="page"><div class="page-inner">
 ${pageHeader(10)}
 <div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M12 2L4 7v6c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V7l-8-5z"/></svg> Why Salient Group</div>
@@ -636,12 +809,11 @@ ${whyCards.map(c=>`<div class="why-card"><h4>${c.icon} ${c.title}</h4><p>${c.tex
 </div>
 <div class="roi-box">
 <h3>Return on Investment</h3>
-<div class="roi-nums">
-<div><div class="roi-num">${ind.roiVal}</div><div class="roi-label">${ind.roiLabel}</div></div>
-<div><div class="roi-num" style="color:#2ecc71">vs</div><div class="roi-label">&nbsp;</div></div>
-<div><div class="roi-num">${fmt(annualMin)}–${fmt(annualMax)}</div><div class="roi-label">Annual Security Investment</div></div>
-</div>
-<p>${ind.roiNote}</p>
+<div class="roi-row"><span class="roi-label">Estimated Annual Risk Exposure (without professional security)</span><span class="roi-val">${fmtRange(riskMin,riskMax)}</span></div>
+<div class="roi-row"><span class="roi-label">Proposed Annual Security Investment</span><span class="roi-val">${fmtRange(annualMin,annualMax)}</span></div>
+<div class="roi-row highlight"><span class="roi-label">Estimated Net Annual Savings</span><span class="roi-val">${fmtRange(Math.max(0,savingsMin),savingsMax)}</span></div>
+<div class="roi-row"><span class="roi-label">Return on Investment</span><span class="roi-val">${roiLow}:1 – ${roiHigh}:1</span></div>
+<div class="roi-note">Risk estimates based on industry data from ASIS International, FBI Uniform Crime Reports, and National Retail Federation. Actual exposure varies by location and operations.</div>
 </div>
 ${pageFooter(d.company)}
 </div></div>
@@ -688,49 +860,6 @@ document.getElementById('emailBtn').onclick=()=>{
 window.location.href=`mailto:?subject=${encodeURIComponent('Security Proposal — '+d.company)}&cc=sam@salient-group.com&body=${encodeURIComponent('Please find the attached security proposal from Salient Group for '+d.company+'.')}`;
 };
 window.scrollTo(0,0);
-}
-
-function generatePosts(d){
-const templates=FACILITY_POSTS[d.facility]||FACILITY_POSTS['Other'];
-const posts=[];
-const dutyMap={
-"Main Gate":"Access control, vehicle/visitor verification, credential checks, gate operation, delivery coordination",
-"Loading Dock":"Shipment verification, seal checks, driver management, cargo security, manifest reconciliation",
-"Receiving Area":"Inbound shipment monitoring, inventory verification, access control, loss prevention",
-"Patrol Unit":"Randomized property patrols, perimeter checks, incident response, parking area monitoring",
-"Main Lobby":"Visitor management, badge issuance, employee verification, reception security, package screening",
-"Parking Garage":"Vehicle patrol, access monitoring, escort services, incident response, lighting checks",
-"Building Patrol":"Floor-by-floor patrols, door checks, alarm response, tenant assistance, emergency support",
-"After-Hours Desk":"After-hours access control, alarm monitoring, vendor check-in, emergency coordination",
-"Campus Patrol":"Mobile patrol of grounds, building checks, student/staff assistance, incident documentation",
-"Administration Building":"Front desk security, visitor screening, access control, VIP escort coordination",
-"Perimeter Unit":"Perimeter fence checks, intrusion detection response, exterior lighting verification",
-"Main Entrance":"Customer greeting, loss prevention presence, access monitoring, incident deterrence",
-"Loss Prevention Floor":"Sales floor monitoring, theft deterrence, employee compliance checks, incident response",
-"Parking Lot Patrol":"Vehicle and pedestrian safety, cart retrieval monitoring, lighting checks, escort services",
-"Receiving Dock":"Vendor check-in, delivery verification, back-of-house access control, shrinkage prevention",
-"Emergency Department":"Patient/visitor screening, de-escalation, staff safety, elopement prevention",
-"Parking Structure":"Vehicle patrol, emergency call response, access gate monitoring, incident documentation",
-"Roving Patrol":"Multi-building patrol, checkpoint verification, incident response, perimeter monitoring",
-"Site Entrance":"Worker credential verification, visitor logging, vehicle access control, safety compliance",
-"Equipment Yard":"Equipment monitoring, theft deterrence, after-hours security, inventory verification",
-"Perimeter Patrol":"Fence line checks, intrusion detection, trespasser deterrence, lighting verification",
-"Night Watch":"Overnight facility security, fire watch, alarm response, emergency coordination",
-"Community Patrol":"Residential area patrol, parking monitoring, noise response, resident assistance",
-"Clubhouse":"Amenity access control, event support, resident verification, guest management",
-"Roving Unit":"Randomized patrol routes, checkpoint scanning, incident response, community presence",
-"Main Entry":"Ticket/credential verification, crowd management, prohibited item screening",
-"VIP Area":"Access control, guest verification, executive protection support, discreet presence",
-"Perimeter Post":"Boundary security, unauthorized access prevention, emergency egress monitoring",
-"Crowd Management":"Flow management, capacity monitoring, de-escalation, emergency evacuation support",
-"Control Room":"Camera monitoring, radio dispatch, incident logging, emergency coordination"
-};
-for(let i=0;i<d.numPosts;i++){
-const name=templates[i%templates.length]||(i===0?'Post 1':'Post '+(i+1));
-const type=d.guardType==='Mix'?(i===0?'Armed':'Unarmed'):d.guardType;
-posts.push({name,type,duties:dutyMap[name]||'Site security, access control, patrol, incident response, reporting'});
-}
-return posts;
 }
 
 function pageHeader(num){
