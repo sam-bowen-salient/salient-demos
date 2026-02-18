@@ -8,16 +8,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#131F2D;--white:#FFFFFF;--blue:#2563EB;--gray:#F8FAFC;--border:#E2E8F0;--text:#334155;--text-light:#64748B;--green:#10B981;--yellow:#F59E0B;--red:#EF4444;--orange:#F97316;--dark-slate:#314151}
+:root{--navy:#131F2D;--white:#FFFFFF;--blue:#2563EB;--gray:#F8FAFC;--border:#E2E8F0;--text:#334155;--text-light:#64748B;--green:#10B981;--yellow:#F59E0B;--red:#EF4444;--orange:#F97316;--dark-slate:#314151;--steel:#D6D7D8;--med-gray:#606060}
 body{font-family:'Poppins',sans-serif;background:var(--gray);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 
 /* Header */
-header{background:var(--navy);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.15)}
-.logo{display:flex;align-items:center;gap:.75rem}
-.logo-icon{width:36px;height:36px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center}
-.logo-icon svg{width:20px;height:20px;fill:var(--white)}
-.logo-text{color:var(--white);font-weight:700;font-size:1.1rem}
-.header-badge{background:rgba(37,99,235,.15);color:#93B4FF;font-size:.7rem;font-weight:600;padding:.3rem .75rem;border-radius:20px;letter-spacing:.04em}
+header{background:var(--navy);padding:.85rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+.logo{display:flex;align-items:center;gap:.5rem}
+.logo img{height:44px;width:auto}
+.header-right{display:flex;align-items:center;gap:1rem}
+.header-badge{background:rgba(255,255,255,.08);color:var(--steel);font-size:.68rem;font-weight:500;padding:.3rem .75rem;border-radius:20px;letter-spacing:.06em;text-transform:uppercase}
+.header-phone{color:var(--steel);font-size:.75rem;font-weight:500;text-decoration:none;letter-spacing:.02em}
+.header-phone:hover{color:var(--white)}
 
 /* Layout */
 .container{max-width:740px;margin:0 auto;padding:2rem 1.25rem 4rem}
@@ -25,7 +26,7 @@ h1{font-size:1.75rem;font-weight:700;color:var(--navy);text-align:center;margin-
 .subtitle{text-align:center;color:var(--text-light);font-size:.95rem;margin-bottom:.5rem}
 .trust-line{text-align:center;color:var(--text-light);font-size:.75rem;margin-bottom:2rem;opacity:.7}
 .card{background:var(--white);border-radius:16px;padding:2rem;box-shadow:0 1px 3px rgba(0,0,0,.04),0 4px 20px rgba(0,0,0,.05)}
-.section-title{font-size:.75rem;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1.25rem;padding-bottom:.65rem;border-bottom:1px solid var(--border)}
+.section-title{font-size:.75rem;font-weight:600;color:var(--dark-slate);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1.25rem;padding-bottom:.65rem;border-bottom:1px solid var(--border)}
 .spacer{height:1.5rem}
 footer{text-align:center;padding:2rem 1rem;color:var(--text-light);font-size:.75rem}
 footer a{color:var(--blue);text-decoration:none}
@@ -34,11 +35,11 @@ footer a{color:var(--blue);text-decoration:none}
 .progress-wrap{margin-bottom:2rem}
 .progress-steps{display:flex;justify-content:space-between;position:relative;margin-bottom:.5rem}
 .progress-steps::before{content:'';position:absolute;top:14px;left:0;right:0;height:2px;background:var(--border)}
-.progress-steps::after{content:'';position:absolute;top:14px;left:0;height:2px;background:var(--blue);transition:width .4s ease;width:0}
+.progress-steps::after{content:'';position:absolute;top:14px;left:0;height:2px;background:var(--navy);transition:width .4s ease;width:0}
 .progress-steps.s1::after{width:0} .progress-steps.s2::after{width:25%} .progress-steps.s3::after{width:50%} .progress-steps.s4::after{width:75%} .progress-steps.s5::after{width:100%}
 .p-step{display:flex;flex-direction:column;align-items:center;gap:.35rem;position:relative;z-index:1}
 .p-dot{width:28px;height:28px;border-radius:50%;background:var(--white);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600;color:var(--text-light);transition:all .3s}
-.p-dot.active{background:var(--blue);border-color:var(--blue);color:var(--white)}
+.p-dot.active{background:var(--navy);border-color:var(--navy);color:var(--white)}
 .p-dot.done{background:var(--green);border-color:var(--green);color:var(--white)}
 .p-label{font-size:.65rem;color:var(--text-light);font-weight:500}
 
@@ -50,14 +51,14 @@ footer a{color:var(--blue);text-decoration:none}
 .field .hint{font-size:.68rem;color:var(--text-light);font-weight:400}
 .field input,.field select{padding:.65rem .8rem;border:1.5px solid var(--border);border-radius:10px;font-family:inherit;font-size:.88rem;color:var(--text);transition:border-color .2s,box-shadow .2s;background:var(--white)}
 .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2364748B' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .8rem center;padding-right:2.2rem}
-.field input:focus,.field select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.field input:focus,.field select:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(19,31,45,.08)}
 .field input::placeholder{color:#94A3B8}
 .field input:invalid:not(:placeholder-shown){border-color:var(--red)}
 .field-error{font-size:.7rem;color:var(--red);min-height:.85rem}
 
 /* Buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background:var(--blue);color:var(--white);border:none;padding:.8rem 2rem;border-radius:12px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;transition:all .2s;width:100%}
-.btn:hover{background:#1D4ED8;transform:translateY(-1px);box-shadow:0 4px 12px rgba(37,99,235,.3)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background:var(--navy);color:var(--white);border:none;padding:.8rem 2rem;border-radius:12px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;transition:all .2s;width:100%}
+.btn:hover{background:var(--dark-slate);transform:translateY(-1px);box-shadow:0 4px 12px rgba(19,31,45,.3)}
 .btn:active{transform:translateY(0)}
 .btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
 .btn-row{display:flex;gap:.75rem;margin-top:.5rem}
@@ -71,7 +72,7 @@ footer a{color:var(--blue);text-decoration:none}
 
 /* Loading */
 #loadingScreen{display:none;text-align:center;padding:4rem 2rem}
-.spinner{width:60px;height:60px;border:4px solid var(--border);border-top:4px solid var(--blue);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 1.5rem}
+.spinner{width:60px;height:60px;border:4px solid var(--steel);border-top:4px solid var(--navy);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 1.5rem}
 @keyframes spin{to{transform:rotate(360deg)}}
 .loading-text{font-size:1rem;color:var(--navy);font-weight:500}
 .loading-sub{font-size:.8rem;color:var(--text-light);margin-top:.35rem}
@@ -83,7 +84,7 @@ footer a{color:var(--blue);text-decoration:none}
 .report-header p{opacity:.7;font-size:.85rem}
 .report-date{font-size:.7rem;opacity:.5;margin-top:.5rem}
 
-.exec-summary{background:linear-gradient(135deg,#F0F7FF,#EFF6FF);border:1px solid #BFDBFE;border-radius:12px;padding:1.25rem;margin-bottom:1.5rem;font-size:.88rem;line-height:1.7;color:var(--navy)}
+.exec-summary{background:linear-gradient(135deg,#F4F5F6,#ECEDEF);border:1px solid var(--steel);border-radius:12px;padding:1.25rem;margin-bottom:1.5rem;font-size:.88rem;line-height:1.7;color:var(--navy)}
 
 .gauge-wrap{display:flex;justify-content:center;margin:1.5rem 0}
 .gauge{position:relative;width:180px;height:180px}
@@ -111,7 +112,7 @@ footer a{color:var(--blue);text-decoration:none}
 .bar-fill{height:100%;border-radius:8px;transition:width 1.2s ease;width:0}
 .risk-findings{margin-top:.5rem;padding-left:1rem}
 .risk-findings li{font-size:.78rem;color:var(--text);margin-bottom:.25rem;line-height:1.5}
-.risk-rec{font-size:.78rem;color:var(--blue);font-weight:500;margin-top:.35rem;padding-left:1rem}
+.risk-rec{font-size:.78rem;color:var(--dark-slate);font-weight:500;margin-top:.35rem;padding-left:1rem}
 
 .rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin:1.25rem 0}
 .rec-card{background:var(--gray);border-radius:12px;padding:1rem;text-align:center}
@@ -134,17 +135,17 @@ footer a{color:var(--blue);text-decoration:none}
 .priorities{counter-reset:pri}
 .priority-item{display:flex;gap:.75rem;padding:.75rem 0;border-bottom:1px solid var(--border)}
 .priority-item:last-child{border:none}
-.pri-num{width:28px;height:28px;border-radius:50%;background:var(--blue);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0}
+.pri-num{width:28px;height:28px;border-radius:50%;background:var(--navy);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0}
 .pri-text{font-size:.82rem;line-height:1.5}
 .pri-text strong{color:var(--navy)}
 
 .cta-section{text-align:center;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border)}
 .cta-section p{color:var(--text-light);font-size:.88rem;margin-bottom:1rem}
-.btn-cta{display:inline-flex;align-items:center;gap:.5rem;background:var(--blue);color:var(--white);text-decoration:none;padding:.8rem 2rem;border-radius:12px;font-weight:600;font-size:.95rem;transition:all .2s}
-.btn-cta:hover{background:#1D4ED8;transform:translateY(-1px);box-shadow:0 4px 12px rgba(37,99,235,.3)}
+.btn-cta{display:inline-flex;align-items:center;gap:.5rem;background:var(--navy);color:var(--white);text-decoration:none;padding:.8rem 2rem;border-radius:12px;font-weight:600;font-size:.95rem;transition:all .2s}
+.btn-cta:hover{background:var(--dark-slate);transform:translateY(-1px);box-shadow:0 4px 12px rgba(19,31,45,.3)}
 .action-btns{display:flex;gap:.5rem;justify-content:center;margin-top:1rem;flex-wrap:wrap}
 .btn-sm{background:transparent;border:1.5px solid var(--border);color:var(--text);padding:.5rem 1.25rem;border-radius:8px;cursor:pointer;font-family:inherit;font-size:.78rem;font-weight:500;transition:all .2s}
-.btn-sm:hover{border-color:var(--blue);color:var(--blue)}
+.btn-sm:hover{border-color:var(--navy);color:var(--navy)}
 
 @media(max-width:600px){
   .form-grid{grid-template-columns:1fr}
@@ -171,10 +172,12 @@ footer a{color:var(--blue);text-decoration:none}
 
 <header>
   <div class="logo">
-    <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v4.7c0 4.83-3.4 9.36-7 10.5-3.6-1.14-7-5.67-7-10.5V6.3l7-3.12z"/></svg></div>
-    <span class="logo-text">Salient Group</span>
+    <img src="data:image/png;base64,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" alt="Salient Group">
   </div>
-  <span class="header-badge">Free Assessment</span>
+  <div class="header-right">
+    <span class="header-badge">Free Assessment</span>
+    <a href="tel:+13179836601" class="header-phone">(317) 983-6601</a>
+  </div>
 </header>
 
 <div class="container">
@@ -500,7 +503,11 @@ footer a{color:var(--blue);text-decoration:none}
   </div>
 </div>
 
-<footer>© 2026 Salient Group &nbsp;|&nbsp; <a href="https://salient-group.com">salient-group.com</a> &nbsp;|&nbsp; (317) 983-6601</footer>
+<footer style="background:var(--navy);color:rgba(255,255,255,.5);padding:2rem 1rem">
+  <div style="margin-bottom:.5rem;font-weight:600;color:rgba(255,255,255,.8);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase">Salient Group</div>
+  <div style="font-size:.72rem">Professional Security Services &nbsp;|&nbsp; <a href="https://salient-group.com" style="color:rgba(255,255,255,.6)">salient-group.com</a> &nbsp;|&nbsp; <a href="tel:+13179836601" style="color:rgba(255,255,255,.6)">(317) 983-6601</a></div>
+  <div style="font-size:.65rem;margin-top:.75rem;opacity:.4">© 2026 Salient Group. All rights reserved. This assessment is for informational purposes only.</div>
+</footer>
 
 <script>
 // State data with property + violent crime rates per 100K (FBI UCR 2023 approximations)
