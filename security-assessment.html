@@ -52,6 +52,8 @@ footer a{color:var(--blue);text-decoration:none}
 .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2364748B' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .8rem center;padding-right:2.2rem}
 .field input:focus,.field select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
 .field input::placeholder{color:#94A3B8}
+.field input:invalid:not(:placeholder-shown){border-color:var(--red)}
+.field-error{font-size:.7rem;color:var(--red);min-height:.85rem}
 
 /* Buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background:var(--blue);color:var(--white);border:none;padding:.8rem 2rem;border-radius:12px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;transition:all .2s;width:100%}
@@ -267,9 +269,12 @@ footer a{color:var(--blue);text-decoration:none}
           </div>
           <div class="field"><label>Loading Docks / Shipping Areas</label>
             <select name="docks">
-              <option value="no">None</option>
-              <option value="few">1 – 3 docks</option>
-              <option value="many">4+ docks</option>
+              <option value="none">None</option>
+              <option value="few">1 – 5 docks</option>
+              <option value="moderate">6 – 20 docks</option>
+              <option value="many">21 – 50 docks</option>
+              <option value="major">51 – 100 docks</option>
+              <option value="mega">100+ docks</option>
             </select>
           </div>
           <div class="field"><label>Perimeter Fencing</label>
@@ -325,9 +330,12 @@ footer a{color:var(--blue);text-decoration:none}
           </div>
           <div class="field"><label>Delivery / Vehicle Traffic</label>
             <select name="vehicleTraffic">
-              <option value="low">Low (a few per day)</option>
-              <option value="moderate">Moderate (10 – 30/day)</option>
-              <option value="high">High (30+/day)</option>
+              <option value="minimal">Minimal (under 10/day)</option>
+              <option value="low">Low (10 – 30/day)</option>
+              <option value="moderate">Moderate (30 – 100/day)</option>
+              <option value="high">High (100 – 300/day)</option>
+              <option value="very-high">Very high (300 – 500/day)</option>
+              <option value="extreme">Extreme (500+/day)</option>
             </select>
           </div>
           <div class="field"><label>High-Value Assets on Premises?</label><div class="hint">Equipment, inventory, pharmaceuticals, electronics, etc.</div>
@@ -384,12 +392,14 @@ footer a{color:var(--blue);text-decoration:none}
               <option value="full">Comprehensive system</option>
             </select>
           </div>
-          <div class="field"><label>Any Incidents in the Past 12 Months?</label><div class="hint">Theft, trespassing, vandalism, etc.</div>
+          <div class="field"><label>Security Incidents (Past 12 Months)</label><div class="hint">Theft, trespassing, vandalism, unauthorized access, etc.</div>
             <select name="incidents">
               <option value="none">None</option>
-              <option value="minor">Minor incidents (1-2)</option>
-              <option value="several">Several incidents (3-5)</option>
-              <option value="frequent">Frequent issues (5+)</option>
+              <option value="rare">Rare (1 – 5 per year)</option>
+              <option value="occasional">Occasional (6 – 20 per year)</option>
+              <option value="regular">Regular (1 – 5 per week)</option>
+              <option value="frequent">Frequent (5 – 15 per week)</option>
+              <option value="constant">Constant (15+ per week)</option>
             </select>
           </div>
           <div class="field"><label>Armed Security Needed?</label>
@@ -411,8 +421,8 @@ footer a{color:var(--blue);text-decoration:none}
         <div class="form-grid">
           <div class="field"><label>Full Name</label><input type="text" name="contactName" required placeholder="Sam Johnson"></div>
           <div class="field"><label>Title / Role</label><input type="text" name="title" placeholder="VP Operations"></div>
-          <div class="field"><label>Email</label><input type="email" name="email" required placeholder="sam@company.com"></div>
-          <div class="field"><label>Phone</label><input type="tel" name="phone" placeholder="(555) 123-4567"></div>
+          <div class="field"><label>Email</label><input type="email" name="email" required placeholder="sam@company.com" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" title="Please enter a valid email address"><div class="field-error" id="emailError"></div></div>
+          <div class="field"><label>Phone</label><input type="tel" name="phone" required placeholder="(555) 123-4567" pattern="[\d\s\(\)\-\+\.]{10,}" title="Please enter a valid phone number (at least 10 digits)"><div class="field-error" id="phoneError"></div></div>
         </div>
         <div class="spacer"></div>
         <div class="btn-row"><button type="button" class="btn btn-back" onclick="prevStep(5)">← Back</button><button type="submit" class="btn btn-next">Generate My Assessment →</button></div>
@@ -573,7 +583,27 @@ function validateStep(n){
   const step=document.getElementById('step'+n);
   const required=step.querySelectorAll('[required]');
   let valid=true;
-  required.forEach(el=>{if(!el.value){el.style.borderColor='var(--red)';valid=false}else{el.style.borderColor=''}});
+  required.forEach(el=>{
+    if(!el.value){el.style.borderColor='var(--red)';valid=false}
+    else{el.style.borderColor=''}
+  });
+  // Extra validation on step 5
+  if(n===5&&valid){
+    const email=step.querySelector('[name="email"]');
+    const phone=step.querySelector('[name="phone"]');
+    const emailRegex=/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+    const phoneDigits=(phone.value||'').replace(/\D/g,'');
+    if(!emailRegex.test(email.value)){
+      email.style.borderColor='var(--red)';
+      document.getElementById('emailError').textContent='Please enter a valid email address';
+      valid=false;
+    }else{document.getElementById('emailError').textContent=''}
+    if(phoneDigits.length<10){
+      phone.style.borderColor='var(--red)';
+      document.getElementById('phoneError').textContent='Please enter a valid phone number (at least 10 digits)';
+      valid=false;
+    }else{document.getElementById('phoneError').textContent=''}
+  }
   return valid;
 }
 function nextStep(n){if(validateStep(n))showStep(n+1)}
@@ -598,7 +628,9 @@ function calculateAssessment(d){
 
   const noSecurity=d.currentSecurity==='none'?1.2:1;
   const switchSecurity=(d.currentSecurity==='outsourced-switch'||d.currentSecurity==='outsourced-issues')?1.1:1;
-  const incidentM={none:1,minor:1.1,several:1.2,frequent:1.35}[d.incidents]||1;
+  const dockM={none:1,few:1,moderate:1.08,many:1.15,major:1.25,mega:1.35}[d.docks]||1;
+  const trafficM={minimal:1,low:1.03,moderate:1.08,high:1.15,'very-high':1.25,extreme:1.35}[d.vehicleTraffic]||1;
+  const incidentM={none:1,rare:1.05,occasional:1.12,regular:1.22,frequent:1.35,constant:1.5}[d.incidents]||1;
   const highValM={no:1,moderate:1.1,yes:1.25}[d.highValue]||1;
   const hrsMod={'24/7':1.15,extended:1.05,business:0.9,nights:1.1}[d.hours]||1;
   const lightM={poor:1.15,adequate:1,good:0.9}[d.lighting]||1;
@@ -607,13 +639,16 @@ function calculateAssessment(d){
   // 8 risk categories
   const categories=[
     {name:"Perimeter Security",base:profile.perimeter,
-      calc:()=>clamp(profile.perimeter*(.4+sizeM*.25+epM*.2+fenceM*.15)*lightM*crimeM*.85),
+      calc:()=>clamp(profile.perimeter*(.35+sizeM*.2+epM*.2+fenceM*.1+dockM*.15)*lightM*crimeM*.85),
       getFindings:(v,d)=>{
         const f=[];
         if(d.fencing==='none')f.push("No perimeter fencing leaves the facility boundary unsecured");
         else if(d.fencing==='partial')f.push("Partial fencing creates gaps that can be exploited");
         if(ep>=6)f.push(ep+"+ entry points significantly increase perimeter complexity");
         if(d.lighting==='poor')f.push("Minimal exterior lighting reduces natural deterrence");
+        if(d.docks==='mega')f.push("100+ dock doors create a massive perimeter challenge requiring dedicated dock security");
+        else if(d.docks==='major')f.push("51–100 dock doors require structured access control and monitoring");
+        else if(d.docks==='many')f.push("21–50 loading docks significantly expand the security perimeter");
         if(sqft>=75000)f.push("Large facility footprint ("+(sqft>=175000?"250K+":sqft>=75000?"75K+":"50K+")+" sq ft) requires extended perimeter coverage");
         if(f.length===0)f.push("Facility perimeter is reasonably well-defined");
         return f.slice(0,3);
@@ -633,12 +668,14 @@ function calculateAssessment(d){
       getRec:(v,d)=>d.accessControl==='none'?"Implement electronic access control with credential logging":"Establish visitor management protocols with badge-in/badge-out tracking"
     },
     {name:"Loss Prevention",base:profile.theft,
-      calc:()=>clamp(profile.theft*(.4+highValM*.2+sizeM*.15+crimeM*.15)*incidentM*.9),
+      calc:()=>clamp(profile.theft*(.35+highValM*.2+sizeM*.1+crimeM*.15+dockM*.1+trafficM*.1)*incidentM*.9),
       getFindings:(v,d)=>{
         const f=[];
         if(d.highValue==='yes')f.push("Significant high-value assets on premises increase targeting likelihood");
         if(st.property>natAvgProperty*1.1)f.push(st.name+" property incident rate is "+Math.round((st.property/natAvgProperty-1)*100)+"% above the national average");
-        if(d.incidents!=='none')f.push("Recent on-site incidents indicate active exposure");
+        if(d.incidents==='constant'||d.incidents==='frequent')f.push("High incident frequency (multiple per week) indicates significant active exposure requiring immediate intervention");
+        else if(d.incidents==='regular'||d.incidents==='occasional')f.push("Regular on-site incidents indicate ongoing exposure that professional security can mitigate");
+        else if(d.incidents==='rare')f.push("Some past incidents suggest potential vulnerabilities worth addressing proactively");
         if(d.cameras==='none')f.push("No camera coverage removes a key deterrent and evidence source");
         if(f.length===0)f.push("Loss prevention risk is within normal range for your industry");
         return f.slice(0,3);
@@ -730,21 +767,30 @@ function calculateAssessment(d){
   const overall=Math.round(results.reduce((s,r)=>s+r.value,0)/results.length);
 
   // Guard & coverage recommendation
-  const baseGuards=ep<=2?1:ep<=5?2:ep<=8?3:4;
-  const sizeBonus=sqft>=100000?2:sqft>=50000?1:0;
-  const hourBonus=d.hours==='24/7'?2:d.hours==='extended'?1:0;
-  const floorBonus=floors>=4?1:0;
-  const totalGuards=Math.max(1,baseGuards+sizeBonus+hourBonus+floorBonus);
+  // "Posts" = how many guards on duty at once. "Guards" = total headcount needed to fill those posts.
+  const dockBonus=({none:0,few:0,moderate:1,many:2,major:3,mega:4}[d.docks])||0;
+  const basePosts=ep<=2?1:ep<=5?2:ep<=8?3:ep<=15?4:5;
+  const sizeBonus=sqft>=250000?3:sqft>=100000?2:sqft>=50000?1:0;
+  const floorBonus=floors>=10?2:floors>=4?1:0;
+  const postCount=Math.max(1,basePosts+sizeBonus+floorBonus+dockBonus);
 
-  // Coverage hours
-  let coverageDesc,weeklyHrs;
-  if(d.hours==='24/7'){weeklyHrs=totalGuards<=2?168:Math.round(totalGuards*40);coverageDesc="24/7 coverage with rotating shifts"}
-  else if(d.hours==='extended'){weeklyHrs=Math.round(totalGuards*48);coverageDesc="Extended hours coverage (early morning through late evening)"}
-  else if(d.hours==='nights'){weeklyHrs=Math.round(totalGuards*40);coverageDesc="Night and weekend coverage"}
-  else{weeklyHrs=Math.round(totalGuards*40);coverageDesc="Business hours coverage with after-hours patrol"}
+  // Weekly hours = posts × hours per post per week
+  // 24/7 = 168 hrs/week per post. Extended = 112 hrs (16hrs/day). Business = 50. Nights = 80.
+  let hrsPerPost,coverageDesc,weeklyHrs;
+  if(d.hours==='24/7'){hrsPerPost=168;coverageDesc="24/7 coverage — "+postCount+" post"+(postCount>1?"s":"")+", 3 shifts/day, 7 days/week"}
+  else if(d.hours==='extended'){hrsPerPost=112;coverageDesc="Extended hours (6AM–10PM) — "+postCount+" post"+(postCount>1?"s":"")+", 7 days/week"}
+  else if(d.hours==='nights'){hrsPerPost=80;coverageDesc="Night & weekend coverage — "+postCount+" post"+(postCount>1?"s":"")}
+  else{hrsPerPost=50;coverageDesc="Business hours + after-hours patrol — "+postCount+" post"+(postCount>1?"s":"")+", Mon–Fri"}
   
-  const needsSupervisor=totalGuards>=4;
-  if(needsSupervisor)coverageDesc+=", plus dedicated shift supervisor";
+  weeklyHrs=postCount*hrsPerPost;
+  const needsSupervisor=postCount>=3;
+  if(needsSupervisor){
+    // Supervisor covers same schedule as the guards
+    weeklyHrs+=hrsPerPost;
+    coverageDesc+=", plus dedicated shift supervisor";
+  }
+  
+  const totalGuards=postCount+(needsSupervisor?1:0);
 
   // Pricing — Sam's real rates
   const armed=d.armed==='yes';
@@ -753,11 +799,7 @@ function calculateAssessment(d){
   const monthlyLow=Math.round(weeklyHrs*4.33*rateLow);
   const monthlyHigh=Math.round(weeklyHrs*4.33*rateHigh);
 
-  // Benchmarks
-  const bLow=profile.benchmarkLow;
-  const bHigh=profile.benchmarkHigh;
-
-  return{overall,categories:results,totalGuards,weeklyHrs,coverageDesc,needsSupervisor,armed,monthlyLow,monthlyHigh,benchmarkLow:bLow,benchmarkHigh:bHigh,stateInfo:st,profile};
+  return{overall,categories:results,totalGuards,postCount,weeklyHrs,coverageDesc,needsSupervisor,armed,monthlyLow,monthlyHigh,stateInfo:st,profile};
 }
 
 function clamp(v){return Math.max(10,Math.min(95,Math.round(v)))}
@@ -821,15 +863,56 @@ function showResults(data,r){
   document.getElementById('scoreLabel').textContent=labelFor(r.overall);
   document.getElementById('scoreLabel').style.color=colorFor(r.overall);
 
-  // Crime data
+  // Crime data — try city-level first via FBI API, fall back to state
   const st=r.stateInfo;
   const propDiff=Math.round((st.property/natAvgProperty-1)*100);
   const violDiff=Math.round((st.violent/natAvgViolent-1)*100);
-  document.getElementById('crimeBox').innerHTML=
-    '<h4>📊 Regional Context — '+st.name+'</h4>'+
-    '<div class="crime-stat"><span class="label">Property incidents per 100K residents</span><span class="value">'+st.property.toLocaleString()+' <span class="compare '+(propDiff>=0?'above':'below')+'">'+(propDiff>=0?'▲':'▼')+' '+Math.abs(propDiff)+'% vs national avg</span></span></div>'+
-    '<div class="crime-stat"><span class="label">Violent incidents per 100K residents</span><span class="value">'+st.violent.toLocaleString()+' <span class="compare '+(violDiff>=0?'above':'below')+'">'+(violDiff>=0?'▲':'▼')+' '+Math.abs(violDiff)+'% vs national avg</span></span></div>'+
-    '<div style="font-size:.7rem;color:var(--text-light);margin-top:.5rem">Source: FBI Uniform Crime Reporting Program, most recent available data</div>';
+  const crimeEl=document.getElementById('crimeBox');
+  
+  // Start with state data
+  function renderCrimeData(location,propRate,violRate,source){
+    const pd=Math.round((propRate/natAvgProperty-1)*100);
+    const vd=Math.round((violRate/natAvgViolent-1)*100);
+    crimeEl.innerHTML=
+      '<h4>📊 Regional Context — '+location+'</h4>'+
+      '<div class="crime-stat"><span class="label">Property incidents per 100K</span><span class="value">'+propRate.toLocaleString()+' <span class="compare '+(pd>=0?'above':'below')+'">'+(pd>=0?'▲':'▼')+' '+Math.abs(pd)+'% vs national avg</span></span></div>'+
+      '<div class="crime-stat"><span class="label">Violent incidents per 100K</span><span class="value">'+violRate.toLocaleString()+' <span class="compare '+(vd>=0?'above':'below')+'">'+(vd>=0?'▲':'▼')+' '+Math.abs(vd)+'% vs national avg</span></span></div>'+
+      '<div style="font-size:.7rem;color:var(--text-light);margin-top:.5rem">'+source+'</div>';
+  }
+  renderCrimeData(st.name+' (statewide)',st.property,st.violent,'Source: FBI Uniform Crime Reporting Program');
+  
+  // Try to fetch city-level data from FBI API
+  const fbiKey='iiHnOKfno2Mgkt5AynpvPpUQTEyxE77jo1RU8PIv';
+  const stAbbr=data.state;
+  const cityName=(data.city||'').trim();
+  if(cityName&&stAbbr){
+    fetch('https://api.usa.gov/crime/fbi/sapi/api/agency/byStateAbbr/'+stAbbr+'?API_KEY='+fbiKey)
+    .then(r=>r.json()).then(agencies=>{
+      const match=agencies.find(a=>(a.agency_name||'').toLowerCase().includes(cityName.toLowerCase()))||
+        agencies.find(a=>(a.city_name||'').toLowerCase()===cityName.toLowerCase());
+      if(match&&match.ori){
+        return fetch('https://api.usa.gov/crime/fbi/sapi/api/summarized/agency/'+match.ori+'/offenses/2022/2022?API_KEY='+fbiKey)
+          .then(r=>r.json()).then(offenses=>{
+            if(offenses&&offenses.length>0){
+              let prop=0,viol=0;
+              offenses.forEach(o=>{
+                if(['burglary','larceny','motor-vehicle-theft','arson','property-crime'].includes(o.offense))prop+=o.actual||0;
+                if(['aggravated-assault','robbery','rape-legacy','homicide','violent-crime'].includes(o.offense))viol+=o.actual||0;
+              });
+              const pop=match.population||100000;
+              if(pop>0){
+                const propPer100k=Math.round(prop/pop*100000);
+                const violPer100k=Math.round(viol/pop*100000);
+                if(propPer100k>0||violPer100k>0){
+                  renderCrimeData(cityName+', '+stAbbr,propPer100k,violPer100k,
+                    'Source: FBI UCR — '+(match.agency_name||cityName)+' (pop. '+pop.toLocaleString()+')');
+                }
+              }
+            }
+          });
+      }
+    }).catch(()=>{});// Silently fall back to state data
+  }
 
   // Risk bars with findings
   const barsEl=document.getElementById('riskBars');
@@ -848,8 +931,8 @@ function showResults(data,r){
 
   // Recommendations
   document.getElementById('recGrid').innerHTML=
-    '<div class="rec-card"><div class="num">'+r.totalGuards+'</div><div class="lbl">Security Officers</div></div>'+
-    '<div class="rec-card"><div class="num">'+r.weeklyHrs+'</div><div class="lbl">Hours / Week</div></div>'+
+    '<div class="rec-card"><div class="num">'+r.postCount+'</div><div class="lbl">Security Post'+(r.postCount>1?'s':'')+'</div></div>'+
+    '<div class="rec-card"><div class="num">'+r.weeklyHrs.toLocaleString()+'</div><div class="lbl">Hours / Week</div></div>'+
     '<div class="rec-card"><div class="num">'+(r.armed?'Armed':'Unarmed')+'</div><div class="lbl">Officer Type</div></div>';
 
   // Shift plan
@@ -862,9 +945,13 @@ function showResults(data,r){
   // Investment
   document.getElementById('investRange').textContent='$'+r.monthlyLow.toLocaleString()+' – $'+r.monthlyHigh.toLocaleString();
 
-  // Benchmark
-  document.getElementById('benchmarkBox').innerHTML=
-    '💡 <strong>Industry Benchmark:</strong> Similar '+r.profile.label.toLowerCase()+' facilities typically invest between $'+r.benchmarkLow.toLocaleString()+' – $'+r.benchmarkHigh.toLocaleString()+'/month in professional security services, depending on location and specific requirements.';
+  // Benchmark — contextual based on their actual needs
+  const benchNote=r.weeklyHrs>=500?
+    'Facilities of this scale typically represent contracts of $'+Math.round(r.monthlyLow*.85).toLocaleString()+'–$'+Math.round(r.monthlyHigh*1.15).toLocaleString()+'/month depending on specific operational requirements, shift complexity, and armed/unarmed needs.':
+    r.weeklyHrs>=168?
+    'Facilities with similar coverage requirements typically invest $'+Math.round(r.monthlyLow*.9).toLocaleString()+'–$'+Math.round(r.monthlyHigh*1.1).toLocaleString()+'/month, though actual costs vary significantly based on location, schedule design, and specific security needs.':
+    'Facilities with comparable needs typically see security investments in the range shown above, though every operation has unique factors that affect final pricing.';
+  document.getElementById('benchmarkBox').innerHTML='💡 <strong>Context:</strong> '+benchNote;
 
   // Priority actions
   const sorted=[...r.categories].sort((a,b)=>b.value-a.value);
