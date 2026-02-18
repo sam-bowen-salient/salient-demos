@@ -25,7 +25,15 @@ img{max-width:100%;display:block}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
 .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .reveal.visible{opacity:1;transform:translateY(0)}
-.reveal.visible .stagger{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-60px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(60px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.reveal-scale{opacity:0;transform:scale(.92);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+.reveal-scale-sm{opacity:0;transform:scale(.95) translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal-scale-sm.visible{opacity:1;transform:scale(1) translateY(0)}
+.reveal.visible .stagger,.reveal-left.visible .stagger,.reveal-right.visible .stagger,.reveal-scale.visible .stagger,.reveal-scale-sm.visible .stagger{opacity:1;transform:translateY(0) translateX(0) scale(1)}
 .stagger{opacity:0;transform:translateY(30px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
 .stagger:nth-child(1){transition-delay:.1s}
 .stagger:nth-child(2){transition-delay:.2s}
@@ -252,13 +260,13 @@ nav a:hover{color:var(--navy)}
 }
 
 /* ─── CONTACT & FOOTER ─── */
-.final-cta{padding:100px 0;background:var(--navy);color:var(--white);text-align:center;position:relative;overflow:hidden}
-.final-cta::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);background-size:24px 24px}
-.final-cta h2{font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:12px;letter-spacing:-.02em}
-.final-cta p{color:rgba(255,255,255,.5);font-size:1rem;margin-bottom:40px;max-width:500px;margin-left:auto;margin-right:auto}
-.final-cta-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+.contact-hero{padding:80px 0 60px;background:var(--navy);color:var(--white);position:relative;overflow:hidden}
+.contact-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);background-size:24px 24px}
+.contact-hero h2{font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:12px;letter-spacing:-.02em;color:var(--white)}
+.contact-hero p{color:rgba(255,255,255,.5)}
 
-.contact{padding:100px 0;background:var(--white)}
+.contact{background:var(--white)}
+.contact .container{padding-top:80px;padding-bottom:100px}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
 .contact-info h3{font-size:1.8rem;font-weight:700;margin-bottom:16px;letter-spacing:-.02em}
 .contact-info p{color:var(--gray);margin-bottom:32px;line-height:1.6}
@@ -278,7 +286,7 @@ nav a:hover{color:var(--navy)}
 @media(max-width:768px){
   .contact-grid{grid-template-columns:1fr;gap:48px}
   .form-row{grid-template-columns:1fr}
-  .contact{padding:80px 0}
+  .contact .container{padding-top:60px;padding-bottom:80px}
 }
 
 footer{padding:48px 0 32px;background:#f7f8fa;border-top:1px solid rgba(19,31,45,.06)}
@@ -355,7 +363,7 @@ footer{padding:48px 0 32px;background:#f7f8fa;border-top:1px solid rgba(19,31,45
       <div class="eyebrow stagger">The Industry Problem</div>
       <h2 class="stagger">You hired a security company.<br>So why are you the one managing them?</h2>
     </div>
-    <div class="pain-points reveal">
+    <div class="pain-points reveal-left">
       <div class="pain-point stagger">
         <div class="pain-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15.05 5A5 5 0 0119 8.95M15.05 1A9 9 0 0123 8.94M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
@@ -395,7 +403,7 @@ footer{padding:48px 0 32px;background:#f7f8fa;border-top:1px solid rgba(19,31,45
 
 <!-- MID CTA -->
 <section class="mid-cta">
-  <div class="container reveal">
+  <div class="container reveal-scale">
     <div class="mid-cta-text stagger">
       <h3>See where your facility stands.</h3>
       <p>Free assessment. Five minutes. Get a risk score, coverage recommendations, and a pricing estimate.</p>
@@ -429,7 +437,7 @@ footer{padding:48px 0 32px;background:#f7f8fa;border-top:1px solid rgba(19,31,45
       <h2 class="stagger">Six reasons facilities switch to&nbsp;us</h2>
       <p class="stagger">Every differentiator answers a problem you've already lived through.</p>
     </div>
-    <div class="diff-grid reveal">
+    <div class="diff-grid reveal-scale-sm">
       <div class="diff-card stagger">
         <div class="diff-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -519,7 +527,7 @@ footer{padding:48px 0 32px;background:#f7f8fa;border-top:1px solid rgba(19,31,45
       <p class="stagger">Our operations platform gives you — and us — complete visibility into every aspect of your security program.</p>
     </div>
     <div class="tech-layout">
-      <div class="tech-features reveal">
+      <div class="tech-features reveal-left">
         <div class="tech-feat stagger">
           <div class="tech-feat-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -566,7 +574,7 @@ footer{padding:48px 0 32px;background:#f7f8fa;border-top:1px solid rgba(19,31,45
           </div>
         </div>
       </div>
-      <div class="dash-mockup reveal">
+      <div class="dash-mockup reveal-right">
         <div class="dash-topbar">
           <div class="dash-dots"><span></span><span></span><span></span></div>
           <div class="dash-title">Salient Group Operations</div>
@@ -616,7 +624,7 @@ footer{padding:48px 0 32px;background:#f7f8fa;border-top:1px solid rgba(19,31,45
       <h2 class="stagger">Security built for your operation</h2>
       <p class="stagger">Custom programs across every major vertical — because a warehouse and a hospital don't need the same security plan.</p>
     </div>
-    <div class="ind-grid reveal">
+    <div class="ind-grid reveal-scale-sm">
       <div class="ind-card stagger">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="6" width="22" height="12" rx="2"/><path d="M1 10h22"/></svg>
         <h5>Logistics & Distribution</h5>
@@ -665,44 +673,27 @@ footer{padding:48px 0 32px;background:#f7f8fa;border-top:1px solid rgba(19,31,45
 <section class="about" id="about">
   <div class="container">
     <div class="about-content">
-      <div class="about-visual reveal">
+      <div class="about-visual reveal-left">
         <div class="about-shape"></div>
       </div>
-      <div class="about-text reveal">
+      <div class="about-text reveal-right">
         <div class="eyebrow stagger">About Salient Group</div>
         <h2 class="stagger">Built because the industry deserved better.</h2>
         <p class="stagger">Salient Group was founded on a simple premise: facility managers shouldn't have to babysit their security provider. We're owner-operated, which means leadership is directly involved in every client relationship — not delegated to layers of middle management.</p>
         <p class="stagger">We operate nationwide, deploying custom security programs backed by real technology and real accountability. Every decision we make is guided by one question: would we accept this level of service at our own facility?</p>
-        <a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html" class="btn btn-primary stagger">
-          Start With a Free Assessment
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
-<section class="final-cta">
-  <div class="container reveal">
-    <h2 class="stagger">Ready to raise the standard?</h2>
-    <p class="stagger">Get your free security assessment and see what Salient Group can do for your facility.</p>
-    <div class="final-cta-actions stagger">
-      <a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html" class="btn btn-white">
-        Get Your Free Assessment
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <a href="https://cal.com/salient-group/quick-call" class="btn btn-outline" style="border-color:rgba(255,255,255,.3);color:var(--white)">Book a 15-Minute Call</a>
-    </div>
-    <div class="stagger" style="display:flex;align-items:center;justify-content:center;gap:8px;color:rgba(255,255,255,.5);font-size:.9rem">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-      Or call directly: <a href="tel:+13179836601" style="color:var(--white);font-weight:600">(317) 983-6601</a>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
+  <div class="contact-hero reveal">
+    <div class="container" style="text-align:center">
+      <h2 class="stagger">Ready to raise the standard?</h2>
+      <p class="stagger" style="color:rgba(255,255,255,.5);font-size:1rem;max-width:500px;margin:0 auto">Get your free security assessment and see what Salient Group can do for your facility.</p>
+    </div>
+  </div>
   <div class="container">
     <div class="contact-grid">
       <div class="contact-info reveal">
@@ -783,7 +774,11 @@ function closeMobile(){hamburger.classList.remove('active');mobileMenu.classList
 
 // Intersection Observer for reveals
 const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-scale-sm').forEach(el=>io.observe(el));
+
+// Subtle parallax on hero background
+const heroBg=document.querySelector('.hero-bg');
+if(heroBg){window.addEventListener('scroll',()=>{const y=window.scrollY;if(y<window.innerHeight){heroBg.style.transform='translateY('+y*.3+'px)'}},{passive:true})}
 
 // Rolling counter animation
 function animateCounter(el){
