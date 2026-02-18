@@ -3,85 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Security Assessment | Salient Group</title>
+<title>Free Business Security Assessment | Salient Group</title>
+<meta name="description" content="Get a free, instant security risk assessment for your business. Powered by industry data and real-world expertise.">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#131F2D;--white:#FFFFFF;--blue:#2563EB;--gray:#F8FAFC;--border:#E2E8F0;--text:#334155;--text-light:#64748B;--green:#10B981;--yellow:#F59E0B;--red:#EF4444;--orange:#F97316}
+:root{--navy:#131F2D;--white:#FFFFFF;--blue:#2563EB;--gray:#F8FAFC;--border:#E2E8F0;--text:#334155;--text-light:#64748B;--green:#10B981;--yellow:#F59E0B;--red:#EF4444;--orange:#F97316;--dark-slate:#314151}
 body{font-family:'Poppins',sans-serif;background:var(--gray);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
-header{background:var(--navy);padding:1.25rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+
+/* Header */
+header{background:var(--navy);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 .logo{display:flex;align-items:center;gap:.75rem}
-.logo-icon{width:40px;height:40px;background:var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center}
-.logo-icon svg{width:22px;height:22px;fill:var(--white)}
-.logo-text{color:var(--white);font-weight:700;font-size:1.15rem;letter-spacing:-.02em}
-.header-badge{background:rgba(37,99,235,.15);color:var(--blue);font-size:.75rem;font-weight:600;padding:.35rem .85rem;border-radius:20px;letter-spacing:.03em}
-.container{max-width:720px;margin:0 auto;padding:2.5rem 1.25rem 4rem}
-h1{font-size:1.85rem;font-weight:700;color:var(--navy);text-align:center;margin-bottom:.5rem;letter-spacing:-.03em}
-.subtitle{text-align:center;color:var(--text-light);font-size:1rem;margin-bottom:2.5rem;font-weight:400}
-.card{background:var(--white);border-radius:16px;padding:2.5rem;box-shadow:0 1px 3px rgba(0,0,0,.04),0 4px 24px rgba(0,0,0,.04)}
-.section-title{font-size:.8rem;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--border)}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.logo-icon{width:36px;height:36px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:20px;height:20px;fill:var(--white)}
+.logo-text{color:var(--white);font-weight:700;font-size:1.1rem}
+.header-badge{background:rgba(37,99,235,.15);color:#93B4FF;font-size:.7rem;font-weight:600;padding:.3rem .75rem;border-radius:20px;letter-spacing:.04em}
+
+/* Layout */
+.container{max-width:740px;margin:0 auto;padding:2rem 1.25rem 4rem}
+h1{font-size:1.75rem;font-weight:700;color:var(--navy);text-align:center;margin-bottom:.35rem}
+.subtitle{text-align:center;color:var(--text-light);font-size:.95rem;margin-bottom:.5rem}
+.trust-line{text-align:center;color:var(--text-light);font-size:.75rem;margin-bottom:2rem;opacity:.7}
+.card{background:var(--white);border-radius:16px;padding:2rem;box-shadow:0 1px 3px rgba(0,0,0,.04),0 4px 20px rgba(0,0,0,.05)}
+.section-title{font-size:.75rem;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1.25rem;padding-bottom:.65rem;border-bottom:1px solid var(--border)}
+.spacer{height:1.5rem}
+footer{text-align:center;padding:2rem 1rem;color:var(--text-light);font-size:.75rem}
+footer a{color:var(--blue);text-decoration:none}
+
+/* Progress Bar */
+.progress-wrap{margin-bottom:2rem}
+.progress-steps{display:flex;justify-content:space-between;position:relative;margin-bottom:.5rem}
+.progress-steps::before{content:'';position:absolute;top:14px;left:0;right:0;height:2px;background:var(--border)}
+.progress-steps::after{content:'';position:absolute;top:14px;left:0;height:2px;background:var(--blue);transition:width .4s ease;width:0}
+.progress-steps.s1::after{width:0} .progress-steps.s2::after{width:25%} .progress-steps.s3::after{width:50%} .progress-steps.s4::after{width:75%} .progress-steps.s5::after{width:100%}
+.p-step{display:flex;flex-direction:column;align-items:center;gap:.35rem;position:relative;z-index:1}
+.p-dot{width:28px;height:28px;border-radius:50%;background:var(--white);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600;color:var(--text-light);transition:all .3s}
+.p-dot.active{background:var(--blue);border-color:var(--blue);color:var(--white)}
+.p-dot.done{background:var(--green);border-color:var(--green);color:var(--white)}
+.p-label{font-size:.65rem;color:var(--text-light);font-weight:500}
+
+/* Form */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
 .form-grid .full{grid-column:1/-1}
-.field{display:flex;flex-direction:column;gap:.35rem}
-.field label{font-size:.8rem;font-weight:500;color:var(--navy)}
-.field input,.field select{padding:.7rem .85rem;border:1.5px solid var(--border);border-radius:10px;font-family:inherit;font-size:.9rem;color:var(--text);transition:border-color .2s,box-shadow .2s;background:var(--white);appearance:none;-webkit-appearance:none}
-.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2364748B' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .85rem center;padding-right:2.25rem}
+.field{display:flex;flex-direction:column;gap:.3rem}
+.field label{font-size:.78rem;font-weight:500;color:var(--navy)}
+.field .hint{font-size:.68rem;color:var(--text-light);font-weight:400}
+.field input,.field select{padding:.65rem .8rem;border:1.5px solid var(--border);border-radius:10px;font-family:inherit;font-size:.88rem;color:var(--text);transition:border-color .2s,box-shadow .2s;background:var(--white)}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2364748B' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .8rem center;padding-right:2.2rem}
 .field input:focus,.field select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
 .field input::placeholder{color:#94A3B8}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background:var(--blue);color:var(--white);border:none;padding:.85rem 2rem;border-radius:12px;font-family:inherit;font-size:1rem;font-weight:600;cursor:pointer;transition:all .2s;width:100%;margin-top:.5rem}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background:var(--blue);color:var(--white);border:none;padding:.8rem 2rem;border-radius:12px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;transition:all .2s;width:100%}
 .btn:hover{background:#1D4ED8;transform:translateY(-1px);box-shadow:0 4px 12px rgba(37,99,235,.3)}
 .btn:active{transform:translateY(0)}
-.btn svg{width:18px;height:18px;fill:currentColor}
-.spacer{height:1.75rem}
-footer{text-align:center;padding:2rem 1rem;color:var(--text-light);font-size:.8rem}
-footer a{color:var(--blue);text-decoration:none}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-row{display:flex;gap:.75rem;margin-top:.5rem}
+.btn-back{background:transparent;border:1.5px solid var(--border);color:var(--text);flex:.4}
+.btn-back:hover{border-color:var(--blue);color:var(--blue);background:transparent;box-shadow:none;transform:none}
+.btn-next{flex:.6}
+
+/* Step visibility */
+.step{display:none} .step.active{display:block;animation:fadeUp .4s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+
+/* Loading */
+#loadingScreen{display:none;text-align:center;padding:4rem 2rem}
+.spinner{width:60px;height:60px;border:4px solid var(--border);border-top:4px solid var(--blue);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 1.5rem}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-size:1rem;color:var(--navy);font-weight:500}
+.loading-sub{font-size:.8rem;color:var(--text-light);margin-top:.35rem}
 
 /* Results */
 #results{display:none}
-.results-header{text-align:center;margin-bottom:2rem}
-.results-header h2{font-size:1.5rem;font-weight:700;color:var(--navy);margin-bottom:.25rem}
-.results-header p{color:var(--text-light);font-size:.9rem}
-.gauge-wrap{display:flex;justify-content:center;margin:2rem 0}
-.gauge{position:relative;width:200px;height:200px}
-.gauge svg{transform:rotate(-90deg)}
-.gauge-bg{fill:none;stroke:#E2E8F0;stroke-width:12}
-.gauge-fill{fill:none;stroke-width:12;stroke-linecap:round;transition:stroke-dashoffset 1.5s ease}
-.gauge-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.gauge-score{font-size:2.75rem;font-weight:700;line-height:1}
-.gauge-label{font-size:.75rem;font-weight:500;color:var(--text-light);margin-top:.25rem}
-.risk-bar-section{margin-bottom:1.75rem}
-.risk-item{margin-bottom:1rem}
-.risk-item-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.35rem}
-.risk-item-name{font-size:.85rem;font-weight:500;color:var(--navy)}
-.risk-item-value{font-size:.8rem;font-weight:600}
-.bar-track{height:8px;background:#E2E8F0;border-radius:8px;overflow:hidden}
-.bar-fill{height:100%;border-radius:8px;transition:width 1.2s ease;width:0}
-.rec-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
-.rec-card{background:var(--gray);border-radius:12px;padding:1.25rem;text-align:center}
-.rec-card .num{font-size:1.75rem;font-weight:700;color:var(--navy);line-height:1.1}
-.rec-card .lbl{font-size:.75rem;color:var(--text-light);margin-top:.25rem}
-.investment{background:linear-gradient(135deg,var(--navy),#1E3A5F);border-radius:14px;padding:1.5rem;text-align:center;color:var(--white);margin:1.5rem 0}
-.investment .range{font-size:1.5rem;font-weight:700}
-.investment .note{font-size:.8rem;opacity:.7;margin-top:.25rem}
-.cta-section{text-align:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
-.cta-section p{color:var(--text-light);font-size:.9rem;margin-bottom:1rem}
-.btn-cta{background:var(--blue);color:var(--white);text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:12px;font-weight:600;font-size:1rem;transition:all .2s}
-.btn-cta:hover{background:#1D4ED8;transform:translateY(-1px);box-shadow:0 4px 12px rgba(37,99,235,.3)}
-.btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--text);margin-top:.75rem;font-size:.85rem;padding:.65rem 1.5rem;border-radius:10px;cursor:pointer;font-family:inherit;font-weight:500;transition:all .2s}
-.btn-outline:hover{border-color:var(--blue);color:var(--blue)}
+.report-header{background:var(--navy);border-radius:16px;padding:2rem;text-align:center;color:var(--white);margin-bottom:1.5rem}
+.report-header h2{font-size:1.4rem;font-weight:700;margin-bottom:.25rem}
+.report-header p{opacity:.7;font-size:.85rem}
+.report-date{font-size:.7rem;opacity:.5;margin-top:.5rem}
 
-.fade-in{animation:fadeUp .6s ease both}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.delay-1{animation-delay:.1s}.delay-2{animation-delay:.25s}.delay-3{animation-delay:.4s}.delay-4{animation-delay:.55s}
+.exec-summary{background:linear-gradient(135deg,#F0F7FF,#EFF6FF);border:1px solid #BFDBFE;border-radius:12px;padding:1.25rem;margin-bottom:1.5rem;font-size:.88rem;line-height:1.7;color:var(--navy)}
+
+.gauge-wrap{display:flex;justify-content:center;margin:1.5rem 0}
+.gauge{position:relative;width:180px;height:180px}
+.gauge svg{transform:rotate(-90deg)}
+.gauge-bg{fill:none;stroke:#E2E8F0;stroke-width:10}
+.gauge-fill{fill:none;stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 1.5s ease}
+.gauge-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.gauge-score{font-size:2.5rem;font-weight:700;line-height:1}
+.gauge-label{font-size:.72rem;font-weight:600;margin-top:.25rem;text-transform:uppercase;letter-spacing:.05em}
+
+.crime-box{background:var(--gray);border-radius:12px;padding:1.25rem;margin:1rem 0}
+.crime-box h4{font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:.75rem}
+.crime-stat{display:flex;justify-content:space-between;align-items:center;padding:.4rem 0;border-bottom:1px solid var(--border)}
+.crime-stat:last-child{border:none}
+.crime-stat .label{font-size:.8rem;color:var(--text)}
+.crime-stat .value{font-size:.8rem;font-weight:600}
+.crime-stat .compare{font-size:.7rem;margin-left:.5rem}
+.above{color:var(--red)} .below{color:var(--green)}
+
+.risk-item{margin-bottom:1.35rem}
+.risk-item-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem}
+.risk-item-name{font-size:.82rem;font-weight:600;color:var(--navy)}
+.risk-item-value{font-size:.78rem;font-weight:700}
+.bar-track{height:7px;background:#E2E8F0;border-radius:8px;overflow:hidden}
+.bar-fill{height:100%;border-radius:8px;transition:width 1.2s ease;width:0}
+.risk-findings{margin-top:.5rem;padding-left:1rem}
+.risk-findings li{font-size:.78rem;color:var(--text);margin-bottom:.25rem;line-height:1.5}
+.risk-rec{font-size:.78rem;color:var(--blue);font-weight:500;margin-top:.35rem;padding-left:1rem}
+
+.rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin:1.25rem 0}
+.rec-card{background:var(--gray);border-radius:12px;padding:1rem;text-align:center}
+.rec-card .num{font-size:1.5rem;font-weight:700;color:var(--navy);line-height:1.1}
+.rec-card .lbl{font-size:.68rem;color:var(--text-light);margin-top:.25rem}
+
+.shift-plan{background:var(--gray);border-radius:12px;padding:1.25rem;margin:1rem 0}
+.shift-plan h4{font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:.75rem}
+.shift-row{display:flex;justify-content:space-between;padding:.35rem 0;border-bottom:1px solid var(--border);font-size:.8rem}
+.shift-row:last-child{border:none}
+
+.investment-box{background:linear-gradient(135deg,var(--navy),#1E3A5F);border-radius:14px;padding:1.5rem;text-align:center;color:var(--white);margin:1.5rem 0}
+.investment-box .range{font-size:1.6rem;font-weight:700}
+.investment-box .note{font-size:.78rem;opacity:.7;margin-top:.35rem}
+.investment-box .disclaimer{font-size:.68rem;opacity:.5;margin-top:.5rem;font-style:italic}
+
+.benchmark-box{background:#FFFBEB;border:1px solid #FDE68A;border-radius:12px;padding:1.25rem;margin:1rem 0;font-size:.82rem;color:#92400E}
+.benchmark-box strong{color:#78350F}
+
+.priorities{counter-reset:pri}
+.priority-item{display:flex;gap:.75rem;padding:.75rem 0;border-bottom:1px solid var(--border)}
+.priority-item:last-child{border:none}
+.pri-num{width:28px;height:28px;border-radius:50%;background:var(--blue);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0}
+.pri-text{font-size:.82rem;line-height:1.5}
+.pri-text strong{color:var(--navy)}
+
+.cta-section{text-align:center;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.cta-section p{color:var(--text-light);font-size:.88rem;margin-bottom:1rem}
+.btn-cta{display:inline-flex;align-items:center;gap:.5rem;background:var(--blue);color:var(--white);text-decoration:none;padding:.8rem 2rem;border-radius:12px;font-weight:600;font-size:.95rem;transition:all .2s}
+.btn-cta:hover{background:#1D4ED8;transform:translateY(-1px);box-shadow:0 4px 12px rgba(37,99,235,.3)}
+.action-btns{display:flex;gap:.5rem;justify-content:center;margin-top:1rem;flex-wrap:wrap}
+.btn-sm{background:transparent;border:1.5px solid var(--border);color:var(--text);padding:.5rem 1.25rem;border-radius:8px;cursor:pointer;font-family:inherit;font-size:.78rem;font-weight:500;transition:all .2s}
+.btn-sm:hover{border-color:var(--blue);color:var(--blue)}
 
 @media(max-width:600px){
   .form-grid{grid-template-columns:1fr}
-  .rec-grid{grid-template-columns:1fr 1fr}
+  .rec-grid{grid-template-columns:repeat(3,1fr)}
   .card{padding:1.5rem}
-  h1{font-size:1.4rem}
-  .container{padding:1.5rem 1rem 3rem}
-  header{padding:1rem}
+  h1{font-size:1.35rem}
+  .container{padding:1.25rem 1rem 3rem}
+  header{padding:.75rem 1rem}
   .header-badge{display:none}
+  .p-label{display:none}
+  .btn-row{flex-direction:column}
+  .btn-back,.btn-next{flex:1}
+}
+
+@media print{
+  header,.btn,.btn-cta,.btn-sm,.action-btns,.cta-section,.progress-wrap{display:none!important}
+  .card{box-shadow:none;break-inside:avoid}
+  body{background:#fff}
+  #results{display:block!important}
 }
 </style>
 </head>
@@ -89,101 +169,322 @@ footer a{color:var(--blue);text-decoration:none}
 
 <header>
   <div class="logo">
-    <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v4.7c0 4.83-3.4 9.36-7 10.5-3.6-1.14-7-5.67-7-10.5V6.3l7-3.12z"/><path d="M12 7a3 3 0 00-3 3v1H8v5h8v-5h-1v-1a3 3 0 00-3-3zm0 1.5A1.5 1.5 0 0113.5 10v1h-3v-1A1.5 1.5 0 0112 8.5z"/></svg></div>
+    <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v4.7c0 4.83-3.4 9.36-7 10.5-3.6-1.14-7-5.67-7-10.5V6.3l7-3.12z"/></svg></div>
     <span class="logo-text">Salient Group</span>
   </div>
-  <span class="header-badge">Free Security Assessment</span>
+  <span class="header-badge">Free Assessment</span>
 </header>
 
 <div class="container">
   <!-- FORM -->
   <div id="formSection">
     <h1>Business Security Assessment</h1>
-    <p class="subtitle">Get a free, instant analysis of your facility's security needs</p>
+    <p class="subtitle">Get a detailed, data-driven analysis of your facility's security needs</p>
+    <p class="trust-line">Trusted by businesses across the United States · Takes 2 minutes</p>
+
+    <div class="progress-wrap">
+      <div class="progress-steps s1" id="progressSteps">
+        <div class="p-step"><div class="p-dot active" id="pd1">1</div><div class="p-label">Business</div></div>
+        <div class="p-step"><div class="p-dot" id="pd2">2</div><div class="p-label">Facility</div></div>
+        <div class="p-step"><div class="p-dot" id="pd3">3</div><div class="p-label">Operations</div></div>
+        <div class="p-step"><div class="p-dot" id="pd4">4</div><div class="p-label">Security</div></div>
+        <div class="p-step"><div class="p-dot" id="pd5">5</div><div class="p-label">Contact</div></div>
+      </div>
+    </div>
+
     <form id="assessmentForm" class="card" autocomplete="on">
-      <div class="section-title">Business Information</div>
-      <div class="form-grid">
-        <div class="field full"><label>Business Name</label><input type="text" name="businessName" required placeholder="Acme Corporation"></div>
-        <div class="field full"><label>Street Address</label><input type="text" name="address" required placeholder="123 Main Street"></div>
-        <div class="field"><label>City</label><input type="text" name="city" required placeholder="Indianapolis"></div>
-        <div class="field"><label>State</label><select name="state" required><option value="">Select state</option></select></div>
-        <div class="field"><label>Zip Code</label><input type="text" name="zip" required placeholder="46204" pattern="[0-9]{5}" maxlength="5"></div>
-        <div class="field"><label>Business Type</label><select name="businessType" required><option value="">Select type</option><option>Warehouse/Distribution</option><option>Office Building</option><option>Retail Store</option><option>Medical Facility</option><option>Construction Site</option><option>Residential Community</option><option>Event Venue</option><option>School/University</option><option>Hotel/Hospitality</option><option>Manufacturing Plant</option></select></div>
+      <!-- Step 1: Business Info -->
+      <div class="step active" id="step1">
+        <div class="section-title">Business Information</div>
+        <div class="form-grid">
+          <div class="field full"><label>Business Name</label><input type="text" name="businessName" required placeholder="Acme Distribution"></div>
+          <div class="field full"><label>Street Address</label><input type="text" name="address" placeholder="123 Industrial Blvd"></div>
+          <div class="field"><label>City</label><input type="text" name="city" required placeholder="Orlando"></div>
+          <div class="field"><label>State</label><select name="state" required id="stateSelect"><option value="">Select state</option></select></div>
+          <div class="field"><label>Zip Code</label><input type="text" name="zip" placeholder="32801" maxlength="5"></div>
+          <div class="field"><label>Industry</label>
+            <select name="businessType" required>
+              <option value="">Select your industry</option>
+              <option value="warehouse">Warehouse &amp; Distribution</option>
+              <option value="office">Office Building / Corporate Campus</option>
+              <option value="retail">Retail / Shopping Center</option>
+              <option value="healthcare">Healthcare / Medical Facility</option>
+              <option value="construction">Construction Site</option>
+              <option value="residential">Residential Community / HOA</option>
+              <option value="events">Event Venue / Convention Center</option>
+              <option value="education">School / University</option>
+              <option value="hospitality">Hotel / Hospitality</option>
+              <option value="manufacturing">Manufacturing / Industrial</option>
+              <option value="government">Government / Municipal</option>
+              <option value="financial">Financial / Banking</option>
+            </select>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="btn-row"><button type="button" class="btn btn-next" onclick="nextStep(1)">Continue →</button></div>
       </div>
 
-      <div class="spacer"></div>
-      <div class="section-title">Facility Details</div>
-      <div class="form-grid">
-        <div class="field"><label>Square Footage</label><select name="sqft" required><option value="">Select range</option><option value="2500">Under 5,000 sq ft</option><option value="7500">5,000 – 10,000 sq ft</option><option value="17500">10,000 – 25,000 sq ft</option><option value="37500">25,000 – 50,000 sq ft</option><option value="75000">50,000 – 100,000 sq ft</option><option value="150000">100,000+ sq ft</option></select></div>
-        <div class="field"><label>Number of Entry Points</label><select name="entryPoints" required><option value="">Select range</option><option value="1.5">1 – 2</option><option value="4">3 – 5</option><option value="8">6 – 10</option><option value="12">10+</option></select></div>
-        <div class="field"><label>Operating Hours</label><select name="hours" required><option value="">Select schedule</option><option value="24/7">24/7 Operations</option><option value="business">Business Hours (9–5)</option><option value="nights">Nights & Weekends</option><option value="custom">Custom Schedule</option></select></div>
-        <div class="field"><label>Current Security</label><select name="currentSecurity" required><option value="">Select status</option><option value="none">No Security</option><option value="inhouse">In-House Security</option><option value="outsourced-satisfied">Outsourced – Satisfied</option><option value="outsourced-switch">Outsourced – Looking to Switch</option></select></div>
+      <!-- Step 2: Facility Details -->
+      <div class="step" id="step2">
+        <div class="section-title">Facility Details</div>
+        <div class="form-grid">
+          <div class="field"><label>Total Square Footage</label>
+            <select name="sqft" required>
+              <option value="">Select range</option>
+              <option value="2500">Under 5,000 sq ft</option>
+              <option value="7500">5,000 – 10,000 sq ft</option>
+              <option value="17500">10,000 – 25,000 sq ft</option>
+              <option value="37500">25,000 – 50,000 sq ft</option>
+              <option value="75000">50,000 – 100,000 sq ft</option>
+              <option value="175000">100,000 – 250,000 sq ft</option>
+              <option value="400000">250,000+ sq ft</option>
+            </select>
+          </div>
+          <div class="field"><label>Entry / Access Points</label>
+            <select name="entryPoints" required>
+              <option value="">Select range</option>
+              <option value="1.5">1 – 2 entrances</option>
+              <option value="4">3 – 5 entrances</option>
+              <option value="8">6 – 10 entrances</option>
+              <option value="15">10+ entrances</option>
+            </select>
+          </div>
+          <div class="field"><label>Number of Floors</label>
+            <select name="floors">
+              <option value="1">1 floor</option>
+              <option value="2">2 – 3 floors</option>
+              <option value="5">4 – 10 floors</option>
+              <option value="12">10+ floors</option>
+            </select>
+          </div>
+          <div class="field"><label>Parking Area</label>
+            <select name="parking">
+              <option value="none">No parking area</option>
+              <option value="small">Small lot (under 50 spaces)</option>
+              <option value="medium">Medium lot (50 – 200 spaces)</option>
+              <option value="large">Large lot / garage (200+)</option>
+            </select>
+          </div>
+          <div class="field"><label>Loading Docks / Shipping Areas</label>
+            <select name="docks">
+              <option value="no">None</option>
+              <option value="few">1 – 3 docks</option>
+              <option value="many">4+ docks</option>
+            </select>
+          </div>
+          <div class="field"><label>Perimeter Fencing</label>
+            <select name="fencing">
+              <option value="none">No fencing</option>
+              <option value="partial">Partial fencing</option>
+              <option value="full">Fully fenced</option>
+            </select>
+          </div>
+          <div class="field"><label>Exterior Lighting</label>
+            <select name="lighting">
+              <option value="poor">Minimal / Poor</option>
+              <option value="adequate">Adequate</option>
+              <option value="good">Comprehensive / Well-lit</option>
+            </select>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="btn-row"><button type="button" class="btn btn-back" onclick="prevStep(2)">← Back</button><button type="button" class="btn btn-next" onclick="nextStep(2)">Continue →</button></div>
       </div>
 
-      <div class="spacer"></div>
-      <div class="section-title">Contact Information</div>
-      <div class="form-grid">
-        <div class="field full"><label>Contact Name</label><input type="text" name="contactName" required placeholder="Jane Smith"></div>
-        <div class="field"><label>Email</label><input type="email" name="email" required placeholder="jane@acme.com"></div>
-        <div class="field"><label>Phone</label><input type="tel" name="phone" required placeholder="(555) 123-4567"></div>
+      <!-- Step 3: Operations -->
+      <div class="step" id="step3">
+        <div class="section-title">Operations Profile</div>
+        <div class="form-grid">
+          <div class="field"><label>Operating Schedule</label>
+            <select name="hours" required>
+              <option value="">Select schedule</option>
+              <option value="24/7">24/7 operations</option>
+              <option value="extended">Extended hours (6AM–10PM)</option>
+              <option value="business">Standard business hours</option>
+              <option value="nights">Primarily nights / weekends</option>
+            </select>
+          </div>
+          <div class="field"><label>Employees on Site</label>
+            <select name="employees" required>
+              <option value="">Select range</option>
+              <option value="10">1 – 25</option>
+              <option value="50">26 – 100</option>
+              <option value="200">101 – 300</option>
+              <option value="500">301 – 500</option>
+              <option value="750">500+</option>
+            </select>
+          </div>
+          <div class="field"><label>Daily Visitors / Customers</label>
+            <select name="visitors">
+              <option value="5">Minimal (under 10/day)</option>
+              <option value="30">Low (10 – 50/day)</option>
+              <option value="100">Moderate (50 – 200/day)</option>
+              <option value="400">High (200 – 500/day)</option>
+              <option value="750">Very high (500+/day)</option>
+            </select>
+          </div>
+          <div class="field"><label>Delivery / Vehicle Traffic</label>
+            <select name="vehicleTraffic">
+              <option value="low">Low (a few per day)</option>
+              <option value="moderate">Moderate (10 – 30/day)</option>
+              <option value="high">High (30+/day)</option>
+            </select>
+          </div>
+          <div class="field"><label>High-Value Assets on Premises?</label><div class="hint">Equipment, inventory, pharmaceuticals, electronics, etc.</div>
+            <select name="highValue">
+              <option value="no">No</option>
+              <option value="moderate">Some valuable items</option>
+              <option value="yes">Significant high-value assets</option>
+            </select>
+          </div>
+          <div class="field"><label>Sensitive Information on Site?</label><div class="hint">Patient records, financial data, R&amp;D, etc.</div>
+            <select name="sensitiveData">
+              <option value="no">No</option>
+              <option value="some">Some sensitive information</option>
+              <option value="yes">Highly sensitive / regulated data</option>
+            </select>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="btn-row"><button type="button" class="btn btn-back" onclick="prevStep(3)">← Back</button><button type="button" class="btn btn-next" onclick="nextStep(3)">Continue →</button></div>
       </div>
 
-      <div class="spacer"></div>
-      <button type="submit" class="btn"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>Get My Security Assessment</button>
+      <!-- Step 4: Current Security -->
+      <div class="step" id="step4">
+        <div class="section-title">Current Security Posture</div>
+        <div class="form-grid">
+          <div class="field full"><label>Current Security Arrangement</label>
+            <select name="currentSecurity" required>
+              <option value="">Select your situation</option>
+              <option value="none">No professional security</option>
+              <option value="inhouse">In-house security staff</option>
+              <option value="outsourced-satisfied">Outsourced provider — satisfied</option>
+              <option value="outsourced-issues">Outsourced provider — experiencing issues</option>
+              <option value="outsourced-switch">Actively looking to switch providers</option>
+            </select>
+          </div>
+          <div class="field"><label>Camera / Video Surveillance</label>
+            <select name="cameras">
+              <option value="none">None</option>
+              <option value="some">Some cameras (partial coverage)</option>
+              <option value="full">Comprehensive camera system</option>
+            </select>
+          </div>
+          <div class="field"><label>Alarm / Intrusion Detection</label>
+            <select name="alarm">
+              <option value="no">No alarm system</option>
+              <option value="basic">Basic alarm</option>
+              <option value="monitored">Professionally monitored</option>
+            </select>
+          </div>
+          <div class="field"><label>Electronic Access Control</label><div class="hint">Key cards, fobs, biometric scanners</div>
+            <select name="accessControl">
+              <option value="none">None (traditional keys)</option>
+              <option value="partial">Some areas</option>
+              <option value="full">Comprehensive system</option>
+            </select>
+          </div>
+          <div class="field"><label>Any Incidents in the Past 12 Months?</label><div class="hint">Theft, trespassing, vandalism, etc.</div>
+            <select name="incidents">
+              <option value="none">None</option>
+              <option value="minor">Minor incidents (1-2)</option>
+              <option value="several">Several incidents (3-5)</option>
+              <option value="frequent">Frequent issues (5+)</option>
+            </select>
+          </div>
+          <div class="field"><label>Armed Security Needed?</label>
+            <select name="armed">
+              <option value="no">No — unarmed officers preferred</option>
+              <option value="maybe">Possibly — open to discussion</option>
+              <option value="yes">Yes — armed officers required</option>
+            </select>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="btn-row"><button type="button" class="btn btn-back" onclick="prevStep(4)">← Back</button><button type="button" class="btn btn-next" onclick="nextStep(4)">Continue →</button></div>
+      </div>
+
+      <!-- Step 5: Contact -->
+      <div class="step" id="step5">
+        <div class="section-title">Your Contact Information</div>
+        <p style="font-size:.82rem;color:var(--text-light);margin-bottom:1.25rem">Your assessment report will be generated instantly. A security consultant may follow up to discuss your results.</p>
+        <div class="form-grid">
+          <div class="field"><label>Full Name</label><input type="text" name="contactName" required placeholder="Sam Johnson"></div>
+          <div class="field"><label>Title / Role</label><input type="text" name="title" placeholder="VP Operations"></div>
+          <div class="field"><label>Email</label><input type="email" name="email" required placeholder="sam@company.com"></div>
+          <div class="field"><label>Phone</label><input type="tel" name="phone" placeholder="(555) 123-4567"></div>
+        </div>
+        <div class="spacer"></div>
+        <div class="btn-row"><button type="button" class="btn btn-back" onclick="prevStep(5)">← Back</button><button type="submit" class="btn btn-next">Generate My Assessment →</button></div>
+      </div>
     </form>
+  </div>
+
+  <!-- LOADING -->
+  <div id="loadingScreen">
+    <div class="spinner"></div>
+    <div class="loading-text">Analyzing your facility...</div>
+    <div class="loading-sub" id="loadingStatus">Checking regional data...</div>
   </div>
 
   <!-- RESULTS -->
   <div id="results">
-    <div class="results-header fade-in">
+    <div class="report-header">
       <h2>Security Assessment Report</h2>
       <p id="resultsBusinessName"></p>
+      <div class="report-date" id="reportDate"></div>
     </div>
 
-    <div class="card fade-in delay-1">
-      <div class="section-title">Overall Security Risk Score</div>
+    <div class="exec-summary" id="execSummary"></div>
+
+    <div class="card" style="margin-bottom:1.5rem">
+      <div class="section-title">Overall Security Needs Score</div>
       <div class="gauge-wrap">
         <div class="gauge">
-          <svg width="200" height="200" viewBox="0 0 200 200">
-            <circle class="gauge-bg" cx="100" cy="100" r="88"/>
-            <circle class="gauge-fill" id="gaugeFill" cx="100" cy="100" r="88" stroke-dasharray="553" stroke-dashoffset="553"/>
+          <svg width="180" height="180" viewBox="0 0 180 180">
+            <circle class="gauge-bg" cx="90" cy="90" r="78"/>
+            <circle class="gauge-fill" id="gaugeFill" cx="90" cy="90" r="78" stroke-dasharray="490" stroke-dashoffset="490"/>
           </svg>
           <div class="gauge-center">
             <span class="gauge-score" id="scoreNum">0</span>
-            <span class="gauge-label" id="scoreLabel">Calculating…</span>
+            <span class="gauge-label" id="scoreLabel">Analyzing...</span>
           </div>
         </div>
       </div>
+      <div class="crime-box" id="crimeBox"></div>
     </div>
 
-    <div class="spacer"></div>
-
-    <div class="card fade-in delay-2">
-      <div class="section-title">Risk Breakdown</div>
-      <div class="risk-bar-section" id="riskBars"></div>
+    <div class="card" style="margin-bottom:1.5rem">
+      <div class="section-title">Detailed Risk Analysis</div>
+      <div id="riskBars"></div>
     </div>
 
-    <div class="spacer"></div>
-
-    <div class="card fade-in delay-3">
-      <div class="section-title">Recommended Coverage</div>
-      <div class="rec-grid">
-        <div class="rec-card"><div class="num" id="recGuards">–</div><div class="lbl">Security Officers</div></div>
-        <div class="rec-card"><div class="num" id="recHours">–</div><div class="lbl">Hours / Week</div></div>
-      </div>
-      <div class="investment">
+    <div class="card" style="margin-bottom:1.5rem">
+      <div class="section-title">Recommended Security Program</div>
+      <div class="rec-grid" id="recGrid"></div>
+      <div class="shift-plan" id="shiftPlan"></div>
+      <div class="investment-box">
         <div class="range" id="investRange">–</div>
         <div class="note">Estimated Monthly Investment</div>
+        <div class="disclaimer" id="investDisclaimer">Actual pricing varies based on location, schedule complexity, and specific requirements. A Salient consultant will provide a detailed custom quote.</div>
       </div>
+      <div class="benchmark-box" id="benchmarkBox"></div>
     </div>
 
-    <div class="spacer"></div>
+    <div class="card" style="margin-bottom:1.5rem">
+      <div class="section-title">Priority Action Items</div>
+      <div id="priorities"></div>
+    </div>
 
-    <div class="card fade-in delay-4">
+    <div class="card">
       <div class="cta-section" style="border:none;padding-top:0;margin-top:0">
-        <p>A Salient Group security consultant will contact you within <strong>24 hours</strong> to discuss your customized security plan.</p>
-        <a href="https://cal.com/salient-group/quick-call" target="_blank" class="btn-cta"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>Schedule a Free Consultation</a>
-        <br><button class="btn-outline" onclick="location.reload()">Start New Assessment</button>
+        <p>A Salient Group security consultant will reach out within <strong>24 hours</strong> to discuss your customized security program.</p>
+        <a href="https://cal.com/salient-group/quick-call" target="_blank" class="btn-cta">📅 Schedule a Free Consultation</a>
+        <div class="action-btns">
+          <button class="btn-sm" onclick="window.print()">🖨️ Print Report</button>
+          <button class="btn-sm" onclick="shareResults()">📋 Copy Summary</button>
+          <button class="btn-sm" onclick="location.reload()">🔄 New Assessment</button>
+        </div>
       </div>
     </div>
   </div>
@@ -192,127 +493,398 @@ footer a{color:var(--blue);text-decoration:none}
 <footer>© 2026 Salient Group &nbsp;|&nbsp; <a href="https://salient-group.com">salient-group.com</a> &nbsp;|&nbsp; (317) 983-6601</footer>
 
 <script>
-// Populate states
-const states=["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"];
-const stateNames=["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"];
-const sel=document.querySelector('select[name="state"]');
-states.forEach((s,i)=>{const o=document.createElement('option');o.value=s;o.textContent=stateNames[i];sel.appendChild(o)});
+// State data with property + violent crime rates per 100K (FBI UCR 2023 approximations)
+const stateData={
+AL:{name:"Alabama",property:2800,violent:500},AK:{name:"Alaska",property:2900,violent:840},
+AZ:{name:"Arizona",property:2600,violent:480},AR:{name:"Arkansas",property:2700,violent:600},
+CA:{name:"California",property:2500,violent:440},CO:{name:"Colorado",property:3100,violent:490},
+CT:{name:"Connecticut",property:1600,violent:180},DE:{name:"Delaware",property:2400,violent:420},
+FL:{name:"Florida",property:2200,violent:380},GA:{name:"Georgia",property:2500,violent:400},
+HI:{name:"Hawaii",property:2900,violent:250},ID:{name:"Idaho",property:1400,violent:230},
+IL:{name:"Illinois",property:1700,violent:420},IN:{name:"Indiana",property:2100,violent:380},
+IA:{name:"Iowa",property:1700,violent:300},KS:{name:"Kansas",property:2400,violent:410},
+KY:{name:"Kentucky",property:1700,violent:260},LA:{name:"Louisiana",property:2800,violent:560},
+ME:{name:"Maine",property:1300,violent:110},MD:{name:"Maryland",property:2000,violent:460},
+MA:{name:"Massachusetts",property:1200,violent:310},MI:{name:"Michigan",property:1600,violent:450},
+MN:{name:"Minnesota",property:2200,violent:280},MS:{name:"Mississippi",property:2200,violent:290},
+MO:{name:"Missouri",property:2700,violent:540},MT:{name:"Montana",property:2200,violent:430},
+NE:{name:"Nebraska",property:2000,violent:310},NV:{name:"Nevada",property:2200,violent:460},
+NH:{name:"New Hampshire",property:1100,violent:150},NJ:{name:"New Jersey",property:1300,violent:200},
+NM:{name:"New Mexico",property:3500,violent:830},NY:{name:"New York",property:1400,violent:360},
+NC:{name:"North Carolina",property:2400,violent:400},ND:{name:"North Dakota",property:2200,violent:330},
+OH:{name:"Ohio",property:2100,violent:360},OK:{name:"Oklahoma",property:2800,violent:430},
+OR:{name:"Oregon",property:3300,violent:290},PA:{name:"Pennsylvania",property:1400,violent:310},
+RI:{name:"Rhode Island",property:1500,violent:220},SC:{name:"South Carolina",property:2800,violent:500},
+SD:{name:"South Dakota",property:1700,violent:500},TN:{name:"Tennessee",property:2600,violent:600},
+TX:{name:"Texas",property:2700,violent:430},UT:{name:"Utah",property:2800,violent:260},
+VT:{name:"Vermont",property:1300,violent:170},VA:{name:"Virginia",property:1600,violent:210},
+WA:{name:"Washington",property:3400,violent:380},WV:{name:"West Virginia",property:1400,violent:350},
+WI:{name:"Wisconsin",property:1600,violent:320},WY:{name:"Wyoming",property:1700,violent:230}
+};
+const natAvgProperty=2100, natAvgViolent=380;
 
-// Scoring
-function score(data){
-  const ep=parseFloat(data.entryPoints);
-  const sqft=parseFloat(data.sqft);
-  const hrs=data.hours;
-  const sec=data.currentSecurity;
-  const type=data.businessType;
+// Industry risk profiles
+const industryProfiles={
+warehouse:{label:"Warehouse & Distribution",baseRisk:72,theft:82,perimeter:75,afterHours:78,access:68,workplace:45,compliance:40,emergency:55,technology:65,
+  benchmarkLow:8000,benchmarkHigh:25000,concerns:["Cargo and inventory shrinkage","Unauthorized vehicle and personnel access","After-hours intrusion through loading areas","Driver and visitor credential verification"]},
+office:{label:"Office Building",baseRisk:45,theft:35,perimeter:40,afterHours:50,access:55,workplace:50,compliance:35,emergency:45,technology:50,
+  benchmarkLow:4000,benchmarkHigh:15000,concerns:["Visitor management and screening","After-hours building access","Workplace safety incidents","Tenant and employee safety"]},
+retail:{label:"Retail / Shopping",baseRisk:68,theft:85,perimeter:50,afterHours:60,access:45,workplace:55,compliance:30,emergency:50,technology:60,
+  benchmarkLow:5000,benchmarkHigh:18000,concerns:["Shoplifting and organized retail theft","Customer and employee safety","Parking area security","Cash handling and deposit protection"]},
+healthcare:{label:"Healthcare",baseRisk:65,theft:45,perimeter:55,afterHours:60,access:72,workplace:75,compliance:85,emergency:80,technology:70,
+  benchmarkLow:10000,benchmarkHigh:35000,concerns:["Patient and visitor safety","HIPAA compliance for physical security","Emergency department access control","Workplace aggression toward staff"]},
+construction:{label:"Construction",baseRisk:75,theft:88,perimeter:80,afterHours:85,access:60,workplace:55,compliance:45,emergency:50,technology:70,
+  benchmarkLow:5000,benchmarkHigh:15000,concerns:["Equipment and material theft","After-hours site intrusion","Unauthorized access to active work zones","Tool and copper wire theft"]},
+residential:{label:"Residential / HOA",baseRisk:50,theft:40,perimeter:60,afterHours:55,access:65,workplace:20,compliance:30,emergency:40,technology:55,
+  benchmarkLow:5000,benchmarkHigh:20000,concerns:["Gate and access point management","Package theft and vandalism","Visitor and vendor screening","Common area safety"]},
+events:{label:"Events / Convention",baseRisk:62,theft:40,perimeter:65,afterHours:45,access:75,workplace:55,compliance:50,emergency:75,technology:55,
+  benchmarkLow:3000,benchmarkHigh:25000,concerns:["Crowd management and flow control","VIP and restricted area access","Emergency evacuation readiness","Credential verification at entry"]},
+education:{label:"Education",baseRisk:60,theft:35,perimeter:65,afterHours:55,access:70,workplace:60,compliance:70,emergency:80,technology:60,
+  benchmarkLow:6000,benchmarkHigh:25000,concerns:["Campus perimeter and building access","Student and staff safety protocols","Clery Act compliance requirements","Emergency lockdown preparedness"]},
+hospitality:{label:"Hospitality",baseRisk:55,theft:50,perimeter:45,afterHours:65,access:50,workplace:45,compliance:35,emergency:50,technology:50,
+  benchmarkLow:5000,benchmarkHigh:18000,concerns:["Guest safety and property protection","Parking and exterior area monitoring","Late-night access management","Incident response and guest relations"]},
+manufacturing:{label:"Manufacturing",baseRisk:65,theft:70,perimeter:70,afterHours:72,access:60,workplace:60,compliance:50,emergency:60,technology:60,
+  benchmarkLow:6000,benchmarkHigh:22000,concerns:["Raw material and finished goods protection","Perimeter integrity and access control","Shift change security transitions","Hazardous area access management"]},
+government:{label:"Government",baseRisk:58,theft:30,perimeter:70,afterHours:55,access:80,workplace:50,compliance:80,emergency:75,technology:65,
+  benchmarkLow:8000,benchmarkHigh:30000,concerns:["Public access management and screening","Sensitive document and area protection","Regulatory compliance requirements","Emergency preparedness protocols"]},
+financial:{label:"Financial / Banking",baseRisk:60,theft:55,perimeter:50,afterHours:60,access:80,workplace:55,compliance:75,emergency:65,technology:70,
+  benchmarkLow:6000,benchmarkHigh:22000,concerns:["Branch and vault security","Customer and employee protection","Regulatory compliance (GLBA, SOX)","After-hours monitoring and alarm response"]}
+};
 
-  // Category scores 0-100
-  const typeRisk={
-    'Warehouse/Distribution':70,'Office Building':40,'Retail Store':75,'Medical Facility':60,
-    'Construction Site':80,'Residential Community':50,'Event Venue':65,'School/University':70,
-    'Hotel/Hospitality':55,'Manufacturing Plant':65
-  };
+// Populate state dropdown
+const sel=document.getElementById('stateSelect');
+Object.keys(stateData).sort().forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=stateData[s].name;sel.appendChild(o)});
 
-  // Access Control: entry points (40%) + hours (30%) + size (30%)
-  const epScore=Math.min(ep/12*100,100);
-  const hrsScore={'24/7':85,'business':35,'nights':70,'custom':55}[hrs]||50;
-  const sizeScore=Math.min(sqft/150000*100,100);
-  const accessControl=Math.round(epScore*.4+hrsScore*.3+sizeScore*.3);
-
-  // Theft: type (50%) + size (25%) + entry (25%)
-  const tr=typeRisk[type]||50;
-  const theft=Math.round(tr*.5+sizeScore*.25+epScore*.25);
-
-  // Liability: type (40%) + size (40%) + hours (20%)
-  const liability=Math.round(tr*.4+sizeScore*.4+hrsScore*.2);
-
-  // After-hours: hours (60%) + entry (20%) + security (20%)
-  const secScore={'none':90,'inhouse':40,'outsourced-satisfied':20,'outsourced-switch':65}[sec]||50;
-  const afterHours=Math.round(hrsScore*.6+epScore*.2+secScore*.2);
-
-  // Unauthorized entry: size (35%) + entry points (40%) + security (25%)
-  const unauth=Math.round(sizeScore*.35+epScore*.4+secScore*.25);
-
-  const overall=Math.round((accessControl+theft+liability+afterHours+unauth)/5);
-
-  // Recommendations
-  const baseGuards=ep<=2?1:ep<=5?2:ep<=10?3:4;
-  const sizeBonus=sqft>50000?1:0;
-  const guards=baseGuards+sizeBonus+(hrs==='24/7'?1:0);
-
-  const baseHrs=hrs==='24/7'?168:hrs==='nights'?80:hrs==='business'?50:60;
-  const weeklyHrs=Math.round(baseHrs*(guards>2?.85:1));
-
-  const monthLow=Math.round(weeklyHrs*4.33*22);
-  const monthHigh=Math.round(weeklyHrs*4.33*28);
-
-  return {
-    overall,
-    categories:[
-      {name:'Access Control Risk',value:accessControl},
-      {name:'Theft & Shrinkage Risk',value:theft},
-      {name:'Liability Risk',value:liability},
-      {name:'After-Hours Risk',value:afterHours},
-      {name:'Unauthorized Entry Risk',value:unauth}
-    ],
-    guards,weeklyHrs,monthLow,monthHigh
-  };
-}
-
-function colorForScore(v){return v>=70?'var(--red)':v>=45?'var(--orange)':'var(--green)'}
-function labelForScore(v){return v>=70?'High Risk':v>=45?'Moderate Risk':'Low Risk'}
-
-function showResults(data,result){
-  document.getElementById('formSection').style.display='none';
-  const r=document.getElementById('results');
-  r.style.display='block';
-  document.getElementById('resultsBusinessName').textContent=data.businessName+' — '+data.city+', '+data.state;
-
-  // Gauge
-  const circ=553;
-  const offset=circ-(circ*result.overall/100);
-  const fill=document.getElementById('gaugeFill');
-  fill.style.stroke=colorForScore(result.overall);
-  requestAnimationFrame(()=>{fill.style.strokeDashoffset=offset});
-
-  // Animate number
-  const numEl=document.getElementById('scoreNum');
-  let cur=0;const target=result.overall;
-  const step=()=>{cur+=Math.ceil((target-cur)/12);if(cur>=target)cur=target;numEl.textContent=cur;numEl.style.color=colorForScore(cur);if(cur<target)requestAnimationFrame(step)};
-  setTimeout(step,300);
-  document.getElementById('scoreLabel').textContent=labelForScore(result.overall);
-
-  // Bars
-  const barsEl=document.getElementById('riskBars');
-  barsEl.innerHTML='';
-  result.categories.forEach((c,i)=>{
-    const col=colorForScore(c.value);
-    barsEl.innerHTML+=`<div class="risk-item"><div class="risk-item-header"><span class="risk-item-name">${c.name}</span><span class="risk-item-value" style="color:${col}">${c.value}/100</span></div><div class="bar-track"><div class="bar-fill" id="bar${i}" style="background:${col}"></div></div></div>`;
-  });
-  setTimeout(()=>result.categories.forEach((c,i)=>{document.getElementById('bar'+i).style.width=c.value+'%'}),200);
-
-  // Recs
-  document.getElementById('recGuards').textContent=result.guards;
-  document.getElementById('recHours').textContent=result.weeklyHrs;
-  document.getElementById('investRange').textContent='$'+result.monthLow.toLocaleString()+' – $'+result.monthHigh.toLocaleString();
-
+// Step navigation
+let currentStep=1;
+function showStep(n){
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('step'+n).classList.add('active');
+  document.getElementById('progressSteps').className='progress-steps s'+n;
+  for(let i=1;i<=5;i++){
+    const dot=document.getElementById('pd'+i);
+    dot.className='p-dot'+(i<n?' done':i===n?' active':'');
+    if(i<n)dot.textContent='✓';
+  }
+  currentStep=n;
   window.scrollTo({top:0,behavior:'smooth'});
 }
+function validateStep(n){
+  const step=document.getElementById('step'+n);
+  const required=step.querySelectorAll('[required]');
+  let valid=true;
+  required.forEach(el=>{if(!el.value){el.style.borderColor='var(--red)';valid=false}else{el.style.borderColor=''}});
+  return valid;
+}
+function nextStep(n){if(validateStep(n))showStep(n+1)}
+function prevStep(n){showStep(n-1)}
+
+// Scoring engine
+function calculateAssessment(d){
+  const profile=industryProfiles[d.businessType]||industryProfiles.office;
+  const st=stateData[d.state]||{property:natAvgProperty,violent:natAvgViolent,name:d.state};
+  const ep=parseFloat(d.entryPoints)||4;
+  const sqft=parseFloat(d.sqft)||17500;
+  const employees=parseFloat(d.employees)||50;
+  const visitors=parseFloat(d.visitors)||30;
+  const floors=parseFloat(d.floors)||1;
+
+  // Modifiers based on inputs
+  const sizeM=Math.min(sqft/200000,1);
+  const epM=Math.min(ep/15,1);
+  const empM=Math.min(employees/500,1);
+  const visM=Math.min(visitors/500,1);
+  const crimeM=(st.property/natAvgProperty+st.violent/natAvgViolent)/2;
+
+  const noSecurity=d.currentSecurity==='none'?1.2:1;
+  const switchSecurity=(d.currentSecurity==='outsourced-switch'||d.currentSecurity==='outsourced-issues')?1.1:1;
+  const incidentM={none:1,minor:1.1,several:1.2,frequent:1.35}[d.incidents]||1;
+  const highValM={no:1,moderate:1.1,yes:1.25}[d.highValue]||1;
+  const hrsMod={'24/7':1.15,extended:1.05,business:0.9,nights:1.1}[d.hours]||1;
+  const lightM={poor:1.15,adequate:1,good:0.9}[d.lighting]||1;
+  const fenceM={none:1.15,partial:1.05,full:0.9}[d.fencing]||1;
+
+  // 8 risk categories
+  const categories=[
+    {name:"Perimeter Security",base:profile.perimeter,
+      calc:()=>clamp(profile.perimeter*(.4+sizeM*.25+epM*.2+fenceM*.15)*lightM*crimeM*.85),
+      getFindings:(v,d)=>{
+        const f=[];
+        if(d.fencing==='none')f.push("No perimeter fencing leaves the facility boundary unsecured");
+        else if(d.fencing==='partial')f.push("Partial fencing creates gaps that can be exploited");
+        if(ep>=6)f.push(ep+"+ entry points significantly increase perimeter complexity");
+        if(d.lighting==='poor')f.push("Minimal exterior lighting reduces natural deterrence");
+        if(sqft>=75000)f.push("Large facility footprint ("+(sqft>=175000?"250K+":sqft>=75000?"75K+":"50K+")+" sq ft) requires extended perimeter coverage");
+        if(f.length===0)f.push("Facility perimeter is reasonably well-defined");
+        return f.slice(0,3);
+      },
+      getRec:(v,d)=>d.fencing==='none'?"Consider installing perimeter fencing with controlled entry gates":ep>=8?"Implement access-controlled entry points with visitor logging at all "+Math.round(ep)+"+ entrances":"Conduct a perimeter vulnerability walk-through to identify blind spots"
+    },
+    {name:"Access Control",base:profile.access,
+      calc:()=>clamp(profile.access*(.35+visM*.25+empM*.2+epM*.2)*noSecurity),
+      getFindings:(v,d)=>{
+        const f=[];
+        if(d.accessControl==='none')f.push("No electronic access control — relying on physical keys limits accountability");
+        if(visitors>=200)f.push("High visitor volume ("+Math.round(visitors)+"+/day) requires structured screening procedures");
+        if(employees>=200)f.push("Large workforce requires credential management and access tiering");
+        if(f.length===0)f.push("Current access control setup provides baseline coverage");
+        return f.slice(0,3);
+      },
+      getRec:(v,d)=>d.accessControl==='none'?"Implement electronic access control with credential logging":"Establish visitor management protocols with badge-in/badge-out tracking"
+    },
+    {name:"Loss Prevention",base:profile.theft,
+      calc:()=>clamp(profile.theft*(.4+highValM*.2+sizeM*.15+crimeM*.15)*incidentM*.9),
+      getFindings:(v,d)=>{
+        const f=[];
+        if(d.highValue==='yes')f.push("Significant high-value assets on premises increase targeting likelihood");
+        if(st.property>natAvgProperty*1.1)f.push(st.name+" property incident rate is "+Math.round((st.property/natAvgProperty-1)*100)+"% above the national average");
+        if(d.incidents!=='none')f.push("Recent on-site incidents indicate active exposure");
+        if(d.cameras==='none')f.push("No camera coverage removes a key deterrent and evidence source");
+        if(f.length===0)f.push("Loss prevention risk is within normal range for your industry");
+        return f.slice(0,3);
+      },
+      getRec:(v,d)=>d.cameras==='none'?"Install camera surveillance at all entry points, loading areas, and high-value storage":"Implement inventory controls and regular audit procedures"
+    },
+    {name:"After-Hours Exposure",base:profile.afterHours,
+      calc:()=>clamp(profile.afterHours*(.35+hrsMod*.25+lightM*.2+fenceM*.2)*noSecurity*crimeM*.8),
+      getFindings:(v,d)=>{
+        const f=[];
+        if(d.hours==='24/7')f.push("24/7 operations mean the facility is never truly unoccupied — continuous coverage needed");
+        else if(d.hours==='nights')f.push("Night operations carry elevated risk due to reduced visibility and response times");
+        if(d.lighting==='poor')f.push("Poor exterior lighting during dark hours creates concealment opportunities");
+        if(d.alarm==='no')f.push("No alarm system means intrusions may go undetected for hours");
+        if(d.currentSecurity==='none'&&d.hours!=='business')f.push("No security presence during off-hours leaves the facility unprotected");
+        if(f.length===0)f.push("After-hours exposure is manageable with current measures");
+        return f.slice(0,3);
+      },
+      getRec:(v,d)=>d.alarm==='no'?"Install a professionally monitored alarm system with immediate dispatch capability":"Implement after-hours patrol routes covering all building perimeters and parking areas"
+    },
+    {name:"Workplace Safety",base:profile.workplace,
+      calc:()=>clamp(profile.workplace*(.4+empM*.25+visM*.2)*switchSecurity),
+      getFindings:(v,d)=>{
+        const f=[];
+        if(['healthcare','retail','education'].includes(d.businessType))f.push("Your industry has above-average workplace safety incident rates");
+        if(employees>=300)f.push("Large on-site workforce increases interpersonal incident probability");
+        if(visitors>=200)f.push("High public interaction raises exposure to external confrontations");
+        if(f.length===0)f.push("Workplace safety risk is within normal parameters");
+        return f.slice(0,3);
+      },
+      getRec:(v,d)=>employees>=200?"Implement a workplace safety program with trained security officers and de-escalation protocols":"Establish clear incident reporting procedures and emergency contact protocols"
+    },
+    {name:"Emergency Preparedness",base:profile.emergency,
+      calc:()=>clamp(profile.emergency*(.4+empM*.2+sizeM*.2+visM*.2)),
+      getFindings:(v,d)=>{
+        const f=[];
+        if(employees>=200||visitors>=200)f.push("Large occupancy requires comprehensive evacuation and shelter-in-place plans");
+        if(floors>=4)f.push("Multi-story building requires floor-specific emergency procedures");
+        if(sqft>=75000)f.push("Facility size requires multiple evacuation routes and assembly points");
+        if(f.length===0)f.push("Emergency preparedness needs are standard for your facility type");
+        return f.slice(0,3);
+      },
+      getRec:(v,d)=>"Develop and regularly drill emergency action plans covering evacuation, medical response, and severe weather"
+    },
+    {name:"Regulatory Compliance",base:profile.compliance,
+      calc:()=>clamp(profile.compliance*(.5+({yes:.25,some:.15,no:0}[d.sensitiveData]||0))*1.05),
+      getFindings:(v,d)=>{
+        const f=[];
+        if(d.businessType==='healthcare')f.push("HIPAA requires physical safeguards for areas containing protected health information");
+        if(d.businessType==='education')f.push("Clery Act mandates campus security policies and incident reporting");
+        if(d.businessType==='financial')f.push("Financial regulations (GLBA, SOX) require physical security of sensitive data");
+        if(d.sensitiveData==='yes')f.push("Regulated data on premises requires documented access controls and audit trails");
+        if(d.businessType==='government')f.push("Government facilities require compliance with federal physical security standards");
+        if(f.length===0)f.push("Standard security practices should meet your regulatory requirements");
+        return f.slice(0,3);
+      },
+      getRec:(v,d)=>d.sensitiveData!=='no'?"Implement documented access controls for sensitive areas with visitor logging and audit capability":"Maintain security logs and incident reports to demonstrate due diligence"
+    },
+    {name:"Technology & Monitoring",base:profile.technology,
+      calc:()=>{
+        const camM={none:1.3,some:1.1,full:.9}[d.cameras]||1;
+        const almM={no:1.2,basic:1.05,monitored:.9}[d.alarm]||1;
+        const accM={none:1.2,partial:1.05,full:.9}[d.accessControl]||1;
+        return clamp(profile.technology*(camM+almM+accM)/3*1.1);
+      },
+      getFindings:(v,d)=>{
+        const f=[];
+        if(d.cameras==='none')f.push("No camera surveillance — a critical gap in monitoring and evidence collection");
+        else if(d.cameras==='some')f.push("Partial camera coverage may leave blind spots in critical areas");
+        if(d.alarm==='no')f.push("No alarm system — intrusion detection relies entirely on physical observation");
+        if(d.accessControl==='none')f.push("No electronic access control — no audit trail for facility entry/exit");
+        if(f.length===0)f.push("Technology stack provides solid baseline monitoring capability");
+        return f.slice(0,3);
+      },
+      getRec:(v,d)=>{
+        if(d.cameras==='none'&&d.alarm==='no')return "Priority: install integrated camera and alarm systems before adding security personnel";
+        if(d.cameras==='none')return "Install camera surveillance at entry points, parking areas, and high-traffic zones";
+        return "Consider integrating camera, alarm, and access systems into a unified monitoring platform";
+      }
+    }
+  ];
+
+  // Calculate each category
+  const results=categories.map(c=>{
+    const value=Math.round(c.calc());
+    return{name:c.name,value,findings:c.getFindings(value,d),recommendation:c.getRec(value,d)};
+  });
+
+  const overall=Math.round(results.reduce((s,r)=>s+r.value,0)/results.length);
+
+  // Guard & coverage recommendation
+  const baseGuards=ep<=2?1:ep<=5?2:ep<=8?3:4;
+  const sizeBonus=sqft>=100000?2:sqft>=50000?1:0;
+  const hourBonus=d.hours==='24/7'?2:d.hours==='extended'?1:0;
+  const floorBonus=floors>=4?1:0;
+  const totalGuards=Math.max(1,baseGuards+sizeBonus+hourBonus+floorBonus);
+
+  // Coverage hours
+  let coverageDesc,weeklyHrs;
+  if(d.hours==='24/7'){weeklyHrs=totalGuards<=2?168:Math.round(totalGuards*40);coverageDesc="24/7 coverage with rotating shifts"}
+  else if(d.hours==='extended'){weeklyHrs=Math.round(totalGuards*48);coverageDesc="Extended hours coverage (early morning through late evening)"}
+  else if(d.hours==='nights'){weeklyHrs=Math.round(totalGuards*40);coverageDesc="Night and weekend coverage"}
+  else{weeklyHrs=Math.round(totalGuards*40);coverageDesc="Business hours coverage with after-hours patrol"}
+  
+  const needsSupervisor=totalGuards>=4;
+  if(needsSupervisor)coverageDesc+=", plus dedicated shift supervisor";
+
+  // Pricing — Sam's real rates
+  const armed=d.armed==='yes';
+  const rateLow=armed?29:22;
+  const rateHigh=armed?34:25;
+  const monthlyLow=Math.round(weeklyHrs*4.33*rateLow);
+  const monthlyHigh=Math.round(weeklyHrs*4.33*rateHigh);
+
+  // Benchmarks
+  const bLow=profile.benchmarkLow;
+  const bHigh=profile.benchmarkHigh;
+
+  return{overall,categories:results,totalGuards,weeklyHrs,coverageDesc,needsSupervisor,armed,monthlyLow,monthlyHigh,benchmarkLow:bLow,benchmarkHigh:bHigh,stateInfo:st,profile};
+}
+
+function clamp(v){return Math.max(10,Math.min(95,Math.round(v)))}
+function colorFor(v){return v>=70?'var(--red)':v>=50?'var(--orange)':v>=35?'var(--yellow)':'var(--green)'}
+function labelFor(v){return v>=70?'High Need':v>=50?'Elevated':v>=35?'Moderate':'Lower Need'}
 
 // Form submit
 document.getElementById('assessmentForm').addEventListener('submit',function(e){
   e.preventDefault();
+  if(!validateStep(5))return;
   const fd=new FormData(this);
   const data=Object.fromEntries(fd.entries());
 
-  // Lead capture
-  console.log('Lead submitted:',data);
-  fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}).catch(()=>{});
-  try{const leads=JSON.parse(localStorage.getItem('salient_leads')||'[]');leads.push({...data,timestamp:new Date().toISOString()});localStorage.setItem('salient_leads',JSON.stringify(leads))}catch(e){}
+  // Save lead
+  const leadScore=data.currentSecurity==='none'||data.currentSecurity==='outsourced-switch'?'hot':
+    data.currentSecurity==='outsourced-issues'||data.highValue==='yes'?'warm':'cool';
+  const lead={...data,timestamp:new Date().toISOString(),leadScore};
+  console.log('Lead captured:',lead);
+  try{const leads=JSON.parse(localStorage.getItem('salient_leads')||'[]');leads.push(lead);localStorage.setItem('salient_leads',JSON.stringify(leads))}catch(e){}
 
-  const result=score(data);
-  showResults(data,result);
+  // Show loading
+  document.getElementById('formSection').style.display='none';
+  document.getElementById('loadingScreen').style.display='block';
+  const statuses=["Checking regional data...","Analyzing facility profile...","Calculating risk factors...","Generating recommendations...","Preparing your report..."];
+  let si=0;
+  const loadInt=setInterval(()=>{si++;if(si<statuses.length)document.getElementById('loadingStatus').textContent=statuses[si]},600);
+
+  setTimeout(()=>{
+    clearInterval(loadInt);
+    document.getElementById('loadingScreen').style.display='none';
+    showResults(data,calculateAssessment(data));
+  },3200);
 });
+
+function showResults(data,r){
+  const res=document.getElementById('results');
+  res.style.display='block';
+  document.getElementById('resultsBusinessName').textContent=data.businessName+' — '+data.city+', '+(stateData[data.state]?.name||data.state);
+  document.getElementById('reportDate').textContent='Report generated '+new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+
+  // Executive summary
+  const secStatus=data.currentSecurity==='none'?'currently operates without professional security coverage':
+    data.currentSecurity==='inhouse'?'currently uses in-house security staff':
+    data.currentSecurity==='outsourced-switch'?'is actively seeking a new security provider':
+    data.currentSecurity==='outsourced-issues'?'has identified issues with their current security provider':
+    'has an existing outsourced security arrangement';
+  document.getElementById('execSummary').innerHTML=
+    '<strong>'+data.businessName+'</strong> is a '+r.profile.label.toLowerCase()+' facility located in '+(stateData[data.state]?.name||data.state)+' that '+secStatus+'. '+
+    'Based on the facility profile — '+Math.round(parseFloat(data.sqft)).toLocaleString()+' sq ft with '+Math.round(parseFloat(data.entryPoints))+' access points operating on a '+(data.hours==='24/7'?'24/7':data.hours==='extended'?'extended hours':data.hours==='nights'?'nights/weekends':'standard business hours')+' schedule — '+
+    'this assessment identifies an overall security needs score of <strong>'+r.overall+'/100</strong>, indicating <strong>'+labelFor(r.overall).toLowerCase()+'</strong> for professional security services.';
+
+  // Gauge
+  const circ=490;
+  const fill=document.getElementById('gaugeFill');
+  fill.style.stroke=colorFor(r.overall);
+  requestAnimationFrame(()=>{fill.style.strokeDashoffset=circ-(circ*r.overall/100)});
+  const numEl=document.getElementById('scoreNum');
+  let cur=0;
+  const anim=()=>{cur+=Math.ceil((r.overall-cur)/10);if(cur>=r.overall)cur=r.overall;numEl.textContent=cur;numEl.style.color=colorFor(cur);if(cur<r.overall)requestAnimationFrame(anim)};
+  setTimeout(anim,300);
+  document.getElementById('scoreLabel').textContent=labelFor(r.overall);
+  document.getElementById('scoreLabel').style.color=colorFor(r.overall);
+
+  // Crime data
+  const st=r.stateInfo;
+  const propDiff=Math.round((st.property/natAvgProperty-1)*100);
+  const violDiff=Math.round((st.violent/natAvgViolent-1)*100);
+  document.getElementById('crimeBox').innerHTML=
+    '<h4>📊 Regional Context — '+st.name+'</h4>'+
+    '<div class="crime-stat"><span class="label">Property incidents per 100K residents</span><span class="value">'+st.property.toLocaleString()+' <span class="compare '+(propDiff>=0?'above':'below')+'">'+(propDiff>=0?'▲':'▼')+' '+Math.abs(propDiff)+'% vs national avg</span></span></div>'+
+    '<div class="crime-stat"><span class="label">Violent incidents per 100K residents</span><span class="value">'+st.violent.toLocaleString()+' <span class="compare '+(violDiff>=0?'above':'below')+'">'+(violDiff>=0?'▲':'▼')+' '+Math.abs(violDiff)+'% vs national avg</span></span></div>'+
+    '<div style="font-size:.7rem;color:var(--text-light);margin-top:.5rem">Source: FBI Uniform Crime Reporting Program, most recent available data</div>';
+
+  // Risk bars with findings
+  const barsEl=document.getElementById('riskBars');
+  barsEl.innerHTML='';
+  r.categories.forEach((c,i)=>{
+    const col=colorFor(c.value);
+    barsEl.innerHTML+=
+      '<div class="risk-item">'+
+        '<div class="risk-item-header"><span class="risk-item-name">'+c.name+'</span><span class="risk-item-value" style="color:'+col+'">'+c.value+'/100</span></div>'+
+        '<div class="bar-track"><div class="bar-fill" id="bar'+i+'" style="background:'+col+'"></div></div>'+
+        '<ul class="risk-findings">'+c.findings.map(f=>'<li>'+f+'</li>').join('')+'</ul>'+
+        '<div class="risk-rec">→ '+c.recommendation+'</div>'+
+      '</div>';
+  });
+  setTimeout(()=>r.categories.forEach((c,i)=>{document.getElementById('bar'+i).style.width=c.value+'%'}),200);
+
+  // Recommendations
+  document.getElementById('recGrid').innerHTML=
+    '<div class="rec-card"><div class="num">'+r.totalGuards+'</div><div class="lbl">Security Officers</div></div>'+
+    '<div class="rec-card"><div class="num">'+r.weeklyHrs+'</div><div class="lbl">Hours / Week</div></div>'+
+    '<div class="rec-card"><div class="num">'+(r.armed?'Armed':'Unarmed')+'</div><div class="lbl">Officer Type</div></div>';
+
+  // Shift plan
+  let shiftHTML='<h4>Recommended Coverage Model</h4>';
+  shiftHTML+='<div class="shift-row"><span>Coverage Type</span><span>'+r.coverageDesc+'</span></div>';
+  shiftHTML+='<div class="shift-row"><span>Weekly Hours</span><span>'+r.weeklyHrs+' hrs/week</span></div>';
+  if(r.needsSupervisor)shiftHTML+='<div class="shift-row"><span>Supervision</span><span>Dedicated shift supervisor recommended</span></div>';
+  document.getElementById('shiftPlan').innerHTML=shiftHTML;
+
+  // Investment
+  document.getElementById('investRange').textContent='$'+r.monthlyLow.toLocaleString()+' – $'+r.monthlyHigh.toLocaleString();
+
+  // Benchmark
+  document.getElementById('benchmarkBox').innerHTML=
+    '💡 <strong>Industry Benchmark:</strong> Similar '+r.profile.label.toLowerCase()+' facilities typically invest between $'+r.benchmarkLow.toLocaleString()+' – $'+r.benchmarkHigh.toLocaleString()+'/month in professional security services, depending on location and specific requirements.';
+
+  // Priority actions
+  const sorted=[...r.categories].sort((a,b)=>b.value-a.value);
+  const priEl=document.getElementById('priorities');
+  priEl.innerHTML='';
+  sorted.slice(0,5).forEach((c,i)=>{
+    priEl.innerHTML+=
+      '<div class="priority-item"><div class="pri-num">'+(i+1)+'</div><div class="pri-text"><strong>'+c.name+'</strong> (Score: '+c.value+'/100)<br>'+c.recommendation+'</div></div>';
+  });
+
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function shareResults(){
+  const biz=document.getElementById('resultsBusinessName').textContent;
+  const score=document.getElementById('scoreNum').textContent;
+  const invest=document.getElementById('investRange').textContent;
+  const text='Security Assessment Report — '+biz+'\nOverall Score: '+score+'/100\nEstimated Investment: '+invest+'/month\n\nGet your free assessment: '+window.location.href;
+  navigator.clipboard.writeText(text).then(()=>alert('Summary copied to clipboard!')).catch(()=>{});
+}
 </script>
 </body>
 </html>
