@@ -7,547 +7,751 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#131F2D;--white:#FFFFFF;--slate:#314151;--gray:#D6D7D8;--accent:#1a6bff;--success:#27ae60;--radius:12px;--shadow:0 4px 24px rgba(19,31,45,.12)}
-body{font-family:'Poppins',sans-serif;background:#f4f5f7;color:var(--navy);min-height:100vh;-webkit-font-smoothing:antialiased}
-.app-header{background:var(--navy);padding:16px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
-.app-header svg{flex-shrink:0}
-.app-header h1{color:var(--white);font-size:16px;font-weight:600;letter-spacing:.3px}
-.app-header span{color:var(--gray);font-size:12px;font-weight:400}
-.wizard{max-width:640px;margin:0 auto;padding:16px}
-.progress{display:flex;gap:6px;margin-bottom:24px}
-.progress-step{flex:1;height:4px;border-radius:2px;background:var(--gray);transition:background .3s}
-.progress-step.active{background:var(--navy)}
-.progress-step.done{background:var(--success)}
-.card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px 24px;margin-bottom:16px}
-.card h2{font-size:20px;font-weight:700;margin-bottom:4px}
-.card .subtitle{color:var(--slate);font-size:13px;margin-bottom:20px}
-.form-group{margin-bottom:16px}
-.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--slate)}
-.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 14px;border:1.5px solid var(--gray);border-radius:8px;font-family:inherit;font-size:14px;transition:border .2s;background:var(--white)}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--navy)}
-.form-group textarea{resize:vertical;min-height:80px}
-.checkbox-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.checkbox-item{display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;padding:10px 12px;border:1.5px solid var(--gray);border-radius:8px;transition:all .2s}
-.checkbox-item:has(input:checked){border-color:var(--navy);background:rgba(19,31,45,.04)}
-.checkbox-item input{accent-color:var(--navy);width:16px;height:16px}
-.radio-group{display:flex;gap:10px}
-.radio-item{flex:1;text-align:center;padding:14px 12px;border:1.5px solid var(--gray);border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;transition:all .2s}
-.radio-item:has(input:checked){border-color:var(--navy);background:var(--navy);color:var(--white)}
-.radio-item input{display:none}
-.btn-row{display:flex;gap:10px;margin-top:24px}
-.btn{flex:1;padding:14px;border:none;border-radius:8px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+:root{--navy:#131F2D;--white:#FFFFFF;--slate:#314151;--steel:#D6D7D8;--gray:#606060;--accent:#1a3a5c;--success:#2ecc71;--page-shadow:0 2px 20px rgba(0,0,0,.12)}
+body{font-family:'Poppins',sans-serif;background:#f0f2f5;color:var(--slate);min-height:100vh}
+/* FORM STYLES */
+.app-header{background:var(--navy);color:var(--white);padding:1rem 1.5rem;display:flex;align-items:center;gap:.75rem;position:sticky;top:0;z-index:100}
+.app-header svg{width:32px;height:32px;flex-shrink:0}
+.app-header h1{font-size:1.1rem;font-weight:600;letter-spacing:.5px}
+.app-header span{font-size:.7rem;font-weight:300;opacity:.7;display:block;margin-top:2px}
+.form-container{max-width:640px;margin:0 auto;padding:1rem}
+.step-indicator{display:flex;gap:0;margin-bottom:1.5rem;background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.step-dot{flex:1;text-align:center;padding:.75rem .25rem;font-size:.7rem;font-weight:500;color:var(--steel);background:var(--white);transition:.3s;cursor:pointer;border:none}
+.step-dot.active{background:var(--navy);color:var(--white)}
+.step-dot.completed{background:#1a3a5c;color:var(--white);opacity:.8}
+.card{background:var(--white);border-radius:12px;padding:1.5rem;margin-bottom:1rem;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.card h2{font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.card h2 svg{width:20px;height:20px}
+label.field{display:block;margin-bottom:1rem}
+label.field .lbl{font-size:.75rem;font-weight:500;color:var(--gray);margin-bottom:4px;display:block}
+input[type=text],input[type=email],input[type=tel],input[type=number],select,textarea{width:100%;padding:.65rem .75rem;border:1.5px solid var(--steel);border-radius:8px;font-family:inherit;font-size:.85rem;color:var(--slate);transition:border .2s;background:var(--white)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--navy)}
+select{-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23606060' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .75rem center}
+.row{display:grid;gap:.75rem}
+.row-2{grid-template-columns:1fr 1fr}
+.row-3{grid-template-columns:1fr 1fr 1fr}
+.checkbox-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.cb-item{display:flex;align-items:flex-start;gap:.4rem;font-size:.78rem;color:var(--slate);cursor:pointer}
+.cb-item input[type=checkbox]{margin-top:3px;accent-color:var(--navy)}
+.radio-group{display:flex;gap:.5rem;flex-wrap:wrap}
+.radio-pill{display:flex;align-items:center;gap:.3rem;padding:.4rem .75rem;border:1.5px solid var(--steel);border-radius:20px;font-size:.78rem;cursor:pointer;transition:.2s}
+.radio-pill:has(input:checked){background:var(--navy);color:var(--white);border-color:var(--navy)}
+.radio-pill input{display:none}
+.hour-presets{display:flex;gap:.4rem;flex-wrap:wrap}
+.hour-preset{padding:.35rem .7rem;border:1.5px solid var(--steel);border-radius:8px;font-size:.75rem;cursor:pointer;transition:.2s;background:var(--white)}
+.hour-preset.active{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;padding:.7rem 1.5rem;border:none;border-radius:8px;font-family:inherit;font-size:.85rem;font-weight:600;cursor:pointer;transition:.2s}
 .btn-primary{background:var(--navy);color:var(--white)}
-.btn-primary:hover{opacity:.9}
-.btn-secondary{background:var(--white);color:var(--navy);border:1.5px solid var(--gray)}
-.btn-secondary:hover{border-color:var(--navy)}
-.btn-success{background:var(--success);color:var(--white)}
-.btn-icon{display:inline-flex;align-items:center;gap:6px;justify-content:center}
-.pricing-card{background:linear-gradient(135deg,var(--navy),var(--slate));border-radius:var(--radius);padding:24px;color:var(--white);margin-bottom:16px}
-.pricing-card h3{font-size:13px;font-weight:500;opacity:.7;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
-.pricing-card .amount{font-size:28px;font-weight:700}
-.pricing-card .amount small{font-size:14px;font-weight:400;opacity:.7}
-.pricing-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-.pricing-disclaimer{font-size:11px;color:var(--slate);margin-top:12px;padding:10px 12px;background:#f8f9fa;border-radius:8px;line-height:1.5}
-.summary-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eee;font-size:13px}
-.summary-row:last-child{border-bottom:none}
-.summary-row .label{color:var(--slate)}
-.summary-row .value{font-weight:600}
+.btn-primary:hover{background:#1a2d3f}
+.btn-outline{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
+.btn-outline:hover{background:var(--navy);color:var(--white)}
+.btn-row{display:flex;gap:.75rem;justify-content:flex-end;margin-top:1rem}
 .step{display:none}
 .step.active{display:block}
-
-/* Proposal Preview Styles */
-.proposal-preview{background:var(--white);border-radius:0;box-shadow:none;padding:0;overflow:hidden}
-.proposal-page{padding:48px 40px;position:relative;border-bottom:3px solid var(--gray)}
-.proposal-page:last-child{border-bottom:none}
-.proposal-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:20px;border-bottom:2px solid var(--navy);margin-bottom:28px}
-.proposal-header .logo-mark{display:flex;align-items:center;gap:10px}
-.proposal-header .page-label{font-size:10px;color:var(--slate);text-transform:uppercase;letter-spacing:1.5px}
-.proposal-footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--gray);display:flex;justify-content:space-between;font-size:9px;color:var(--slate)}
-
-/* Cover page */
-.cover-page{background:var(--navy);color:var(--white);padding:60px 40px;text-align:center;min-height:400px;display:flex;flex-direction:column;justify-content:center;align-items:center}
-.cover-page .cover-icon{margin-bottom:24px;opacity:.9}
-.cover-page h1{font-size:28px;font-weight:800;letter-spacing:.5px;margin-bottom:8px}
-.cover-page .cover-subtitle{font-size:14px;font-weight:300;opacity:.7;margin-bottom:32px}
-.cover-page .cover-client{font-size:18px;font-weight:600;padding:16px 32px;border:2px solid rgba(255,255,255,.3);border-radius:8px;margin-bottom:8px}
-.cover-page .cover-date{font-size:12px;opacity:.5;margin-top:8px}
-.cover-page .cover-line{width:60px;height:3px;background:var(--white);opacity:.3;margin:20px auto}
-
-.proposal-section h2{font-size:18px;font-weight:700;margin-bottom:16px;color:var(--navy);display:flex;align-items:center;gap:10px}
-.proposal-section h3{font-size:14px;font-weight:600;margin-bottom:8px;color:var(--slate)}
-.proposal-section p{font-size:13px;line-height:1.7;color:#444;margin-bottom:12px}
-.proposal-section ul{font-size:13px;line-height:1.8;color:#444;padding-left:0;list-style:none;margin-bottom:12px}
-.proposal-section ul li{padding-left:20px;position:relative}
-.proposal-section ul li::before{content:'';position:absolute;left:0;top:8px;width:8px;height:8px;background:var(--navy);border-radius:50%;opacity:.4}
-
-.pricing-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:16px}
-.pricing-table th{background:var(--navy);color:var(--white);padding:10px 12px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
-.pricing-table td{padding:10px 12px;border-bottom:1px solid #eee}
-.pricing-table tr:last-child td{border-bottom:none}
-.pricing-table .total-row{background:#f8f9fa;font-weight:700}
-
-.sla-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
-.sla-item{padding:14px;background:#f8f9fa;border-radius:8px;border-left:3px solid var(--navy)}
-.sla-item .sla-label{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--slate);margin-bottom:4px}
-.sla-item .sla-value{font-size:13px;font-weight:600;color:var(--navy)}
-
-.cta-box{background:linear-gradient(135deg,var(--navy),var(--slate));color:var(--white);padding:28px;border-radius:var(--radius);text-align:center;margin-top:20px}
-.cta-box h3{font-size:18px;font-weight:700;margin-bottom:8px}
-.cta-box p{font-size:13px;opacity:.8;margin-bottom:0}
-
-/* Print styles */
+/* PROPOSAL STYLES */
+.proposal-view{display:none}
+.proposal-actions{position:sticky;top:0;z-index:100;background:var(--navy);padding:.75rem 1rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+.proposal-actions .btn{padding:.5rem 1rem;font-size:.75rem;border-radius:6px}
+.proposal-actions .btn-light{background:rgba(255,255,255,.15);color:var(--white);border:none}
+.proposal-actions .btn-light:hover{background:rgba(255,255,255,.25)}
+.proposal-actions .spacer{flex:1}
+.proposal-body{max-width:850px;margin:0 auto;padding:1.5rem 1rem}
+.page{background:var(--white);border-radius:4px;box-shadow:var(--page-shadow);margin-bottom:2rem;overflow:hidden;page-break-after:always}
+.page-inner{padding:3rem 3.5rem}
+@media(max-width:640px){.page-inner{padding:2rem 1.5rem}}
+.page-header{display:flex;justify-content:space-between;align-items:center;padding:0 0 1.5rem;border-bottom:2px solid var(--navy);margin-bottom:1.5rem}
+.page-header-logo{display:flex;align-items:center;gap:.5rem}
+.page-header-logo svg{width:24px;height:24px}
+.page-header-logo span{font-size:.7rem;font-weight:600;color:var(--navy);letter-spacing:.5px}
+.page-number{font-size:.65rem;color:var(--gray)}
+.page-footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--steel);font-size:.6rem;color:var(--gray);text-align:center}
+/* Cover */
+.cover{background:var(--navy);color:var(--white);min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-50%;right:-30%;width:80%;height:200%;background:radial-gradient(ellipse,rgba(255,255,255,.03) 0%,transparent 70%);pointer-events:none}
+.cover-logo svg{width:80px;height:80px;margin-bottom:2rem}
+.cover h1{font-size:2rem;font-weight:700;letter-spacing:1px;margin-bottom:.5rem}
+.cover .cover-sub{font-size:1rem;font-weight:300;opacity:.8;margin-bottom:3rem}
+.cover .cover-client{font-size:.85rem;font-weight:400;opacity:.6;text-transform:uppercase;letter-spacing:2px;margin-bottom:.25rem}
+.cover .cover-company{font-size:1.5rem;font-weight:600;margin-bottom:3rem}
+.cover .cover-date{font-size:.8rem;opacity:.5}
+.cover .cover-footer{position:absolute;bottom:2rem;font-size:.7rem;opacity:.4}
+/* Sections */
+.section-title{font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+.section-title svg{width:24px;height:24px;flex-shrink:0}
+.section-subtitle{font-size:.95rem;font-weight:600;color:var(--slate);margin:1.5rem 0 .75rem}
+p.prose{font-size:.85rem;line-height:1.7;color:var(--gray);margin-bottom:1rem}
+/* Tables */
+.p-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.8rem}
+.p-table th{background:var(--navy);color:var(--white);padding:.6rem .75rem;text-align:left;font-weight:500;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px}
+.p-table td{padding:.55rem .75rem;border-bottom:1px solid #eee;color:var(--slate)}
+.p-table tr:nth-child(even) td{background:#f8f9fa}
+.p-table th:first-child{border-radius:6px 0 0 0}.p-table th:last-child{border-radius:0 6px 0 0}
+/* Schedule Grid */
+.schedule-grid{display:grid;grid-template-columns:120px repeat(7,1fr);gap:2px;margin:1rem 0;font-size:.65rem}
+.schedule-grid .sg-header{background:var(--navy);color:var(--white);padding:.4rem;text-align:center;font-weight:500}
+.schedule-grid .sg-label{background:#f8f9fa;padding:.4rem;font-weight:500;color:var(--slate);display:flex;align-items:center}
+.schedule-grid .sg-cell{padding:.4rem;text-align:center;border-radius:2px}
+.sg-active{background:#d4edda;color:#155724;font-weight:500}
+.sg-inactive{background:#f8f9fa;color:#ccc}
+/* Org Chart */
+.org-chart{display:flex;flex-direction:column;align-items:center;gap:0;margin:1.5rem 0}
+.org-node{background:var(--navy);color:var(--white);padding:.6rem 1.2rem;border-radius:8px;font-size:.78rem;font-weight:500;text-align:center;position:relative;min-width:160px}
+.org-node.support{background:var(--accent)}
+.org-connector{width:2px;height:24px;background:var(--navy)}
+.org-row{display:flex;gap:1.5rem;align-items:flex-start;justify-content:center;position:relative}
+.org-row::before{content:'';position:absolute;top:0;left:25%;right:25%;height:2px;background:var(--navy)}
+.org-branch{display:flex;flex-direction:column;align-items:center}
+.org-branch .org-connector{height:16px}
+/* Timeline */
+.timeline{margin:1rem 0}
+.tl-item{display:flex;gap:1rem;margin-bottom:1.5rem;position:relative}
+.tl-dot{width:36px;height:36px;border-radius:50%;background:var(--navy);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600;flex-shrink:0;position:relative;z-index:1}
+.tl-item:not(:last-child) .tl-dot::after{content:'';position:absolute;top:36px;left:50%;width:2px;height:calc(100% + 12px);background:var(--steel);transform:translateX(-50%)}
+.tl-content h4{font-size:.85rem;font-weight:600;color:var(--navy);margin-bottom:.2rem}
+.tl-content p{font-size:.78rem;color:var(--gray);line-height:1.5}
+/* SLA */
+.sla-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1rem 0}
+.sla-item{background:#f8f9fa;border-radius:8px;padding:1rem;border-left:3px solid var(--navy)}
+.sla-item .sla-val{font-size:1.1rem;font-weight:700;color:var(--navy)}
+.sla-item .sla-label{font-size:.72rem;color:var(--gray);margin-top:.2rem}
+/* Why cards */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1rem 0}
+.why-card{background:linear-gradient(135deg,#f8f9fa,#fff);border-radius:8px;padding:1rem;border:1px solid #eee}
+.why-card h4{font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:.3rem;display:flex;align-items:center;gap:.4rem}
+.why-card h4 svg{width:16px;height:16px}
+.why-card p{font-size:.75rem;color:var(--gray);line-height:1.5}
+/* ROI */
+.roi-box{background:var(--navy);color:var(--white);border-radius:10px;padding:1.5rem;margin:1.5rem 0;text-align:center}
+.roi-box h3{font-size:1rem;font-weight:600;margin-bottom:.5rem}
+.roi-box .roi-nums{display:flex;justify-content:center;gap:2rem;margin:.75rem 0}
+.roi-box .roi-num{font-size:1.5rem;font-weight:700}
+.roi-box .roi-label{font-size:.65rem;opacity:.7}
+.roi-box p{font-size:.75rem;opacity:.8;line-height:1.5}
+/* CTA */
+.cta-box{background:linear-gradient(135deg,var(--navy),#1a3a5c);color:var(--white);border-radius:12px;padding:2rem;text-align:center;margin:1.5rem 0}
+.cta-box h3{font-size:1.2rem;font-weight:700;margin-bottom:.5rem}
+.cta-box p{font-size:.85rem;opacity:.8;margin-bottom:1rem}
+.cta-btn{display:inline-block;background:var(--white);color:var(--navy);padding:.7rem 2rem;border-radius:8px;font-weight:600;font-size:.85rem;text-decoration:none;transition:.2s}
+.cta-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.2)}
+/* Pricing disclaimer */
+.disclaimer{background:#fff8e1;border:1px solid #ffe082;border-radius:8px;padding:.75rem 1rem;font-size:.75rem;color:#6d4c00;margin:1rem 0;line-height:1.5}
+/* Terms */
+.terms-list{list-style:none;padding:0}
+.terms-list li{font-size:.78rem;color:var(--gray);padding:.4rem 0;border-bottom:1px solid #f0f0f0;display:flex;align-items:flex-start;gap:.5rem;line-height:1.5}
+.terms-list li::before{content:'§';color:var(--navy);font-weight:600}
+/* Print */
 @media print{
-  body{background:white}
-  .app-header,.wizard>.progress,.wizard>.btn-row,.step:not(.active),.no-print{display:none!important}
-  .wizard{max-width:100%;padding:0}
-  .card{box-shadow:none;border-radius:0;padding:0}
-  .proposal-page{page-break-inside:avoid;padding:40px 30px}
-  .cover-page{min-height:90vh}
+body{background:#fff}
+.proposal-actions,.app-header,.form-container{display:none!important}
+.proposal-view{display:block!important}
+.page{box-shadow:none;margin:0;border-radius:0;page-break-after:always}
+.page-inner{padding:2cm 2.5cm}
 }
-
-@media(max-width:480px){
-  .checkbox-grid{grid-template-columns:1fr}
-  .pricing-grid{grid-template-columns:1fr}
-  .sla-grid{grid-template-columns:1fr}
-  .proposal-page{padding:32px 20px}
-  .cover-page{padding:40px 20px}
-  .cover-page h1{font-size:22px}
+@media(max-width:640px){
+.row-2,.row-3{grid-template-columns:1fr}
+.checkbox-grid{grid-template-columns:1fr}
+.sla-grid,.why-grid{grid-template-columns:1fr}
+.schedule-grid{font-size:.55rem;grid-template-columns:80px repeat(7,1fr)}
+.cover h1{font-size:1.5rem}
+.roi-box .roi-nums{flex-direction:column;gap:.5rem}
+.org-row{flex-direction:column;align-items:center}
+.org-row::before{display:none}
 }
 </style>
 </head>
 <body>
 
-<div class="app-header">
-  <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="8" fill="#fff" fill-opacity=".1"/><path d="M20 8l-9 5v9c0 5.5 3.8 10.6 9 12 5.2-1.4 9-6.5 9-12v-9l-9-5z" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M16 20l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  <div><h1>Salient Group</h1><span>Proposal Generator</span></div>
+<!-- HEADER -->
+<div class="app-header" id="appHeader">
+<svg viewBox="0 0 40 40" fill="none"><path d="M20 2L4 10v12c0 9.33 6.82 18.06 16 20 9.18-1.94 16-10.67 16-20V10L20 2z" fill="#fff" opacity=".15"/><path d="M20 5L7 11.5v10.5c0 7.93 5.64 15.36 13 17 7.36-1.64 13-9.07 13-17V11.5L20 5z" stroke="#fff" stroke-width="1.5" fill="none"/><path d="M15 20l3 3 7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<h1>Salient Group <span>Proposal Generator v2</span></h1>
 </div>
 
-<div class="wizard">
-  <div class="progress" id="progressBar">
-    <div class="progress-step active"></div>
-    <div class="progress-step"></div>
-    <div class="progress-step"></div>
-    <div class="progress-step"></div>
-    <div class="progress-step"></div>
-  </div>
+<!-- FORM -->
+<div class="form-container" id="formContainer">
+<div class="step-indicator">
+<button class="step-dot active" onclick="goStep(1)">1. Client</button>
+<button class="step-dot" onclick="goStep(2)">2. Site</button>
+<button class="step-dot" onclick="goStep(3)">3. Needs</button>
+<button class="step-dot" onclick="goStep(4)">4. Preview</button>
+</div>
 
-  <!-- STEP 1: Client Info -->
-  <div class="step active" id="step1">
-    <div class="card">
-      <h2>Client Information</h2>
-      <p class="subtitle">Enter the prospective client's details</p>
-      <div class="form-group">
-        <label>Company Name *</label>
-        <input type="text" id="clientCompany" placeholder="e.g. Acme Corporation" required>
-      </div>
-      <div class="form-group">
-        <label>Contact Name *</label>
-        <input type="text" id="clientContact" placeholder="Full name">
-      </div>
-      <div class="form-group">
-        <label>Email Address</label>
-        <input type="email" id="clientEmail" placeholder="contact@company.com">
-      </div>
-      <div class="form-group">
-        <label>Site Address</label>
-        <input type="text" id="clientAddress" placeholder="Street, City, State ZIP">
-      </div>
-      <div class="form-group">
-        <label>Industry Vertical</label>
-        <select id="clientIndustry">
-          <option value="">Select industry...</option>
-          <option>Commercial Real Estate</option>
-          <option>Healthcare</option>
-          <option>Education</option>
-          <option>Retail</option>
-          <option>Hospitality</option>
-          <option>Manufacturing / Industrial</option>
-          <option>Financial Services</option>
-          <option>Government / Municipal</option>
-          <option>Residential / HOA</option>
-          <option>Construction</option>
-          <option>Technology</option>
-          <option>Entertainment / Events</option>
-          <option>Transportation / Logistics</option>
-          <option>Energy / Utilities</option>
-          <option>Other</option>
-        </select>
-      </div>
-    </div>
-    <div class="btn-row">
-      <button class="btn btn-primary" onclick="goStep(2)">Continue →</button>
-    </div>
-  </div>
+<!-- STEP 1 -->
+<div class="step active" id="step1">
+<div class="card">
+<h2><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Client Information</h2>
+<label class="field"><span class="lbl">Company Name *</span><input type="text" id="companyName" required></label>
+<div class="row row-2">
+<label class="field"><span class="lbl">Contact Name *</span><input type="text" id="contactName" required></label>
+<label class="field"><span class="lbl">Title</span><input type="text" id="contactTitle"></label>
+</div>
+<div class="row row-2">
+<label class="field"><span class="lbl">Email</span><input type="email" id="contactEmail"></label>
+<label class="field"><span class="lbl">Phone</span><input type="tel" id="contactPhone"></label>
+</div>
+<label class="field"><span class="lbl">Street Address</span><input type="text" id="addrStreet"></label>
+<div class="row row-3">
+<label class="field"><span class="lbl">City</span><input type="text" id="addrCity"></label>
+<label class="field"><span class="lbl">State</span><select id="addrState"><option value="">—</option></select></label>
+<label class="field"><span class="lbl">Zip</span><input type="text" id="addrZip"></label>
+</div>
+<label class="field"><span class="lbl">Industry Vertical *</span>
+<select id="industry">
+<option value="">Select…</option>
+<option>Logistics/Distribution</option><option>Commercial Real Estate</option><option>Construction</option><option>Healthcare</option><option>Education</option><option>Events/Entertainment</option><option>HOA/Residential</option><option>Hospitality</option><option>Retail</option><option>Manufacturing</option><option>Other</option>
+</select></label>
+</div>
+<div class="btn-row"><button class="btn btn-primary" onclick="goStep(2)">Continue →</button></div>
+</div>
 
-  <!-- STEP 2: Security Needs -->
-  <div class="step" id="step2">
-    <div class="card">
-      <h2>Security Requirements</h2>
-      <p class="subtitle">Define the scope of security services needed</p>
-      <div class="form-group">
-        <label>Number of Guard Posts</label>
-        <input type="number" id="guardPosts" min="1" max="50" value="1" placeholder="1">
-      </div>
-      <div class="form-group">
-        <label>Hours Per Post Per Week</label>
-        <input type="number" id="hoursPerPost" min="1" max="168" value="40" placeholder="40">
-      </div>
-      <div class="form-group">
-        <label>Service Type</label>
-        <div class="radio-group">
-          <label class="radio-item"><input type="radio" name="serviceType" value="unarmed" checked>Unarmed</label>
-          <label class="radio-item"><input type="radio" name="serviceType" value="armed">Armed</label>
-          <label class="radio-item"><input type="radio" name="serviceType" value="mixed">Mixed</label>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Special Requirements</label>
-        <div class="checkbox-grid">
-          <label class="checkbox-item"><input type="checkbox" value="Access Control"> Access Control</label>
-          <label class="checkbox-item"><input type="checkbox" value="Mobile Patrol"> Mobile Patrol</label>
-          <label class="checkbox-item"><input type="checkbox" value="CCTV Monitoring"> CCTV Monitoring</label>
-          <label class="checkbox-item"><input type="checkbox" value="Event Security"> Event Security</label>
-          <label class="checkbox-item"><input type="checkbox" value="Executive Protection"> Executive Protection</label>
-          <label class="checkbox-item"><input type="checkbox" value="Fire Watch"> Fire Watch</label>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Additional Notes</label>
-        <textarea id="additionalNotes" placeholder="Any specific requirements or site details..."></textarea>
-      </div>
-    </div>
-    <div class="btn-row">
-      <button class="btn btn-secondary" onclick="goStep(1)">← Back</button>
-      <button class="btn btn-primary" onclick="goStep(3)">Continue →</button>
-    </div>
-  </div>
+<!-- STEP 2 -->
+<div class="step" id="step2">
+<div class="card">
+<h2><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg> Site Details</h2>
+<label class="field"><span class="lbl">Facility Type *</span>
+<select id="facilityType"><option value="">Select…</option><option>Warehouse</option><option>Office Building</option><option>Campus</option><option>Retail</option><option>Hospital</option><option>Construction Site</option><option>Residential Community</option><option>Event Venue</option><option>Other</option></select></label>
+<div class="row row-2">
+<label class="field"><span class="lbl">Approx. Square Footage</span>
+<select id="sqft"><option value="">Select…</option><option>&lt;10,000</option><option>10,000–50,000</option><option>50,000–100,000</option><option>100,000–250,000</option><option>250,000–500,000</option><option>500,000+</option></select></label>
+<label class="field"><span class="lbl">Number of Entrances</span><input type="number" id="entrances" min="1" value="2"></label>
+</div>
+<div class="row row-2">
+<label class="field"><span class="lbl">Number of Buildings</span><input type="number" id="buildings" min="1" value="1"></label>
+<label class="field"><span class="lbl">Parking Lots</span>
+<select id="parking"><option value="No">No</option><option value="1">Yes — 1</option><option value="2">Yes — 2</option><option value="3">Yes — 3</option><option value="4+">Yes — 4+</option></select></label>
+</div>
+<label class="field"><span class="lbl">Hours of Operation</span>
+<div class="radio-group">
+<label class="radio-pill"><input type="radio" name="hours" value="24/7" checked>24/7</label>
+<label class="radio-pill"><input type="radio" name="hours" value="Business Hours">Business Hours</label>
+<label class="radio-pill"><input type="radio" name="hours" value="Custom">Custom</label>
+</div></label>
+<label class="field"><span class="lbl">Current Security Provider (optional)</span><input type="text" id="currentProvider" placeholder="Leave blank if none"></label>
+<label class="field"><span class="lbl">What's not working with current provider?</span>
+<div class="checkbox-grid">
+<label class="cb-item"><input type="checkbox" name="pain" value="guards_no_show">Guards don't show up</label>
+<label class="cb-item"><input type="checkbox" name="pain" value="cant_reach">Can't reach anyone</label>
+<label class="cb-item"><input type="checkbox" name="pain" value="no_visibility">No visibility/reporting</label>
+<label class="cb-item"><input type="checkbox" name="pain" value="high_turnover">High turnover/new faces</label>
+<label class="cb-item"><input type="checkbox" name="pain" value="cookie_cutter">Cookie-cutter approach</label>
+<label class="cb-item"><input type="checkbox" name="pain" value="too_expensive">Too expensive for what we get</label>
+<label class="cb-item"><input type="checkbox" name="pain" value="no_manager">No dedicated manager</label>
+<label class="cb-item"><input type="checkbox" name="pain" value="other">Other</label>
+</div></label>
+</div>
+<div class="btn-row">
+<button class="btn btn-outline" onclick="goStep(1)">← Back</button>
+<button class="btn btn-primary" onclick="goStep(3)">Continue →</button>
+</div>
+</div>
 
-  <!-- STEP 3: Pricing -->
-  <div class="step" id="step3">
-    <div class="card">
-      <h2>Pricing Estimate</h2>
-      <p class="subtitle">Auto-calculated based on your inputs</p>
-      <div id="pricingSummary">
-        <div class="summary-row"><span class="label">Guard Posts</span><span class="value" id="sumPosts">—</span></div>
-        <div class="summary-row"><span class="label">Hours / Post / Week</span><span class="value" id="sumHours">—</span></div>
-        <div class="summary-row"><span class="label">Total Weekly Hours</span><span class="value" id="sumTotalHours">—</span></div>
-        <div class="summary-row"><span class="label">Service Type</span><span class="value" id="sumType">—</span></div>
-        <div class="summary-row"><span class="label">Hourly Rate Range</span><span class="value" id="sumRate">—</span></div>
-      </div>
-    </div>
-    <div class="pricing-grid">
-      <div class="pricing-card">
-        <h3>Weekly</h3>
-        <div class="amount" id="priceWeekly">—</div>
-      </div>
-      <div class="pricing-card">
-        <h3>Monthly</h3>
-        <div class="amount" id="priceMonthly">—</div>
-      </div>
-      <div class="pricing-card">
-        <h3>Annual</h3>
-        <div class="amount" id="priceAnnual">—</div>
-      </div>
-    </div>
-    <div class="pricing-disclaimer">⚠️ Estimates shown as ranges. Final pricing is determined following a comprehensive site assessment and is subject to contract terms, guard requirements, and site-specific factors.</div>
-    <div class="btn-row">
-      <button class="btn btn-secondary" onclick="goStep(2)">← Back</button>
-      <button class="btn btn-primary" onclick="goStep(4)">Preview Proposal →</button>
-    </div>
-  </div>
+<!-- STEP 3 -->
+<div class="step" id="step3">
+<div class="card">
+<h2><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Security Needs</h2>
+<div class="row row-2">
+<label class="field"><span class="lbl">Number of Guard Posts *</span><input type="number" id="numPosts" min="1" value="1"></label>
+<label class="field"><span class="lbl">Hours/Post/Week</span>
+<div class="hour-presets">
+<button type="button" class="hour-preset" onclick="setHours(40,this)">40</button>
+<button type="button" class="hour-preset" onclick="setHours(56,this)">56</button>
+<button type="button" class="hour-preset active" onclick="setHours(84,this)">84</button>
+<button type="button" class="hour-preset" onclick="setHours(168,this)">168</button>
+</div>
+<input type="number" id="hoursPerPost" min="1" max="168" value="84" style="margin-top:.4rem">
+</label>
+</div>
+<label class="field"><span class="lbl">Guard Type *</span>
+<div class="radio-group">
+<label class="radio-pill"><input type="radio" name="guardType" value="Unarmed" checked>Unarmed</label>
+<label class="radio-pill"><input type="radio" name="guardType" value="Armed">Armed</label>
+<label class="radio-pill"><input type="radio" name="guardType" value="Mix">Mix</label>
+</div></label>
+<label class="field"><span class="lbl">Special Services</span>
+<div class="checkbox-grid">
+<label class="cb-item"><input type="checkbox" name="service" value="Access Control/Gate Management">Access Control / Gate Mgmt</label>
+<label class="cb-item"><input type="checkbox" name="service" value="Mobile Patrol">Mobile Patrol</label>
+<label class="cb-item"><input type="checkbox" name="service" value="CCTV/Camera Monitoring">CCTV / Camera Monitoring</label>
+<label class="cb-item"><input type="checkbox" name="service" value="Visitor Management">Visitor Management</label>
+<label class="cb-item"><input type="checkbox" name="service" value="Loading Dock Security">Loading Dock Security</label>
+<label class="cb-item"><input type="checkbox" name="service" value="Parking Enforcement">Parking Enforcement</label>
+<label class="cb-item"><input type="checkbox" name="service" value="Emergency Response">Emergency Response</label>
+<label class="cb-item"><input type="checkbox" name="service" value="Executive Protection">Executive Protection</label>
+<label class="cb-item"><input type="checkbox" name="service" value="Event Security">Event Security</label>
+<label class="cb-item"><input type="checkbox" name="service" value="Fire Watch">Fire Watch</label>
+</div></label>
+<label class="field"><span class="lbl">Priority Concerns</span>
+<div class="checkbox-grid">
+<label class="cb-item"><input type="checkbox" name="concern" value="Theft/Shrinkage">Theft / Shrinkage</label>
+<label class="cb-item"><input type="checkbox" name="concern" value="Unauthorized Access">Unauthorized Access</label>
+<label class="cb-item"><input type="checkbox" name="concern" value="Employee Safety">Employee Safety</label>
+<label class="cb-item"><input type="checkbox" name="concern" value="Liability Reduction">Liability Reduction</label>
+<label class="cb-item"><input type="checkbox" name="concern" value="Vandalism">Vandalism</label>
+<label class="cb-item"><input type="checkbox" name="concern" value="Workplace Violence">Workplace Violence</label>
+<label class="cb-item"><input type="checkbox" name="concern" value="Regulatory Compliance">Regulatory Compliance</label>
+<label class="cb-item"><input type="checkbox" name="concern" value="Asset Protection">Asset Protection</label>
+</div></label>
+</div>
+<div class="btn-row">
+<button class="btn btn-outline" onclick="goStep(2)">← Back</button>
+<button class="btn btn-primary" onclick="generateProposal()">Generate Proposal →</button>
+</div>
+</div>
+</div>
 
-  <!-- STEP 4: Proposal Preview -->
-  <div class="step" id="step4">
-    <div class="card proposal-preview" id="proposalContent">
-      <!-- Cover Page -->
-      <div class="cover-page">
-        <div class="cover-icon">
-          <svg width="72" height="72" viewBox="0 0 72 72" fill="none"><path d="M36 6L12 19.5v18c0 11 7.6 21.3 18 24 2 .5 4 .8 6 .8s4-.3 6-.8c10.4-2.7 18-13 18-24v-18L36 6z" fill="none" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/><path d="M28 36l6 6 10-12" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="36" cy="36" r="16" fill="none" stroke="#fff" stroke-width="1" opacity=".3"/></svg>
-        </div>
-        <h1>Security Services Proposal</h1>
-        <p class="cover-subtitle">Tailored Protection Solutions</p>
-        <div class="cover-line"></div>
-        <div class="cover-client" id="coverClient">—</div>
-        <p class="cover-date" id="coverDate">—</p>
-        <div style="margin-top:40px;opacity:.5;font-size:11px;letter-spacing:1px">SALIENT GROUP &nbsp;•&nbsp; NATIONWIDE OPERATIONS</div>
-      </div>
-
-      <!-- Executive Summary -->
-      <div class="proposal-page proposal-section">
-        <div class="proposal-header">
-          <div class="logo-mark">
-            <svg width="24" height="24" viewBox="0 0 40 40" fill="none"><path d="M20 8l-9 5v9c0 5.5 3.8 10.6 9 12 5.2-1.4 9-6.5 9-12v-9l-9-5z" fill="none" stroke="#131F2D" stroke-width="2" stroke-linejoin="round"/><path d="M16 20l3 3 5-6" stroke="#131F2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span style="font-weight:700;font-size:13px;color:var(--navy)">Salient Group</span>
-          </div>
-          <span class="page-label">Executive Summary</span>
-        </div>
-        <h2><svg width="20" height="20" viewBox="0 0 20 20" fill="var(--navy)"><rect x="2" y="3" width="16" height="14" rx="2" fill="none" stroke="var(--navy)" stroke-width="1.5"/><line x1="5" y1="7" x2="15" y2="7" stroke="var(--navy)" stroke-width="1.5"/><line x1="5" y1="10" x2="12" y2="10" stroke="var(--navy)" stroke-width="1.5"/><line x1="5" y1="13" x2="9" y2="13" stroke="var(--navy)" stroke-width="1.5"/></svg> Executive Summary</h2>
-        <p id="execSummary"></p>
-        <p>Salient Group delivers enterprise-grade physical security through a combination of highly trained personnel, advanced technology platforms, and proven operational processes. Our approach centers on proactive risk mitigation, real-time accountability, and transparent reporting.</p>
-        <p>Our technology-enabled operations include real-time GPS tracking of all personnel, geofenced check-ins at designated posts, and digital incident reporting — ensuring complete visibility into your security program at all times.</p>
-        <div class="proposal-footer">
-          <span>Salient Group — Confidential</span>
-          <span id="footerDate1"></span>
-        </div>
-      </div>
-
-      <!-- Scope of Services -->
-      <div class="proposal-page proposal-section">
-        <div class="proposal-header">
-          <div class="logo-mark">
-            <svg width="24" height="24" viewBox="0 0 40 40" fill="none"><path d="M20 8l-9 5v9c0 5.5 3.8 10.6 9 12 5.2-1.4 9-6.5 9-12v-9l-9-5z" fill="none" stroke="#131F2D" stroke-width="2" stroke-linejoin="round"/><path d="M16 20l3 3 5-6" stroke="#131F2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span style="font-weight:700;font-size:13px;color:var(--navy)">Salient Group</span>
-          </div>
-          <span class="page-label">Scope of Services</span>
-        </div>
-        <h2><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l-7 4v6c0 4.4 3 8.5 7 9.6 4-1.1 7-5.2 7-9.6V6l-7-4z" stroke="var(--navy)" stroke-width="1.5" stroke-linejoin="round"/></svg> Scope of Services</h2>
-        <div id="scopeContent"></div>
-        <h3 style="margin-top:20px">Technology & Reporting</h3>
-        <ul>
-          <li>Real-time GPS tracking of all security personnel</li>
-          <li>Geofenced check-ins at all designated posts and patrol routes</li>
-          <li>Digital incident reporting with photo and timestamp verification</li>
-          <li>Daily activity reports (DAR) delivered electronically</li>
-          <li>Monthly analytics reports with trend analysis</li>
-          <li>24/7 client portal access for real-time visibility</li>
-        </ul>
-        <div class="proposal-footer">
-          <span>Salient Group — Confidential</span>
-          <span id="footerDate2"></span>
-        </div>
-      </div>
-
-      <!-- Pricing -->
-      <div class="proposal-page proposal-section">
-        <div class="proposal-header">
-          <div class="logo-mark">
-            <svg width="24" height="24" viewBox="0 0 40 40" fill="none"><path d="M20 8l-9 5v9c0 5.5 3.8 10.6 9 12 5.2-1.4 9-6.5 9-12v-9l-9-5z" fill="none" stroke="#131F2D" stroke-width="2" stroke-linejoin="round"/><path d="M16 20l3 3 5-6" stroke="#131F2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span style="font-weight:700;font-size:13px;color:var(--navy)">Salient Group</span>
-          </div>
-          <span class="page-label">Investment</span>
-        </div>
-        <h2><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="var(--navy)" stroke-width="1.5"/><text x="10" y="14" text-anchor="middle" font-size="11" font-weight="700" fill="var(--navy)">$</text></svg> Investment Summary</h2>
-        <table class="pricing-table" id="proposalPricingTable"></table>
-        <p style="font-size:11px;color:var(--slate);margin-top:8px">* Rates shown as estimated ranges. Final pricing is confirmed following site assessment and is subject to contract terms.</p>
-        <div class="proposal-footer">
-          <span>Salient Group — Confidential</span>
-          <span id="footerDate3"></span>
-        </div>
-      </div>
-
-      <!-- SLAs -->
-      <div class="proposal-page proposal-section">
-        <div class="proposal-header">
-          <div class="logo-mark">
-            <svg width="24" height="24" viewBox="0 0 40 40" fill="none"><path d="M20 8l-9 5v9c0 5.5 3.8 10.6 9 12 5.2-1.4 9-6.5 9-12v-9l-9-5z" fill="none" stroke="#131F2D" stroke-width="2" stroke-linejoin="round"/><path d="M16 20l3 3 5-6" stroke="#131F2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span style="font-weight:700;font-size:13px;color:var(--navy)">Salient Group</span>
-          </div>
-          <span class="page-label">Service Level Agreements</span>
-        </div>
-        <h2><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="var(--navy)" stroke-width="1.5"/><path d="M10 5v5l3.5 2" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round"/></svg> Service Level Commitments</h2>
-        <p>Salient Group is committed to delivering consistent, measurable security outcomes. The following service levels are standard across all engagements:</p>
-        <div class="sla-grid">
-          <div class="sla-item"><div class="sla-label">Guard Deployment</div><div class="sla-value">Within 48–72 Hours</div></div>
-          <div class="sla-item"><div class="sla-label">Incident Response</div><div class="sla-value">Under 15 Minutes</div></div>
-          <div class="sla-item"><div class="sla-label">Reporting</div><div class="sla-value">Monthly Detailed Analytics</div></div>
-          <div class="sla-item"><div class="sla-label">Guard Qualifications</div><div class="sla-value">Background Checked, Drug Tested, Trained</div></div>
-          <div class="sla-item"><div class="sla-label">Account Management</div><div class="sla-value">Dedicated Account Manager</div></div>
-          <div class="sla-item"><div class="sla-label">Operations Support</div><div class="sla-value">24/7 Support Line</div></div>
-        </div>
-        <div class="proposal-footer">
-          <span>Salient Group — Confidential</span>
-          <span id="footerDate4"></span>
-        </div>
-      </div>
-
-      <!-- Terms & CTA -->
-      <div class="proposal-page proposal-section">
-        <div class="proposal-header">
-          <div class="logo-mark">
-            <svg width="24" height="24" viewBox="0 0 40 40" fill="none"><path d="M20 8l-9 5v9c0 5.5 3.8 10.6 9 12 5.2-1.4 9-6.5 9-12v-9l-9-5z" fill="none" stroke="#131F2D" stroke-width="2" stroke-linejoin="round"/><path d="M16 20l3 3 5-6" stroke="#131F2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span style="font-weight:700;font-size:13px;color:var(--navy)">Salient Group</span>
-          </div>
-          <span class="page-label">Terms & Next Steps</span>
-        </div>
-        <h2><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="2" width="14" height="16" rx="2" stroke="var(--navy)" stroke-width="1.5"/><line x1="6" y1="6" x2="14" y2="6" stroke="var(--navy)" stroke-width="1"/><line x1="6" y1="9" x2="14" y2="9" stroke="var(--navy)" stroke-width="1"/><line x1="6" y1="12" x2="10" y2="12" stroke="var(--navy)" stroke-width="1"/></svg> Terms & Conditions</h2>
-        <ul>
-          <li>This proposal is valid for 30 days from the date of issue</li>
-          <li>Services commence upon execution of a formal security services agreement</li>
-          <li>Standard contract term: 12 months with 30-day cancellation notice</li>
-          <li>Billing: Bi-weekly or monthly invoicing, Net 15 terms</li>
-          <li>All personnel are fully licensed, bonded, and insured</li>
-          <li>Salient Group maintains $5M general liability and $5M umbrella coverage</li>
-          <li>Pricing subject to adjustment based on final site assessment findings</li>
-        </ul>
-        <div class="cta-box">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style="margin-bottom:12px"><path d="M20 6l-11 6v10c0 6.6 4.7 12.7 11 14.4 6.3-1.7 11-7.8 11-14.4V12L20 6z" fill="rgba(255,255,255,.15)" stroke="#fff" stroke-width="1.5"/><path d="M15 20l4 4 6-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <h3>Ready to Secure Your Operations?</h3>
-          <p>Contact us to schedule a complimentary site assessment and finalize your security program.</p>
-          <p style="margin-top:12px;font-weight:600;font-size:14px;opacity:1">sam@salient-group.com &nbsp;•&nbsp; salient-group.com</p>
-        </div>
-        <div class="proposal-footer">
-          <span>Salient Group — Confidential</span>
-          <span id="footerDate5"></span>
-        </div>
-      </div>
-    </div>
-    <div class="btn-row">
-      <button class="btn btn-secondary" onclick="goStep(3)">← Back</button>
-      <button class="btn btn-primary" onclick="goStep(5)">Generate →</button>
-    </div>
-  </div>
-
-  <!-- STEP 5: Generate -->
-  <div class="step" id="step5">
-    <div class="card" style="text-align:center;padding:40px 24px">
-      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" style="margin-bottom:16px"><circle cx="32" cy="32" r="28" fill="#e8f5e9"/><path d="M22 32l7 7 13-16" stroke="var(--success)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <h2>Proposal Ready</h2>
-      <p class="subtitle" style="margin-bottom:24px">Your proposal for <strong id="finalClient">—</strong> has been generated</p>
-      <div style="display:flex;flex-direction:column;gap:10px;max-width:300px;margin:0 auto">
-        <button class="btn btn-primary btn-icon" onclick="printProposal()">
-          <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="4" y="12" width="12" height="6" rx="1" stroke="#fff" stroke-width="1.5"/><rect x="6" y="2" width="8" height="7" rx="1" stroke="#fff" stroke-width="1.5"/><rect x="2" y="7" width="16" height="8" rx="2" stroke="#fff" stroke-width="1.5"/></svg>
-          Print / Save as PDF
-        </button>
-        <button class="btn btn-secondary btn-icon" onclick="emailProposal()">
-          <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="2" stroke="var(--navy)" stroke-width="1.5"/><path d="M2 6l8 5 8-5" stroke="var(--navy)" stroke-width="1.5"/></svg>
-          Email Proposal Link
-        </button>
-        <button class="btn btn-secondary" onclick="goStep(1)">← Start New Proposal</button>
-      </div>
-    </div>
-  </div>
+<!-- PROPOSAL VIEW -->
+<div class="proposal-view" id="proposalView">
+<div class="proposal-actions">
+<button class="btn btn-light" onclick="editProposal()">← Edit</button>
+<div class="spacer"></div>
+<button class="btn btn-light" onclick="window.print()">🖨 Print / PDF</button>
+<button class="btn btn-light" id="emailBtn">✉ Email</button>
+<button class="btn btn-light" onclick="copyProposal()">📋 Copy</button>
+</div>
+<div class="proposal-body" id="proposalBody"></div>
 </div>
 
 <script>
-let currentStep = 1;
+// State list
+const STATES=["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY","DC"];
+const stSel=document.getElementById('addrState');
+STATES.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;stSel.appendChild(o)});
 
-function goStep(n) {
-  if (n === 3) calculatePricing();
-  if (n === 4) buildProposal();
-  if (n === 5) document.getElementById('finalClient').textContent = document.getElementById('clientCompany').value || '—';
-  
-  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-  document.getElementById('step' + n).classList.add('active');
-  
-  document.querySelectorAll('.progress-step').forEach((s, i) => {
-    s.className = 'progress-step';
-    if (i < n - 1) s.classList.add('done');
-    if (i === n - 1) s.classList.add('active');
-  });
-  
-  currentStep = n;
-  window.scrollTo(0, 0);
+function goStep(n){
+document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+document.getElementById('step'+n).classList.add('active');
+document.querySelectorAll('.step-dot').forEach((d,i)=>{d.classList.remove('active','completed');if(i+1===n)d.classList.add('active');else if(i+1<n)d.classList.add('completed')});
+window.scrollTo(0,0);
+}
+function setHours(v,el){
+document.getElementById('hoursPerPost').value=v;
+document.querySelectorAll('.hour-preset').forEach(b=>b.classList.remove('active'));
+el.classList.add('active');
+}
+function getChecked(name){return[...document.querySelectorAll(`input[name="${name}"]:checked`)].map(c=>c.value)}
+function getRadio(name){const c=document.querySelector(`input[name="${name}"]:checked`);return c?c.value:''}
+function v(id){return document.getElementById(id).value.trim()}
+
+// DATA
+const INDUSTRY_DATA={
+"Logistics/Distribution":{
+threats:"The logistics and distribution sector faces significant security challenges. Industry reports indicate cargo theft costs businesses between $15 and $35 billion annually in the United States alone. Distribution facilities are particularly vulnerable to shrinkage, unauthorized access, and internal theft. With constant truck traffic, driver management and loading dock oversight remain critical pain points. High-value goods in transit and in storage require vigilant monitoring, and the 24/7 nature of logistics operations means security gaps can occur during shift transitions.",
+roiLabel:"Average Annual Shrinkage Loss",roiVal:"$125,000–$450,000",roiNote:"Industry data suggests logistics facilities without dedicated security programs experience 2-5% inventory shrinkage. A professional security presence typically reduces losses by 60-80%, delivering significant ROI within the first quarter."
+},
+"Commercial Real Estate":{
+threats:"Commercial real estate properties face a unique combination of security challenges. Property managers must balance tenant safety and satisfaction with liability mitigation and property value protection. After-hours security is critical — industry data shows that the majority of commercial property crimes occur between 6 PM and 6 AM. Unauthorized access, vandalism, and theft not only create direct losses but can reduce property values and increase insurance premiums. Multi-tenant environments require sophisticated access control and consistent security protocols across diverse business needs.",
+roiLabel:"Annual Liability & Loss Exposure",roiVal:"$80,000–$300,000",roiNote:"Commercial properties with professional security programs report up to 70% fewer incidents, lower insurance premiums, higher tenant retention rates, and stronger property valuations."
+},
+"Construction":{
+threats:"Construction sites are among the most vulnerable targets for theft and vandalism. Industry reports indicate that construction site theft exceeds $1 billion annually in the United States, with the average theft incident costing between $10,000 and $50,000 in materials and equipment. Unsecured sites also face risks from unauthorized access — creating OSHA compliance concerns and significant liability exposure. Vandalism can delay project timelines by weeks, and copper theft alone accounts for hundreds of millions in annual losses across the industry.",
+roiLabel:"Average Theft Loss Per Site",roiVal:"$10,000–$50,000",roiNote:"Construction sites with professional security presence report up to 90% fewer theft incidents. The cost of a single stolen piece of heavy equipment can exceed an entire year's security investment."
+},
+"Healthcare":{
+threats:"Healthcare facilities operate under a complex security landscape that intersects patient safety, regulatory compliance, and workplace violence prevention. Emergency departments experience some of the highest rates of workplace violence of any industry. HIPAA compliance requires strict access control to protect patient information. Pharmacy security demands constant vigilance against theft of controlled substances. Infant abduction prevention, patient elopement, and visitor management add layers of complexity that require specialized security training and protocols.",
+roiLabel:"Workplace Violence & Compliance Costs",roiVal:"$150,000–$500,000",roiNote:"Healthcare facilities with comprehensive security programs report fewer OSHA incidents, reduced workplace violence claims, and improved patient satisfaction scores — all of which directly impact reimbursement rates and accreditation."
+},
+"Education":{
+threats:"Educational institutions face an evolving threat landscape that demands proactive, layered security solutions. Campus safety concerns range from active threat preparedness to everyday access control challenges. Large campuses with multiple buildings, open grounds, and diverse populations require coordinated security strategies. Event security for athletic competitions, graduations, and public gatherings adds seasonal complexity. Industry data indicates that institutions with visible, professional security presence report improved student enrollment, parent confidence, and community relations.",
+roiLabel:"Liability & Incident Exposure",roiVal:"$100,000–$400,000",roiNote:"Educational institutions with professional security programs demonstrate reduced incident rates, faster emergency response times, and improved compliance with federal and state safety mandates."
+},
+"Events/Entertainment":{
+threats:"Events and entertainment venues face high-intensity, concentrated security challenges. Crowd management, VIP protection, perimeter security, and emergency evacuation planning require experienced security professionals who can adapt to dynamic environments. Industry reports indicate that inadequate event security is a leading cause of liability claims in the entertainment sector. From concerts and festivals to corporate gatherings and sporting events, each venue presents unique challenges based on capacity, layout, and audience demographics.",
+roiLabel:"Average Liability Per Incident",roiVal:"$75,000–$250,000",roiNote:"Events with professional security planning experience significantly fewer incidents, reduced insurance claims, and improved attendee satisfaction and repeat attendance."
+},
+"HOA/Residential":{
+threats:"Residential communities face distinct security challenges centered on access control, resident safety, and quality of life. Gate management and visitor verification are foundational requirements, while package theft, vehicle break-ins, and vandalism remain persistent concerns. HOA communities must balance visible security presence with a welcoming atmosphere. Industry data shows that communities with professional security programs report higher property values, improved resident satisfaction, and reduced crime rates compared to unguarded counterparts.",
+roiLabel:"Property Value & Loss Impact",roiVal:"$50,000–$200,000",roiNote:"Gated communities with professional security report property value premiums of 5-12% and significantly lower insurance claims per household."
+},
+"Hospitality":{
+threats:"The hospitality industry requires security solutions that protect guests, staff, and assets while maintaining the welcoming environment essential to guest satisfaction. Hotels and resorts face threats including guest room theft, parking lot incidents, trespassing, and late-night disturbances. Industry data indicates that properties with visible security presence receive higher guest satisfaction scores and fewer liability claims. The 24/7 nature of hospitality operations demands round-the-clock coverage with officers trained in customer service and de-escalation.",
+roiLabel:"Annual Loss & Liability Exposure",roiVal:"$60,000–$250,000",roiNote:"Hospitality properties with professional security programs report up to 50% fewer guest incidents, reduced insurance premiums, and measurably higher satisfaction scores."
+},
+"Retail":{
+threats:"Retail environments face ongoing challenges from organized retail crime, shoplifting, employee theft, and parking lot safety. Industry reports indicate that retail shrinkage exceeds $100 billion annually nationwide, with the average retailer losing 1.4% of revenue to theft and fraud. Loss prevention requires a combination of visible deterrence, access control, and technology-integrated monitoring. Parking lot incidents — including vehicle theft, assault, and slip-and-fall claims — represent a significant portion of retail liability exposure.",
+roiLabel:"Average Annual Shrinkage",roiVal:"$100,000–$350,000",roiNote:"Retail locations with dedicated security presence report 30-50% reductions in shrinkage and significantly fewer parking lot incidents, directly improving bottom-line profitability."
+},
+"Manufacturing":{
+threats:"Manufacturing facilities face a range of security threats including intellectual property theft, equipment and material theft, hazardous materials compliance, and workforce safety concerns. Shift change management creates predictable vulnerability windows that require dedicated oversight. Industry data shows that manufacturing sites with comprehensive security programs experience fewer workplace incidents, reduced theft, and improved regulatory compliance. The high value of machinery, raw materials, and finished goods makes access control and perimeter security essential investments.",
+roiLabel:"Annual Theft & Safety Costs",roiVal:"$80,000–$300,000",roiNote:"Manufacturing facilities with professional security report fewer OSHA violations, reduced workers' compensation claims, and measurable decreases in material and product theft."
+},
+"Other":{
+threats:"Every facility faces unique security challenges shaped by its industry, location, operations, and workforce. From access control and perimeter security to emergency response and regulatory compliance, a comprehensive security program must be tailored to the specific risk profile of each environment. Industry data consistently shows that organizations with professional, dedicated security programs experience fewer incidents, lower liability costs, and improved operational efficiency.",
+roiLabel:"Annual Risk Exposure",roiVal:"$75,000–$300,000",roiNote:"Organizations with professional security programs typically see 40-60% reductions in security-related incidents and significant decreases in associated costs."
+}
+};
+
+const FACILITY_POSTS={
+"Warehouse":["Main Gate","Loading Dock","Receiving Area","Patrol Unit"],
+"Office Building":["Main Lobby","Parking Garage","Building Patrol","After-Hours Desk"],
+"Campus":["Main Gate","Campus Patrol","Administration Building","Perimeter Unit"],
+"Retail":["Main Entrance","Loss Prevention Floor","Parking Lot Patrol","Receiving Dock"],
+"Hospital":["Emergency Department","Main Lobby","Parking Structure","Roving Patrol"],
+"Construction Site":["Site Entrance","Equipment Yard","Perimeter Patrol","Night Watch"],
+"Residential Community":["Main Gate","Community Patrol","Clubhouse","Roving Unit"],
+"Event Venue":["Main Entry","VIP Area","Perimeter Post","Crowd Management"],
+"Other":["Main Entry","Patrol Unit","Control Room","Perimeter Post"]
+};
+
+const SERVICE_DETAILS={
+"Access Control/Gate Management":"Salient Group officers manage all entry and exit points with strict credential verification protocols. Officers maintain detailed visitor logs, verify identification, and enforce access policies while providing a professional first impression for your facility.",
+"Mobile Patrol":"Dedicated patrol units conduct randomized, GPS-tracked patrols of your entire property on scheduled intervals. Patrol routes are customized based on site-specific risk assessment and adjusted based on incident data and seasonal patterns.",
+"CCTV/Camera Monitoring":"Our officers integrate with your existing camera systems to provide real-time monitoring and rapid response. Officers are trained in surveillance best practices, anomaly detection, and evidence preservation protocols.",
+"Visitor Management":"Comprehensive visitor management including pre-registration systems, ID verification, badge issuance, and escort protocols. All visitor data is logged digitally for audit trails and compliance reporting.",
+"Loading Dock Security":"Specialized dock officers verify all inbound and outbound shipments against manifests, monitor seal integrity, and maintain chain-of-custody documentation. Officers are trained in freight security best practices and loss prevention.",
+"Parking Enforcement":"Officers conduct regular parking area patrols, enforce parking policies, provide escort services, and maintain detailed incident logs. Parking areas receive priority coverage during peak vulnerability hours.",
+"Emergency Response":"All Salient Group officers are trained in emergency response protocols including evacuation procedures, first aid/CPR, AED operation, and incident command coordination. Site-specific emergency action plans are developed during onboarding.",
+"Executive Protection":"Dedicated close protection officers with specialized training provide discreet, professional security for key personnel. Services include advance route planning, secure transportation coordination, and threat assessment.",
+"Event Security":"Experienced event security teams provide crowd management, access control, VIP protection, and emergency planning tailored to each event's unique requirements. Officers are briefed on event-specific protocols and communication procedures.",
+"Fire Watch":"Certified fire watch officers conduct continuous patrols monitoring for fire hazards, maintaining fire prevention equipment, and ensuring compliance with local fire codes and hot work permit requirements."
+};
+
+const PAIN_RESPONSES={
+"guards_no_show":{title:"Reliable Attendance Guarantee",icon:'<svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>',text:"Every officer check-in is GPS-verified and time-stamped. Our automated attendance system alerts operations immediately if an officer is late, and our dedicated backup pool ensures same-shift replacement — guaranteed."},
+"cant_reach":{title:"Dedicated Account Manager",icon:'<svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>',text:"You'll have a dedicated account manager with a direct phone line — not a call center, not a voicemail tree. Plus, our 24/7 operations center is always staffed and ready to respond."},
+"no_visibility":{title:"Real-Time Visibility",icon:'<svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',text:"Our technology platform provides real-time GPS tracking, digital incident reports with photos, automated checkpoint verification, and a client portal with 24/7 access to dashboards, analytics, and officer activity."},
+"high_turnover":{title:"Officer Retention Programs",icon:'<svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>',text:"We invest in our officers with competitive compensation, career development pathways, recognition programs, and professional growth opportunities. Our retention rates significantly exceed industry averages — meaning you see the same trusted faces every day."},
+"cookie_cutter":{title:"Custom-Tailored Security",icon:'<svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>',text:"Every Salient Group security plan is built from the ground up based on a comprehensive site assessment. Your post orders, patrol routes, and protocols are designed specifically for your facility — not copied from a template."},
+"too_expensive":{title:"Transparent Value",icon:'<svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>',text:"Our pricing is straightforward with no hidden fees, no surprise charges, and no inflated overtime rates. We focus on delivering measurable value — because the cost of one security incident typically exceeds a full year of professional security investment."},
+"no_manager":{title:"On-Site Management",icon:'<svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>',text:"Every Salient Group account includes a dedicated site supervisor who conducts weekly on-site visits, manages officer performance, and serves as your direct operational contact. You'll never wonder who's in charge of your security."}
+};
+
+function generateProposal(){
+const d={
+company:v('companyName'),contact:v('contactName'),title:v('contactTitle'),email:v('contactEmail'),phone:v('contactPhone'),
+street:v('addrStreet'),city:v('addrCity'),state:v('addrState'),zip:v('addrZip'),
+industry:v('industry'),facility:v('facilityType'),sqft:v('sqft'),entrances:v('entrances')||'2',buildings:v('buildings')||'1',
+parking:v('parking'),hours:getRadio('hours'),currentProvider:v('currentProvider'),
+pains:getChecked('pain'),numPosts:parseInt(v('numPosts'))||1,hoursPerPost:parseInt(v('hoursPerPost'))||84,
+guardType:getRadio('guardType'),services:getChecked('service'),concerns:getChecked('concern')
+};
+if(!d.company||!d.industry){alert('Please fill in Company Name and Industry.');return}
+const today=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+const ind=INDUSTRY_DATA[d.industry]||INDUSTRY_DATA['Other'];
+const posts=generatePosts(d);
+const rateMin=d.guardType==='Armed'?29:d.guardType==='Mix'?25:22;
+const rateMax=d.guardType==='Armed'?34:d.guardType==='Mix'?30:25;
+const weeklyMin=d.numPosts*d.hoursPerPost*rateMin;
+const weeklyMax=d.numPosts*d.hoursPerPost*rateMax;
+const monthlyMin=Math.round(weeklyMin*4.33);
+const monthlyMax=Math.round(weeklyMax*4.33);
+const annualMin=weeklyMin*52;
+const annualMax=weeklyMax*52;
+const fmt=n=>'$'+n.toLocaleString();
+
+// Executive Summary
+let execSummary=`Salient Group is pleased to present this comprehensive security proposal for ${d.company}. `;
+if(d.industry!=='Other')execSummary+=`As a leader in the ${d.industry.toLowerCase()} sector, your organization faces distinct security challenges that demand a specialized, proactive approach. `;
+if(d.pains.length>0){
+if(d.pains.includes('guards_no_show')||d.pains.includes('cant_reach'))execSummary+=`We understand that your current security experience has not met expectations — and that reliability and responsiveness are non-negotiable. `;
+else if(d.pains.includes('no_visibility'))execSummary+=`We recognize your need for greater transparency and accountability in your security program. `;
+else execSummary+=`Based on our understanding of your current challenges, we have designed a program that directly addresses your operational pain points. `;
+}
+execSummary+=`This proposal outlines a tailored security program for your ${d.facility?d.facility.toLowerCase():'facility'}${d.sqft?' spanning approximately '+d.sqft+' square feet':''}, featuring ${d.numPosts} dedicated security post${d.numPosts>1?'s':''} with ${d.hoursPerPost} hours of weekly coverage${d.guardType!=='Unarmed'?' including armed officer capabilities':''}. Salient Group combines experienced security professionals, advanced technology, and dedicated account management to deliver measurable results — not just a guard standing at a door.`;
+
+// Site risk factors
+let siteRisks=`Your ${d.facility?d.facility.toLowerCase():'facility'}`;
+if(d.sqft)siteRisks+=` encompasses approximately ${d.sqft} square feet of operational space`;
+siteRisks+=` with ${d.entrances} access point${d.entrances>1?'s':''} and ${d.buildings} building${d.buildings>1?'s':''}`;
+if(d.parking&&d.parking!=='No')siteRisks+=`, along with ${d.parking} parking area${d.parking!=='1'?'s':''}`;
+siteRisks+=`. `;
+if(parseInt(d.entrances)>=4)siteRisks+=`The multiple access points create additional vulnerability surfaces that require coordinated coverage and monitoring. `;
+if(d.parking&&d.parking!=='No')siteRisks+=`Parking areas are statistically among the highest-risk zones for property crime and personal safety incidents. `;
+if(d.hours==='24/7')siteRisks+=`Your 24/7 operational schedule requires continuous security coverage with particular attention to overnight and weekend vulnerability windows. `;
+else if(d.hours==='Business Hours')siteRisks+=`After-hours periods when the facility is unoccupied represent the highest-risk windows for unauthorized access and property crime. `;
+if(d.state)siteRisks+=`${d.state} regulatory requirements and local security licensing standards are fully incorporated into our staffing and training protocols.`;
+
+// Schedule
+const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+const hrsPerDay=Math.round(d.hoursPerPost/7);
+const is24=d.hoursPerPost>=140;
+const isBiz=d.hoursPerPost<=56;
+
+// Pain-based "Why" cards
+const whyCards=d.pains.filter(p=>PAIN_RESPONSES[p]).map(p=>PAIN_RESPONSES[p]);
+if(whyCards.length===0){
+whyCards.push(PAIN_RESPONSES['cant_reach'],PAIN_RESPONSES['no_visibility'],PAIN_RESPONSES['cookie_cutter']);
 }
 
-function getServiceType() {
-  return document.querySelector('input[name="serviceType"]:checked').value;
+let html=`
+<!-- COVER -->
+<div class="page cover">
+<div class="cover-logo"><svg viewBox="0 0 80 80" fill="none"><path d="M40 4L8 20v24c0 18.67 13.64 36.12 32 40 18.36-3.88 32-21.33 32-40V20L40 4z" fill="rgba(255,255,255,.1)" stroke="#fff" stroke-width="2"/><path d="M40 12L14 24.5v17.5c0 15.87 11.09 30.74 26 34 14.91-3.26 26-18.13 26-34V24.5L40 12z" stroke="#fff" stroke-width="1" fill="none" opacity=".5"/><path d="M28 40l8 8 16-16" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<h1>Security Proposal</h1>
+<div class="cover-sub">Comprehensive Security Solutions</div>
+<div class="cover-client">Prepared Exclusively For</div>
+<div class="cover-company">${d.company}</div>
+<div class="cover-date">${today}</div>
+<div class="cover-footer">Presented by Salient Group | salient-group.com</div>
+</div>
+
+<!-- EXECUTIVE SUMMARY -->
+<div class="page"><div class="page-inner">
+${pageHeader(2)}
+<div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg> Executive Summary</div>
+<p class="prose">${execSummary}</p>
+${pageFooter(d.company)}
+</div></div>
+
+<!-- UNDERSTANDING YOUR ENVIRONMENT -->
+<div class="page"><div class="page-inner">
+${pageHeader(3)}
+<div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Understanding Your Environment</div>
+<div class="section-subtitle">Industry Threat Landscape</div>
+<p class="prose">${ind.threats}</p>
+<div class="section-subtitle">Site-Specific Risk Analysis</div>
+<p class="prose">${siteRisks}</p>
+${d.concerns.length?`<div class="section-subtitle">Priority Risk Areas</div><p class="prose">Based on your identified priorities, our security plan places particular emphasis on: <strong>${d.concerns.join(', ')}</strong>. Each of these focus areas is addressed through specific post orders, training protocols, and operational procedures detailed in the following sections.</p>`:''}
+${pageFooter(d.company)}
+</div></div>
+
+<!-- RECOMMENDED SECURITY PLAN -->
+<div class="page"><div class="page-inner">
+${pageHeader(4)}
+<div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Recommended Security Plan</div>
+<div class="section-subtitle">Post Configuration</div>
+<table class="p-table">
+<thead><tr><th>Post</th><th>Type</th><th>Hours/Week</th><th>Key Responsibilities</th></tr></thead>
+<tbody>${posts.map(p=>`<tr><td><strong>${p.name}</strong></td><td>${p.type}</td><td>${d.hoursPerPost}</td><td>${p.duties}</td></tr>`).join('')}</tbody>
+</table>
+
+<div class="section-subtitle">Weekly Coverage Schedule</div>
+<div class="schedule-grid">
+<div class="sg-header"></div>${days.map(d=>`<div class="sg-header">${d}</div>`).join('')}
+${posts.map(p=>{
+let cells=days.map(day=>{
+if(is24)return`<div class="sg-cell sg-active">24h</div>`;
+if(isBiz){
+let isWeekend=day==='Sat'||day==='Sun';
+return isWeekend?`<div class="sg-cell sg-inactive">—</div>`:`<div class="sg-cell sg-active">${hrsPerDay>8?hrsPerDay+'h':'8h'}</div>`;
+}
+return`<div class="sg-cell sg-active">${hrsPerDay}h</div>`;
+}).join('');
+return`<div class="sg-label">${p.name}</div>${cells}`;
+}).join('')}
+</div>
+
+${d.services.length?`<div class="section-subtitle">Specialized Services</div>${d.services.map(s=>`<p class="prose"><strong>${s}:</strong> ${SERVICE_DETAILS[s]||'Customized service delivery based on your specific operational requirements.'}</p>`).join('')}`:''}
+${pageFooter(d.company)}
+</div></div>
+
+<!-- TECHNOLOGY -->
+<div class="page"><div class="page-inner">
+${pageHeader(5)}
+<div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Technology & Reporting</div>
+<p class="prose">Salient Group leverages an integrated technology platform to deliver unprecedented visibility and accountability in your security program. Every aspect of officer performance is tracked, verified, and reported in real time.</p>
+<table class="p-table">
+<thead><tr><th>Capability</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><strong>GPS Tracking</strong></td><td>Real-time location tracking for all on-duty officers with historical route playback</td></tr>
+<tr><td><strong>Geofenced Check-In</strong></td><td>Automated, tamper-proof clock-in/clock-out within your facility's geofence boundary</td></tr>
+<tr><td><strong>Digital Incident Reports</strong></td><td>Officers submit incident reports with photos, video, and GPS coordinates in real time</td></tr>
+<tr><td><strong>NFC Tour Verification</strong></td><td>Officers scan NFC checkpoints on patrol routes to verify completion of security rounds</td></tr>
+<tr><td><strong>Shift Alerts</strong></td><td>Automated shift reminders, late arrival alerts, and no-show escalation protocols</td></tr>
+<tr><td><strong>Analytics Dashboard</strong></td><td>Monthly reports with incident trends, response times, checkpoint completion rates, and attendance</td></tr>
+<tr><td><strong>Client Portal</strong></td><td>24/7 web-based access to real-time officer status, reports, and historical data</td></tr>
+</tbody></table>
+${pageFooter(d.company)}
+</div></div>
+
+<!-- TEAM STRUCTURE -->
+<div class="page"><div class="page-inner">
+${pageHeader(6)}
+<div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg> Our Team Structure</div>
+<div class="org-chart">
+<div class="org-node">Dedicated Account Manager</div>
+<div class="org-connector"></div>
+<div class="org-row">
+<div class="org-branch"><div class="org-connector"></div><div class="org-node">Site Supervisor</div><div class="org-connector"></div><div class="org-node" style="font-size:.7rem">Security Officers (${d.numPosts} Post${d.numPosts>1?'s':''})</div></div>
+<div class="org-branch"><div class="org-connector"></div><div class="org-node support">24/7 Operations Center</div></div>
+</div>
+</div>
+<div class="section-subtitle">Account Manager</div>
+<p class="prose">Your dedicated account manager serves as your single point of contact for all security matters. They conduct regular business reviews, manage staffing decisions, and ensure your security program evolves with your needs.</p>
+<div class="section-subtitle">Site Supervisor</div>
+<p class="prose">An assigned site supervisor conducts weekly on-site visits, manages daily officer performance, handles scheduling, and ensures post orders are followed. They are your operational point of contact on the ground.</p>
+<div class="section-subtitle">Security Officers</div>
+<p class="prose">All Salient Group security officers undergo comprehensive background checks, drug testing, and state licensing verification. Officers receive initial training on your site-specific protocols and ongoing professional development throughout their assignment.</p>
+${pageFooter(d.company)}
+</div></div>
+
+<!-- IMPLEMENTATION -->
+<div class="page"><div class="page-inner">
+${pageHeader(7)}
+<div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Implementation Timeline</div>
+<p class="prose">Salient Group follows a structured implementation process to ensure a seamless transition and operational readiness from day one.</p>
+<div class="timeline">
+<div class="tl-item"><div class="tl-dot">1</div><div class="tl-content"><h4>Week 1 — Site Assessment & Security Audit</h4><p>Comprehensive on-site evaluation of your facility, including vulnerability assessment, access point analysis, environmental review, and consultation with your team to understand operational requirements.</p></div></div>
+<div class="tl-item"><div class="tl-dot">2</div><div class="tl-content"><h4>Week 2 — Custom Post Orders & Staffing Plan</h4><p>Development of detailed, site-specific post orders for each position, patrol route mapping, emergency response protocols, and identification of optimal staffing candidates from our vetted officer pool.</p></div></div>
+<div class="tl-item"><div class="tl-dot">3</div><div class="tl-content"><h4>Week 3 — Guard Selection, Training & Orientation</h4><p>Final officer selection, site-specific training program, facility orientation, technology onboarding, and introduction to your team. All officers complete a supervised orientation period.</p></div></div>
+<div class="tl-item"><div class="tl-dot">4</div><div class="tl-content"><h4>Week 4 — Go-Live with Management Support</h4><p>Full operational launch with on-site management oversight during the first week. Your account manager and site supervisor will be present to ensure smooth operations and address any adjustments in real time.</p></div></div>
+<div class="tl-item"><div class="tl-dot">✓</div><div class="tl-content"><h4>Ongoing — Continuous Improvement</h4><p>Monthly performance reviews, quarterly business assessments, annual security audits, and continuous protocol optimization based on incident data and evolving threats.</p></div></div>
+</div>
+${pageFooter(d.company)}
+</div></div>
+
+<!-- PRICING -->
+<div class="page"><div class="page-inner">
+${pageHeader(8)}
+<div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg> Investment Summary</div>
+<table class="p-table">
+<thead><tr><th>Post</th><th>Type</th><th>Hours/Week</th><th>Rate Range</th><th>Weekly Est.</th></tr></thead>
+<tbody>${posts.map(p=>`<tr><td>${p.name}</td><td>${p.type}</td><td>${d.hoursPerPost}</td><td>${fmt(rateMin)}–${fmt(rateMax)}/hr</td><td>${fmt(d.hoursPerPost*rateMin)}–${fmt(d.hoursPerPost*rateMax)}</td></tr>`).join('')}
+<tr style="font-weight:600;background:#f0f4f8"><td colspan="3">Total Estimated Investment</td><td colspan="2"></td></tr>
+</tbody></table>
+<table class="p-table">
+<thead><tr><th>Period</th><th>Low Estimate</th><th>High Estimate</th></tr></thead>
+<tbody>
+<tr><td>Weekly</td><td>${fmt(weeklyMin)}</td><td>${fmt(weeklyMax)}</td></tr>
+<tr><td>Monthly</td><td>${fmt(monthlyMin)}</td><td>${fmt(monthlyMax)}</td></tr>
+<tr style="font-weight:600"><td>Annual</td><td>${fmt(annualMin)}</td><td>${fmt(annualMax)}</td></tr>
+</tbody></table>
+<div class="disclaimer">Final pricing determined after complimentary on-site security assessment. Rates reflect staffing complexity, scheduling requirements, and specialized service needs. No hidden fees or surprise charges.</div>
+${pageFooter(d.company)}
+</div></div>
+
+<!-- SLA -->
+<div class="page"><div class="page-inner">
+${pageHeader(9)}
+<div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg> Service Level Agreements</div>
+<p class="prose">Salient Group backs every engagement with clearly defined service commitments — because accountability is the foundation of trust.</p>
+<div class="sla-grid">
+<div class="sla-item"><div class="sla-val">48–72 hrs</div><div class="sla-label">Guard Deployment from Contract Signing</div></div>
+<div class="sla-item"><div class="sla-val">&lt; 15 min</div><div class="sla-label">Incident Response Time</div></div>
+<div class="sla-item"><div class="sla-val">Weekly</div><div class="sla-label">Supervisor On-Site Visits</div></div>
+<div class="sla-item"><div class="sla-val">Same-Shift</div><div class="sla-label">Guard Replacement Guarantee</div></div>
+<div class="sla-item"><div class="sla-val">Monthly</div><div class="sla-label">Detailed Analytics Report</div></div>
+<div class="sla-item"><div class="sla-val">Quarterly</div><div class="sla-label">Business Review with Account Manager</div></div>
+<div class="sla-item"><div class="sla-val">24/7</div><div class="sla-label">Operations Support Line</div></div>
+<div class="sla-item"><div class="sla-val">90-Day</div><div class="sla-label">Satisfaction Guarantee</div></div>
+</div>
+${pageFooter(d.company)}
+</div></div>
+
+<!-- WHY SALIENT GROUP -->
+<div class="page"><div class="page-inner">
+${pageHeader(10)}
+<div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M12 2L4 7v6c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V7l-8-5z"/></svg> Why Salient Group</div>
+<div class="why-grid">
+${whyCards.map(c=>`<div class="why-card"><h4>${c.icon} ${c.title}</h4><p>${c.text}</p></div>`).join('')}
+</div>
+<div class="roi-box">
+<h3>Return on Investment</h3>
+<div class="roi-nums">
+<div><div class="roi-num">${ind.roiVal}</div><div class="roi-label">${ind.roiLabel}</div></div>
+<div><div class="roi-num" style="color:#2ecc71">vs</div><div class="roi-label">&nbsp;</div></div>
+<div><div class="roi-num">${fmt(annualMin)}–${fmt(annualMax)}</div><div class="roi-label">Annual Security Investment</div></div>
+</div>
+<p>${ind.roiNote}</p>
+</div>
+${pageFooter(d.company)}
+</div></div>
+
+<!-- NEXT STEPS -->
+<div class="page"><div class="page-inner">
+${pageHeader(11)}
+<div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Next Steps</div>
+<div class="cta-box">
+<h3>Schedule Your Complimentary Security Assessment</h3>
+<p>Our team is ready to conduct an on-site evaluation of your facility at no cost or obligation. This assessment will provide a detailed risk analysis and allow us to finalize a security plan tailored to your exact needs.</p>
+<a href="mailto:sam@salient-group.com?subject=Security%20Assessment%20Request%20—%20${encodeURIComponent(d.company)}" class="cta-btn">Request Assessment →</a>
+</div>
+<div style="text-align:center;margin:2rem 0">
+<p class="prose" style="font-size:.95rem"><strong>Sam Bowen</strong>, CEO</p>
+<p class="prose">sam@salient-group.com</p>
+<p class="prose">(XXX) XXX-XXXX</p>
+<p class="prose" style="margin-top:1rem;font-size:.75rem;opacity:.6">salient-group.com | Nationwide Operations</p>
+</div>
+${pageFooter(d.company)}
+</div></div>
+
+<!-- TERMS -->
+<div class="page"><div class="page-inner">
+${pageHeader(12)}
+<div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg> Terms & Conditions</div>
+<ul class="terms-list">
+<li><strong>Cancellation:</strong> Either party may terminate this agreement with 30 days written notice. No early termination fees apply after the initial 90-day period.</li>
+<li><strong>Billing:</strong> Services are billed monthly in arrears based on actual hours worked. Payment is due within 30 days of invoice date. No hidden fees or administrative charges.</li>
+<li><strong>Insurance & Bonding:</strong> Salient Group maintains comprehensive general liability insurance, workers' compensation coverage, and surety bonding. Certificates of insurance are provided upon request.</li>
+<li><strong>Liability:</strong> Salient Group assumes responsibility for officer conduct while on assignment. Liability is limited to the scope of contracted services as defined in the executed service agreement.</li>
+<li><strong>Confidentiality:</strong> All information shared during the assessment and service period is treated as confidential. Salient Group does not share client information with third parties without written consent.</li>
+<li><strong>Compliance:</strong> All services are delivered in compliance with applicable federal, state, and local laws, including security licensing requirements, labor regulations, and industry standards.</li>
+</ul>
+<p class="prose" style="margin-top:2rem;font-style:italic;text-align:center;opacity:.7">This proposal is valid for 60 days from the date of presentation.<br>© ${new Date().getFullYear()} Salient Group. All rights reserved.</p>
+${pageFooter(d.company)}
+</div></div>`;
+
+document.getElementById('proposalBody').innerHTML=html;
+document.getElementById('formContainer').style.display='none';
+document.getElementById('appHeader').style.display='none';
+document.getElementById('proposalView').style.display='block';
+document.getElementById('emailBtn').onclick=()=>{
+window.location.href=`mailto:?subject=${encodeURIComponent('Security Proposal — '+d.company)}&cc=sam@salient-group.com&body=${encodeURIComponent('Please find the attached security proposal from Salient Group for '+d.company+'.')}`;
+};
+window.scrollTo(0,0);
 }
 
-function getSpecialReqs() {
-  return [...document.querySelectorAll('.checkbox-grid input:checked')].map(c => c.value);
+function generatePosts(d){
+const templates=FACILITY_POSTS[d.facility]||FACILITY_POSTS['Other'];
+const posts=[];
+const dutyMap={
+"Main Gate":"Access control, vehicle/visitor verification, credential checks, gate operation, delivery coordination",
+"Loading Dock":"Shipment verification, seal checks, driver management, cargo security, manifest reconciliation",
+"Receiving Area":"Inbound shipment monitoring, inventory verification, access control, loss prevention",
+"Patrol Unit":"Randomized property patrols, perimeter checks, incident response, parking area monitoring",
+"Main Lobby":"Visitor management, badge issuance, employee verification, reception security, package screening",
+"Parking Garage":"Vehicle patrol, access monitoring, escort services, incident response, lighting checks",
+"Building Patrol":"Floor-by-floor patrols, door checks, alarm response, tenant assistance, emergency support",
+"After-Hours Desk":"After-hours access control, alarm monitoring, vendor check-in, emergency coordination",
+"Campus Patrol":"Mobile patrol of grounds, building checks, student/staff assistance, incident documentation",
+"Administration Building":"Front desk security, visitor screening, access control, VIP escort coordination",
+"Perimeter Unit":"Perimeter fence checks, intrusion detection response, exterior lighting verification",
+"Main Entrance":"Customer greeting, loss prevention presence, access monitoring, incident deterrence",
+"Loss Prevention Floor":"Sales floor monitoring, theft deterrence, employee compliance checks, incident response",
+"Parking Lot Patrol":"Vehicle and pedestrian safety, cart retrieval monitoring, lighting checks, escort services",
+"Receiving Dock":"Vendor check-in, delivery verification, back-of-house access control, shrinkage prevention",
+"Emergency Department":"Patient/visitor screening, de-escalation, staff safety, elopement prevention",
+"Parking Structure":"Vehicle patrol, emergency call response, access gate monitoring, incident documentation",
+"Roving Patrol":"Multi-building patrol, checkpoint verification, incident response, perimeter monitoring",
+"Site Entrance":"Worker credential verification, visitor logging, vehicle access control, safety compliance",
+"Equipment Yard":"Equipment monitoring, theft deterrence, after-hours security, inventory verification",
+"Perimeter Patrol":"Fence line checks, intrusion detection, trespasser deterrence, lighting verification",
+"Night Watch":"Overnight facility security, fire watch, alarm response, emergency coordination",
+"Community Patrol":"Residential area patrol, parking monitoring, noise response, resident assistance",
+"Clubhouse":"Amenity access control, event support, resident verification, guest management",
+"Roving Unit":"Randomized patrol routes, checkpoint scanning, incident response, community presence",
+"Main Entry":"Ticket/credential verification, crowd management, prohibited item screening",
+"VIP Area":"Access control, guest verification, executive protection support, discreet presence",
+"Perimeter Post":"Boundary security, unauthorized access prevention, emergency egress monitoring",
+"Crowd Management":"Flow management, capacity monitoring, de-escalation, emergency evacuation support",
+"Control Room":"Camera monitoring, radio dispatch, incident logging, emergency coordination"
+};
+for(let i=0;i<d.numPosts;i++){
+const name=templates[i%templates.length]||(i===0?'Post 1':'Post '+(i+1));
+const type=d.guardType==='Mix'?(i===0?'Armed':'Unarmed'):d.guardType;
+posts.push({name,type,duties:dutyMap[name]||'Site security, access control, patrol, incident response, reporting'});
+}
+return posts;
 }
 
-function getRateRange(type) {
-  if (type === 'armed') return [29, 34];
-  if (type === 'unarmed') return [22, 25];
-  return [22, 34]; // mixed
+function pageHeader(num){
+return`<div class="page-header"><div class="page-header-logo"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v5c0 7 5.33 13.54 8 15 2.67-1.46 8-8 8-15V6l-8-4z" stroke="var(--navy)" stroke-width="1.5" fill="none"/><path d="M9 12l2 2 4-4" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round"/></svg><span>SALIENT GROUP</span></div><div class="page-number">Page ${num}</div></div>`;
+}
+function pageFooter(company){
+return`<div class="page-footer">Confidential — Prepared exclusively for ${company} | © ${new Date().getFullYear()} Salient Group</div>`;
 }
 
-function fmt(n) {
-  return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+function editProposal(){
+document.getElementById('proposalView').style.display='none';
+document.getElementById('formContainer').style.display='block';
+document.getElementById('appHeader').style.display='flex';
+goStep(1);
 }
-
-function calculatePricing() {
-  const posts = parseInt(document.getElementById('guardPosts').value) || 1;
-  const hours = parseInt(document.getElementById('hoursPerPost').value) || 40;
-  const type = getServiceType();
-  const [lo, hi] = getRateRange(type);
-  const totalHours = posts * hours;
-
-  document.getElementById('sumPosts').textContent = posts;
-  document.getElementById('sumHours').textContent = hours;
-  document.getElementById('sumTotalHours').textContent = totalHours;
-  document.getElementById('sumType').textContent = type.charAt(0).toUpperCase() + type.slice(1);
-  document.getElementById('sumRate').textContent = `$${lo} – $${hi}/hr`;
-
-  const wkLo = totalHours * lo, wkHi = totalHours * hi;
-  document.getElementById('priceWeekly').innerHTML = `${fmt(wkLo)} <small>– ${fmt(wkHi)}</small>`;
-  document.getElementById('priceMonthly').innerHTML = `${fmt(wkLo * 4.33)} <small>– ${fmt(Math.round(wkHi * 4.33))}</small>`;
-  document.getElementById('priceAnnual').innerHTML = `${fmt(wkLo * 52)} <small>– ${fmt(wkHi * 52)}</small>`;
-}
-
-function buildProposal() {
-  const company = document.getElementById('clientCompany').value || 'Prospective Client';
-  const contact = document.getElementById('clientContact').value || '';
-  const industry = document.getElementById('clientIndustry').value || '';
-  const posts = parseInt(document.getElementById('guardPosts').value) || 1;
-  const hours = parseInt(document.getElementById('hoursPerPost').value) || 40;
-  const type = getServiceType();
-  const specialReqs = getSpecialReqs();
-  const notes = document.getElementById('additionalNotes').value;
-  const [lo, hi] = getRateRange(type);
-  const totalHours = posts * hours;
-  const now = new Date();
-  const dateStr = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-
-  // Cover
-  document.getElementById('coverClient').textContent = `Prepared for ${company}`;
-  document.getElementById('coverDate').textContent = dateStr;
-
-  // Dates
-  ['footerDate1','footerDate2','footerDate3','footerDate4','footerDate5'].forEach(id => {
-    document.getElementById(id).textContent = dateStr;
-  });
-
-  // Exec summary
-  const typeLabel = type === 'mixed' ? 'armed and unarmed' : type;
-  document.getElementById('execSummary').textContent =
-    `Salient Group is pleased to present this security services proposal for ${company}${industry ? ' in the ' + industry + ' sector' : ''}. Based on our initial consultation, we have developed a tailored ${typeLabel} security program comprising ${posts} dedicated guard post${posts > 1 ? 's' : ''} with ${hours} hours of coverage per post per week — totaling ${totalHours} guard hours weekly.`;
-
-  // Scope
-  let scope = `<h3>Guard Services</h3><ul>
-    <li>${posts} dedicated security post${posts > 1 ? 's' : ''}</li>
-    <li>${hours} hours per post per week (${totalHours} total weekly hours)</li>
-    <li>${type === 'mixed' ? 'Combination of armed and unarmed' : type.charAt(0).toUpperCase() + type.slice(1)} security officers</li>
-    <li>All officers uniformed, licensed, bonded, and insured</li></ul>`;
-  if (specialReqs.length) {
-    scope += `<h3>Additional Services</h3><ul>${specialReqs.map(r => `<li>${r}</li>`).join('')}</ul>`;
-  }
-  if (notes) {
-    scope += `<h3>Site-Specific Requirements</h3><p>${notes}</p>`;
-  }
-  document.getElementById('scopeContent').innerHTML = scope;
-
-  // Pricing table
-  const wkLo = totalHours * lo, wkHi = totalHours * hi;
-  let tbl = `<thead><tr><th>Description</th><th>Rate Range</th><th>Hours/Wk</th><th>Weekly Est.</th></tr></thead><tbody>`;
-  if (type === 'mixed') {
-    const armedPosts = Math.ceil(posts / 2), unarmedPosts = posts - armedPosts;
-    const aHrs = armedPosts * hours, uHrs = unarmedPosts * hours;
-    tbl += `<tr><td>Armed Security Officers (${armedPosts} post${armedPosts>1?'s':''})</td><td>$29 – $34/hr</td><td>${aHrs}</td><td>${fmt(aHrs*29)} – ${fmt(aHrs*34)}</td></tr>`;
-    tbl += `<tr><td>Unarmed Security Officers (${unarmedPosts} post${unarmedPosts>1?'s':''})</td><td>$22 – $25/hr</td><td>${uHrs}</td><td>${fmt(uHrs*22)} – ${fmt(uHrs*25)}</td></tr>`;
-  } else {
-    tbl += `<tr><td>${type.charAt(0).toUpperCase()+type.slice(1)} Security Officers (${posts} post${posts>1?'s':''})</td><td>$${lo} – $${hi}/hr</td><td>${totalHours}</td><td>${fmt(wkLo)} – ${fmt(wkHi)}</td></tr>`;
-  }
-  tbl += `<tr class="total-row"><td>Estimated Monthly Total</td><td colspan="2"></td><td>${fmt(Math.round(wkLo*4.33))} – ${fmt(Math.round(wkHi*4.33))}</td></tr>`;
-  tbl += `<tr class="total-row"><td>Estimated Annual Total</td><td colspan="2"></td><td>${fmt(wkLo*52)} – ${fmt(wkHi*52)}</td></tr>`;
-  tbl += `</tbody>`;
-  document.getElementById('proposalPricingTable').innerHTML = tbl;
-}
-
-function printProposal() {
-  // Show proposal step for print
-  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-  document.getElementById('step4').classList.add('active');
-  setTimeout(() => { window.print(); }, 200);
-}
-
-function emailProposal() {
-  const company = document.getElementById('clientCompany').value || 'Client';
-  const email = document.getElementById('clientEmail').value || '';
-  const subject = encodeURIComponent(`Security Services Proposal — ${company} | Salient Group`);
-  const body = encodeURIComponent(`Dear ${document.getElementById('clientContact').value || 'Team'},\n\nThank you for the opportunity to present our security services proposal for ${company}.\n\nPlease find the proposal details prepared specifically for your organization. We look forward to discussing how Salient Group can support your security objectives.\n\nPlease don't hesitate to reach out with any questions.\n\nBest regards,\nSam Bowen\nSalient Group\nsam@salient-group.com`);
-  window.open(`mailto:${email}?subject=${subject}&body=${body}&cc=sam@salient-group.com`);
+function copyProposal(){
+const el=document.getElementById('proposalBody');
+const range=document.createRange();range.selectNode(el);
+window.getSelection().removeAllRanges();window.getSelection().addRange(range);
+document.execCommand('copy');window.getSelection().removeAllRanges();
+alert('Proposal copied to clipboard');
 }
 </script>
 </body>
