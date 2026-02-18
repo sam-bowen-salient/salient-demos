@@ -3,455 +3,902 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Salient Group — Professional Security Services</title>
-<meta name="description" content="Professional security services for businesses nationwide. Armed & unarmed officers, AI-powered technology, and dedicated account management.">
+<meta name="description" content="Salient Group — Technology-driven private security. AI-powered monitoring, rapid nationwide deployment, and unmatched accountability. Get your free security assessment.">
+<title>Salient Group | Security, Reimagined.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--navy:#131F2D;--white:#FFFFFF;--slate:#314151;--steel:#D6D7D8;--gray:#606060;--transition:0.3s ease}
-html{scroll-behavior:smooth;font-size:16px}
-body{font-family:'Poppins',sans-serif;color:var(--slate);line-height:1.6;overflow-x:hidden;background:var(--white)}
-h1,h2,h3,h4,h5,h6{text-transform:uppercase;font-weight:700;letter-spacing:0.15em;line-height:1.2}
-a{text-decoration:none;color:inherit}
-img{max-width:100%;display:block}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* ANIMATIONS */
-.fade-in{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease,transform 0.8s ease}
-.fade-in.visible{opacity:1;transform:translateY(0)}
-.fade-in-left{opacity:0;transform:translateX(-40px);transition:opacity 0.8s ease,transform 0.8s ease}
-.fade-in-left.visible{opacity:1;transform:translateX(0)}
-.fade-in-right{opacity:0;transform:translateX(40px);transition:opacity 0.8s ease,transform 0.8s ease}
-.fade-in-right.visible{opacity:1;transform:translateX(0)}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--navy);padding:0 2rem;transition:box-shadow var(--transition)}
-nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.3)}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
-.nav-logo{font-size:1.1rem;font-weight:800;letter-spacing:0.25em;color:var(--white);text-transform:uppercase}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{color:rgba(255,255,255,0.8);font-size:0.8rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;transition:color var(--transition)}
-.nav-links a:hover{color:var(--white)}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px}
-.hamburger span{width:24px;height:2px;background:var(--white);transition:all var(--transition)}
-.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-.hamburger.active span:nth-child(2){opacity:0}
-.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-@media(max-width:768px){
-  .nav-links{position:fixed;top:70px;left:0;right:0;background:var(--navy);flex-direction:column;padding:2rem;gap:1.5rem;transform:translateY(-120%);transition:transform var(--transition);border-top:1px solid rgba(255,255,255,0.1)}
-  .nav-links.open{transform:translateY(0)}
-  .hamburger{display:flex}
+:root {
+  --navy: #131F2D;
+  --white: #FFFFFF;
+  --black: #000000;
+  --slate: #314151;
+  --steel: #D6D7D8;
+  --gray: #606060;
+  --transition: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* BUTTONS */
-.btn{display:inline-block;padding:14px 32px;font-family:'Poppins',sans-serif;font-size:0.85rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer;transition:all var(--transition);border-radius:2px}
-.btn-primary{background:var(--white);color:var(--navy)}
-.btn-primary:hover{background:var(--steel);transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,0.2)}
-.btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,0.5)}
-.btn-outline:hover{border-color:var(--white);background:rgba(255,255,255,0.1);transform:translateY(-2px)}
-.btn-navy{background:var(--navy);color:var(--white)}
-.btn-navy:hover{background:var(--slate);transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,0.15)}
+html { scroll-behavior: smooth; font-size: 16px; }
 
-/* SECTION DEFAULTS */
-section{padding:100px 2rem}
-.container{max-width:1200px;margin:0 auto}
-.section-label{font-size:0.75rem;font-weight:600;letter-spacing:0.3em;color:var(--gray);text-transform:uppercase;margin-bottom:1rem}
-.section-title{font-size:clamp(1.8rem,4vw,2.8rem);color:var(--navy);margin-bottom:1.5rem}
-.section-subtitle{font-size:1.05rem;color:var(--gray);max-width:600px;line-height:1.7;font-weight:300}
+body {
+  font-family: 'Poppins', -apple-system, sans-serif;
+  color: var(--navy);
+  background: var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
 
-/* HERO */
-#hero{background:var(--navy);min-height:100vh;display:flex;align-items:center;padding-top:70px;position:relative;overflow:hidden}
-#hero::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;border:1px solid rgba(255,255,255,0.04);border-radius:50%;pointer-events:none}
-#hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:400px;height:400px;border:1px solid rgba(255,255,255,0.03);border-radius:50%;pointer-events:none}
-.hero-content{max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:1}
-.hero-badge{display:inline-block;font-size:0.7rem;font-weight:600;letter-spacing:0.3em;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:2rem;padding:8px 20px;border:1px solid rgba(255,255,255,0.15);border-radius:2px}
-.hero-title{font-size:clamp(2.5rem,6vw,4.5rem);color:var(--white);line-height:1.05;margin-bottom:1.5rem;font-weight:800;max-width:800px}
-.hero-sub{font-size:clamp(1rem,2vw,1.25rem);color:rgba(255,255,255,0.6);font-weight:300;margin-bottom:3rem;max-width:550px;line-height:1.7}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
-.hero-phone{color:rgba(255,255,255,0.4);font-size:0.85rem;letter-spacing:0.05em}
-.hero-phone a{color:rgba(255,255,255,0.6);font-weight:500;transition:color var(--transition)}
-.hero-phone a:hover{color:var(--white)}
-.hero-geometric{position:absolute;right:5%;top:50%;transform:translateY(-50%);opacity:0.04}
-.hero-geometric .geo-line{stroke:var(--white);stroke-width:1;fill:none}
+/* ── Utility ── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+section { padding: 120px 0; }
+a { text-decoration: none; color: inherit; }
 
-/* SERVICES */
-#services{background:var(--white)}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
-.service-card{background:var(--white);border:1px solid rgba(0,0,0,0.06);padding:2.5rem 2rem;transition:all var(--transition);position:relative;overflow:hidden}
-.service-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--navy);transform:scaleX(0);transition:transform var(--transition)}
-.service-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.08)}
-.service-card:hover::after{transform:scaleX(1)}
-.service-icon{font-size:2rem;margin-bottom:1.2rem}
-.service-card h3{font-size:0.85rem;letter-spacing:0.12em;color:var(--navy);margin-bottom:0.8rem}
-.service-card p{font-size:0.88rem;color:var(--gray);font-weight:300;line-height:1.6}
-@media(max-width:768px){.services-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.services-grid{grid-template-columns:1fr}}
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 16px 36px; border-radius: 4px; font-family: inherit;
+  font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em;
+  border: none; cursor: pointer; transition: all 0.4s var(--transition);
+  position: relative; overflow: hidden;
+}
+.btn::after {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(255,255,255,0.1); transform: translateX(-100%);
+  transition: transform 0.4s var(--transition);
+}
+.btn:hover::after { transform: translateX(0); }
+.btn-primary { background: var(--navy); color: var(--white); }
+.btn-primary:hover { background: var(--slate); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(19,31,45,0.3); }
+.btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
+.btn-outline:hover { background: var(--navy); color: var(--white); transform: translateY(-2px); }
+.btn-white { background: var(--white); color: var(--navy); }
+.btn-white:hover { background: var(--steel); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+.btn-ghost { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.4); }
+.btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.1); transform: translateY(-2px); }
 
-/* WHY SALIENT */
-#why{background:#F8F9FA;position:relative}
-.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
-.why-card{padding:2rem;background:var(--white);border:1px solid rgba(0,0,0,0.05)}
-.why-icon{width:48px;height:48px;background:var(--navy);display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;font-size:1.2rem;border-radius:2px}
-.why-card h3{font-size:0.8rem;letter-spacing:0.12em;color:var(--navy);margin-bottom:0.8rem}
-.why-card p{font-size:0.88rem;color:var(--gray);font-weight:300;line-height:1.6}
-@media(max-width:768px){.why-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.why-grid{grid-template-columns:1fr}}
+.section-label {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gray); margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 700;
+  line-height: 1.15; margin-bottom: 24px;
+}
 
-/* TRACK RECORD */
-#track{background:var(--navy);text-align:center}
-#track .section-label{color:rgba(255,255,255,0.4)}
-#track .section-title{color:var(--white)}
-.track-quote{font-size:clamp(1.1rem,2.5vw,1.4rem);color:rgba(255,255,255,0.75);max-width:800px;margin:2rem auto 3rem;line-height:1.8;font-weight:300;font-style:italic}
-.track-stats{display:flex;justify-content:center;gap:4rem;flex-wrap:wrap}
-.stat{text-align:center}
-.stat-num{font-size:clamp(2rem,4vw,3rem);font-weight:800;color:var(--white);letter-spacing:0.05em}
-.stat-label{font-size:0.75rem;color:rgba(255,255,255,0.4);letter-spacing:0.15em;text-transform:uppercase;margin-top:0.5rem}
+/* ── Animations ── */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s var(--transition), transform 0.8s var(--transition); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.8s var(--transition), transform 0.8s var(--transition); }
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.8s var(--transition), transform 0.8s var(--transition); }
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+.stagger > * { transition-delay: calc(var(--i, 0) * 0.1s); }
 
-/* TECHNOLOGY */
-#tech{background:var(--white)}
-.tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem}
-.tech-features{display:flex;flex-direction:column;gap:1.5rem}
-.tech-feature{display:flex;gap:1.2rem;align-items:flex-start}
-.tech-dot{width:8px;height:8px;background:var(--navy);border-radius:50%;margin-top:8px;flex-shrink:0}
-.tech-feature h4{font-size:0.8rem;letter-spacing:0.1em;color:var(--navy);margin-bottom:0.3rem}
-.tech-feature p{font-size:0.88rem;color:var(--gray);font-weight:300;line-height:1.5}
-.tech-visual{background:var(--navy);aspect-ratio:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border-radius:2px}
-.tech-visual-inner{color:rgba(255,255,255,0.08);font-size:6rem;font-weight:900;letter-spacing:0.1em}
-.tech-visual::before,.tech-visual::after{content:'';position:absolute;border:1px solid rgba(255,255,255,0.06);border-radius:50%}
-.tech-visual::before{width:80%;height:80%}
-.tech-visual::after{width:50%;height:50%}
-@media(max-width:768px){.tech-grid{grid-template-columns:1fr}.tech-visual{max-height:300px}}
+/* ── Nav ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 24px 0; transition: all 0.4s var(--transition);
+}
+nav.scrolled {
+  background: rgba(255,255,255,0.95); backdrop-filter: blur(20px);
+  padding: 14px 0; box-shadow: 0 1px 30px rgba(0,0,0,0.06);
+}
+nav .container { display: flex; justify-content: space-between; align-items: center; }
+.nav-logo {
+  font-size: 1.1rem; font-weight: 800; letter-spacing: 0.15em;
+  color: var(--white); transition: color 0.4s;
+}
+nav.scrolled .nav-logo { color: var(--navy); }
+.nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+.nav-links a {
+  font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.7);
+  letter-spacing: 0.02em; transition: color 0.3s; position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0;
+  height: 2px; background: currentColor; transition: width 0.3s var(--transition);
+}
+.nav-links a:hover { color: var(--white); }
+.nav-links a:hover::after { width: 100%; }
+nav.scrolled .nav-links a { color: var(--gray); }
+nav.scrolled .nav-links a:hover { color: var(--navy); }
+.nav-cta {
+  padding: 10px 24px; background: var(--white); color: var(--navy);
+  border-radius: 4px; font-weight: 600; font-size: 0.85rem;
+  transition: all 0.3s var(--transition);
+}
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+.nav-cta::after { display: none; }
+nav.scrolled .nav-cta { background: var(--navy); color: var(--white); }
 
-/* ASSESSMENT CTA */
-#assessment{background:var(--navy);text-align:center;padding:80px 2rem}
-.assessment-title{font-size:clamp(1.6rem,3.5vw,2.4rem);color:var(--white);margin-bottom:1rem}
-.assessment-sub{font-size:1.05rem;color:rgba(255,255,255,0.55);font-weight:300;margin-bottom:2.5rem}
+/* Hamburger */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; padding: 4px; }
+.hamburger span {
+  width: 24px; height: 2px; background: var(--white);
+  transition: all 0.3s var(--transition); border-radius: 2px;
+}
+nav.scrolled .hamburger span { background: var(--navy); }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-/* CONTACT */
-#contact{background:#F8F9FA}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:3rem}
-.contact-info{display:flex;flex-direction:column;gap:2rem}
-.contact-item{display:flex;align-items:center;gap:1rem}
-.contact-item-icon{width:44px;height:44px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:1rem;border-radius:2px;flex-shrink:0}
-.contact-item-text{font-size:0.9rem;color:var(--slate)}
-.contact-item-text span{display:block;font-size:0.7rem;color:var(--gray);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.2rem}
-.contact-form{display:flex;flex-direction:column;gap:1rem}
-.contact-form input,.contact-form textarea{font-family:'Poppins',sans-serif;padding:14px 18px;border:1px solid var(--steel);background:var(--white);font-size:0.9rem;color:var(--slate);outline:none;transition:border-color var(--transition);border-radius:2px}
-.contact-form input:focus,.contact-form textarea:focus{border-color:var(--navy)}
-.contact-form textarea{resize:vertical;min-height:120px}
-.form-success{display:none;padding:1rem;background:var(--navy);color:var(--white);text-align:center;font-size:0.85rem;letter-spacing:0.05em;border-radius:2px}
-@media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
+/* Mobile Nav */
+.mobile-menu {
+  display: none; position: fixed; inset: 0; background: var(--navy);
+  z-index: 999; flex-direction: column; justify-content: center;
+  align-items: center; gap: 32px; opacity: 0;
+  transition: opacity 0.4s var(--transition);
+}
+.mobile-menu.active { display: flex; opacity: 1; }
+.mobile-menu a {
+  font-size: 1.5rem; font-weight: 600; color: var(--white);
+  opacity: 0.8; transition: opacity 0.3s;
+}
+.mobile-menu a:hover { opacity: 1; }
 
-/* FOOTER */
-footer{background:var(--navy);padding:3rem 2rem;text-align:center}
-.footer-logo{font-size:1rem;font-weight:800;letter-spacing:0.3em;color:var(--white);text-transform:uppercase;margin-bottom:1.5rem}
-.footer-links{display:flex;justify-content:center;gap:2rem;margin-bottom:1.5rem;flex-wrap:wrap}
-.footer-links a{font-size:0.75rem;color:rgba(255,255,255,0.4);letter-spacing:0.1em;text-transform:uppercase;transition:color var(--transition)}
-.footer-links a:hover{color:var(--white)}
-.footer-copy{font-size:0.75rem;color:rgba(255,255,255,0.25);letter-spacing:0.05em}
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+}
+
+/* ── Hero ── */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  background: var(--navy); position: relative; overflow: hidden;
+  padding: 140px 0 120px;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(49,65,81,0.5) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 80% at 20% 80%, rgba(49,65,81,0.3) 0%, transparent 50%);
+  animation: heroShift 12s ease-in-out infinite alternate;
+}
+@keyframes heroShift {
+  0% { opacity: 0.6; transform: scale(1) translate(0, 0); }
+  100% { opacity: 1; transform: scale(1.05) translate(-2%, 2%); }
+}
+/* Geometric accents */
+.hero::after {
+  content: ''; position: absolute; top: 15%; right: 8%;
+  width: 300px; height: 300px; border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 50%; animation: heroPulse 8s ease-in-out infinite;
+}
+@keyframes heroPulse { 0%, 100% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.1); opacity: 1; } }
+.hero-grid {
+  position: absolute; inset: 0; opacity: 0.02;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero .container { position: relative; z-index: 1; }
+.hero-content { max-width: 720px; }
+.hero-label {
+  font-size: 0.8rem; font-weight: 500; letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.5); text-transform: uppercase; margin-bottom: 24px;
+}
+.hero h1 {
+  font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 800;
+  line-height: 1.05; color: var(--white); margin-bottom: 28px;
+  letter-spacing: -0.02em;
+}
+.hero h1 em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--steel) 0%, rgba(255,255,255,0.6) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  font-size: 1.15rem; color: rgba(255,255,255,0.6);
+  line-height: 1.7; margin-bottom: 44px; max-width: 560px; font-weight: 300;
+}
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+.hero-phone {
+  font-size: 0.9rem; color: rgba(255,255,255,0.5); font-weight: 500;
+  transition: color 0.3s;
+}
+.hero-phone:hover { color: var(--white); }
+
+/* ── Problem ── */
+.problem { background: var(--white); text-align: center; }
+.problem .container { max-width: 800px; }
+.problem h2 { margin-bottom: 28px; }
+.problem p { font-size: 1.1rem; color: var(--gray); line-height: 1.8; margin-bottom: 16px; }
+.problem .transition-text { font-weight: 600; color: var(--navy); font-size: 1.25rem; margin-top: 36px; }
+
+/* ── Pillars ── */
+.pillars { background: #f9fafb; }
+.pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 64px; }
+.pillar {
+  padding: 48px 36px; background: var(--white); border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.04); transition: all 0.5s var(--transition);
+  position: relative; overflow: hidden;
+}
+.pillar::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--navy); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.5s var(--transition);
+}
+.pillar:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.06); }
+.pillar:hover::before { transform: scaleX(1); }
+.pillar-icon {
+  width: 56px; height: 56px; margin-bottom: 28px;
+  display: flex; align-items: center; justify-content: center;
+}
+.pillar-icon svg { width: 40px; height: 40px; stroke: var(--navy); stroke-width: 1.5; fill: none; }
+.pillar h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; }
+.pillar p { color: var(--gray); font-size: 0.95rem; line-height: 1.7; }
+
+@media (max-width: 900px) { .pillars-grid { grid-template-columns: 1fr; } }
+
+/* ── Numbers ── */
+.numbers { background: var(--navy); color: var(--white); text-align: center; padding: 100px 0; }
+.numbers .section-label { color: rgba(255,255,255,0.4); }
+.numbers .section-title { color: var(--white); }
+.numbers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px; margin-top: 64px; }
+.number-item h3 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800;
+  margin-bottom: 8px; letter-spacing: -0.02em;
+  background: linear-gradient(180deg, var(--white) 0%, var(--steel) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.number-item p { font-size: 0.85rem; color: rgba(255,255,255,0.5); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
+@media (max-width: 768px) { .numbers-grid { grid-template-columns: repeat(2, 1fr); gap: 36px; } }
+
+/* ── Industries ── */
+.industries { background: var(--white); }
+.industries-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 64px; }
+.industry-card {
+  padding: 36px 28px; border: 1px solid rgba(0,0,0,0.06); border-radius: 8px;
+  transition: all 0.4s var(--transition); cursor: default; position: relative; overflow: hidden;
+}
+.industry-card::after {
+  content: ''; position: absolute; inset: 0; background: var(--navy);
+  opacity: 0; transition: opacity 0.4s var(--transition);
+}
+.industry-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.08); }
+.industry-card:hover::after { opacity: 1; }
+.industry-card > * { position: relative; z-index: 1; transition: color 0.4s; }
+.industry-card:hover .industry-icon svg { stroke: var(--white); }
+.industry-card:hover h4 { color: var(--white); }
+.industry-card:hover p { color: rgba(255,255,255,0.6); }
+.industry-icon { margin-bottom: 20px; }
+.industry-icon svg { width: 32px; height: 32px; stroke: var(--navy); stroke-width: 1.5; fill: none; }
+.industry-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+.industry-card p { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
+
+@media (max-width: 900px) { .industries-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .industries-grid { grid-template-columns: 1fr; } }
+
+/* ── Technology ── */
+.technology { background: #f9fafb; overflow: hidden; }
+.tech-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 64px; }
+.tech-content p { color: var(--gray); font-size: 1.05rem; line-height: 1.8; margin-bottom: 20px; }
+.tech-tagline { font-weight: 600; color: var(--navy); font-size: 1.1rem; font-style: italic; margin-top: 32px; }
+.tech-visual {
+  position: relative; background: var(--navy); border-radius: 12px;
+  padding: 40px; min-height: 380px; overflow: hidden;
+}
+.tech-dashboard {
+  position: relative; z-index: 1;
+}
+.dash-header {
+  display: flex; gap: 6px; margin-bottom: 24px; padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.dash-dot { width: 8px; height: 8px; border-radius: 50%; }
+.dash-dot:nth-child(1) { background: #ff5f57; }
+.dash-dot:nth-child(2) { background: #ffbd2e; }
+.dash-dot:nth-child(3) { background: #28c840; }
+.dash-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.dash-indicator {
+  width: 8px; height: 8px; border-radius: 50%; background: #28c840;
+  animation: blink 2s ease-in-out infinite;
+}
+.dash-indicator.warn { background: #ffbd2e; animation-delay: 0.5s; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.dash-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); flex: 1; }
+.dash-value { font-size: 0.8rem; color: var(--white); font-weight: 600; }
+.dash-bar { flex: 1; height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }
+.dash-bar-fill { height: 100%; background: var(--steel); border-radius: 2px; transition: width 1.5s var(--transition); }
+.dash-chart { margin-top: 24px; display: flex; align-items: flex-end; gap: 6px; height: 80px; }
+.dash-bar-v {
+  flex: 1; background: rgba(255,255,255,0.08); border-radius: 2px 2px 0 0;
+  position: relative; transition: height 1s var(--transition);
+}
+.dash-bar-v::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit;
+  background: linear-gradient(180deg, rgba(214,215,216,0.3) 0%, rgba(214,215,216,0.05) 100%);
+}
+.tech-visual::before {
+  content: ''; position: absolute; top: -50%; right: -50%;
+  width: 200%; height: 200%; border-radius: 50%;
+  background: radial-gradient(circle, rgba(49,65,81,0.3) 0%, transparent 60%);
+}
+
+@media (max-width: 900px) {
+  .tech-layout { grid-template-columns: 1fr; gap: 48px; }
+  .tech-visual { min-height: 300px; }
+}
+
+/* ── Assessment ── */
+.assessment {
+  background: var(--navy); color: var(--white); text-align: center;
+  position: relative; overflow: hidden;
+}
+.assessment::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(49,65,81,0.4) 0%, transparent 70%);
+}
+.assessment .container { position: relative; z-index: 1; max-width: 700px; }
+.assessment .section-label { color: rgba(255,255,255,0.4); }
+.assessment .section-title { color: var(--white); }
+.assessment p { color: rgba(255,255,255,0.6); font-size: 1.1rem; line-height: 1.8; margin-bottom: 12px; }
+.assessment-features {
+  display: flex; justify-content: center; gap: 32px; margin: 36px 0 48px;
+  flex-wrap: wrap;
+}
+.assessment-feature {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.9rem; color: rgba(255,255,255,0.7);
+}
+.assessment-feature svg { width: 20px; height: 20px; stroke: var(--steel); stroke-width: 2; fill: none; }
+
+/* ── About ── */
+.about { background: var(--white); }
+.about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.about-content p { color: var(--gray); font-size: 1.05rem; line-height: 1.8; margin-bottom: 20px; }
+.about-stats { display: flex; gap: 48px; margin-top: 40px; }
+.about-stat h4 { font-size: 1.8rem; font-weight: 800; color: var(--navy); }
+.about-stat p { font-size: 0.8rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.05em; }
+.about-visual {
+  position: relative; display: flex; align-items: center; justify-content: center;
+}
+.about-emblem {
+  width: 280px; height: 280px; border: 2px solid var(--navy);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.about-emblem::before {
+  content: ''; position: absolute; inset: 20px;
+  border: 1px solid rgba(19,31,45,0.15); border-radius: 50%;
+}
+.about-emblem-text {
+  font-size: 1rem; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--navy); text-align: center; line-height: 1.4;
+}
+.about-emblem-sub { font-size: 0.7rem; font-weight: 400; letter-spacing: 0.15em; color: var(--gray); }
+
+@media (max-width: 900px) {
+  .about-layout { grid-template-columns: 1fr; gap: 48px; }
+  .about-visual { order: -1; }
+  .about-stats { gap: 32px; }
+}
+
+/* ── Contact ── */
+.contact { background: #f9fafb; }
+.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 64px; }
+.contact-info h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; }
+.contact-info p { color: var(--gray); font-size: 1rem; line-height: 1.8; margin-bottom: 32px; }
+.contact-method {
+  display: flex; align-items: center; gap: 16px; padding: 20px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.contact-method-icon {
+  width: 48px; height: 48px; background: var(--navy); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.contact-method-icon svg { width: 20px; height: 20px; stroke: var(--white); stroke-width: 2; fill: none; }
+.contact-method h4 { font-size: 0.95rem; font-weight: 600; }
+.contact-method p { font-size: 0.85rem; color: var(--gray); margin: 0; }
+.contact-method a { color: var(--navy); font-weight: 600; transition: opacity 0.3s; }
+.contact-method a:hover { opacity: 0.7; }
+
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.contact-form input, .contact-form textarea {
+  width: 100%; padding: 16px 20px; border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 6px; font-family: inherit; font-size: 0.95rem;
+  background: var(--white); transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none; resize: vertical;
+}
+.contact-form input:focus, .contact-form textarea:focus {
+  border-color: var(--navy); box-shadow: 0 0 0 3px rgba(19,31,45,0.08);
+}
+.contact-form textarea { min-height: 140px; }
+.contact-form .btn { align-self: flex-start; }
+
+@media (max-width: 900px) {
+  .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+  .form-row { grid-template-columns: 1fr; }
+}
+
+/* ── Footer ── */
+footer {
+  background: var(--navy); color: var(--white); padding: 64px 0 32px;
+}
+.footer-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 48px; flex-wrap: wrap; gap: 32px; }
+.footer-brand p { color: rgba(255,255,255,0.4); font-size: 0.85rem; margin-top: 12px; max-width: 300px; line-height: 1.7; }
+.footer-links { display: flex; gap: 64px; flex-wrap: wrap; }
+.footer-col h5 { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
+.footer-col a { display: block; font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 10px; transition: color 0.3s; }
+.footer-col a:hover { color: var(--white); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.06); padding-top: 32px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+}
+.footer-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+
+/* ── Print ── */
+@media print {
+  nav, .hamburger, .mobile-menu { display: none !important; }
+  section { padding: 40px 0; }
+  .hero { min-height: auto; }
+  .reveal, .reveal-left, .reveal-right { opacity: 1 !important; transform: none !important; }
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="navbar">
-  <div class="nav-inner">
-    <a href="#hero" class="nav-logo">Salient Group</a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#services" onclick="closeNav()">Services</a></li>
-      <li><a href="#why" onclick="closeNav()">Why Salient</a></li>
-      <li><a href="#tech" onclick="closeNav()">Technology</a></li>
-      <li><a href="#contact" onclick="closeNav()">Contact</a></li>
-      <li><a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html" class="btn btn-primary" style="padding:10px 24px;font-size:0.75rem" onclick="closeNav()">Free Assessment</a></li>
+<!-- Nav -->
+<nav id="nav">
+  <div class="container">
+    <a href="#" class="nav-logo">SALIENT GROUP</a>
+    <ul class="nav-links">
+      <li><a href="#problem">Why Us</a></li>
+      <li><a href="#industries">Industries</a></li>
+      <li><a href="#technology">Technology</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#assessment" class="nav-cta">Free Assessment</a></li>
     </ul>
-    <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
       <span></span><span></span><span></span>
     </div>
   </div>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-content">
-    <div class="hero-badge">Professional Security Services</div>
-    <h1 class="hero-title">Protecting What Matters Most</h1>
-    <p class="hero-sub">Professional security services for businesses nationwide. Trusted by industry leaders to safeguard their people, property, and operations.</p>
-    <div class="hero-actions">
-      <a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html" class="btn btn-primary">Get a Free Assessment</a>
-      <a href="https://cal.com/salient-group/quick-call" class="btn btn-outline">Schedule a Call</a>
-    </div>
-    <p class="hero-phone">Or call us directly: <a href="tel:+13179836601">(317) 983-6601</a></p>
-  </div>
-  <svg class="hero-geometric" width="400" height="400" viewBox="0 0 400 400"><circle class="geo-line" cx="200" cy="200" r="180"/><circle class="geo-line" cx="200" cy="200" r="120"/><circle class="geo-line" cx="200" cy="200" r="60"/><line class="geo-line" x1="200" y1="0" x2="200" y2="400"/><line class="geo-line" x1="0" y1="200" x2="400" y2="200"/></svg>
-</section>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#problem" class="mobile-link">Why Us</a>
+  <a href="#industries" class="mobile-link">Industries</a>
+  <a href="#technology" class="mobile-link">Technology</a>
+  <a href="#about" class="mobile-link">About</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+  <a href="#assessment" class="mobile-link">Free Assessment</a>
+  <a href="tel:+13179836601" class="mobile-link" style="color:rgba(255,255,255,0.4); margin-top:16px; font-size:1rem;">(317) 983-6601</a>
+</div>
 
-<!-- SERVICES -->
-<section id="services">
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
   <div class="container">
-    <p class="section-label fade-in">What We Protect</p>
-    <h2 class="section-title fade-in">Industries We Serve</h2>
-    <p class="section-subtitle fade-in">Tailored security programs designed for the unique challenges of your industry.</p>
-    <div class="services-grid">
-      <div class="service-card fade-in">
-        <div class="service-icon">🏭</div>
-        <h3>Warehouse &amp; Distribution</h3>
-        <p>24/7 access control, cargo protection, and perimeter security for logistics facilities of every scale.</p>
-      </div>
-      <div class="service-card fade-in">
-        <div class="service-icon">🏢</div>
-        <h3>Commercial Real Estate</h3>
-        <p>Lobby management, tenant safety programs, and visitor screening for Class A office and mixed-use properties.</p>
-      </div>
-      <div class="service-card fade-in">
-        <div class="service-icon">🏥</div>
-        <h3>Healthcare</h3>
-        <p>Patient and staff safety, emergency response coordination, and sensitive area access management.</p>
-      </div>
-      <div class="service-card fade-in">
-        <div class="service-icon">🚧</div>
-        <h3>Construction</h3>
-        <p>Jobsite protection, equipment theft prevention, and after-hours patrol for active construction zones.</p>
-      </div>
-      <div class="service-card fade-in">
-        <div class="service-icon">🎪</div>
-        <h3>Events &amp; Venues</h3>
-        <p>Crowd management, VIP protection, and access control for concerts, conferences, and sporting events.</p>
-      </div>
-      <div class="service-card fade-in">
-        <div class="service-icon">🎓</div>
-        <h3>Education</h3>
-        <p>Campus safety programs, visitor management, and emergency preparedness for K-12 and higher education.</p>
-      </div>
-      <div class="service-card fade-in">
-        <div class="service-icon">🛍️</div>
-        <h3>Retail</h3>
-        <p>Loss prevention, customer safety, and visible deterrence for retail locations and shopping centers.</p>
-      </div>
-      <div class="service-card fade-in">
-        <div class="service-icon">🏨</div>
-        <h3>Hospitality</h3>
-        <p>Guest safety, property patrol, and discreet security presence for hotels, resorts, and entertainment venues.</p>
-      </div>
-      <div class="service-card fade-in">
-        <div class="service-icon">⚙️</div>
-        <h3>Manufacturing</h3>
-        <p>Facility access control, safety compliance support, and asset protection for manufacturing operations.</p>
+    <div class="hero-content">
+      <p class="hero-label">Private Security — Nationwide</p>
+      <h1>Security,<br><em>Reimagined.</em></h1>
+      <p>2,180+ guard hours per week at the largest grocery distribution center in America. AI-powered technology. Radical accountability. This is what happens when security finally catches up.</p>
+      <div class="hero-actions">
+        <a href="#assessment" class="btn btn-white">Get Your Free Security Assessment</a>
+        <a href="tel:+13179836601" class="hero-phone">(317) 983-6601</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- WHY SALIENT -->
-<section id="why">
+<!-- Problem -->
+<section class="problem" id="problem">
   <div class="container">
-    <p class="section-label fade-in">The Salient Difference</p>
-    <h2 class="section-title fade-in">Why Salient</h2>
-    <p class="section-subtitle fade-in">We combine proven operational expertise with cutting-edge technology to deliver security that actually works.</p>
-    <div class="why-grid">
-      <div class="why-card fade-in">
-        <div class="why-icon">📍</div>
-        <h3>Real-Time Client Portal</h3>
-        <p>GPS-verified guard attendance, live dashboards, and full transparency into every shift — accessible from any device.</p>
+    <div class="reveal">
+      <p class="section-label">The Industry Problem</p>
+      <h2 class="section-title">Most security companies are stuck in the past.</h2>
+      <p>Revolving-door guards who don't know your site. Zero technology beyond a clipboard. No real accountability when things go wrong. Cookie-cutter programs that treat a distribution center the same as a strip mall.</p>
+      <p>You deserve better. Your people deserve better.</p>
+      <p class="transition-text">There's a better way.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Pillars -->
+<section class="pillars" id="pillars">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">How We're Different</p>
+      <h2 class="section-title">Three pillars. Zero compromises.</h2>
+    </div>
+    <div class="pillars-grid stagger">
+      <div class="pillar reveal" style="--i:0">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 40 40"><rect x="4" y="8" width="32" height="24" rx="3"/><line x1="4" y1="16" x2="36" y2="16"/><circle cx="28" cy="24" r="3"/><line x1="10" y1="22" x2="20" y2="22"/><line x1="10" y1="26" x2="17" y2="26"/></svg>
+        </div>
+        <h3>Technology</h3>
+        <p>AI-powered monitoring, real-time incident reporting, and smart scheduling that eliminates gaps. Our Nova Control platform gives you a live pulse on every site, every shift.</p>
       </div>
-      <div class="why-card fade-in">
-        <div class="why-icon">🤖</div>
-        <h3>AI-Powered Gate Management</h3>
-        <p>Nova Control technology automates visitor verification, credential checks, and access logging at scale.</p>
+      <div class="pillar reveal" style="--i:1">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 40 40"><path d="M20 4 L36 14 V28 L20 38 L4 28 V14 Z"/><line x1="20" y1="4" x2="20" y2="38"/><line x1="4" y1="14" x2="36" y2="14"/><polyline points="12,20 18,26 28,16"/></svg>
+        </div>
+        <h3>Speed</h3>
+        <p>70 guards staffed and deployed in three weeks. Nationwide reach across 48 states. When you need coverage, we don't make you wait — we make it happen.</p>
       </div>
-      <div class="why-card fade-in">
-        <div class="why-icon">⚡</div>
-        <h3>Rapid Deployment</h3>
-        <p>70+ officers mobilized in under 3 weeks. When you need security fast, our team delivers without compromising quality.</p>
-      </div>
-      <div class="why-card fade-in">
-        <div class="why-icon">🇺🇸</div>
-        <h3>Nationwide Coverage</h3>
-        <p>Serving businesses across the United States with consistent standards and local expertise in every market.</p>
-      </div>
-      <div class="why-card fade-in">
-        <div class="why-icon">👤</div>
-        <h3>Dedicated Account Management</h3>
-        <p>A single point of contact who knows your facility, your team, and your expectations — not a call center.</p>
-      </div>
-      <div class="why-card fade-in">
-        <div class="why-icon">🛡️</div>
-        <h3>Armed &amp; Unarmed Officers</h3>
-        <p>Flexible staffing to match your risk profile, from uniformed presence to armed response teams.</p>
+      <div class="pillar reveal" style="--i:2">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="8"/><path d="M8 36 C8 28 14 24 20 24 S32 28 32 36"/><line x1="20" y1="10" x2="20" y2="17"/><line x1="20" y1="17" x2="24" y2="14"/></svg>
+        </div>
+        <h3>Accountability</h3>
+        <p>A dedicated account manager who knows your name. Transparent reporting you can actually read. When something needs fixing, we own it — no excuses, no finger-pointing.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TRACK RECORD -->
-<section id="track">
+<!-- Numbers -->
+<section class="numbers" id="numbers">
   <div class="container">
-    <p class="section-label fade-in">Proven Results</p>
-    <h2 class="section-title fade-in">Track Record</h2>
-    <p class="track-quote fade-in">"We've managed security for one of the largest grocery distribution centers in the United States — over 2,180 guard hours per week across a 1.2 million square foot facility."</p>
-    <div class="track-stats fade-in">
-      <div class="stat">
-        <div class="stat-num">2,180+</div>
-        <div class="stat-label">Guard Hours / Week</div>
+    <div class="reveal">
+      <p class="section-label">By The Numbers</p>
+      <h2 class="section-title">Proof over promises.</h2>
+    </div>
+    <div class="numbers-grid stagger">
+      <div class="number-item reveal" style="--i:0">
+        <h3><span class="counter" data-target="2180">0</span>+</h3>
+        <p>Guard Hours / Week</p>
       </div>
-      <div class="stat">
-        <div class="stat-num">1.2M</div>
-        <div class="stat-label">Sq Ft Secured</div>
+      <div class="number-item reveal" style="--i:1">
+        <h3><span class="counter" data-target="70">0</span></h3>
+        <p>Guards in 3 Weeks</p>
       </div>
-      <div class="stat">
-        <div class="stat-num">70+</div>
-        <div class="stat-label">Officers Deployed</div>
+      <div class="number-item reveal" style="--i:2">
+        <h3>24/7</h3>
+        <p>Monitoring &amp; Response</p>
       </div>
-      <div class="stat">
-        <div class="stat-num">24/7</div>
-        <div class="stat-label">Coverage</div>
+      <div class="number-item reveal" style="--i:3">
+        <h3><span class="counter" data-target="48">0</span></h3>
+        <p>States Covered</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TECHNOLOGY -->
-<section id="tech">
+<!-- Industries -->
+<section class="industries" id="industries">
   <div class="container">
-    <p class="section-label fade-in-left">Innovation</p>
-    <h2 class="section-title fade-in-left">Security Powered by Technology</h2>
-    <p class="section-subtitle fade-in-left">Our proprietary security operating system gives you complete visibility and control — not just guards on-site.</p>
-    <div class="tech-grid">
-      <div class="tech-features">
-        <div class="tech-feature fade-in-left">
-          <div class="tech-dot"></div>
-          <div>
-            <h4>Client Portal</h4>
-            <p>Real-time dashboards with shift coverage, incident logs, and officer performance metrics at your fingertips.</p>
-          </div>
-        </div>
-        <div class="tech-feature fade-in-left">
-          <div class="tech-dot"></div>
-          <div>
-            <h4>GPS Guard Tracking</h4>
-            <p>Verified patrol routes and checkpoint confirmations so you always know your facility is covered.</p>
-          </div>
-        </div>
-        <div class="tech-feature fade-in-left">
-          <div class="tech-dot"></div>
-          <div>
-            <h4>AI Gate Management</h4>
-            <p>Automated credential verification and visitor logging powered by Nova Control technology.</p>
-          </div>
-        </div>
-        <div class="tech-feature fade-in-left">
-          <div class="tech-dot"></div>
-          <div>
-            <h4>Digital Incident Reporting</h4>
-            <p>Instant photo and video documentation with timestamped reports delivered to your inbox in real time.</p>
-          </div>
-        </div>
-        <div class="tech-feature fade-in-left">
-          <div class="tech-dot"></div>
-          <div>
-            <h4>Real-Time Analytics</h4>
-            <p>Data-driven insights on security patterns, response times, and coverage optimization opportunities.</p>
-          </div>
-        </div>
+    <div class="reveal">
+      <p class="section-label">Industries</p>
+      <h2 class="section-title">Built for complexity.</h2>
+    </div>
+    <div class="industries-grid stagger">
+      <div class="industry-card reveal" style="--i:0">
+        <div class="industry-icon"><svg viewBox="0 0 32 32"><rect x="4" y="14" width="24" height="14" rx="2"/><path d="M8 14V8a4 4 0 014-4h8a4 4 0 014 4v6"/><line x1="16" y1="20" x2="16" y2="24"/></svg></div>
+        <h4>Logistics &amp; Distribution</h4>
+        <p>High-volume facilities that never sleep. We've proven it at the largest grocery DC in America.</p>
       </div>
-      <div class="tech-visual fade-in-right">
-        <div class="tech-visual-inner">SG</div>
+      <div class="industry-card reveal" style="--i:1">
+        <div class="industry-icon"><svg viewBox="0 0 32 32"><rect x="4" y="10" width="24" height="18" rx="2"/><rect x="10" y="4" width="12" height="6"/><line x1="12" y1="16" x2="12" y2="22"/><line x1="20" y1="18" x2="20" y2="22"/><line x1="16" y1="14" x2="16" y2="22"/></svg></div>
+        <h4>Commercial Real Estate</h4>
+        <p>Lobby presence to parking structures. Tailored programs that protect tenants and reputation.</p>
+      </div>
+      <div class="industry-card reveal" style="--i:2">
+        <div class="industry-icon"><svg viewBox="0 0 32 32"><path d="M16 4v24"/><path d="M8 12h16"/><rect x="6" y="8" width="8" height="16" rx="1"/><rect x="18" y="8" width="8" height="16" rx="1"/><circle cx="16" cy="4" r="2"/></svg></div>
+        <h4>Healthcare</h4>
+        <p>De-escalation trained officers for sensitive environments where patient safety comes first.</p>
+      </div>
+      <div class="industry-card reveal" style="--i:3">
+        <div class="industry-icon"><svg viewBox="0 0 32 32"><path d="M4 28L16 4l12 24H4z"/><line x1="10" y1="28" x2="10" y2="20"/><line x1="16" y1="28" x2="16" y2="12"/><line x1="22" y1="28" x2="22" y2="20"/></svg></div>
+        <h4>Construction</h4>
+        <p>Asset protection for active job sites. Theft prevention, access control, and overnight monitoring.</p>
+      </div>
+      <div class="industry-card reveal" style="--i:4">
+        <div class="industry-icon"><svg viewBox="0 0 32 32"><path d="M16 4L4 14h4v14h16V14h4L16 4z"/><rect x="12" y="20" width="8" height="8"/><circle cx="16" cy="14" r="3"/></svg></div>
+        <h4>Education</h4>
+        <p>Campus-wide coverage from K-12 to universities. Visible presence that makes people feel safe.</p>
+      </div>
+      <div class="industry-card reveal" style="--i:5">
+        <div class="industry-icon"><svg viewBox="0 0 32 32"><rect x="4" y="8" width="24" height="20" rx="2"/><path d="M4 14h24"/><circle cx="10" cy="22" r="2"/><circle cx="22" cy="22" r="2"/><line x1="14" y1="20" x2="18" y2="20"/><line x1="14" y1="24" x2="18" y2="24"/></svg></div>
+        <h4>Retail</h4>
+        <p>Loss prevention and customer experience. Guards who represent your brand, not undermine it.</p>
+      </div>
+      <div class="industry-card reveal" style="--i:6">
+        <div class="industry-icon"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M10 20c0-4 3-6 6-6s6 2 6 6"/><circle cx="12" cy="13" r="1.5"/><circle cx="20" cy="13" r="1.5"/></svg></div>
+        <h4>Events</h4>
+        <p>Crowd management for concerts, corporate gatherings, and festivals. Scalable teams on short notice.</p>
+      </div>
+      <div class="industry-card reveal" style="--i:7">
+        <div class="industry-icon"><svg viewBox="0 0 32 32"><rect x="6" y="6" width="20" height="20" rx="2"/><line x1="6" y1="16" x2="26" y2="16"/><line x1="16" y1="6" x2="16" y2="26"/><path d="M10 10h4v4h-4z"/><path d="M18 18h4v4h-4z"/></svg></div>
+        <h4>HOA &amp; Residential</h4>
+        <p>Community patrols and gatehouse management. Peace of mind for residents, accountability for boards.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FREE ASSESSMENT CTA -->
-<section id="assessment">
+<!-- Technology -->
+<section class="technology" id="technology">
   <div class="container">
-    <h2 class="assessment-title fade-in">How Secure Is Your Facility?</h2>
-    <p class="assessment-sub fade-in">Find out in 2 minutes with our free security assessment.</p>
-    <a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html" class="btn btn-primary fade-in">Take the Free Assessment</a>
+    <div class="reveal">
+      <p class="section-label">Technology Edge</p>
+      <h2 class="section-title">Intelligence, not just presence.</h2>
+    </div>
+    <div class="tech-layout">
+      <div class="tech-content reveal-left">
+        <p>Nova Control is our proprietary operations platform — real-time dashboards, AI-powered communications, and automated reporting that turns raw data into decisions.</p>
+        <p>Every guard carries a connected device. Every incident is logged instantly. Every client gets a live view of their security program. No more wondering if your guard showed up.</p>
+        <p class="tech-tagline">"A tech company that does security — not a security company that bolted on tech."</p>
+      </div>
+      <div class="tech-visual reveal-right">
+        <div class="tech-dashboard">
+          <div class="dash-header">
+            <div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div>
+          </div>
+          <div class="dash-row">
+            <div class="dash-indicator"></div>
+            <span class="dash-label">Site Alpha — Distribution Center</span>
+            <span class="dash-value">Active</span>
+          </div>
+          <div class="dash-row">
+            <div class="dash-indicator"></div>
+            <span class="dash-label">Site Bravo — Corporate Campus</span>
+            <span class="dash-value">Active</span>
+          </div>
+          <div class="dash-row">
+            <div class="dash-indicator warn"></div>
+            <span class="dash-label">Site Charlie — Retail Complex</span>
+            <span class="dash-value">Alert</span>
+          </div>
+          <div class="dash-row">
+            <div class="dash-indicator"></div>
+            <span class="dash-label">Guard Compliance</span>
+            <div class="dash-bar"><div class="dash-bar-fill" style="width:94%"></div></div>
+            <span class="dash-value">94%</span>
+          </div>
+          <div class="dash-chart">
+            <div class="dash-bar-v" style="height:40%"></div>
+            <div class="dash-bar-v" style="height:60%"></div>
+            <div class="dash-bar-v" style="height:45%"></div>
+            <div class="dash-bar-v" style="height:80%"></div>
+            <div class="dash-bar-v" style="height:65%"></div>
+            <div class="dash-bar-v" style="height:90%"></div>
+            <div class="dash-bar-v" style="height:75%"></div>
+            <div class="dash-bar-v" style="height:55%"></div>
+            <div class="dash-bar-v" style="height:70%"></div>
+            <div class="dash-bar-v" style="height:85%"></div>
+            <div class="dash-bar-v" style="height:60%"></div>
+            <div class="dash-bar-v" style="height:95%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
+<!-- Assessment -->
+<section class="assessment" id="assessment">
   <div class="container">
-    <p class="section-label fade-in">Get in Touch</p>
-    <h2 class="section-title fade-in">Contact Us</h2>
-    <div class="contact-grid">
-      <div class="contact-info fade-in-left">
-        <div class="contact-item">
-          <div class="contact-item-icon">📞</div>
-          <div class="contact-item-text">
-            <span>Phone</span>
-            <a href="tel:+13179836601">(317) 983-6601</a>
-          </div>
+    <div class="reveal">
+      <p class="section-label">Free Tool</p>
+      <h2 class="section-title">Get your security assessment.</h2>
+      <p>Answer a few questions about your facility and get a custom risk score, coverage recommendations, and a pricing estimate — in under two minutes.</p>
+      <div class="assessment-features">
+        <div class="assessment-feature">
+          <svg viewBox="0 0 20 20"><polyline points="4,10 8,14 16,6"/></svg>
+          <span>Custom Risk Score</span>
         </div>
-        <div class="contact-item">
-          <div class="contact-item-icon">✉️</div>
-          <div class="contact-item-text">
-            <span>Email</span>
-            <a href="mailto:info@salient-group.com">info@salient-group.com</a>
-          </div>
+        <div class="assessment-feature">
+          <svg viewBox="0 0 20 20"><polyline points="4,10 8,14 16,6"/></svg>
+          <span>Coverage Plan</span>
         </div>
-        <div class="contact-item">
-          <div class="contact-item-icon">📅</div>
-          <div class="contact-item-text">
-            <span>Schedule</span>
-            <a href="https://cal.com/salient-group/quick-call">Book a call with our team</a>
-          </div>
-        </div>
-        <div style="margin-top:1rem">
-          <a href="https://cal.com/salient-group/quick-call" class="btn btn-navy">Schedule a Call</a>
+        <div class="assessment-feature">
+          <svg viewBox="0 0 20 20"><polyline points="4,10 8,14 16,6"/></svg>
+          <span>Pricing Estimate</span>
         </div>
       </div>
-      <form class="contact-form fade-in-right" id="contactForm" onsubmit="handleSubmit(event)">
-        <input type="text" name="name" placeholder="Full Name" required>
-        <input type="email" name="email" placeholder="Email Address" required>
-        <input type="tel" name="phone" placeholder="Phone Number">
-        <textarea name="message" placeholder="How can we help?" required></textarea>
-        <button type="submit" class="btn btn-navy" style="width:100%;text-align:center">Send Message</button>
-        <div class="form-success" id="formSuccess">Thank you. Our team will be in touch shortly.</div>
+      <a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html" class="btn btn-white" target="_blank" rel="noopener">Start Your Free Assessment →</a>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-layout">
+      <div class="about-content reveal-left">
+        <p class="section-label">About Salient</p>
+        <h2 class="section-title">Founded on a simple belief.</h2>
+        <p>Security should be smarter. The industry has operated the same way for decades — high turnover, low standards, and technology stuck in 2005. We started Salient to change that.</p>
+        <p>Our team brings together operational experience, technology expertise, and a genuine obsession with doing things right. We're not the biggest security company. We're building the best one.</p>
+        <div class="about-stats">
+          <div class="about-stat">
+            <h4>48</h4>
+            <p>States Served</p>
+          </div>
+          <div class="about-stat">
+            <h4>24/7</h4>
+            <p>Operations Center</p>
+          </div>
+          <div class="about-stat">
+            <h4>AI</h4>
+            <p>Powered Platform</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual reveal-right">
+        <div class="about-emblem">
+          <div>
+            <div class="about-emblem-text">Salient<br>Group</div>
+            <div class="about-emblem-sub">EST. 2024</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-title">Ready to upgrade your security?</h2>
+    </div>
+    <div class="contact-layout">
+      <div class="contact-info reveal-left">
+        <h3>Let's talk about your needs.</h3>
+        <p>Whether you need 5 guards or 500, we'll build a program that fits. No pressure, no generic proposals — just a real conversation about what you need.</p>
+        <div class="contact-method">
+          <div class="contact-method-icon">
+            <svg viewBox="0 0 20 20"><path d="M3 5a2 2 0 012-2h10a2 2 0 012 2v7a2 2 0 01-2 2H9l-4 3v-3H5a2 2 0 01-2-2V5z"/></svg>
+          </div>
+          <div>
+            <h4>Call Us</h4>
+            <p><a href="tel:+13179836601">(317) 983-6601</a></p>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="contact-method-icon">
+            <svg viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="12" rx="2"/><path d="M3 6l7 5 7-5"/></svg>
+          </div>
+          <div>
+            <h4>Book a Call</h4>
+            <p><a href="https://cal.com/salient-group/quick-call" target="_blank" rel="noopener">Schedule on Cal.com →</a></p>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="contact-method-icon">
+            <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 2"/></svg>
+          </div>
+          <div>
+            <h4>Licensed In</h4>
+            <p>FL, GA, IN — expanding nationwide</p>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form reveal-right" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Email Address" required>
+        </div>
+        <input type="text" name="company" placeholder="Company Name">
+        <textarea name="message" placeholder="Tell us about your security needs..."></textarea>
+        <button type="submit" class="btn btn-primary">Send Message →</button>
       </form>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- Footer -->
 <footer>
-  <div class="footer-logo">Salient Group</div>
-  <div class="footer-links">
-    <a href="#services">Services</a>
-    <a href="#why">Why Salient</a>
-    <a href="#tech">Technology</a>
-    <a href="#contact">Contact</a>
-    <a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html">Free Assessment</a>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo" style="color:var(--white)">SALIENT GROUP</a>
+        <p>Technology-driven private security. Nationwide coverage, radical accountability, and AI-powered operations.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="#about">About</a>
+          <a href="#industries">Industries</a>
+          <a href="#technology">Technology</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="#assessment">Security Assessment</a>
+          <a href="https://cal.com/salient-group/quick-call" target="_blank" rel="noopener">Book a Call</a>
+          <a href="tel:+13179836601">(317) 983-6601</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Salient Group. All rights reserved.</p>
+      <p>Licensed in FL, GA, IN — Service available in 48 states</p>
+    </div>
   </div>
-  <p class="footer-copy">&copy; 2026 Salient Group. All rights reserved.</p>
 </footer>
 
 <script>
-// Nav
-const navbar=document.getElementById('navbar');
-const hamburger=document.getElementById('hamburger');
-const navLinks=document.getElementById('navLinks');
-window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',window.scrollY>50)});
-function toggleNav(){hamburger.classList.toggle('active');navLinks.classList.toggle('open')}
-function closeNav(){hamburger.classList.remove('active');navLinks.classList.remove('open')}
+// Nav scroll
+const nav = document.getElementById('nav');
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
 
-// Intersection Observer for animations
-const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
-document.querySelectorAll('.fade-in,.fade-in-left,.fade-in-right').forEach(el=>observer.observe(el));
+// Hamburger
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  mobileMenu.classList.toggle('active');
+  document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+});
+document.querySelectorAll('.mobile-link').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+});
 
-// Contact form
-function handleSubmit(e){
+// Intersection Observer for reveals
+const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+// Counter animation
+let countersDone = false;
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !countersDone) {
+      countersDone = true;
+      document.querySelectorAll('.counter').forEach(counter => {
+        const target = +counter.dataset.target;
+        const duration = 2000;
+        const start = performance.now();
+        const step = (now) => {
+          const progress = Math.min((now - start) / duration, 1);
+          const ease = 1 - Math.pow(1 - progress, 4);
+          counter.textContent = Math.floor(ease * target).toLocaleString();
+          if (progress < 1) requestAnimationFrame(step);
+          else counter.textContent = target.toLocaleString();
+        };
+        requestAnimationFrame(step);
+      });
+    }
+  });
+}, { threshold: 0.3 });
+const numbersSection = document.getElementById('numbers');
+if (numbersSection) counterObserver.observe(numbersSection);
+
+// Form
+function handleSubmit(e) {
   e.preventDefault();
-  const form=e.target;
-  const data={name:form.name.value,email:form.email.value,phone:form.phone.value,message:form.message.value,date:new Date().toISOString()};
-  const leads=JSON.parse(localStorage.getItem('salient_leads')||'[]');
-  leads.push(data);
-  localStorage.setItem('salient_leads',JSON.stringify(leads));
-  form.reset();
-  document.getElementById('formSuccess').style.display='block';
-  setTimeout(()=>{document.getElementById('formSuccess').style.display='none'},5000);
+  const btn = e.target.querySelector('button');
+  btn.textContent = 'Message Sent ✓';
+  btn.style.background = '#28c840';
+  setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; }, 3000);
+  e.target.reset();
 }
+
+// Smooth scroll for all anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
 </script>
 </body>
 </html>
