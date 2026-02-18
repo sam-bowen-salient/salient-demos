@@ -3,846 +3,1222 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Salient Group | Owner-Operated Security Services</title>
-<meta name="description" content="Salient Group delivers owner-operated, technology-driven security services nationwide. Real accountability. Real leadership. Get your free security assessment.">
+<title>Salient Group | The Last Security Company You'll Ever Hire</title>
+<meta name="description" content="Salient Group delivers owner-operated security with real-time technology, dedicated teams, and custom programs. Get your free security assessment today.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
---navy:#131F2D;--white:#FFFFFF;--black:#000000;
---slate:#314151;--steel:#D6D7D8;--gray:#606060;
---ease:cubic-bezier(.16,1,.3,1);
-}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:'Poppins',sans-serif;color:var(--navy);background:var(--white);overflow-x:hidden;line-height:1.6}
-a{color:inherit;text-decoration:none}
-button{font-family:inherit;cursor:pointer;border:none;background:none}
-img{max-width:100%;display:block}
-
-/* Utility */
+:root{--navy:#131F2D;--slate:#314151;--steel:#D6D7D8;--gray:#606060;--white:#FFFFFF;--black:#000000}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Poppins',sans-serif;color:var(--navy);background:var(--white);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-left{opacity:0;transform:translateX(-60px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-.reveal-left.visible{opacity:1;transform:translateX(0)}
-.reveal-right{opacity:0;transform:translateX(60px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-.reveal-right.visible{opacity:1;transform:translateX(0)}
-.reveal-scale{opacity:0;transform:scale(.92);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-.reveal-scale.visible{opacity:1;transform:scale(1)}
-.reveal-scale-sm{opacity:0;transform:scale(.95) translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
-.reveal-scale-sm.visible{opacity:1;transform:scale(1) translateY(0)}
-.reveal.visible .stagger,.reveal-left.visible .stagger,.reveal-right.visible .stagger,.reveal-scale.visible .stagger,.reveal-scale-sm.visible .stagger{opacity:1;transform:translateY(0) translateX(0) scale(1)}
-.stagger{opacity:0;transform:translateY(30px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
-.stagger:nth-child(1){transition-delay:.1s}
-.stagger:nth-child(2){transition-delay:.2s}
-.stagger:nth-child(3){transition-delay:.25s}
-.stagger:nth-child(4){transition-delay:.35s}
-.stagger:nth-child(5){transition-delay:.45s}
-.stagger:nth-child(6){transition-delay:.55s}
-.stagger:nth-child(7){transition-delay:.65s}
-.stagger:nth-child(8){transition-delay:.75s}
 
-/* Buttons */
-.btn{display:inline-flex;align-items:center;gap:8px;padding:16px 36px;border-radius:60px;font-weight:600;font-size:.95rem;transition:all .35s var(--ease);letter-spacing:.01em}
-.btn-primary{background:var(--navy);color:var(--white)}
-.btn-primary:hover{background:#1e3048;transform:translateY(-2px);box-shadow:0 8px 30px rgba(19,31,45,.25)}
-.btn-outline{border:2px solid var(--navy);color:var(--navy);padding:14px 34px}
-.btn-outline:hover{background:var(--navy);color:var(--white);transform:translateY(-2px)}
-.btn-white{background:var(--white);color:var(--navy)}
-.btn-white:hover{background:#f0f2f4;transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,255,255,.2)}
-.btn-ghost{color:var(--navy);font-weight:500;padding:8px 0;position:relative}
-.btn-ghost::after{content:'';position:absolute;bottom:4px;left:0;width:0;height:2px;background:var(--navy);transition:width .3s var(--ease)}
-.btn-ghost:hover::after{width:100%}
-
-/* ─── HEADER ─── */
-header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 0;transition:all .4s var(--ease)}
-header.scrolled{background:rgba(255,255,255,.95);backdrop-filter:blur(20px);padding:12px 0;box-shadow:0 1px 30px rgba(19,31,45,.06)}
-header .container{display:flex;align-items:center;justify-content:space-between}
-.logo{font-weight:800;font-size:1.35rem;letter-spacing:-.02em;color:var(--navy)}
-.logo span{font-weight:300;opacity:.6;margin-left:2px}
-nav{display:flex;align-items:center;gap:36px}
-nav a{font-size:.875rem;font-weight:500;color:var(--slate);transition:color .3s}
-nav a:hover{color:var(--navy)}
-.nav-cta{background:var(--navy);color:var(--white)!important;padding:10px 24px;border-radius:60px;font-size:.8rem;font-weight:600;transition:all .3s var(--ease)}
-.nav-cta:hover{background:#1e3048;transform:translateY(-1px)}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1001;padding:8px}
-.hamburger span{display:block;width:24px;height:2px;background:var(--navy);transition:all .3s var(--ease);border-radius:2px}
-.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-.hamburger.active span:nth-child(2){opacity:0}
-.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-.mobile-menu{display:none;position:fixed;inset:0;background:var(--white);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;transition:opacity .3s var(--ease)}
-.mobile-menu.active{display:flex;opacity:1}
-.mobile-menu a{font-size:1.5rem;font-weight:600;color:var(--navy)}
+/* NAV */
+.nav{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);box-shadow:0 1px 12px rgba(0,0,0,.06);transition:box-shadow .3s}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px;max-width:1200px;margin:0 auto;padding:0 24px}
+.nav-logo img{height:40px;width:auto}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:.875rem;font-weight:500;color:var(--slate);transition:color .2s}
+.nav-links a:hover{color:var(--navy)}
+.nav-cta{background:var(--navy);color:var(--white)!important;padding:10px 22px;border-radius:6px;font-weight:600;font-size:.85rem;transition:background .2s}
+.nav-cta:hover{background:var(--slate)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.hamburger span{width:24px;height:2.5px;background:var(--navy);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:70px;left:0;width:100%;background:var(--white);box-shadow:0 8px 24px rgba(0,0,0,.1);padding:20px 24px;flex-direction:column;gap:16px}
+.mobile-menu.active{display:flex}
+.mobile-menu a{font-size:1rem;font-weight:500;color:var(--slate);padding:8px 0}
 
 @media(max-width:768px){
-  nav{display:none}
+  .nav-links{display:none}
   .hamburger{display:flex}
 }
 
-/* ─── HERO ─── */
-.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 0 80px}
-.hero-bg{position:absolute;inset:0;z-index:0}
-.hero-grid{position:absolute;inset:0;background-image:
-  linear-gradient(rgba(19,31,45,.03) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(19,31,45,.03) 1px,transparent 1px);
-  background-size:60px 60px;animation:gridMove 20s linear infinite}
-@keyframes gridMove{to{background-position:60px 60px}}
-.hero-gradient{position:absolute;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(19,31,45,.04) 0%,transparent 70%);border-radius:50%;animation:float 8s ease-in-out infinite}
-.hero-gradient2{position:absolute;bottom:-10%;left:-5%;width:400px;height:400px;background:radial-gradient(circle,rgba(49,65,81,.03) 0%,transparent 70%);border-radius:50%;animation:float 10s ease-in-out infinite reverse}
-@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-30px)}}
-.hero .container{position:relative;z-index:1}
-.hero-content{max-width:780px}
-.hero-label{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;background:rgba(19,31,45,.05);border-radius:40px;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--slate);margin-bottom:28px}
-.hero-label .dot{width:6px;height:6px;border-radius:50%;background:#2ecc71;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.hero h1{font-size:clamp(2.5rem,5.5vw,4.2rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:24px;color:var(--navy)}
-.hero h1 em{font-style:normal;position:relative;display:inline-block}
-.hero h1 em::after{content:'';position:absolute;bottom:4px;left:0;right:0;height:8px;background:rgba(19,31,45,.08);border-radius:4px;z-index:-1}
-.hero p{font-size:1.15rem;color:var(--gray);max-width:560px;margin-bottom:40px;line-height:1.7;font-weight:300}
-.hero-actions{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-bottom:32px}
-.hero-phone{display:flex;align-items:center;gap:8px;color:var(--slate);font-size:.9rem;font-weight:500}
-.hero-phone svg{width:18px;height:18px}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:8px;font-weight:600;font-size:1rem;transition:all .25s;cursor:pointer;border:none}
+.btn-primary{background:var(--navy);color:var(--white)}
+.btn-primary:hover{background:var(--slate);transform:translateY(-2px);box-shadow:0 8px 24px rgba(19,31,45,.25)}
+.btn-outline{background:transparent;color:var(--navy);border:2px solid var(--navy)}
+.btn-outline:hover{background:var(--navy);color:var(--white)}
+.btn-white{background:var(--white);color:var(--navy)}
+.btn-white:hover{background:var(--steel);transform:translateY(-2px)}
 
+/* HERO */
+.hero{padding:140px 0 80px;background:linear-gradient(135deg,#f8f9fb 0%,#eef1f5 100%);position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-content h1{font-size:3.2rem;font-weight:800;line-height:1.12;color:var(--navy);margin-bottom:20px}
+.hero-content p{font-size:1.25rem;color:var(--slate);margin-bottom:36px;font-weight:300;line-height:1.6}
+.hero-buttons{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.hero-phone{font-size:.95rem;color:var(--gray);font-weight:500}
+.hero-phone strong{color:var(--navy)}
+.hero-visual{display:flex;justify-content:center;align-items:center}
 @media(max-width:768px){
-  .hero{padding:100px 0 60px;min-height:auto}
-  .hero h1{font-size:2.2rem}
-  .hero p{font-size:1rem}
+  .hero{padding:110px 0 60px}
+  .hero-grid{grid-template-columns:1fr;gap:40px;text-align:center}
+  .hero-content h1{font-size:2.2rem}
+  .hero-content p{font-size:1.05rem}
+  .hero-buttons{justify-content:center}
+  .hero-visual svg{max-width:300px}
 }
 
-/* ─── PROBLEM ─── */
-.problem{padding:120px 0;background:var(--white)}
-.problem-header{max-width:700px;margin-bottom:64px}
-.problem-header .eyebrow{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;font-weight:600;color:var(--gray);margin-bottom:16px}
-.problem-header h2{font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.1;letter-spacing:-.02em}
-.pain-points{display:grid;gap:20px;max-width:700px}
-.pain-point{display:flex;align-items:flex-start;gap:16px;padding:24px 0;border-bottom:1px solid rgba(19,31,45,.06)}
-.pain-point:last-child{border:none}
-.pain-icon{flex-shrink:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:var(--slate)}
-.pain-point p{font-size:1.1rem;font-weight:400;color:var(--navy);line-height:1.5}
-.pain-point p em{font-style:italic;color:var(--gray);font-weight:300}
-.problem-transition{margin-top:56px;font-size:1.3rem;font-weight:600;color:var(--navy);max-width:600px;line-height:1.4}
-
+/* SECTION COMMON */
+.section{padding:90px 0}
+.section-dark{background:var(--navy);color:var(--white)}
+.section-gray{background:#f5f6f8}
+.section-header{text-align:center;margin-bottom:60px}
+.section-header h2{font-size:2.4rem;font-weight:700;margin-bottom:16px}
+.section-header p{font-size:1.1rem;color:var(--gray);max-width:640px;margin:0 auto;line-height:1.6}
+.section-dark .section-header p{color:var(--steel)}
 @media(max-width:768px){
-  .problem{padding:80px 0}
-  .pain-point p{font-size:1rem}
+  .section{padding:60px 0}
+  .section-header h2{font-size:1.8rem}
 }
 
-/* ─── MID CTA ─── */
-.mid-cta{padding:80px 0;background:linear-gradient(135deg,#f7f8fa 0%,#eef0f2 100%)}
-.mid-cta .container{display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
-.mid-cta-text h3{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;margin-bottom:8px;letter-spacing:-.02em}
-.mid-cta-text p{color:var(--gray);font-size:.95rem;max-width:500px}
-.mid-cta-features{display:flex;gap:24px;margin-top:16px;flex-wrap:wrap}
-.mid-cta-feat{display:flex;align-items:center;gap:6px;font-size:.8rem;color:var(--slate);font-weight:500}
-.mid-cta-feat svg{width:16px;height:16px;color:#2ecc71}
-
+/* PROBLEM SECTION */
+.problems-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.problem-card{background:var(--white);border-radius:16px;padding:36px 28px;box-shadow:0 4px 24px rgba(0,0,0,.06);transition:transform .3s,box-shadow .3s;text-align:center}
+.problem-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(0,0,0,.1)}
+.problem-card svg{margin-bottom:20px}
+.problem-card h3{font-size:1.1rem;font-weight:700;margin-bottom:10px;color:var(--navy)}
+.problem-card p{font-size:.9rem;color:var(--gray);line-height:1.6}
 @media(max-width:768px){
-  .mid-cta .container{flex-direction:column;text-align:center;align-items:stretch}
-  .mid-cta-features{justify-content:center}
-  .mid-cta .btn{width:100%;justify-content:center}
+  .problems-grid{grid-template-columns:1fr}
 }
 
-/* ─── DIFFERENCE ─── */
-.difference{padding:120px 0;background:var(--white)}
-.section-header{text-align:center;max-width:650px;margin:0 auto 72px}
-.section-header .eyebrow{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;font-weight:600;color:var(--gray);margin-bottom:16px}
-.section-header h2{font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px}
-.section-header p{color:var(--gray);font-size:1rem;line-height:1.6}
-.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.diff-card{padding:40px 32px;border-radius:16px;background:var(--white);border:1px solid rgba(19,31,45,.06);transition:all .4s var(--ease);position:relative;overflow:hidden}
-.diff-card:hover{border-color:rgba(19,31,45,.12);transform:translateY(-4px);box-shadow:0 20px 60px rgba(19,31,45,.08)}
-.diff-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--navy);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
-.diff-card:hover::before{transform:scaleX(1)}
-.diff-icon{width:48px;height:48px;border-radius:12px;background:rgba(19,31,45,.04);display:flex;align-items:center;justify-content:center;margin-bottom:24px;color:var(--navy)}
-.diff-icon svg{width:24px;height:24px}
-.diff-card h4{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
-.diff-card .pain{font-size:.8rem;color:var(--gray);font-style:italic;margin-bottom:12px;line-height:1.4}
-.diff-card p{font-size:.9rem;color:var(--slate);line-height:1.6}
+/* MID CTA */
+.mid-cta{padding:60px 0;background:linear-gradient(135deg,var(--navy),var(--slate));text-align:center;color:var(--white)}
+.mid-cta h2{font-size:2rem;font-weight:700;margin-bottom:12px}
+.mid-cta p{font-size:1.05rem;opacity:.85;margin-bottom:28px}
 
-@media(max-width:900px){.diff-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){
+/* DIFFERENCE */
+.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.diff-card{background:var(--white);border-radius:14px;padding:32px 24px;text-align:center;box-shadow:0 2px 16px rgba(0,0,0,.05);transition:transform .3s}
+.diff-card:hover{transform:translateY(-4px)}
+.diff-card svg{margin-bottom:16px}
+.diff-card h3{font-size:1.05rem;font-weight:700;margin-bottom:8px;color:var(--navy)}
+.diff-card p{font-size:.88rem;color:var(--gray);line-height:1.55}
+@media(max-width:768px){
   .diff-grid{grid-template-columns:1fr}
-  .difference{padding:80px 0}
 }
 
-/* ─── NUMBERS ─── */
-.numbers{padding:100px 0;background:var(--navy);color:var(--white);position:relative;overflow:hidden}
-.numbers::before{content:'';position:absolute;inset:0;background-image:
-  linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
-  background-size:80px 80px}
-.numbers .section-header .eyebrow{color:rgba(255,255,255,.4)}
-.numbers .section-header h2{color:var(--white)}
-.numbers .section-header p{color:rgba(255,255,255,.5)}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
-.stat{padding:20px}
-.stat-number{font-size:clamp(2.5rem,5vw,3.8rem);font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:8px;font-variant-numeric:tabular-nums;display:flex;align-items:baseline;justify-content:center;gap:2px}
-.stat-number .digit-wrap{display:inline-block;overflow:hidden;height:1em;position:relative}
-.stat-number .digit-inner{display:flex;flex-direction:column;transition:transform 1.2s var(--ease)}
-.stat-number .digit-inner span{display:block;height:1em;line-height:1}
-.stat-number .suffix{font-size:.5em;font-weight:600;opacity:.6}
-.stat-label{font-size:.85rem;color:rgba(255,255,255,.5);font-weight:400;letter-spacing:.02em}
-
+/* NUMBERS */
+.numbers-row{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
+.num-item .num{font-size:3rem;font-weight:800;color:var(--white);line-height:1}
+.num-item .num-label{font-size:.9rem;color:var(--steel);margin-top:8px}
 @media(max-width:768px){
-  .stats-grid{grid-template-columns:1fr 1fr;gap:24px}
-  .numbers{padding:80px 0}
+  .numbers-row{grid-template-columns:repeat(2,1fr);gap:24px}
+  .num-item .num{font-size:2.2rem}
 }
-@media(max-width:400px){.stats-grid{grid-template-columns:1fr}}
 
-/* ─── TECHNOLOGY ─── */
-.technology{padding:120px 0;background:var(--white)}
-.tech-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.tech-features{display:grid;gap:20px}
+/* TECH */
+.tech-layout{display:grid;grid-template-columns:1.3fr 1fr;gap:50px;align-items:center}
+.tech-features{display:flex;flex-direction:column;gap:24px}
 .tech-feat{display:flex;gap:16px;align-items:flex-start}
-.tech-feat-icon{flex-shrink:0;width:40px;height:40px;border-radius:10px;background:rgba(19,31,45,.04);display:flex;align-items:center;justify-content:center;color:var(--navy)}
-.tech-feat-icon svg{width:20px;height:20px}
-.tech-feat h5{font-size:.95rem;font-weight:600;margin-bottom:2px}
-.tech-feat p{font-size:.85rem;color:var(--gray);line-height:1.5}
-/* CSS Dashboard Mockup */
-.dash-mockup{background:#f7f8fa;border-radius:20px;padding:24px;border:1px solid rgba(19,31,45,.06);position:relative}
-.dash-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(19,31,45,.06)}
-.dash-dots{display:flex;gap:6px}
-.dash-dots span{width:10px;height:10px;border-radius:50%}
-.dash-dots span:nth-child(1){background:#ff5f57}
-.dash-dots span:nth-child(2){background:#ffbd2e}
-.dash-dots span:nth-child(3){background:#28c840}
-.dash-title{font-size:.7rem;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:.1em}
-.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.dash-card{background:var(--white);border-radius:12px;padding:16px;border:1px solid rgba(19,31,45,.04)}
-.dash-card-label{font-size:.65rem;color:var(--gray);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:8px}
-.dash-card-value{font-size:1.4rem;font-weight:700;color:var(--navy)}
-.dash-card-value.green{color:#2ecc71}
-.dash-card.wide{grid-column:1/-1}
-.dash-bar-group{display:flex;gap:4px;align-items:flex-end;height:40px;margin-top:8px}
-.dash-bar{width:100%;background:rgba(19,31,45,.08);border-radius:4px;position:relative}
-.dash-bar-fill{position:absolute;bottom:0;left:0;right:0;background:var(--navy);border-radius:4px;transition:height 1s var(--ease)}
-.dash-map{height:60px;background:linear-gradient(135deg,rgba(19,31,45,.03),rgba(19,31,45,.06));border-radius:8px;margin-top:8px;position:relative;overflow:hidden}
-.dash-map-dot{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--navy)}
-.dash-map-dot::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--navy);opacity:.3;animation:ping 2s infinite}
-@keyframes ping{to{transform:scale(2);opacity:0}}
-
-@media(max-width:900px){
-  .tech-layout{grid-template-columns:1fr;gap:48px}
-  .technology{padding:80px 0}
-}
-
-/* ─── INDUSTRIES ─── */
-.industries{padding:120px 0;background:linear-gradient(180deg,#f7f8fa 0%,var(--white) 100%)}
-.ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.ind-card{padding:32px 24px;border-radius:14px;background:var(--white);border:1px solid rgba(19,31,45,.05);text-align:center;transition:all .4s var(--ease);cursor:default}
-.ind-card:hover{border-color:var(--navy);transform:translateY(-3px);box-shadow:0 16px 48px rgba(19,31,45,.08)}
-.ind-card svg{width:32px;height:32px;color:var(--navy);margin:0 auto 16px;opacity:.7;transition:opacity .3s}
-.ind-card:hover svg{opacity:1}
-.ind-card h5{font-size:.9rem;font-weight:600;margin-bottom:4px}
-.ind-card p{font-size:.75rem;color:var(--gray);line-height:1.4}
-
-@media(max-width:900px){.ind-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:500px){.ind-grid{grid-template-columns:1fr}}
-
-/* ─── ABOUT ─── */
-.about{padding:120px 0;background:var(--white)}
-.about-content{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.about-visual{position:relative}
-.about-shape{width:100%;aspect-ratio:1;border-radius:24px;background:linear-gradient(135deg,#f0f2f4,#e8eaed);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.about-shape::before{content:'SG';font-size:8rem;font-weight:900;color:rgba(19,31,45,.04);letter-spacing:-.05em}
-.about-shape::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(to top,rgba(19,31,45,.03),transparent)}
-.about-text .eyebrow{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;font-weight:600;color:var(--gray);margin-bottom:16px}
-.about-text h2{font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:800;line-height:1.15;letter-spacing:-.02em;margin-bottom:20px}
-.about-text p{color:var(--slate);font-size:.95rem;line-height:1.7;margin-bottom:16px}
-.about-text p:last-of-type{margin-bottom:32px}
-
+.tech-feat .feat-dot{width:10px;height:10px;border-radius:50%;background:var(--navy);margin-top:6px;flex-shrink:0}
+.tech-feat h4{font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:4px}
+.tech-feat p{font-size:.88rem;color:var(--gray);line-height:1.5}
 @media(max-width:768px){
-  .about-content{grid-template-columns:1fr;gap:40px}
-  .about{padding:80px 0}
-  .about-visual{order:-1}
+  .tech-layout{grid-template-columns:1fr}
+  .tech-layout .tech-visual{order:-1}
 }
 
-/* ─── CONTACT & FOOTER ─── */
-.contact-hero{padding:80px 0 60px;background:var(--navy);color:var(--white);position:relative;overflow:hidden}
-.contact-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);background-size:24px 24px}
-.contact-hero h2{font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:12px;letter-spacing:-.02em;color:var(--white)}
-.contact-hero p{color:rgba(255,255,255,.5)}
+/* INDUSTRIES */
+.ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ind-card{background:var(--white);border-radius:14px;padding:28px 20px;text-align:center;box-shadow:0 2px 16px rgba(0,0,0,.05);transition:transform .3s}
+.ind-card:hover{transform:translateY(-4px)}
+.ind-card svg{margin-bottom:14px}
+.ind-card h3{font-size:.95rem;font-weight:600;color:var(--navy)}
+@media(max-width:768px){
+  .ind-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+}
 
-.contact{background:var(--white)}
-.contact .container{padding-top:80px;padding-bottom:100px}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
-.contact-info h3{font-size:1.8rem;font-weight:700;margin-bottom:16px;letter-spacing:-.02em}
-.contact-info p{color:var(--gray);margin-bottom:32px;line-height:1.6}
-.contact-links{display:flex;flex-direction:column;gap:16px}
-.contact-link{display:flex;align-items:center;gap:12px;font-weight:500;font-size:.95rem;color:var(--navy);transition:color .3s}
-.contact-link:hover{color:var(--slate)}
-.contact-link svg{width:20px;height:20px;flex-shrink:0}
-.contact-form{display:grid;gap:16px}
-.form-group{display:flex;flex-direction:column;gap:6px}
-.form-group label{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--gray)}
-.form-group input,.form-group textarea{padding:14px 18px;border:1px solid var(--steel);border-radius:12px;font-family:inherit;font-size:.9rem;transition:border-color .3s;outline:none;background:var(--white);color:var(--navy)}
-.form-group input:focus,.form-group textarea:focus{border-color:var(--navy)}
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.about-text h3{font-size:1.6rem;font-weight:700;margin-bottom:16px}
+.about-text p{font-size:.95rem;color:var(--gray);line-height:1.7;margin-bottom:14px}
+@media(max-width:768px){
+  .about-grid{grid-template-columns:1fr}
+}
+
+/* CONTACT */
+.contact-header{background:var(--navy);color:var(--white);padding:60px 0;text-align:center}
+.contact-header h2{font-size:2.2rem;font-weight:700;margin-bottom:12px}
+.contact-header p{opacity:.8;margin-bottom:24px;font-size:1.05rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:60px 0}
+.contact-info h3{font-size:1.3rem;font-weight:700;margin-bottom:20px;color:var(--navy)}
+.contact-item{display:flex;gap:14px;margin-bottom:20px;align-items:flex-start}
+.contact-item .ci-icon{width:44px;height:44px;background:var(--navy);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-item .ci-icon svg{width:20px;height:20px}
+.contact-item h4{font-size:.95rem;font-weight:600;color:var(--navy)}
+.contact-item p{font-size:.88rem;color:var(--gray)}
+.contact-form{background:#f8f9fb;border-radius:16px;padding:36px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.contact-form h3{font-size:1.2rem;font-weight:700;margin-bottom:20px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:.85rem;font-weight:500;margin-bottom:6px;color:var(--slate)}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:12px 16px;border:1.5px solid var(--steel);border-radius:8px;font-family:'Poppins',sans-serif;font-size:.9rem;transition:border-color .2s;background:var(--white)}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--navy)}
 .form-group textarea{resize:vertical;min-height:100px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form-submit{margin-top:8px}
-
+.form-submit{width:100%}
 @media(max-width:768px){
-  .contact-grid{grid-template-columns:1fr;gap:48px}
-  .form-row{grid-template-columns:1fr}
-  .contact .container{padding-top:60px;padding-bottom:80px}
+  .contact-grid{grid-template-columns:1fr}
 }
 
-footer{padding:48px 0 32px;background:#f7f8fa;border-top:1px solid rgba(19,31,45,.06)}
-.footer-content{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
-.footer-logo{font-weight:800;font-size:1.1rem;color:var(--navy)}
-.footer-links{display:flex;gap:24px;flex-wrap:wrap}
-.footer-links a{font-size:.8rem;color:var(--gray);transition:color .3s}
-.footer-links a:hover{color:var(--navy)}
-.footer-copy{font-size:.75rem;color:var(--gray);width:100%;text-align:center;margin-top:24px;padding-top:24px;border-top:1px solid rgba(19,31,45,.06)}
+/* FOOTER */
+.footer{background:var(--navy);color:var(--steel);padding:50px 0 30px}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand p{font-size:.88rem;line-height:1.6;margin-top:16px}
+.footer-col h4{font-size:.9rem;font-weight:600;color:var(--white);margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
+.footer-col a{display:block;font-size:.88rem;color:var(--steel);margin-bottom:8px;transition:color .2s}
+.footer-col a:hover{color:var(--white)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;text-align:center;font-size:.8rem;color:var(--gray)}
+@media(max-width:768px){
+  .footer-grid{grid-template-columns:1fr}
+}
+
+/* ANIMATIONS */
+.anim{opacity:0;transition:all .7s cubic-bezier(.25,.46,.45,.94)}
+.anim-up{transform:translateY(40px)}
+.anim-left{transform:translateX(-50px)}
+.anim-right{transform:translateX(50px)}
+.anim-scale{transform:scale(.85)}
+.anim-pop{transform:scale(.8)}
+.anim.visible{opacity:1;transform:translate(0) scale(1)}
+
+/* Stagger children */
+.stagger .anim:nth-child(1){transition-delay:.05s}
+.stagger .anim:nth-child(2){transition-delay:.1s}
+.stagger .anim:nth-child(3){transition-delay:.15s}
+.stagger .anim:nth-child(4){transition-delay:.2s}
+.stagger .anim:nth-child(5){transition-delay:.25s}
+.stagger .anim:nth-child(6){transition-delay:.3s}
+.stagger .anim:nth-child(7){transition-delay:.35s}
+.stagger .anim:nth-child(8){transition-delay:.4s}
+
+/* Dashboard mockup */
+.dashboard{background:var(--white);border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.1);overflow:hidden;border:1px solid var(--steel)}
+.dash-topbar{background:var(--navy);padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
+.dash-topbar .dots{display:flex;gap:6px}
+.dash-topbar .dots span{width:10px;height:10px;border-radius:50%}
+.dash-topbar .dots span:nth-child(1){background:#ff5f56}
+.dash-topbar .dots span:nth-child(2){background:#ffbd2e}
+.dash-topbar .dots span:nth-child(3){background:#27c93f}
+.dash-topbar .title{color:var(--steel);font-size:.75rem;font-weight:500}
+.dash-body{display:grid;grid-template-columns:2fr 1fr;min-height:300px}
+.dash-map{padding:24px;position:relative;background:#f0f2f5}
+.dash-sidebar{padding:16px;border-left:1px solid var(--steel);background:var(--white);display:flex;flex-direction:column;gap:12px}
+.dash-sidebar .sb-title{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--gray)}
+.dash-sidebar .sb-item{display:flex;align-items:center;gap:8px;padding:8px;background:#f8f9fb;border-radius:8px;font-size:.75rem;color:var(--slate)}
+.sb-item .sb-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.sb-item .sb-dot.green{background:#27c93f}
+.sb-item .sb-dot.yellow{background:#ffbd2e}
+.sb-item .sb-dot.blue{background:#4a90d9}
+.dash-metrics{display:flex;gap:12px;padding:16px 20px;border-top:1px solid var(--steel);background:#fafbfc}
+.metric-box{flex:1;text-align:center;padding:10px;background:var(--white);border-radius:8px;border:1px solid #eee}
+.metric-box .m-num{font-size:1.3rem;font-weight:700;color:var(--navy)}
+.metric-box .m-label{font-size:.65rem;color:var(--gray);margin-top:2px}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header id="header">
-  <div class="container">
-    <a href="#" class="logo">Salient<span> Group</span></a>
-    <nav>
-      <a href="#problem">Why Us</a>
-      <a href="#difference">Difference</a>
-      <a href="#technology">Technology</a>
-      <a href="#industries">Industries</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html" class="nav-cta">Free Assessment</a>
-    </nav>
-    <div class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
-</header>
-
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#problem" onclick="closeMobile()">Why Us</a>
-  <a href="#difference" onclick="closeMobile()">Difference</a>
-  <a href="#technology" onclick="closeMobile()">Technology</a>
-  <a href="#industries" onclick="closeMobile()">Industries</a>
-  <a href="#about" onclick="closeMobile()">About</a>
-  <a href="#contact" onclick="closeMobile()">Contact</a>
-  <a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html" class="btn btn-primary" onclick="closeMobile()">Free Assessment</a>
+<!-- NAV -->
+<nav class="nav">
+<div class="nav-inner">
+<a href="#" class="nav-logo"><img src="data:image/png;base64,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" alt="Salient Group" style="height:40px;width:auto"></a>
+<div class="nav-links">
+<a href="#problems">The Problem</a>
+<a href="#difference">Our Difference</a>
+<a href="#technology">Technology</a>
+<a href="#industries">Industries</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+<a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html" class="nav-cta">Free Assessment</a>
 </div>
+<div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class="mobile-menu">
+<a href="#problems" onclick="this.parentElement.classList.remove('active')">The Problem</a>
+<a href="#difference" onclick="this.parentElement.classList.remove('active')">Our Difference</a>
+<a href="#technology" onclick="this.parentElement.classList.remove('active')">Technology</a>
+<a href="#industries" onclick="this.parentElement.classList.remove('active')">Industries</a>
+<a href="#about" onclick="this.parentElement.classList.remove('active')">About</a>
+<a href="#contact" onclick="this.parentElement.classList.remove('active')">Contact</a>
+<a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html" class="btn btn-primary" style="text-align:center;margin-top:8px">Free Assessment</a>
+</div>
+</nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg">
-    <div class="hero-grid"></div>
-    <div class="hero-gradient"></div>
-    <div class="hero-gradient2"></div>
-  </div>
-  <div class="container">
-    <div class="hero-content reveal">
-      <div class="hero-label stagger"><span class="dot"></span> Owner-Operated Security</div>
-      <h1 class="stagger">Your security provider has 300,000 employees.<br><em>None of them know your name.</em></h1>
-      <p class="stagger">Salient Group is owner-operated, technology-driven physical security — built for companies that are done settling for the industry standard.</p>
-      <div class="hero-actions stagger">
-        <a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html" class="btn btn-primary">
-          Get Your Free Assessment
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="tel:+13179836601" class="btn btn-outline">Call (317) 983-6601</a>
-      </div>
-      <div class="hero-phone stagger">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        Speak with leadership directly — not a call center.
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="hero-grid">
+<div class="hero-content anim anim-left">
+<h1>The last security company you'll ever hire.</h1>
+<p>Security built around your operation. Not ours.</p>
+<div class="hero-buttons">
+<a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html" class="btn btn-primary">Get Your Free Security Assessment</a>
+<a href="tel:3179836601" class="btn btn-outline">Call (317) 983-6601</a>
+</div>
+</div>
+<div class="hero-visual anim anim-right">
+<!-- Hero SVG: Building with Shield -->
+<svg viewBox="0 0 400 380" width="400" height="380" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Ground -->
+<rect x="20" y="320" width="360" height="40" rx="8" fill="#D6D7D8" opacity=".3"/>
+<!-- Building Main -->
+<rect x="100" y="100" width="200" height="220" rx="4" fill="#314151"/>
+<!-- Building windows -->
+<rect x="125" y="130" width="30" height="24" rx="3" fill="#D6D7D8" opacity=".6"/>
+<rect x="170" y="130" width="30" height="24" rx="3" fill="#D6D7D8" opacity=".6"/>
+<rect x="215" y="130" width="30" height="24" rx="3" fill="#D6D7D8" opacity=".6"/>
+<rect x="260" y="130" width="30" height="24" rx="3" fill="#131F2D"/>
+<rect x="125" y="170" width="30" height="24" rx="3" fill="#131F2D"/>
+<rect x="170" y="170" width="30" height="24" rx="3" fill="#D6D7D8" opacity=".6"/>
+<rect x="215" y="170" width="30" height="24" rx="3" fill="#D6D7D8" opacity=".6"/>
+<rect x="260" y="170" width="30" height="24" rx="3" fill="#D6D7D8" opacity=".6"/>
+<rect x="125" y="210" width="30" height="24" rx="3" fill="#D6D7D8" opacity=".6"/>
+<rect x="170" y="210" width="30" height="24" rx="3" fill="#131F2D"/>
+<rect x="215" y="210" width="30" height="24" rx="3" fill="#D6D7D8" opacity=".6"/>
+<rect x="260" y="210" width="30" height="24" rx="3" fill="#D6D7D8" opacity=".6"/>
+<rect x="125" y="250" width="30" height="24" rx="3" fill="#D6D7D8" opacity=".6"/>
+<rect x="170" y="250" width="30" height="24" rx="3" fill="#D6D7D8" opacity=".6"/>
+<rect x="215" y="250" width="30" height="24" rx="3" fill="#131F2D"/>
+<rect x="260" y="250" width="30" height="24" rx="3" fill="#D6D7D8" opacity=".6"/>
+<!-- Door -->
+<rect x="175" y="286" width="50" height="34" rx="3" fill="#131F2D"/>
+<rect x="195" y="300" width="4" height="10" rx="2" fill="#D6D7D8"/>
+<!-- Roof detail -->
+<rect x="140" y="90" width="120" height="14" rx="3" fill="#131F2D"/>
+<!-- Left wing -->
+<rect x="30" y="180" width="70" height="140" rx="4" fill="#314151" opacity=".7"/>
+<rect x="42" y="200" width="20" height="16" rx="2" fill="#D6D7D8" opacity=".5"/>
+<rect x="68" y="200" width="20" height="16" rx="2" fill="#D6D7D8" opacity=".5"/>
+<rect x="42" y="230" width="20" height="16" rx="2" fill="#D6D7D8" opacity=".5"/>
+<rect x="68" y="230" width="20" height="16" rx="2" fill="#D6D7D8" opacity=".5"/>
+<rect x="42" y="260" width="20" height="16" rx="2" fill="#D6D7D8" opacity=".5"/>
+<rect x="68" y="260" width="20" height="16" rx="2" fill="#D6D7D8" opacity=".5"/>
+<!-- Right wing -->
+<rect x="300" y="200" width="70" height="120" rx="4" fill="#314151" opacity=".7"/>
+<rect x="312" y="220" width="20" height="16" rx="2" fill="#D6D7D8" opacity=".5"/>
+<rect x="338" y="220" width="20" height="16" rx="2" fill="#D6D7D8" opacity=".5"/>
+<rect x="312" y="250" width="20" height="16" rx="2" fill="#D6D7D8" opacity=".5"/>
+<rect x="338" y="250" width="20" height="16" rx="2" fill="#D6D7D8" opacity=".5"/>
+<!-- Shield overlay -->
+<path d="M200 30 L248 55 L248 110 C248 155 228 185 200 200 C172 185 152 155 152 110 L152 55 Z" fill="#131F2D" opacity=".9"/>
+<path d="M200 45 L238 65 L238 108 C238 145 222 170 200 182 C178 170 162 145 162 108 L162 65 Z" fill="#314151"/>
+<!-- Shield checkmark -->
+<path d="M182 108 L195 121 L220 92" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<!-- Signal waves from shield -->
+<path d="M250 75 Q270 70 275 55" stroke="#D6D7D8" stroke-width="2" fill="none" opacity=".5"/>
+<path d="M255 85 Q280 78 288 60" stroke="#D6D7D8" stroke-width="2" fill="none" opacity=".35"/>
+<path d="M150 75 Q130 70 125 55" stroke="#D6D7D8" stroke-width="2" fill="none" opacity=".5"/>
+<path d="M145 85 Q120 78 112 60" stroke="#D6D7D8" stroke-width="2" fill="none" opacity=".35"/>
+</svg>
+</div>
+</div>
+</div>
 </section>
 
-<!-- PROBLEM -->
-<section class="problem" id="problem">
-  <div class="container">
-    <div class="problem-header reveal">
-      <div class="eyebrow stagger">The Industry Problem</div>
-      <h2 class="stagger">You hired a security company.<br>So why are you the one managing them?</h2>
-    </div>
-    <div class="pain-points reveal-left">
-      <div class="pain-point stagger">
-        <div class="pain-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15.05 5A5 5 0 0119 8.95M15.05 1A9 9 0 0123 8.94M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          </div>
-        <p>"I can never reach anyone." <em>— Every facility manager, everywhere.</em></p>
-      </div>
-      <div class="pain-point stagger">
-        <div class="pain-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        </div>
-        <p>"Guards don't show up — and nobody tells me." <em>— Until you check yourself.</em></p>
-      </div>
-      <div class="pain-point stagger">
-        <div class="pain-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-        </div>
-        <p>"Every guard is new. Nobody knows our facility." <em>— The revolving door.</em></p>
-      </div>
-      <div class="pain-point stagger">
-        <div class="pain-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        </div>
-        <p>"Zero visibility. I have no idea what's happening on my site." <em>— Flying blind.</em></p>
-      </div>
-      <div class="pain-point stagger">
-        <div class="pain-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        </div>
-        <p>"Cookie-cutter security. Same playbook for every building." <em>— One-size-fits-none.</em></p>
-      </div>
-    </div>
-    <div class="problem-transition reveal">
-      <p class="stagger">We built Salient Group to be the opposite of everything above.</p>
-    </div>
-  </div>
+<!-- PROBLEMS -->
+<section class="section section-gray" id="problems">
+<div class="container">
+<div class="section-header anim anim-up">
+<h2>Sound Familiar?</h2>
+<p>If you've worked with a security company before, you've probably experienced at least one of these.</p>
+</div>
+<div class="problems-grid stagger">
+
+<!-- Can't Reach Anyone -->
+<div class="problem-card anim anim-pop">
+<svg viewBox="0 0 100 100" width="90" height="90" xmlns="http://www.w3.org/2000/svg">
+<rect x="30" y="15" width="40" height="70" rx="6" fill="#314151"/>
+<rect x="34" y="24" width="32" height="48" rx="2" fill="#D6D7D8" opacity=".4"/>
+<circle cx="50" cy="78" r="3" fill="#D6D7D8" opacity=".5"/>
+<!-- Phone waves (ringing) -->
+<path d="M22 30 Q16 40 22 50" stroke="#606060" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<path d="M15 26 Q7 40 15 54" stroke="#606060" stroke-width="2" fill="none" stroke-linecap="round" opacity=".5"/>
+<path d="M78 30 Q84 40 78 50" stroke="#606060" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<path d="M85 26 Q93 40 85 54" stroke="#606060" stroke-width="2" fill="none" stroke-linecap="round" opacity=".5"/>
+<!-- X on screen -->
+<line x1="42" y1="40" x2="58" y2="56" stroke="#131F2D" stroke-width="3" stroke-linecap="round"/>
+<line x1="58" y1="40" x2="42" y2="56" stroke="#131F2D" stroke-width="3" stroke-linecap="round"/>
+<!-- "no answer" dots -->
+<circle cx="44" cy="34" r="1.5" fill="#131F2D"/>
+<circle cx="50" cy="34" r="1.5" fill="#131F2D"/>
+<circle cx="56" cy="34" r="1.5" fill="#131F2D"/>
+</svg>
+<h3>Can't Reach Anyone</h3>
+<p>You call your security provider and get voicemail. Again. Nobody responds for hours — or days.</p>
+</div>
+
+<!-- Guards Don't Show Up -->
+<div class="problem-card anim anim-pop">
+<svg viewBox="0 0 100 100" width="90" height="90" xmlns="http://www.w3.org/2000/svg">
+<!-- Guard post / booth -->
+<rect x="25" y="35" width="50" height="50" rx="3" fill="#314151"/>
+<rect x="30" y="25" width="40" height="14" rx="2" fill="#131F2D"/>
+<!-- Window (empty) -->
+<rect x="35" y="45" width="30" height="22" rx="2" fill="#D6D7D8" opacity=".3"/>
+<!-- Question mark indicating absence -->
+<text x="50" y="62" font-family="Poppins,sans-serif" font-size="20" font-weight="700" fill="#D6D7D8" text-anchor="middle">?</text>
+<!-- Clock -->
+<circle cx="75" cy="22" r="14" fill="#D6D7D8" stroke="#131F2D" stroke-width="2"/>
+<line x1="75" y1="22" x2="75" y2="14" stroke="#131F2D" stroke-width="2" stroke-linecap="round"/>
+<line x1="75" y1="22" x2="82" y2="25" stroke="#131F2D" stroke-width="2" stroke-linecap="round"/>
+<circle cx="75" cy="22" r="1.5" fill="#131F2D"/>
+<!-- Empty chair -->
+<rect x="40" y="72" width="20" height="4" rx="1" fill="#606060"/>
+<rect x="38" y="76" width="3" height="8" rx="1" fill="#606060"/>
+<rect x="59" y="76" width="3" height="8" rx="1" fill="#606060"/>
+</svg>
+<h3>Guards Don't Show Up</h3>
+<p>Shifts go unfilled. Posts are empty. You find out after the fact — if you find out at all.</p>
+</div>
+
+<!-- Forgotten After Signing -->
+<div class="problem-card anim anim-pop">
+<svg viewBox="0 0 100 100" width="90" height="90" xmlns="http://www.w3.org/2000/svg">
+<!-- Contract/document -->
+<rect x="22" y="15" width="44" height="56" rx="3" fill="#D6D7D8"/>
+<rect x="28" y="22" width="28" height="3" rx="1" fill="#314151"/>
+<rect x="28" y="29" width="32" height="3" rx="1" fill="#314151"/>
+<rect x="28" y="36" width="24" height="3" rx="1" fill="#314151"/>
+<rect x="28" y="43" width="30" height="3" rx="1" fill="#314151"/>
+<!-- Signature line -->
+<line x1="28" y1="58" x2="58" y2="58" stroke="#314151" stroke-width="1.5"/>
+<path d="M30 56 Q35 50 40 56 Q45 62 50 54" stroke="#131F2D" stroke-width="1.5" fill="none"/>
+<!-- Cobwebs / dust (forgotten) -->
+<path d="M66 15 Q72 18 66 25" stroke="#606060" stroke-width="1" fill="none" opacity=".6"/>
+<path d="M66 15 Q74 15 72 22" stroke="#606060" stroke-width="1" fill="none" opacity=".6"/>
+<path d="M66 15 L72 22" stroke="#606060" stroke-width=".5" opacity=".4"/>
+<!-- Person walking away -->
+<circle cx="76" cy="55" r="7" fill="#314151"/>
+<path d="M76 62 L76 78" stroke="#314151" stroke-width="3" stroke-linecap="round"/>
+<path d="M76 68 L68 74" stroke="#314151" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M76 68 L84 74" stroke="#314151" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M76 78 L70 88" stroke="#314151" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M76 78 L82 88" stroke="#314151" stroke-width="2.5" stroke-linecap="round"/>
+<!-- Arrow pointing away -->
+<path d="M82 60 L92 55" stroke="#606060" stroke-width="2" stroke-linecap="round"/>
+<path d="M89 52 L92 55 L88 57" stroke="#606060" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+</svg>
+<h3>Forgotten After Signing</h3>
+<p>Great pitch, great promises — then radio silence. No check-ins, no updates, no accountability.</p>
+</div>
+
+<!-- No Visibility -->
+<div class="problem-card anim anim-pop">
+<svg viewBox="0 0 100 100" width="90" height="90" xmlns="http://www.w3.org/2000/svg">
+<!-- Monitor -->
+<rect x="20" y="18" width="60" height="44" rx="4" fill="#314151"/>
+<rect x="24" y="22" width="52" height="36" rx="2" fill="#131F2D"/>
+<!-- Static / no signal lines -->
+<line x1="30" y1="32" x2="70" y2="32" stroke="#606060" stroke-width="1" opacity=".4"/>
+<line x1="28" y1="38" x2="72" y2="38" stroke="#606060" stroke-width="1" opacity=".3"/>
+<line x1="32" y1="44" x2="68" y2="44" stroke="#606060" stroke-width="1" opacity=".4"/>
+<line x1="30" y1="50" x2="70" y2="50" stroke="#606060" stroke-width="1" opacity=".3"/>
+<!-- "No signal" icon -->
+<circle cx="50" cy="40" r="8" stroke="#D6D7D8" stroke-width="2" fill="none" opacity=".5"/>
+<line x1="44" y1="34" x2="56" y2="46" stroke="#D6D7D8" stroke-width="2" opacity=".5"/>
+<!-- Monitor stand -->
+<rect x="42" y="62" width="16" height="6" rx="1" fill="#314151"/>
+<rect x="36" y="68" width="28" height="4" rx="2" fill="#D6D7D8"/>
+<!-- Eye with slash (blindfolded) -->
+<ellipse cx="50" cy="85" rx="16" ry="8" stroke="#606060" stroke-width="2" fill="none"/>
+<circle cx="50" cy="85" r="4" fill="#606060" opacity=".5"/>
+<line x1="36" y1="92" x2="64" y2="78" stroke="#131F2D" stroke-width="3" stroke-linecap="round"/>
+</svg>
+<h3>No Visibility</h3>
+<p>You have no idea if officers are on post, patrolling, or even awake. Zero real-time data.</p>
+</div>
+
+<!-- Constant Turnover -->
+<div class="problem-card anim anim-pop">
+<svg viewBox="0 0 100 100" width="90" height="90" xmlns="http://www.w3.org/2000/svg">
+<!-- Revolving door frame -->
+<rect x="20" y="20" width="60" height="65" rx="0" fill="none" stroke="#314151" stroke-width="3"/>
+<!-- Top arc -->
+<path d="M25 20 Q50 8 75 20" stroke="#314151" stroke-width="2.5" fill="none"/>
+<!-- Revolving panels -->
+<line x1="50" y1="20" x2="50" y2="85" stroke="#D6D7D8" stroke-width="2"/>
+<line x1="20" y1="52" x2="80" y2="52" stroke="#D6D7D8" stroke-width="2"/>
+<!-- People silhouettes cycling through -->
+<circle cx="36" cy="38" r="5" fill="#131F2D"/>
+<rect x="33" y="43" width="6" height="8" rx="2" fill="#131F2D"/>
+<circle cx="64" cy="60" r="5" fill="#606060" opacity=".5"/>
+<rect x="61" y="65" width="6" height="8" rx="2" fill="#606060" opacity=".5"/>
+<circle cx="36" cy="62" r="5" fill="#606060" opacity=".3"/>
+<rect x="33" y="67" width="6" height="8" rx="2" fill="#606060" opacity=".3"/>
+<!-- Circular arrows -->
+<path d="M50 10 Q65 4 72 14" stroke="#131F2D" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M70 11 L72 14 L68 15" stroke="#131F2D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+<path d="M50 92 Q35 98 28 88" stroke="#131F2D" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M30 91 L28 88 L32 87" stroke="#131F2D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+</svg>
+<h3>Constant Turnover</h3>
+<p>New faces every week. Your officers never learn your site, your people, or your expectations.</p>
+</div>
+
+<!-- Cookie Cutter -->
+<div class="problem-card anim anim-pop">
+<svg viewBox="0 0 100 100" width="90" height="90" xmlns="http://www.w3.org/2000/svg">
+<!-- Three identical documents/stamps -->
+<rect x="12" y="22" width="24" height="30" rx="2" fill="#D6D7D8" stroke="#314151" stroke-width="1.5"/>
+<rect x="16" y="28" width="16" height="2" rx="1" fill="#314151"/>
+<rect x="16" y="33" width="12" height="2" rx="1" fill="#314151"/>
+<rect x="16" y="38" width="14" height="2" rx="1" fill="#314151"/>
+
+<rect x="38" y="22" width="24" height="30" rx="2" fill="#D6D7D8" stroke="#314151" stroke-width="1.5"/>
+<rect x="42" y="28" width="16" height="2" rx="1" fill="#314151"/>
+<rect x="42" y="33" width="12" height="2" rx="1" fill="#314151"/>
+<rect x="42" y="38" width="14" height="2" rx="1" fill="#314151"/>
+
+<rect x="64" y="22" width="24" height="30" rx="2" fill="#D6D7D8" stroke="#314151" stroke-width="1.5"/>
+<rect x="68" y="28" width="16" height="2" rx="1" fill="#314151"/>
+<rect x="68" y="33" width="12" height="2" rx="1" fill="#314151"/>
+<rect x="68" y="38" width="14" height="2" rx="1" fill="#314151"/>
+
+<!-- = signs between -->
+<text x="36" y="40" font-size="12" fill="#606060" font-weight="700">=</text>
+<text x="62" y="40" font-size="12" fill="#606060" font-weight="700">=</text>
+
+<!-- Stamp below -->
+<rect x="30" y="62" width="40" height="26" rx="4" fill="#131F2D"/>
+<text x="50" y="78" font-family="Poppins,sans-serif" font-size="9" fill="#FFFFFF" text-anchor="middle" font-weight="600">ONE SIZE</text>
+<!-- Handle -->
+<rect x="45" y="55" width="10" height="10" rx="2" fill="#314151"/>
+<rect x="47" y="50" width="6" height="8" rx="1" fill="#606060"/>
+</svg>
+<h3>Cookie-Cutter Security</h3>
+<p>Same generic plan for every client. Your warehouse gets the same program as a hospital lobby.</p>
+</div>
+
+</div>
+</div>
 </section>
 
 <!-- MID CTA -->
 <section class="mid-cta">
-  <div class="container reveal-scale">
-    <div class="mid-cta-text stagger">
-      <h3>See where your facility stands.</h3>
-      <p>Free assessment. Five minutes. Get a risk score, coverage recommendations, and a pricing estimate.</p>
-      <div class="mid-cta-features">
-        <div class="mid-cta-feat">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Risk Score
-        </div>
-        <div class="mid-cta-feat">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Coverage Plan
-        </div>
-        <div class="mid-cta-feat">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Pricing Estimate
-        </div>
-      </div>
-    </div>
-    <a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html" class="btn btn-primary stagger">
-      Get Your Free Assessment
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-  </div>
+<div class="container anim anim-scale">
+<h2>Ready for Security That Actually Works?</h2>
+<p>Get a free, no-obligation assessment of your current security program.</p>
+<a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html" class="btn btn-white">Get Your Free Security Assessment</a>
+</div>
 </section>
 
 <!-- DIFFERENCE -->
-<section class="difference" id="difference">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="eyebrow stagger">The Salient Group Difference</div>
-      <h2 class="stagger">Six reasons facilities switch to&nbsp;us</h2>
-      <p class="stagger">Every differentiator answers a problem you've already lived through.</p>
-    </div>
-    <div class="diff-grid reveal-scale-sm">
-      <div class="diff-card stagger">
-        <div class="diff-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </div>
-        <h4>Owner-Operated</h4>
-        <div class="pain">"I can never reach anyone."</div>
-        <p>You talk to leadership directly. Not a regional manager. Not a call center. The people who run Salient Group are the people who manage your account.</p>
-      </div>
-      <div class="diff-card stagger">
-        <div class="diff-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h4>Accountability at Every Level</h4>
-        <div class="pain">"Guards don't show up."</div>
-        <p>Real-time GPS tracking, geofenced check-ins, and instant no-show alerts. You know where every officer is — and so do we. No surprises.</p>
-      </div>
-      <div class="diff-card stagger">
-        <div class="diff-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-        </div>
-        <h4>Dedicated Management</h4>
-        <div class="pain">"They forgot about us after signing."</div>
-        <p>Hands-on leadership involvement with every client. Dedicated account management that doesn't disappear after the contract is signed.</p>
-      </div>
-      <div class="diff-card stagger">
-        <div class="diff-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        </div>
-        <h4>Full Visibility, 24/7</h4>
-        <div class="pain">"No idea what's happening on my site."</div>
-        <p>Live dashboards, real-time officer tracking, and incident reporting you can access anytime. You'll never have to wonder again.</p>
-      </div>
-      <div class="diff-card stagger">
-        <div class="diff-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
-        </div>
-        <h4>Consistent Teams</h4>
-        <div class="pain">"Every guard is new."</div>
-        <p>We invest in retention so you get consistent teams who know your facility, your people, and your protocols — not strangers every shift.</p>
-      </div>
-      <div class="diff-card stagger">
-        <div class="diff-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-        </div>
-        <h4>Custom Security Programs</h4>
-        <div class="pain">"Cookie-cutter security."</div>
-        <p>Every security program is built around your specific operation, risks, and requirements. No templates. No one-size-fits-all.</p>
-      </div>
-    </div>
-  </div>
+<section class="section" id="difference">
+<div class="container">
+<div class="section-header anim anim-up">
+<h2>The Salient Group Difference</h2>
+<p>We built Salient Group to fix everything that's broken about contract security.</p>
+</div>
+<div class="diff-grid stagger">
+
+<div class="diff-card anim anim-pop">
+<svg viewBox="0 0 80 80" width="72" height="72" xmlns="http://www.w3.org/2000/svg">
+<!-- Two hands shaking -->
+<path d="M10 45 L22 38 L32 42 L38 38" stroke="#131F2D" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M70 45 L58 38 L48 42 L42 38" stroke="#314151" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M38 38 L42 38 L44 42 L38 46 L34 42 Z" fill="#D6D7D8"/>
+<!-- Person icons -->
+<circle cx="16" cy="24" r="7" fill="#131F2D"/>
+<rect x="10" y="32" width="12" height="4" rx="2" fill="#131F2D"/>
+<circle cx="64" cy="24" r="7" fill="#314151"/>
+<rect x="58" y="32" width="12" height="4" rx="2" fill="#314151"/>
+<!-- Direct line -->
+<line x1="24" y1="24" x2="56" y2="24" stroke="#D6D7D8" stroke-width="1.5" stroke-dasharray="3,3"/>
+<text x="40" y="68" font-family="Poppins,sans-serif" font-size="7" fill="#606060" text-anchor="middle" font-weight="500">DIRECT ACCESS</text>
+</svg>
+<h3>Owner-Operated</h3>
+<p>Talk to leadership, not a call center. Our owners are involved in every account — personally.</p>
+</div>
+
+<div class="diff-card anim anim-pop">
+<svg viewBox="0 0 80 80" width="72" height="72" xmlns="http://www.w3.org/2000/svg">
+<!-- Radar circle -->
+<circle cx="40" cy="36" r="24" fill="#131F2D" opacity=".1"/>
+<circle cx="40" cy="36" r="24" stroke="#131F2D" stroke-width="2" fill="none"/>
+<circle cx="40" cy="36" r="16" stroke="#314151" stroke-width="1" fill="none" opacity=".5"/>
+<circle cx="40" cy="36" r="8" stroke="#314151" stroke-width="1" fill="none" opacity=".3"/>
+<!-- Sweep line -->
+<line x1="40" y1="36" x2="58" y2="22" stroke="#131F2D" stroke-width="2" stroke-linecap="round"/>
+<!-- Blips -->
+<circle cx="48" cy="28" r="3" fill="#27c93f"/>
+<circle cx="32" cy="42" r="3" fill="#27c93f"/>
+<circle cx="52" cy="40" r="2.5" fill="#ffbd2e"/>
+<!-- Center dot -->
+<circle cx="40" cy="36" r="2" fill="#131F2D"/>
+<text x="40" y="72" font-family="Poppins,sans-serif" font-size="7" fill="#606060" text-anchor="middle" font-weight="500">REAL-TIME</text>
+</svg>
+<h3>Real-Time Platform</h3>
+<p>GPS tracking, geofenced check-ins, and instant alerts. Know exactly where your officers are, always.</p>
+</div>
+
+<div class="diff-card anim anim-pop">
+<svg viewBox="0 0 80 80" width="72" height="72" xmlns="http://www.w3.org/2000/svg">
+<!-- Group of 3 people with consistency bar -->
+<circle cx="24" cy="24" r="8" fill="#314151"/>
+<rect x="18" y="33" width="12" height="14" rx="3" fill="#314151"/>
+<circle cx="40" cy="20" r="9" fill="#131F2D"/>
+<rect x="33" y="30" width="14" height="16" rx="3" fill="#131F2D"/>
+<circle cx="56" cy="24" r="8" fill="#314151"/>
+<rect x="50" y="33" width="12" height="14" rx="3" fill="#314151"/>
+<!-- Consistency indicator: solid bar beneath -->
+<rect x="14" y="52" width="52" height="5" rx="2.5" fill="#D6D7D8"/>
+<rect x="14" y="52" width="52" height="5" rx="2.5" fill="#131F2D" opacity=".7"/>
+<text x="40" y="72" font-family="Poppins,sans-serif" font-size="7" fill="#606060" text-anchor="middle" font-weight="500">CONSISTENT</text>
+</svg>
+<h3>Dedicated Teams</h3>
+<p>The same officers at your site, every shift. They know your facility, your people, and your protocols.</p>
+</div>
+
+<div class="diff-card anim anim-pop">
+<svg viewBox="0 0 80 80" width="72" height="72" xmlns="http://www.w3.org/2000/svg">
+<!-- Dashboard screen -->
+<rect x="10" y="10" width="60" height="42" rx="4" fill="#131F2D"/>
+<rect x="14" y="15" width="52" height="32" rx="2" fill="#314151"/>
+<!-- Bar chart -->
+<rect x="18" y="36" width="8" height="10" rx="1" fill="#D6D7D8"/>
+<rect x="28" y="28" width="8" height="18" rx="1" fill="#FFFFFF"/>
+<rect x="38" y="32" width="8" height="14" rx="1" fill="#D6D7D8"/>
+<rect x="48" y="24" width="8" height="22" rx="1" fill="#FFFFFF"/>
+<!-- Line on top -->
+<polyline points="22,30 32,22 42,26 52,18" stroke="#27c93f" stroke-width="2" fill="none" stroke-linecap="round"/>
+<!-- Monitor stand -->
+<rect x="32" y="52" width="16" height="4" rx="1" fill="#314151"/>
+<rect x="28" y="56" width="24" height="3" rx="1.5" fill="#D6D7D8"/>
+<text x="40" y="72" font-family="Poppins,sans-serif" font-size="7" fill="#606060" text-anchor="middle" font-weight="500">TRANSPARENT</text>
+</svg>
+<h3>Live Dashboards</h3>
+<p>24/7 reporting, real-time tracking, and live dashboards so you always know what's happening on site.</p>
+</div>
+
+<div class="diff-card anim anim-pop">
+<svg viewBox="0 0 80 80" width="72" height="72" xmlns="http://www.w3.org/2000/svg">
+<!-- Anchor / roots concept -->
+<circle cx="40" cy="22" r="10" stroke="#131F2D" stroke-width="3" fill="none"/>
+<circle cx="40" cy="22" r="3" fill="#131F2D"/>
+<line x1="40" y1="32" x2="40" y2="50" stroke="#131F2D" stroke-width="3" stroke-linecap="round"/>
+<!-- Roots spreading -->
+<path d="M40 50 Q32 58 24 64" stroke="#314151" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<path d="M40 50 Q48 58 56 64" stroke="#314151" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<path d="M40 50 L40 66" stroke="#314151" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M24 64 Q20 68 18 72" stroke="#314151" stroke-width="2" fill="none" stroke-linecap="round" opacity=".6"/>
+<path d="M56 64 Q60 68 62 72" stroke="#314151" stroke-width="2" fill="none" stroke-linecap="round" opacity=".6"/>
+<path d="M30 58 Q26 62 22 68" stroke="#314151" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".4"/>
+<path d="M50 58 Q54 62 58 68" stroke="#314151" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".4"/>
+<!-- Crossbar -->
+<line x1="30" y1="42" x2="50" y2="42" stroke="#131F2D" stroke-width="3" stroke-linecap="round"/>
+</svg>
+<h3>Retention Investment</h3>
+<p>We invest in our people so they stay. Better pay, better culture, better results for you.</p>
+</div>
+
+<div class="diff-card anim anim-pop">
+<svg viewBox="0 0 80 80" width="72" height="72" xmlns="http://www.w3.org/2000/svg">
+<!-- Blueprint / drafting -->
+<rect x="10" y="12" width="60" height="48" rx="3" fill="#131F2D" opacity=".08"/>
+<rect x="10" y="12" width="60" height="48" rx="3" stroke="#131F2D" stroke-width="2" fill="none"/>
+<!-- Grid lines -->
+<line x1="10" y1="24" x2="70" y2="24" stroke="#314151" stroke-width=".5" opacity=".3"/>
+<line x1="10" y1="36" x2="70" y2="36" stroke="#314151" stroke-width=".5" opacity=".3"/>
+<line x1="10" y1="48" x2="70" y2="48" stroke="#314151" stroke-width=".5" opacity=".3"/>
+<line x1="30" y1="12" x2="30" y2="60" stroke="#314151" stroke-width=".5" opacity=".3"/>
+<line x1="50" y1="12" x2="50" y2="60" stroke="#314151" stroke-width=".5" opacity=".3"/>
+<!-- Custom floor plan -->
+<rect x="16" y="18" width="22" height="14" rx="1" stroke="#131F2D" stroke-width="1.5" fill="none"/>
+<rect x="42" y="18" width="22" height="14" rx="1" stroke="#131F2D" stroke-width="1.5" fill="none"/>
+<rect x="16" y="38" width="48" height="16" rx="1" stroke="#131F2D" stroke-width="1.5" fill="none"/>
+<!-- Door gaps -->
+<line x1="34" y1="32" x2="42" y2="32" stroke="white" stroke-width="3"/>
+<line x1="36" y1="38" x2="44" y2="38" stroke="white" stroke-width="3"/>
+<!-- Pencil -->
+<line x1="58" y1="66" x2="68" y2="56" stroke="#131F2D" stroke-width="2.5" stroke-linecap="round"/>
+<polygon points="57,68 55,73 60,71" fill="#131F2D"/>
+<text x="40" y="78" font-family="Poppins,sans-serif" font-size="7" fill="#606060" text-anchor="middle" font-weight="500">TAILORED</text>
+</svg>
+<h3>Custom Programs</h3>
+<p>Every security program is built from scratch for your facility. No templates, no shortcuts.</p>
+</div>
+
+</div>
+</div>
 </section>
 
 <!-- NUMBERS -->
-<section class="numbers" id="numbers">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="eyebrow stagger">By the Numbers</div>
-      <h2 class="stagger">Built to scale. Proven to perform.</h2>
-    </div>
-    <div class="stats-grid reveal">
-      <div class="stat stagger">
-        <div class="stat-number" data-target="48" data-suffix="+"><span class="counter-placeholder">0</span><span class="suffix">+</span></div>
-        <div class="stat-label">States Covered</div>
-      </div>
-      <div class="stat stagger">
-        <div class="stat-number" data-target="24" data-suffix="/7"><span class="counter-placeholder">0</span><span class="suffix">/7</span></div>
-        <div class="stat-label">Operations Monitoring</div>
-      </div>
-      <div class="stat stagger">
-        <div class="stat-number" data-target="15" data-suffix="min"><span class="counter-placeholder">0</span><span class="suffix">min</span></div>
-        <div class="stat-label">Average Response Time</div>
-      </div>
-      <div class="stat stagger">
-        <div class="stat-number" data-target="100" data-suffix="%"><span class="counter-placeholder">0</span><span class="suffix">%</span></div>
-        <div class="stat-label">Shift Coverage Rate</div>
-      </div>
-    </div>
-  </div>
+<section class="section section-dark" id="numbers">
+<div class="container">
+<div class="numbers-row">
+<div class="num-item anim anim-scale">
+<div class="num" data-target="50" data-suffix="+">0+</div>
+<div class="num-label">States Covered</div>
+</div>
+<div class="num-item anim anim-scale">
+<div class="num" data-target="24" data-suffix="/7">0/7</div>
+<div class="num-label">Operations Center</div>
+</div>
+<div class="num-item anim anim-scale">
+<div class="num" data-target="100" data-suffix="%">0%</div>
+<div class="num-label">Custom Programs</div>
+</div>
+<div class="num-item anim anim-scale">
+<div class="num" data-target="15" data-suffix="min">0min</div>
+<div class="num-label">Average Response Time</div>
+</div>
+</div>
+</div>
 </section>
 
 <!-- TECHNOLOGY -->
-<section class="technology" id="technology">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="eyebrow stagger">Technology</div>
-      <h2 class="stagger">A different kind of security company</h2>
-      <p class="stagger">Our operations platform gives you — and us — complete visibility into every aspect of your security program.</p>
-    </div>
-    <div class="tech-layout">
-      <div class="tech-features reveal-left">
-        <div class="tech-feat stagger">
-          <div class="tech-feat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div>
-            <h5>GPS Tracking & Geofenced Check-ins</h5>
-            <p>Officers clock in and out at your facility — verified by location. No buddy punching. No guesswork.</p>
-          </div>
-        </div>
-        <div class="tech-feat stagger">
-          <div class="tech-feat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          </div>
-          <div>
-            <h5>Live Dashboards</h5>
-            <p>See who's on site, patrol activity, and incident reports — all in real time, from any device.</p>
-          </div>
-        </div>
-        <div class="tech-feat stagger">
-          <div class="tech-feat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
-          </div>
-          <div>
-            <h5>Instant Alerts</h5>
-            <p>No-show notifications, incident flags, and schedule changes — pushed to you and our operations team simultaneously.</p>
-          </div>
-        </div>
-        <div class="tech-feat stagger">
-          <div class="tech-feat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          </div>
-          <div>
-            <h5>Digital Post Orders</h5>
-            <p>Officers receive site-specific instructions digitally. Updated in real time. No more binders that nobody reads.</p>
-          </div>
-        </div>
-        <div class="tech-feat stagger">
-          <div class="tech-feat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-          </div>
-          <div>
-            <h5>Automated Scheduling</h5>
-            <p>Intelligent scheduling with built-in redundancy. Shifts are filled before you even know there's a gap.</p>
-          </div>
-        </div>
-      </div>
-      <div class="dash-mockup reveal-right">
-        <div class="dash-topbar">
-          <div class="dash-dots"><span></span><span></span><span></span></div>
-          <div class="dash-title">Salient Group Operations</div>
-        </div>
-        <div class="dash-grid">
-          <div class="dash-card">
-            <div class="dash-card-label">Officers Active</div>
-            <div class="dash-card-value">12</div>
-          </div>
-          <div class="dash-card">
-            <div class="dash-card-label">Shift Coverage</div>
-            <div class="dash-card-value green">100%</div>
-          </div>
-          <div class="dash-card wide">
-            <div class="dash-card-label">Weekly Activity</div>
-            <div class="dash-bar-group" id="dashBars">
-              <div class="dash-bar" style="height:40px"><div class="dash-bar-fill" data-h="75%"></div></div>
-              <div class="dash-bar" style="height:40px"><div class="dash-bar-fill" data-h="90%"></div></div>
-              <div class="dash-bar" style="height:40px"><div class="dash-bar-fill" data-h="60%"></div></div>
-              <div class="dash-bar" style="height:40px"><div class="dash-bar-fill" data-h="85%"></div></div>
-              <div class="dash-bar" style="height:40px"><div class="dash-bar-fill" data-h="95%"></div></div>
-              <div class="dash-bar" style="height:40px"><div class="dash-bar-fill" data-h="70%"></div></div>
-              <div class="dash-bar" style="height:40px"><div class="dash-bar-fill" data-h="80%"></div></div>
-            </div>
-          </div>
-          <div class="dash-card wide">
-            <div class="dash-card-label">Active Coverage Map</div>
-            <div class="dash-map">
-              <div class="dash-map-dot" style="top:30%;left:25%"></div>
-              <div class="dash-map-dot" style="top:45%;left:55%"></div>
-              <div class="dash-map-dot" style="top:20%;left:70%"></div>
-              <div class="dash-map-dot" style="top:60%;left:40%"></div>
-              <div class="dash-map-dot" style="top:35%;left:82%"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<section class="section section-gray" id="technology">
+<div class="container">
+<div class="section-header anim anim-up">
+<h2>Technology That Keeps You Informed</h2>
+<p>Real-time visibility into every officer, every post, every shift — from any device.</p>
+</div>
+<div class="tech-layout">
+<div class="tech-visual anim anim-left">
+<!-- Dashboard Mockup -->
+<div class="dashboard">
+<div class="dash-topbar">
+<div class="dots"><span></span><span></span><span></span></div>
+<div class="title">Salient Group — Command Dashboard</div>
+<div style="width:50px"></div>
+</div>
+<div class="dash-body">
+<div class="dash-map">
+<svg viewBox="0 0 300 220" width="100%" xmlns="http://www.w3.org/2000/svg">
+<!-- Stylized map background -->
+<rect width="300" height="220" fill="#e8ecf0" rx="4"/>
+<!-- Roads -->
+<line x1="0" y1="80" x2="300" y2="80" stroke="#D6D7D8" stroke-width="4"/>
+<line x1="0" y1="160" x2="300" y2="160" stroke="#D6D7D8" stroke-width="4"/>
+<line x1="100" y1="0" x2="100" y2="220" stroke="#D6D7D8" stroke-width="4"/>
+<line x1="200" y1="0" x2="200" y2="220" stroke="#D6D7D8" stroke-width="4"/>
+<!-- Diagonal road -->
+<line x1="0" y1="0" x2="300" y2="220" stroke="#D6D7D8" stroke-width="3" opacity=".5"/>
+<!-- Buildings (blocks) -->
+<rect x="20" y="20" width="60" height="45" rx="3" fill="#D6D7D8" opacity=".6"/>
+<rect x="120" y="95" width="60" height="50" rx="3" fill="#D6D7D8" opacity=".6"/>
+<rect x="220" y="10" width="55" height="55" rx="3" fill="#D6D7D8" opacity=".6"/>
+<rect x="30" y="120" width="50" height="25" rx="3" fill="#D6D7D8" opacity=".6"/>
+<rect x="220" y="170" width="60" height="35" rx="3" fill="#D6D7D8" opacity=".6"/>
+<!-- Officer dots with pulse -->
+<circle cx="50" cy="40" r="10" fill="#27c93f" opacity=".2">
+<animate attributeName="r" values="10;16;10" dur="2s" repeatCount="indefinite"/>
+</circle>
+<circle cx="50" cy="40" r="5" fill="#27c93f"/>
+<text x="50" y="43" font-size="6" fill="white" text-anchor="middle" font-weight="700">J.R.</text>
+
+<circle cx="150" cy="120" r="10" fill="#27c93f" opacity=".2">
+<animate attributeName="r" values="10;16;10" dur="2s" repeatCount="indefinite" begin=".5s"/>
+</circle>
+<circle cx="150" cy="120" r="5" fill="#27c93f"/>
+<text x="150" y="123" font-size="6" fill="white" text-anchor="middle" font-weight="700">M.T.</text>
+
+<circle cx="245" cy="35" r="10" fill="#27c93f" opacity=".2">
+<animate attributeName="r" values="10;16;10" dur="2s" repeatCount="indefinite" begin="1s"/>
+</circle>
+<circle cx="245" cy="35" r="5" fill="#27c93f"/>
+<text x="245" y="38" font-size="6" fill="white" text-anchor="middle" font-weight="700">K.W.</text>
+
+<circle cx="55" cy="132" r="10" fill="#ffbd2e" opacity=".2">
+<animate attributeName="r" values="10;14;10" dur="2.5s" repeatCount="indefinite" begin=".3s"/>
+</circle>
+<circle cx="55" cy="132" r="5" fill="#ffbd2e"/>
+<text x="55" y="135" font-size="6" fill="white" text-anchor="middle" font-weight="700">A.L.</text>
+
+<circle cx="250" cy="188" r="10" fill="#27c93f" opacity=".2">
+<animate attributeName="r" values="10;16;10" dur="2s" repeatCount="indefinite" begin="1.5s"/>
+</circle>
+<circle cx="250" cy="188" r="5" fill="#27c93f"/>
+<text x="250" y="191" font-size="6" fill="white" text-anchor="middle" font-weight="700">D.S.</text>
+
+<!-- Legend -->
+<rect x="10" y="195" width="130" height="20" rx="4" fill="white" opacity=".9"/>
+<circle cx="22" cy="205" r="4" fill="#27c93f"/>
+<text x="30" y="208" font-size="7" fill="#314151">On Post</text>
+<circle cx="72" cy="205" r="4" fill="#ffbd2e"/>
+<text x="80" y="208" font-size="7" fill="#314151">Patrolling</text>
+</svg>
+</div>
+<div class="dash-sidebar">
+<div class="sb-title">Live Activity</div>
+<div class="sb-item"><span class="sb-dot green"></span>J. Rivera checked in — Post A</div>
+<div class="sb-item"><span class="sb-dot green"></span>M. Torres — Patrol Route 2</div>
+<div class="sb-item"><span class="sb-dot yellow"></span>A. Lopez — En route</div>
+<div class="sb-item"><span class="sb-dot green"></span>K. Williams — Post C</div>
+<div class="sb-item"><span class="sb-dot blue"></span>Incident #412 — Resolved</div>
+<div class="sb-title" style="margin-top:8px">Shift Summary</div>
+<div class="sb-item"><span class="sb-dot green"></span>5/5 posts covered</div>
+<div class="sb-item"><span class="sb-dot green"></span>0 missed check-ins</div>
+</div>
+</div>
+<div class="dash-metrics">
+<div class="metric-box"><div class="m-num">5</div><div class="m-label">Officers Active</div></div>
+<div class="metric-box"><div class="m-num">98%</div><div class="m-label">Check-in Rate</div></div>
+<div class="metric-box"><div class="m-num">0</div><div class="m-label">Open Incidents</div></div>
+<div class="metric-box"><div class="m-num">47</div><div class="m-label">Patrols Today</div></div>
+</div>
+</div>
+</div>
+<div class="tech-features anim anim-right">
+<div class="tech-feat">
+<div class="feat-dot"></div>
+<div>
+<h4>GPS-Verified Check-ins</h4>
+<p>Officers check in via geofenced locations. You'll know instantly if a post is unmanned.</p>
+</div>
+</div>
+<div class="tech-feat">
+<div class="feat-dot"></div>
+<div>
+<h4>Live Officer Tracking</h4>
+<p>See every officer's real-time location on an interactive map — from any device.</p>
+</div>
+</div>
+<div class="tech-feat">
+<div class="feat-dot"></div>
+<div>
+<h4>Instant Incident Alerts</h4>
+<p>Get notified the moment something happens. No delays, no waiting for end-of-shift reports.</p>
+</div>
+</div>
+<div class="tech-feat">
+<div class="feat-dot"></div>
+<div>
+<h4>Automated Reporting</h4>
+<p>Daily activity reports, shift summaries, and trend analytics delivered automatically.</p>
+</div>
+</div>
+<div class="tech-feat">
+<div class="feat-dot"></div>
+<div>
+<h4>Client Dashboard Access</h4>
+<p>Your own login to view everything in real-time. Full transparency, zero guesswork.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 
 <!-- INDUSTRIES -->
-<section class="industries" id="industries">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="eyebrow stagger">Industries</div>
-      <h2 class="stagger">Security built for your operation</h2>
-      <p class="stagger">Custom programs across every major vertical — because a warehouse and a hospital don't need the same security plan.</p>
-    </div>
-    <div class="ind-grid reveal-scale-sm">
-      <div class="ind-card stagger">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="6" width="22" height="12" rx="2"/><path d="M1 10h22"/></svg>
-        <h5>Logistics & Distribution</h5>
-        <p>High-volume facilities with 24/7 shift coverage and cargo security.</p>
-      </div>
-      <div class="ind-card stagger">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M9 6h.01M15 6h.01M9 10h.01M15 10h.01M9 14h.01M15 14h.01"/></svg>
-        <h5>Commercial Real Estate</h5>
-        <p>Lobby security, access control, and tenant peace of mind.</p>
-      </div>
-      <div class="ind-card stagger">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        <h5>Healthcare</h5>
-        <p>Patient-facing environments requiring trained, composed officers.</p>
-      </div>
-      <div class="ind-card stagger">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 20h20M5 20V8l7-5 7 5v12"/><rect x="9" y="12" width="6" height="8"/></svg>
-        <h5>Construction</h5>
-        <p>Jobsite protection, material security, and after-hours monitoring.</p>
-      </div>
-      <div class="ind-card stagger">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
-        <h5>Education</h5>
-        <p>Campus safety programs that prioritize de-escalation and visibility.</p>
-      </div>
-      <div class="ind-card stagger">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-        <h5>Retail</h5>
-        <p>Loss prevention and customer-facing security that represents your brand.</p>
-      </div>
-      <div class="ind-card stagger">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        <h5>Events</h5>
-        <p>Crowd management, access control, and rapid-response teams.</p>
-      </div>
-      <div class="ind-card stagger">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        <h5>HOA & Residential</h5>
-        <p>Community patrols, gatehouse staffing, and resident-first service.</p>
-      </div>
-    </div>
-  </div>
+<section class="section" id="industries">
+<div class="container">
+<div class="section-header anim anim-up">
+<h2>Industries We Protect</h2>
+<p>Specialized security programs for the industries that need them most.</p>
+</div>
+<div class="ind-grid stagger">
+
+<div class="ind-card anim anim-pop">
+<svg viewBox="0 0 80 80" width="68" height="68" xmlns="http://www.w3.org/2000/svg">
+<!-- Warehouse -->
+<rect x="8" y="30" width="50" height="36" rx="2" fill="#314151"/>
+<polygon points="8,30 33,14 58,30" fill="#131F2D"/>
+<!-- Loading dock door -->
+<rect x="14" y="46" width="16" height="20" rx="1" fill="#D6D7D8" opacity=".4"/>
+<rect x="36" y="46" width="16" height="20" rx="1" fill="#D6D7D8" opacity=".4"/>
+<!-- Truck -->
+<rect x="48" y="48" width="26" height="16" rx="2" fill="#131F2D"/>
+<rect x="58" y="42" width="16" height="22" rx="2" fill="#314151"/>
+<circle cx="54" cy="66" r="4" fill="#606060" stroke="#D6D7D8" stroke-width="1.5"/>
+<circle cx="68" cy="66" r="4" fill="#606060" stroke="#D6D7D8" stroke-width="1.5"/>
+<!-- Ground -->
+<line x1="4" y1="68" x2="78" y2="68" stroke="#D6D7D8" stroke-width="1.5"/>
+</svg>
+<h3>Logistics & Warehousing</h3>
+</div>
+
+<div class="ind-card anim anim-pop">
+<svg viewBox="0 0 80 80" width="68" height="68" xmlns="http://www.w3.org/2000/svg">
+<!-- Office building -->
+<rect x="18" y="16" width="44" height="50" rx="3" fill="#314151"/>
+<rect x="14" y="12" width="52" height="8" rx="2" fill="#131F2D"/>
+<!-- Windows grid -->
+<rect x="24" y="24" width="10" height="8" rx="1" fill="#D6D7D8" opacity=".5"/>
+<rect x="38" y="24" width="10" height="8" rx="1" fill="#D6D7D8" opacity=".5"/>
+<rect x="52" y="24" width="6" height="8" rx="1" fill="#D6D7D8" opacity=".5"/>
+<rect x="24" y="36" width="10" height="8" rx="1" fill="#D6D7D8" opacity=".5"/>
+<rect x="38" y="36" width="10" height="8" rx="1" fill="#D6D7D8" opacity=".5"/>
+<rect x="52" y="36" width="6" height="8" rx="1" fill="#D6D7D8" opacity=".5"/>
+<rect x="24" y="48" width="10" height="8" rx="1" fill="#D6D7D8" opacity=".5"/>
+<rect x="38" y="48" width="10" height="8" rx="1" fill="#D6D7D8" opacity=".5"/>
+<!-- Door -->
+<rect x="35" y="56" width="10" height="10" rx="1" fill="#131F2D"/>
+<line x1="14" y1="66" x2="66" y2="66" stroke="#D6D7D8" stroke-width="1.5"/>
+</svg>
+<h3>Commercial Real Estate</h3>
+</div>
+
+<div class="ind-card anim anim-pop">
+<svg viewBox="0 0 80 80" width="68" height="68" xmlns="http://www.w3.org/2000/svg">
+<!-- Hospital -->
+<rect x="18" y="24" width="44" height="42" rx="3" fill="#314151"/>
+<!-- Cross -->
+<rect x="34" y="10" width="12" height="30" rx="2" fill="#131F2D"/>
+<rect x="26" y="18" width="28" height="12" rx="2" fill="#131F2D"/>
+<rect x="36" y="14" width="8" height="22" rx="1" fill="#FFFFFF" opacity=".8"/>
+<rect x="30" y="22" width="20" height="6" rx="1" fill="#FFFFFF" opacity=".8"/>
+<!-- Windows -->
+<rect x="24" y="40" width="12" height="10" rx="1" fill="#D6D7D8" opacity=".5"/>
+<rect x="44" y="40" width="12" height="10" rx="1" fill="#D6D7D8" opacity=".5"/>
+<!-- Entrance -->
+<rect x="34" y="54" width="12" height="12" rx="1" fill="#D6D7D8" opacity=".3"/>
+<line x1="14" y1="66" x2="66" y2="66" stroke="#D6D7D8" stroke-width="1.5"/>
+</svg>
+<h3>Healthcare</h3>
+</div>
+
+<div class="ind-card anim anim-pop">
+<svg viewBox="0 0 80 80" width="68" height="68" xmlns="http://www.w3.org/2000/svg">
+<!-- Crane -->
+<rect x="22" y="20" width="6" height="46" rx="1" fill="#131F2D"/>
+<rect x="12" y="16" width="36" height="6" rx="1" fill="#314151"/>
+<line x1="48" y1="16" x2="48" y2="36" stroke="#606060" stroke-width="1.5"/>
+<line x1="28" y1="16" x2="48" y2="36" stroke="#606060" stroke-width="1"/>
+<line x1="12" y1="19" x2="22" y2="30" stroke="#606060" stroke-width="1"/>
+<!-- Hard hat -->
+<ellipse cx="58" cy="42" rx="12" ry="6" fill="#D6D7D8"/>
+<path d="M46 42 Q46 34 58 32 Q70 34 70 42" fill="#314151"/>
+<!-- Building under construction -->
+<rect x="40" y="50" width="28" height="16" rx="2" fill="#314151" opacity=".5" stroke="#314151" stroke-width="1" stroke-dasharray="4,2"/>
+<line x1="10" y1="66" x2="74" y2="66" stroke="#D6D7D8" stroke-width="1.5"/>
+</svg>
+<h3>Construction</h3>
+</div>
+
+<div class="ind-card anim anim-pop">
+<svg viewBox="0 0 80 80" width="68" height="68" xmlns="http://www.w3.org/2000/svg">
+<!-- School building -->
+<rect x="14" y="28" width="52" height="38" rx="3" fill="#314151"/>
+<!-- Entrance portico -->
+<rect x="30" y="22" width="20" height="10" rx="2" fill="#131F2D"/>
+<!-- Flag -->
+<line x1="40" y1="10" x2="40" y2="24" stroke="#131F2D" stroke-width="2"/>
+<rect x="41" y="10" width="12" height="8" rx="1" fill="#D6D7D8"/>
+<!-- Windows -->
+<rect x="18" y="36" width="10" height="10" rx="1" fill="#D6D7D8" opacity=".5"/>
+<rect x="35" y="36" width="10" height="10" rx="1" fill="#D6D7D8" opacity=".5"/>
+<rect x="52" y="36" width="10" height="10" rx="1" fill="#D6D7D8" opacity=".5"/>
+<!-- Door -->
+<rect x="36" y="52" width="8" height="14" rx="1" fill="#131F2D"/>
+<line x1="10" y1="66" x2="70" y2="66" stroke="#D6D7D8" stroke-width="1.5"/>
+</svg>
+<h3>Education</h3>
+</div>
+
+<div class="ind-card anim anim-pop">
+<svg viewBox="0 0 80 80" width="68" height="68" xmlns="http://www.w3.org/2000/svg">
+<!-- Storefront -->
+<rect x="14" y="28" width="52" height="38" rx="3" fill="#314151"/>
+<!-- Awning -->
+<path d="M12 28 L68 28 L64 38 L16 38 Z" fill="#131F2D"/>
+<path d="M16 28 L20 38 M28 28 L32 38 M40 28 L44 38 M52 28 L56 38 M64 28 L68 38" stroke="#D6D7D8" stroke-width="1" opacity=".3"/>
+<!-- Window display -->
+<rect x="18" y="40" width="18" height="16" rx="2" fill="#D6D7D8" opacity=".4"/>
+<rect x="44" y="40" width="18" height="16" rx="2" fill="#D6D7D8" opacity=".4"/>
+<!-- Door -->
+<rect x="38" y="48" width="8" height="18" rx="1" fill="#131F2D"/>
+<circle cx="44" cy="58" r="1.5" fill="#D6D7D8"/>
+<!-- Sign -->
+<rect x="24" y="20" width="32" height="8" rx="2" fill="#D6D7D8"/>
+<line x1="10" y1="66" x2="70" y2="66" stroke="#D6D7D8" stroke-width="1.5"/>
+</svg>
+<h3>Retail</h3>
+</div>
+
+<div class="ind-card anim anim-pop">
+<svg viewBox="0 0 80 80" width="68" height="68" xmlns="http://www.w3.org/2000/svg">
+<!-- Stage/venue -->
+<rect x="10" y="34" width="60" height="32" rx="3" fill="#314151"/>
+<!-- Stage -->
+<rect x="20" y="40" width="40" height="18" rx="2" fill="#131F2D"/>
+<!-- Spotlights -->
+<path d="M14 14 L26 36" stroke="#D6D7D8" stroke-width="1.5" opacity=".4"/>
+<path d="M66 14 L54 36" stroke="#D6D7D8" stroke-width="1.5" opacity=".4"/>
+<circle cx="14" cy="12" r="4" fill="#D6D7D8" opacity=".6"/>
+<circle cx="66" cy="12" r="4" fill="#D6D7D8" opacity=".6"/>
+<!-- Light beams -->
+<path d="M14 14 L22 36 L30 36 Z" fill="#D6D7D8" opacity=".08"/>
+<path d="M66 14 L58 36 L50 36 Z" fill="#D6D7D8" opacity=".08"/>
+<!-- People in audience -->
+<circle cx="22" cy="60" r="3" fill="#606060" opacity=".5"/>
+<circle cx="32" cy="62" r="3" fill="#606060" opacity=".5"/>
+<circle cx="42" cy="60" r="3" fill="#606060" opacity=".5"/>
+<circle cx="52" cy="62" r="3" fill="#606060" opacity=".5"/>
+<circle cx="62" cy="60" r="3" fill="#606060" opacity=".5"/>
+<line x1="8" y1="66" x2="72" y2="66" stroke="#D6D7D8" stroke-width="1.5"/>
+</svg>
+<h3>Events & Venues</h3>
+</div>
+
+<div class="ind-card anim anim-pop">
+<svg viewBox="0 0 80 80" width="68" height="68" xmlns="http://www.w3.org/2000/svg">
+<!-- Houses -->
+<rect x="8" y="38" width="22" height="20" rx="2" fill="#314151"/>
+<polygon points="8,38 19,26 30,38" fill="#131F2D"/>
+<rect x="14" y="48" width="6" height="10" rx="1" fill="#131F2D"/>
+<rect x="30" y="34" width="22" height="24" rx="2" fill="#314151" opacity=".8"/>
+<polygon points="30,34 41,22 52,34" fill="#131F2D" opacity=".8"/>
+<rect x="36" y="44" width="6" height="10" rx="1" fill="#131F2D"/>
+<rect x="54" y="38" width="20" height="20" rx="2" fill="#314151" opacity=".6"/>
+<polygon points="54,38 64,28 74,38" fill="#131F2D" opacity=".6"/>
+<rect x="60" y="48" width="6" height="10" rx="1" fill="#131F2D"/>
+<!-- Trees -->
+<circle cx="19" cy="30" r="4" fill="#606060" opacity=".3"/>
+<circle cx="64" cy="32" r="3" fill="#606060" opacity=".3"/>
+<!-- Fence -->
+<line x1="4" y1="58" x2="78" y2="58" stroke="#D6D7D8" stroke-width="1"/>
+<line x1="10" y1="54" x2="10" y2="62" stroke="#D6D7D8" stroke-width="1.5"/>
+<line x1="20" y1="54" x2="20" y2="62" stroke="#D6D7D8" stroke-width="1.5"/>
+<line x1="30" y1="54" x2="30" y2="62" stroke="#D6D7D8" stroke-width="1.5"/>
+<line x1="52" y1="54" x2="52" y2="62" stroke="#D6D7D8" stroke-width="1.5"/>
+<line x1="62" y1="54" x2="62" y2="62" stroke="#D6D7D8" stroke-width="1.5"/>
+<line x1="72" y1="54" x2="72" y2="62" stroke="#D6D7D8" stroke-width="1.5"/>
+<line x1="4" y1="66" x2="78" y2="66" stroke="#D6D7D8" stroke-width="1.5"/>
+</svg>
+<h3>HOA & Residential</h3>
+</div>
+
+</div>
+</div>
 </section>
 
 <!-- ABOUT -->
-<section class="about" id="about">
-  <div class="container">
-    <div class="about-content">
-      <div class="about-visual reveal-left" style="display:flex;flex-direction:column;gap:24px;justify-content:center">
-        <div style="display:flex;align-items:center;gap:16px">
-          <div style="width:48px;height:48px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <div><strong style="font-size:1rem">Owner-Operated</strong><br><span style="color:var(--gray);font-size:.85rem">Leadership involved in every account</span></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:16px">
-          <div style="width:48px;height:48px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-          </div>
-          <div><strong style="font-size:1rem">Nationwide Coverage</strong><br><span style="color:var(--gray);font-size:.85rem">Operating across 48 states</span></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:16px">
-          <div style="width:48px;height:48px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          </div>
-          <div><strong style="font-size:1rem">Technology-Driven</strong><br><span style="color:var(--gray);font-size:.85rem">Real-time visibility and accountability</span></div>
-        </div>
-      </div>
-      <div class="about-text reveal-right">
-        <div class="eyebrow stagger">About Salient Group</div>
-        <h2 class="stagger">Built because the industry deserved better.</h2>
-        <p class="stagger">Salient Group was founded on a simple premise: facility managers shouldn't have to babysit their security provider. We're owner-operated, which means leadership is directly involved in every client relationship — not delegated to layers of middle management.</p>
-        <p class="stagger">We operate nationwide, deploying custom security programs backed by real technology and real accountability. Every decision we make is guided by one question: would we accept this level of service at our own facility?</p>
-      </div>
-    </div>
-  </div>
+<section class="section section-gray" id="about">
+<div class="container">
+<div class="about-grid">
+<div class="about-text anim anim-left">
+<h3>Built Because the Industry Deserved Better.</h3>
+<p>Salient Group was founded on a simple belief: the security industry is broken — and someone needed to fix it. Too many companies treat security as a commodity. Guards are underpaid, undertrained, and unsupported. Clients are forgotten the moment the contract is signed.</p>
+<p>We built Salient Group to be different. We're owner-operated, which means leadership is involved in every account — not hiding behind layers of management. When you call us, you get a person who can actually make decisions.</p>
+<p>Our team operates nationwide, delivering consistent quality whether you have one location or one hundred. Every security program is built from scratch around your operation, your risks, and your people.</p>
+<p>This isn't a side hustle or a franchise. Salient Group is our life's work — and we treat your security like it matters. Because it does.</p>
+<a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html" class="btn btn-primary" style="margin-top:12px">Get Your Free Assessment</a>
+</div>
+<div class="about-visual anim anim-right" style="display:flex;justify-content:center">
+<!-- Shield with values -->
+<svg viewBox="0 0 320 380" width="320" height="380" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Large shield -->
+<path d="M160 20 L280 65 L280 180 C280 275 225 330 160 360 C95 330 40 275 40 180 L40 65 Z" fill="#131F2D"/>
+<path d="M160 40 L265 78 L265 178 C265 262 216 310 160 336 C104 310 55 262 55 178 L55 78 Z" fill="#314151"/>
+<!-- Inner shield highlight -->
+<path d="M160 60 L250 92 L250 176 C250 248 208 290 160 312 C112 290 70 248 70 176 L70 92 Z" fill="#131F2D" opacity=".6"/>
+<!-- Value icons inside shield -->
+<!-- Handshake icon - Integrity -->
+<path d="M120 120 L135 112 L145 118 L155 112 L165 118 L160 124 L140 124 Z" fill="#D6D7D8" opacity=".8"/>
+<text x="160" y="146" font-family="Poppins,sans-serif" font-size="11" fill="#FFFFFF" text-anchor="middle" font-weight="600" letter-spacing="2">INTEGRITY</text>
+<!-- Eye icon - Accountability -->
+<ellipse cx="160" cy="180" rx="22" ry="12" stroke="#D6D7D8" stroke-width="2" fill="none" opacity=".7"/>
+<circle cx="160" cy="180" r="6" fill="#D6D7D8" opacity=".7"/>
+<text x="160" y="208" font-family="Poppins,sans-serif" font-size="11" fill="#FFFFFF" text-anchor="middle" font-weight="600" letter-spacing="2">ACCOUNTABILITY</text>
+<!-- Star icon - Excellence -->
+<polygon points="160,226 166,240 182,240 170,250 174,264 160,256 146,264 150,250 138,240 154,240" fill="#D6D7D8" opacity=".7"/>
+<text x="160" y="284" font-family="Poppins,sans-serif" font-size="11" fill="#FFFFFF" text-anchor="middle" font-weight="600" letter-spacing="2">EXCELLENCE</text>
+<!-- Top banner -->
+<text x="160" y="96" font-family="Poppins,sans-serif" font-size="10" fill="#D6D7D8" text-anchor="middle" font-weight="500" letter-spacing="3" opacity=".6">SALIENT GROUP</text>
+</svg>
+</div>
+</div>
+</div>
 </section>
 
 <!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="contact-hero reveal">
-    <div class="container" style="text-align:center">
-      <h2 class="stagger">Ready to raise the standard?</h2>
-      <p class="stagger" style="color:rgba(255,255,255,.5);font-size:1rem;max-width:500px;margin:0 auto 24px">See what Salient Group can do for your facility.</p>
-      <a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html" class="btn btn-white stagger">Get Your Free Assessment</a>
-    </div>
-  </div>
-  <div class="container">
-    <div class="contact-grid">
-      <div class="contact-info reveal">
-        <div class="eyebrow stagger" style="font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;font-weight:600;color:var(--gray);margin-bottom:16px">Get in Touch</div>
-        <h3 class="stagger">Talk to leadership.<br>Not a sales team.</h3>
-        <p class="stagger">Have questions? Reach out directly. Salient Group is owner-operated — you'll speak with the people who actually run your security program.</p>
-        <div class="contact-links stagger">
-          <a href="tel:+13179836601" class="contact-link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            (317) 983-6601
-          </a>
-          <a href="https://cal.com/salient-group/quick-call" class="contact-link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-            Book a 15-Minute Call
-          </a>
-          <a href="mailto:info@salient-group.com" class="contact-link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            info@salient-group.com
-          </a>
-        </div>
-      </div>
-      <form class="contact-form reveal" onsubmit="handleSubmit(event)">
-        <div class="form-row stagger">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="you@company.com" required>
-          </div>
-        </div>
-        <div class="form-group stagger">
-          <label for="company">Company</label>
-          <input type="text" id="company" name="company" placeholder="Company name">
-        </div>
-        <div class="form-group stagger">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Tell us about your security needs..." rows="4"></textarea>
-        </div>
-        <div class="form-submit stagger">
-          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Send Message</button>
-        </div>
-      </form>
-    </div>
-  </div>
+<section class="contact-header" id="contact">
+<div class="container anim anim-up">
+<h2>Ready to Raise the Standard?</h2>
+<p>Get a free security assessment and see how Salient Group can transform your operation.</p>
+<a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html" class="btn btn-white">Get Your Free Security Assessment</a>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="contact-grid">
+<div class="contact-info anim anim-left">
+<h3>Get in Touch</h3>
+<div class="contact-item">
+<div class="ci-icon">
+<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 3h16v14H2z" fill="none"/><path d="M5 4a2 2 0 00-2 2v1l7 4.5L17 7V6a2 2 0 00-2-2H5z" fill="#fff"/><path d="M3 8.5V14a2 2 0 002 2h10a2 2 0 002-2V8.5L10 13 3 8.5z" fill="#D6D7D8"/></svg>
+</div>
+<div>
+<h4>Email Us</h4>
+<p><a href="mailto:info@salient-group.com" style="color:var(--navy)">info@salient-group.com</a></p>
+</div>
+</div>
+<div class="contact-item">
+<div class="ci-icon">
+<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.5A2.5 2.5 0 015.5 3h1.17a1 1 0 01.95.68l.8 2.4a1 1 0 01-.27 1.05l-1.02.85a8.5 8.5 0 004.9 4.9l.84-1.02a1 1 0 011.05-.27l2.4.8a1 1 0 01.68.95v1.17A2.5 2.5 0 0114.5 17 11.5 11.5 0 013 5.5z" fill="#fff"/></svg>
+</div>
+<div>
+<h4>Call Us</h4>
+<p><a href="tel:3179836601" style="color:var(--navy)">(317) 983-6601</a></p>
+</div>
+</div>
+<div class="contact-item">
+<div class="ci-icon">
+<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="14" height="12" rx="2" fill="#fff"/><line x1="3" y1="8" x2="17" y2="8" stroke="#131F2D" stroke-width="1.5"/><rect x="5" y="10" width="3" height="3" rx=".5" fill="#131F2D"/><rect x="9" y="10" width="3" height="3" rx=".5" fill="#D6D7D8"/></svg>
+</div>
+<div>
+<h4>Book a Call</h4>
+<p><a href="https://cal.com/salient-group/quick-call" target="_blank" style="color:var(--navy)">Schedule on Cal.com</a></p>
+</div>
+</div>
+</div>
+<div class="contact-form anim anim-right" id="contactForm">
+<h3>Send Us a Message</h3>
+<form onsubmit="return handleContactSubmit(event)">
+<div class="form-group">
+<label for="cf-name">Full Name</label>
+<input type="text" id="cf-name" name="name" required placeholder="John Smith">
+</div>
+<div class="form-group">
+<label for="cf-email">Email</label>
+<input type="email" id="cf-email" name="email" required placeholder="john@company.com">
+</div>
+<div class="form-group">
+<label for="cf-company">Company</label>
+<input type="text" id="cf-company" name="company" placeholder="Acme Corp">
+</div>
+<div class="form-group">
+<label for="cf-message">Message</label>
+<textarea id="cf-message" name="message" required placeholder="Tell us about your security needs..."></textarea>
+</div>
+<button type="submit" class="btn btn-primary form-submit">Send Message</button>
+</form>
+<div id="formSuccess" style="display:none;text-align:center;padding:40px 20px">
+<svg viewBox="0 0 60 60" width="60" height="60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="28" fill="#131F2D"/><path d="M18 30 L26 38 L42 22" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+<h3 style="margin-top:16px;color:var(--navy)">Thank You!</h3>
+<p style="color:var(--gray);margin-top:8px">We'll be in touch within 24 hours.</p>
+</div>
+</div>
+</div>
+</div>
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-logo"><img src="data:image/png;base64,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" alt="Salient Group" style="height:35px;width:auto"></div>
-      <div class="footer-links">
-        <a href="#problem">Why Us</a>
-        <a href="#difference">Difference</a>
-        <a href="#technology">Technology</a>
-        <a href="#industries">Industries</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="tel:+13179836601">(317) 983-6601</a>
-      </div>
-      <div class="footer-copy">&copy; 2026 Salient Group. All rights reserved. Operating nationwide.</div>
-    </div>
-  </div>
+<footer class="footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<div class="footer-logo" style="font-size:1.4rem;font-weight:700;color:#fff">Salient Group</div>
+<p>Owner-operated security with real-time technology, dedicated teams, and custom programs built for your operation. Nationwide coverage, local accountability.</p>
+</div>
+<div class="footer-col">
+<h4>Company</h4>
+<a href="#about">About</a>
+<a href="#difference">Our Difference</a>
+<a href="#technology">Technology</a>
+<a href="#industries">Industries</a>
+<a href="#contact">Contact</a>
+</div>
+<div class="footer-col">
+<h4>Get Started</h4>
+<a href="https://sam-bowen-salient.github.io/salient-demos/security-assessment.html">Free Assessment</a>
+<a href="tel:3179836601">(317) 983-6601</a>
+<a href="mailto:info@salient-group.com">info@salient-group.com</a>
+<a href="https://cal.com/salient-group/quick-call" target="_blank">Book a Call</a>
+</div>
+</div>
+<div class="footer-bottom">
+&copy; 2026 Salient Group. All rights reserved. Operating nationwide.
+</div>
+</div>
 </footer>
 
+<!-- JAVASCRIPT -->
 <script>
-// Header scroll
-const header=document.getElementById('header');
-window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',window.scrollY>50)},{passive:true});
+(function(){
+  // Intersection Observer for scroll animations
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.15});
+  document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
 
-// Mobile menu
-const hamburger=document.getElementById('hamburger');
-const mobileMenu=document.getElementById('mobileMenu');
-hamburger.addEventListener('click',()=>{hamburger.classList.toggle('active');mobileMenu.classList.toggle('active');document.body.style.overflow=mobileMenu.classList.contains('active')?'hidden':''});
-function closeMobile(){hamburger.classList.remove('active');mobileMenu.classList.remove('active');document.body.style.overflow=''}
+  // Sticky header scroll effect
+  const nav = document.querySelector('.nav');
+  let lastScroll = 0;
+  window.addEventListener('scroll',()=>{
+    const st = window.pageYOffset;
+    if(st > 60){
+      nav.style.boxShadow = '0 2px 20px rgba(0,0,0,.12)';
+    } else {
+      nav.style.boxShadow = '0 1px 12px rgba(0,0,0,.06)';
+    }
+    lastScroll = st;
+  },{passive:true});
 
-// Intersection Observer for reveals
-const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-scale-sm').forEach(el=>io.observe(el));
+  // Mobile hamburger toggle
+  const hamburger = document.querySelector('.hamburger');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  if(hamburger){
+    hamburger.addEventListener('click',()=>{
+      mobileMenu.classList.toggle('active');
+      const spans = hamburger.querySelectorAll('span');
+      if(mobileMenu.classList.contains('active')){
+        spans[0].style.transform='rotate(45deg) translate(5px,5px)';
+        spans[1].style.opacity='0';
+        spans[2].style.transform='rotate(-45deg) translate(5px,-5px)';
+      } else {
+        spans[0].style.transform='none';
+        spans[1].style.opacity='1';
+        spans[2].style.transform='none';
+      }
+    });
+  }
 
-// Subtle parallax on hero background
-const heroBg=document.querySelector('.hero-bg');
-if(heroBg){window.addEventListener('scroll',()=>{const y=window.scrollY;if(y<window.innerHeight){heroBg.style.transform='translateY('+y*.3+'px)'}},{passive:true})}
+  // Rolling number counter
+  const numObs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const el = e.target;
+        const target = parseInt(el.getAttribute('data-target'));
+        const suffix = el.getAttribute('data-suffix')||'';
+        let current = 0;
+        const step = Math.max(1, Math.floor(target/40));
+        const timer = setInterval(()=>{
+          current += step;
+          if(current >= target){
+            current = target;
+            clearInterval(timer);
+          }
+          el.textContent = current + suffix;
+        },30);
+        numObs.unobserve(el);
+      }
+    });
+  },{threshold:0.5});
+  document.querySelectorAll('.num[data-target]').forEach(el=>numObs.observe(el));
 
-// Rolling counter animation
-function animateCounter(el){
-  const target=parseInt(el.dataset.target);
-  const suffix=el.dataset.suffix||'';
-  const digits=target.toString().split('');
-  const placeholder=el.querySelector('.counter-placeholder');
-  const suffixEl=el.querySelector('.suffix');
-  
-  // Build digit spinners
-  let html='';
-  digits.forEach((d,i)=>{
-    const num=parseInt(d);
-    html+=`<span class="digit-wrap"><span class="digit-inner" data-final="${num}" style="transition-delay:${i*120}ms">`;
-    for(let j=0;j<=num;j++) html+=`<span>${j}</span>`;
-    html+=`</span></span>`;
-  });
-  
-  if(placeholder) placeholder.remove();
-  if(suffixEl) suffixEl.remove();
-  el.insertAdjacentHTML('afterbegin',html);
-  el.insertAdjacentHTML('beforeend',`<span class="suffix">${suffix}</span>`);
-  
-  requestAnimationFrame(()=>{
-    el.querySelectorAll('.digit-inner').forEach(d=>{
-      const final=parseInt(d.dataset.final);
-      d.style.transform=`translateY(-${final}em)`;
+  // Close mobile menu on anchor click
+  document.querySelectorAll('.mobile-menu a').forEach(a=>{
+    a.addEventListener('click',()=>{
+      mobileMenu.classList.remove('active');
+      const spans = hamburger.querySelectorAll('span');
+      spans[0].style.transform='none';
+      spans[1].style.opacity='1';
+      spans[2].style.transform='none';
     });
   });
-}
+})();
 
-const counterIO=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){animateCounter(e.target);counterIO.unobserve(e.target)}})},{threshold:.5});
-document.querySelectorAll('.stat-number[data-target]').forEach(el=>counterIO.observe(el));
-
-// Dashboard bars animation
-const barIO=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.dash-bar-fill').forEach((b,i)=>{setTimeout(()=>{b.style.height=b.dataset.h},i*100)});barIO.unobserve(e.target)}})},{threshold:.5});
-const dashBars=document.getElementById('dashBars');
-if(dashBars) barIO.observe(dashBars);
-
-// Contact form
-function handleSubmit(e){
+// Contact form handler
+function handleContactSubmit(e){
   e.preventDefault();
-  const btn=e.target.querySelector('button[type=submit]');
-  btn.textContent='Sent!';
-  btn.style.background='#2ecc71';
-  setTimeout(()=>{btn.textContent='Send Message';btn.style.background=''},3000);
+  const form = e.target;
+  form.style.display='none';
+  document.getElementById('formSuccess').style.display='block';
+  return false;
 }
 </script>
 </body>
