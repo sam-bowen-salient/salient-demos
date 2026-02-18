@@ -15,7 +15,7 @@ body{font-family:'Poppins',sans-serif;background:#f0f2f5;color:var(--slate);min-
 .app-header span{font-size:.7rem;font-weight:300;opacity:.7;display:block;margin-top:2px}
 .form-container{max-width:700px;margin:0 auto;padding:1rem}
 .step-indicator{display:flex;gap:0;margin-bottom:1.5rem;background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08)}
-.step-dot{flex:1;text-align:center;padding:.75rem .25rem;font-size:.7rem;font-weight:500;color:var(--steel);background:var(--white);transition:.3s;cursor:pointer;border:none}
+.step-dot{flex:1;text-align:center;padding:.75rem .25rem;font-size:.65rem;font-weight:500;color:var(--steel);background:var(--white);transition:.3s;cursor:pointer;border:none}
 .step-dot.active{background:var(--navy);color:var(--white)}
 .step-dot.completed{background:#1a3a5c;color:var(--white);opacity:.8}
 .card{background:var(--white);border-radius:12px;padding:1.5rem;margin-bottom:1rem;box-shadow:0 1px 4px rgba(0,0,0,.06)}
@@ -64,6 +64,22 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
 .hour-presets-inline{display:flex;gap:.3rem;margin-top:.3rem}
 .hour-presets-inline button{padding:.2rem .5rem;border:1px solid var(--steel);border-radius:4px;font-size:.68rem;cursor:pointer;background:var(--white);font-family:inherit;transition:.2s}
 .hour-presets-inline button.active{background:var(--navy);color:var(--white);border-color:var(--navy)}
+/* SLA Builder */
+.sla-row{display:flex;gap:.5rem;align-items:flex-start;padding:.75rem;background:#f8f9fa;border-radius:8px;margin-bottom:.5rem;border:1px solid #eee}
+.sla-row .sla-toggle{margin-top:.35rem;accent-color:var(--navy);flex-shrink:0}
+.sla-row .sla-fields{flex:1;display:flex;flex-direction:column;gap:.3rem}
+.sla-row .sla-fields input{font-size:.82rem;padding:.4rem .6rem}
+.sla-row .sla-fields input.sla-label-input{font-weight:500}
+.sla-row .sla-remove{background:none;border:none;cursor:pointer;color:#cc3333;font-size:.9rem;padding:.2rem;flex-shrink:0;opacity:.5}
+.sla-row .sla-remove:hover{opacity:1}
+.sla-row.disabled{opacity:.5}
+/* Phase Builder */
+.phase-row{background:#f8f9fa;border-radius:8px;padding:.75rem;margin-bottom:.5rem;border:1px solid #eee;position:relative}
+.phase-row .row{margin-bottom:.3rem}
+.phase-row .phase-remove{position:absolute;top:.4rem;right:.4rem;background:none;border:none;cursor:pointer;color:#cc3333;font-size:.9rem;padding:.2rem;opacity:.5}
+.phase-row .phase-remove:hover{opacity:1}
+.phase-row input,.phase-row textarea{font-size:.82rem;padding:.4rem .6rem}
+.phase-row textarea{resize:vertical;min-height:40px}
 /* PROPOSAL STYLES */
 .proposal-view{display:none}
 .proposal-actions{position:sticky;top:0;z-index:100;background:var(--navy);padding:.75rem 1rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
@@ -169,15 +185,16 @@ body{background:#fff}
 
 <div class="app-header" id="appHeader">
 <svg viewBox="0 0 40 40" fill="none"><path d="M20 2L4 10v12c0 9.33 6.82 18.06 16 20 9.18-1.94 16-10.67 16-20V10L20 2z" fill="#fff" opacity=".15"/><path d="M20 5L7 11.5v10.5c0 7.93 5.64 15.36 13 17 7.36-1.64 13-9.07 13-17V11.5L20 5z" stroke="#fff" stroke-width="1.5" fill="none"/><path d="M15 20l3 3 7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-<h1>Salient Group <span>Proposal Generator v3</span></h1>
+<h1>Salient Group <span>Proposal Generator v4</span></h1>
 </div>
 
 <div class="form-container" id="formContainer">
 <div class="step-indicator">
 <button class="step-dot active" onclick="goStep(1)">1. Client</button>
 <button class="step-dot" onclick="goStep(2)">2. Site</button>
-<button class="step-dot" onclick="goStep(3)">3. Roster</button>
-<button class="step-dot" onclick="goStep(4)">4. Preview</button>
+<button class="step-dot" onclick="goStep(3)">3. Security</button>
+<button class="step-dot" onclick="goStep(4)">4. SLAs</button>
+<button class="step-dot" onclick="goStep(5)">5. Preview</button>
 </div>
 
 <!-- STEP 1 -->
@@ -249,7 +266,7 @@ body{background:#fff}
 </div>
 </div>
 
-<!-- STEP 3: Guard Roster Builder -->
+<!-- STEP 3: Guard Roster Builder + Services + Concerns -->
 <div class="step" id="step3">
 <div class="card">
 <h2><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Guard Roster Builder</h2>
@@ -294,8 +311,27 @@ body{background:#fff}
 </div>
 <div class="btn-row">
 <button class="btn btn-outline" onclick="goStep(2)">← Back</button>
-<button class="btn btn-primary" onclick="generateProposal()">Generate Proposal →</button>
+<button class="btn btn-primary" onclick="goStep(4)">Continue →</button>
 </div>
+</div>
+
+<!-- STEP 4: Service Commitments (SLAs + Implementation Timeline) -->
+<div class="step" id="step4">
+<div class="card">
+<h2><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg> Service Level Agreements</h2>
+<p style="font-size:.78rem;color:var(--gray);margin-bottom:.75rem">Toggle items on/off and edit text to customize what appears in the proposal.</p>
+<div id="slaRows"></div>
+<button type="button" class="add-position-btn" onclick="addSlaRow('','')">+ Add SLA</button>
+</div>
+<div class="card">
+<h2><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Implementation Timeline</h2>
+<p style="font-size:.78rem;color:var(--gray);margin-bottom:.75rem">Customize the implementation phases, durations, and descriptions.</p>
+<div id="phaseRows"></div>
+<button type="button" class="add-position-btn" onclick="addPhaseRow('','','')">+ Add Phase</button>
+</div>
+<div class="btn-row">
+<button class="btn btn-outline" onclick="goStep(3)">← Back</button>
+<button class="btn btn-primary" onclick="generateProposal()">Generate Proposal →</button>
 </div>
 </div>
 
@@ -316,7 +352,6 @@ const STATES=["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","
 const stSel=document.getElementById('addrState');
 STATES.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;stSel.appendChild(o)});
 
-// Guard types config
 const GUARD_TYPES=[
 {id:'security_officer',label:'Security Officer (Unarmed)',rateMin:22,rateMax:25},
 {id:'armed_officer',label:'Armed Security Officer',rateMin:29,rateMax:34},
@@ -363,6 +398,8 @@ ${GUARD_TYPES.map(g=>`<option value="${g.id}" ${typeId===g.id?'selected':''}>${g
 <label class="field" style="margin-bottom:.5rem"><span class="lbl">Quantity</span>
 <input type="number" id="rqty-${id}" min="1" value="1" onchange="updateTotals()" oninput="updateTotals()"></label>
 </div>
+<label class="field" style="margin-bottom:.5rem"><span class="lbl">Assignment / Location (optional)</span>
+<input type="text" id="rloc-${id}" placeholder='e.g., "Truck Gate", "Guard Shack - East", "Lobby Desk"'></label>
 <div class="row row-2">
 <label class="field" style="margin-bottom:.5rem"><span class="lbl">Hours/Week per Person</span>
 <input type="number" id="rhrs-${id}" min="1" max="168" value="40" onchange="updateTotals()" oninput="updateTotals()">
@@ -427,7 +464,7 @@ const minEl=document.getElementById('rmin-'+id);
 const maxEl=document.getElementById('rmax-'+id);
 if(mode==='exact'){
 maxEl.style.display='none';
-inputs.querySelectorAll('span')[1].style.display='none'; // hide dash
+inputs.querySelectorAll('span')[1].style.display='none';
 }else{
 maxEl.style.display='';
 inputs.querySelectorAll('span')[1].style.display='';
@@ -449,7 +486,8 @@ const hrs=parseInt(document.getElementById('rhrs-'+id).value)||40;
 const mode=document.getElementById('rmode-'+id).value;
 const rateMin=parseFloat(document.getElementById('rmin-'+id).value)||0;
 const rateMax=mode==='exact'?rateMin:(parseFloat(document.getElementById('rmax-'+id).value)||rateMin);
-rows.push({typeId,label:gt?gt.label:typeId,qty,hrs,mode,rateMin,rateMax});
+const location=(document.getElementById('rloc-'+id).value||'').trim();
+rows.push({typeId,label:gt?gt.label:typeId,qty,hrs,mode,rateMin,rateMax,location});
 });
 return rows;
 }
@@ -472,9 +510,92 @@ document.getElementById('rtMonthly').textContent=fmtRange(Math.round(weeklyMin*4
 document.getElementById('rtAnnual').textContent=fmtRange(weeklyMin*52,weeklyMax*52);
 }
 
-// Init with one empty row
 addRosterRow();
 
+// === SLA BUILDER ===
+const DEFAULT_SLAS=[
+{label:'Initial Deployment Timeline',value:'30-45 days from contract execution'},
+{label:'Incident Response Time',value:'Under 15 minutes on-site'},
+{label:'Guard Replacement',value:'Same-shift replacement for any no-call/no-show'},
+{label:'Supervisor Site Visits',value:'Minimum weekly on-site supervisor inspections'},
+{label:'Reporting',value:'Monthly detailed analytics and incident report'},
+{label:'Business Reviews',value:'Quarterly business review with dedicated account manager'},
+{label:'Operations Support',value:'24/7 operations support line for emergencies'},
+{label:'Satisfaction Guarantee',value:'90-day satisfaction guarantee'}
+];
+let slaCounter=0;
+function addSlaRow(label,value,enabled=true){
+slaCounter++;
+const id=slaCounter;
+const container=document.getElementById('slaRows');
+const div=document.createElement('div');
+div.className='sla-row'+(enabled?'':' disabled');
+div.id='sla-'+id;
+div.innerHTML=`
+<input type="checkbox" class="sla-toggle" id="slat-${id}" ${enabled?'checked':''} onchange="document.getElementById('sla-${id}').classList.toggle('disabled',!this.checked)">
+<div class="sla-fields">
+<input type="text" class="sla-label-input" id="slal-${id}" value="${label.replace(/"/g,'&quot;')}" placeholder="SLA Name">
+<input type="text" id="slav-${id}" value="${value.replace(/"/g,'&quot;')}" placeholder="Commitment details">
+</div>
+<button type="button" class="sla-remove" onclick="document.getElementById('sla-${id}').remove()" title="Remove">🗑</button>
+`;
+container.appendChild(div);
+}
+function getSlaData(){
+const items=[];
+document.querySelectorAll('.sla-row').forEach(el=>{
+const id=el.id.replace('sla-','');
+const enabled=document.getElementById('slat-'+id).checked;
+const label=document.getElementById('slal-'+id).value.trim();
+const value=document.getElementById('slav-'+id).value.trim();
+if(label||value) items.push({label,value,enabled});
+});
+return items;
+}
+DEFAULT_SLAS.forEach(s=>addSlaRow(s.label,s.value,true));
+
+// === PHASE BUILDER ===
+const DEFAULT_PHASES=[
+{name:'Site Assessment & Security Audit',duration:'Week 1-2',desc:'Comprehensive site survey, threat assessment, and security plan development'},
+{name:'Custom Post Orders & Staffing',duration:'Week 2-3',desc:'Develop detailed post orders, recruit and select qualified officers'},
+{name:'Training & Orientation',duration:'Week 3-4',desc:'Site-specific training, client protocols, emergency procedures, technology onboarding'},
+{name:'Go-Live & Transition Support',duration:'Week 4-6',desc:'Full deployment with on-site management oversight during transition period'}
+];
+let phaseCounter=0;
+function addPhaseRow(name,duration,desc){
+phaseCounter++;
+const id=phaseCounter;
+const container=document.getElementById('phaseRows');
+const div=document.createElement('div');
+div.className='phase-row';
+div.id='phase-'+id;
+div.innerHTML=`
+<button type="button" class="phase-remove" onclick="document.getElementById('phase-${id}').remove()" title="Remove">🗑</button>
+<div class="row row-2" style="margin-bottom:.3rem">
+<label class="field" style="margin-bottom:0"><span class="lbl">Phase Name</span>
+<input type="text" id="pname-${id}" value="${(name||'').replace(/"/g,'&quot;')}" placeholder="Phase name"></label>
+<label class="field" style="margin-bottom:0"><span class="lbl">Duration</span>
+<input type="text" id="pdur-${id}" value="${(duration||'').replace(/"/g,'&quot;')}" placeholder="e.g., Week 1-2"></label>
+</div>
+<label class="field" style="margin-bottom:0"><span class="lbl">Description</span>
+<textarea id="pdesc-${id}" rows="2" placeholder="Phase description">${(desc||'').replace(/</g,'&lt;')}</textarea></label>
+`;
+container.appendChild(div);
+}
+function getPhaseData(){
+const items=[];
+document.querySelectorAll('.phase-row').forEach(el=>{
+const id=el.id.replace('phase-','');
+const name=document.getElementById('pname-'+id).value.trim();
+const duration=document.getElementById('pdur-'+id).value.trim();
+const desc=document.getElementById('pdesc-'+id).value.trim();
+if(name) items.push({name,duration,desc});
+});
+return items;
+}
+DEFAULT_PHASES.forEach(p=>addPhaseRow(p.name,p.duration,p.desc));
+
+// === NAV ===
 function goStep(n){
 document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
 document.getElementById('step'+n).classList.add('active');
@@ -484,6 +605,18 @@ window.scrollTo(0,0);
 function getChecked(name){return[...document.querySelectorAll(`input[name="${name}"]:checked`)].map(c=>c.value)}
 function getRadio(name){const c=document.querySelector(`input[name="${name}"]:checked`);return c?c.value:''}
 function v(id){return document.getElementById(id).value.trim()}
+
+// Helper: display name for a roster row (with location)
+function displayName(r){
+if(r.location) return r.label+' — '+r.location;
+return r.label;
+}
+// Short display name for pricing/schedule
+function shortName(r){
+const base=r.label.replace(/ \(Unarmed\)/,'').replace(/ Officer/,' Off.').replace(/ Specialist/,' Spec.');
+if(r.location) return base+' — '+r.location;
+return r.label;
+}
 
 const INDUSTRY_DATA={
 "Logistics/Distribution":{
@@ -562,7 +695,9 @@ street:v('addrStreet'),city:v('addrCity'),state:v('addrState'),zip:v('addrZip'),
 industry:v('industry'),facility:v('facilityType'),sqft:v('sqft'),entrances:v('entrances')||'2',buildings:v('buildings')||'1',
 parking:v('parking'),hours:getRadio('hours'),currentProvider:v('currentProvider'),
 pains:getChecked('pain'),services:getChecked('service'),concerns:getChecked('concern'),
-roster:getRosterData()
+roster:getRosterData(),
+slas:getSlaData(),
+phases:getPhaseData()
 };
 if(!d.company||!d.industry){alert('Please fill in Company Name and Industry.');return}
 if(d.roster.length===0){alert('Please add at least one position to the roster.');return}
@@ -571,16 +706,13 @@ const ind=INDUSTRY_DATA[d.industry]||INDUSTRY_DATA['Other'];
 const fmt=n=>'$'+Math.round(n).toLocaleString();
 const fmtRange=(a,b)=>a===b?fmt(a):fmt(a)+'–'+fmt(b);
 
-// Calculate totals
 let totalPersonnel=0,totalHours=0,weeklyMin=0,weeklyMax=0;
 d.roster.forEach(r=>{totalPersonnel+=r.qty;totalHours+=r.qty*r.hrs;weeklyMin+=r.qty*r.hrs*r.rateMin;weeklyMax+=r.qty*r.hrs*r.rateMax});
 const monthlyMin=Math.round(weeklyMin*4.33),monthlyMax=Math.round(weeklyMax*4.33);
 const annualMin=weeklyMin*52,annualMax=weeklyMax*52;
 
-// ROI: get risk exposure from industry+sqft, ensure always > security cost
 const riskData=ind.riskBySize[d.sqft]||ind.riskBySize['default'];
 let riskMin=riskData[0],riskMax=riskData[1];
-// Ensure risk exposure is always meaningfully higher than security cost
 if(riskMin<=annualMin){riskMin=Math.round(annualMin*1.8)}
 if(riskMax<=annualMax){riskMax=Math.round(annualMax*2.5)}
 if(riskMin>=riskMax) riskMax=Math.round(riskMin*1.6);
@@ -589,10 +721,8 @@ const savingsMax=riskMax-annualMin;
 const roiLow=Math.max(1.5,(riskMin/annualMax)).toFixed(1);
 const roiHigh=(riskMax/annualMin).toFixed(1);
 
-// Determine guard type summary
 const hasArmed=d.roster.some(r=>r.typeId==='armed_officer'||r.typeId==='executive_protection');
 
-// Executive Summary
 let execSummary=`Salient Group is pleased to present this comprehensive security proposal for ${d.company}. `;
 if(d.industry!=='Other')execSummary+=`As a leader in the ${d.industry.toLowerCase()} sector, your organization faces distinct security challenges that demand a specialized, proactive approach. `;
 if(d.pains.length>0){
@@ -602,7 +732,6 @@ else execSummary+=`Based on our understanding of your current challenges, we hav
 }
 execSummary+=`This proposal outlines a tailored security program for your ${d.facility?d.facility.toLowerCase():'facility'}${d.sqft?' spanning approximately '+d.sqft+' square feet':''}, featuring ${totalPersonnel} dedicated security professional${totalPersonnel>1?'s':''} providing ${totalHours.toLocaleString()} hours of weekly coverage${hasArmed?' including armed officer capabilities':''}. Salient Group combines experienced security professionals, advanced technology, and dedicated account management to deliver measurable results — not just a guard standing at a door.`;
 
-// Site risk factors
 let siteRisks=`Your ${d.facility?d.facility.toLowerCase():'facility'}`;
 if(d.sqft)siteRisks+=` encompasses approximately ${d.sqft} square feet of operational space`;
 siteRisks+=` with ${d.entrances} access point${parseInt(d.entrances)>1?'s':''} and ${d.buildings} building${parseInt(d.buildings)>1?'s':''}`;
@@ -614,25 +743,26 @@ if(d.hours==='24/7')siteRisks+=`Your 24/7 operational schedule requires continuo
 else if(d.hours==='Business Hours')siteRisks+=`After-hours periods when the facility is unoccupied represent the highest-risk windows for unauthorized access and property crime. `;
 if(d.state)siteRisks+=`${d.state} regulatory requirements and local security licensing standards are fully incorporated into our staffing and training protocols.`;
 
-// Coverage schedule
 const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
 
-// Pain-based "Why" cards
 const whyCards=d.pains.filter(p=>PAIN_RESPONSES[p]).map(p=>PAIN_RESPONSES[p]);
 if(whyCards.length===0) whyCards.push(PAIN_RESPONSES['cant_reach'],PAIN_RESPONSES['no_visibility'],PAIN_RESPONSES['cookie_cutter']);
 
-// Build roster table for proposal
+// Roster table with location
 const rosterTableRows=d.roster.map(r=>{
-const desc=POSITION_DESCRIPTIONS[r.typeId]||'Site security, access control, patrol, incident response, reporting.';
+let desc=POSITION_DESCRIPTIONS[r.typeId]||'Site security, access control, patrol, incident response, reporting.';
+if(r.location) desc=`Assigned to ${r.location}. `+desc;
 const rate=r.mode==='exact'?fmt(r.rateMin)+'/hr':fmt(r.rateMin)+'–'+fmt(r.rateMax)+'/hr';
-return`<tr><td><strong>${r.label}</strong></td><td>${r.qty}</td><td>${r.hrs}</td><td>${rate}</td></tr><tr><td colspan="4" style="font-size:.75rem;color:var(--gray);padding:.3rem .75rem .7rem;border-bottom:1px solid #ddd;font-style:italic">${desc}</td></tr>`;
+const dn=displayName(r);
+return`<tr><td><strong>${dn}</strong></td><td>${r.qty}</td><td>${r.hrs}</td><td>${rate}</td></tr><tr><td colspan="4" style="font-size:.75rem;color:var(--gray);padding:.3rem .75rem .7rem;border-bottom:1px solid #ddd;font-style:italic">${desc}</td></tr>`;
 }).join('');
 
-// Coverage schedule rows
+// Coverage schedule
 const scheduleRows=d.roster.map(r=>{
 const hrsPerDay=r.hrs/7;
 const is24=r.hrs>=140;
 const isBiz=r.hrs<=56;
+const dn=r.location?r.label.split(' (')[0]+' — '+r.location:r.label;
 let cells=days.map(day=>{
 if(is24) return`<div class="sg-cell sg-active">24h</div>`;
 if(isBiz){
@@ -641,24 +771,52 @@ return isWeekend?`<div class="sg-cell sg-inactive">—</div>`:`<div class="sg-ce
 }
 return`<div class="sg-cell sg-active">${Math.round(hrsPerDay)}h</div>`;
 }).join('');
-return`<div class="sg-label">${r.label} (×${r.qty})</div>${cells}`;
+return`<div class="sg-label">${dn} (×${r.qty})</div>${cells}`;
 }).join('');
 
-// Pricing table
+// Pricing table with location
 const pricingRows=d.roster.map(r=>{
+const dn=displayName(r);
 const rate=r.mode==='exact'?fmt(r.rateMin)+'/hr':fmt(r.rateMin)+'–'+fmt(r.rateMax)+'/hr';
 const wMin=r.qty*r.hrs*r.rateMin,wMax=r.qty*r.hrs*r.rateMax;
 const mMin=Math.round(wMin*4.33),mMax=Math.round(wMax*4.33);
 const aMin=wMin*52,aMax=wMax*52;
-return`<tr><td>${r.label}</td><td>${r.qty}</td><td>${r.hrs}</td><td>${rate}</td><td>${fmtRange(wMin,wMax)}</td><td>${fmtRange(mMin,mMax)}</td><td>${fmtRange(aMin,aMax)}</td></tr>`;
+return`<tr><td>${dn}</td><td>${r.qty}</td><td>${r.hrs}</td><td>${rate}</td><td>${fmtRange(wMin,wMax)}</td><td>${fmtRange(mMin,mMax)}</td><td>${fmtRange(aMin,aMax)}</td></tr>`;
 }).join('');
 
-// Org chart nodes based on roster
-const orgNodes=[];
+// Org chart
 const hasMgr=d.roster.some(r=>r.typeId==='site_manager');
 const hasAsstMgr=d.roster.some(r=>r.typeId==='asst_site_manager');
 const hasSup=d.roster.some(r=>r.typeId==='shift_supervisor');
-const otherRoles=d.roster.filter(r=>!['site_manager','asst_site_manager','shift_supervisor'].includes(r.typeId));
+
+// SLA output — only enabled items
+const enabledSlas=d.slas.filter(s=>s.enabled);
+
+// Implementation timeline
+const phases=d.phases;
+
+// Build SLA section HTML
+let slaHtml='';
+if(enabledSlas.length>0){
+slaHtml=`<div class="sla-grid">${enabledSlas.map(s=>{
+// Extract a short display value from the full text
+let val=s.value;
+let shortVal=val;
+// Try to extract a punchy short value
+if(val.match(/^\d/)) shortVal=val.split(' ').slice(0,3).join(' ');
+else if(val.length<=30) shortVal=val;
+else shortVal=val.substring(0,30)+'…';
+return`<div class="sla-item"><div class="sla-val">${shortVal}</div><div class="sla-label">${s.label}</div></div>`;
+}).join('')}</div>`;
+}
+
+// Build timeline section HTML
+let timelineHtml='';
+if(phases.length>0){
+timelineHtml=`<div class="timeline">${phases.map((p,i)=>`<div class="tl-item"><div class="tl-dot">${i+1}</div><div class="tl-content"><h4>${p.duration?p.duration+' — ':''}${p.name}</h4><p>${p.desc}</p></div></div>`).join('')}
+<div class="tl-item"><div class="tl-dot">✓</div><div class="tl-content"><h4>Ongoing — Continuous Improvement</h4><p>Regular performance reviews, business assessments, security audits, and continuous protocol optimization based on incident data and evolving threats.</p></div></div>
+</div>`;
+}
 
 let html=`
 <!-- COVER -->
@@ -757,14 +915,8 @@ ${pageFooter(d.company)}
 <div class="page"><div class="page-inner">
 ${pageHeader(7)}
 <div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Implementation Timeline</div>
-<p class="prose">Salient Group follows a structured implementation process to ensure a seamless transition and operational readiness from day one.</p>
-<div class="timeline">
-<div class="tl-item"><div class="tl-dot">1</div><div class="tl-content"><h4>Week 1 — Site Assessment & Security Audit</h4><p>Comprehensive on-site evaluation of your facility, including vulnerability assessment, access point analysis, environmental review, and consultation with your team to understand operational requirements.</p></div></div>
-<div class="tl-item"><div class="tl-dot">2</div><div class="tl-content"><h4>Week 2 — Custom Post Orders & Staffing Plan</h4><p>Development of detailed, site-specific post orders for each position, patrol route mapping, emergency response protocols, and identification of optimal staffing candidates from our vetted officer pool.</p></div></div>
-<div class="tl-item"><div class="tl-dot">3</div><div class="tl-content"><h4>Week 3 — Guard Selection, Training & Orientation</h4><p>Final officer selection, site-specific training program, facility orientation, technology onboarding, and introduction to your team. All officers complete a supervised orientation period.</p></div></div>
-<div class="tl-item"><div class="tl-dot">4</div><div class="tl-content"><h4>Week 4 — Go-Live with Management Support</h4><p>Full operational launch with on-site management oversight during the first week. Your account manager and site supervisor will be present to ensure smooth operations and address any adjustments in real time.</p></div></div>
-<div class="tl-item"><div class="tl-dot">✓</div><div class="tl-content"><h4>Ongoing — Continuous Improvement</h4><p>Monthly performance reviews, quarterly business assessments, annual security audits, and continuous protocol optimization based on incident data and evolving threats.</p></div></div>
-</div>
+<p class="prose">Salient Group follows a structured implementation process to ensure a seamless transition and operational readiness.</p>
+${timelineHtml}
 ${pageFooter(d.company)}
 </div></div>
 
@@ -787,16 +939,7 @@ ${pageFooter(d.company)}
 ${pageHeader(9)}
 <div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg> Service Level Agreements</div>
 <p class="prose">Salient Group backs every engagement with clearly defined service commitments — because accountability is the foundation of trust.</p>
-<div class="sla-grid">
-<div class="sla-item"><div class="sla-val">48–72 hrs</div><div class="sla-label">Guard Deployment from Contract Signing</div></div>
-<div class="sla-item"><div class="sla-val">&lt; 15 min</div><div class="sla-label">Incident Response Time</div></div>
-<div class="sla-item"><div class="sla-val">Weekly</div><div class="sla-label">Supervisor On-Site Visits</div></div>
-<div class="sla-item"><div class="sla-val">Same-Shift</div><div class="sla-label">Guard Replacement Guarantee</div></div>
-<div class="sla-item"><div class="sla-val">Monthly</div><div class="sla-label">Detailed Analytics Report</div></div>
-<div class="sla-item"><div class="sla-val">Quarterly</div><div class="sla-label">Business Review with Account Manager</div></div>
-<div class="sla-item"><div class="sla-val">24/7</div><div class="sla-label">Operations Support Line</div></div>
-<div class="sla-item"><div class="sla-val">90-Day</div><div class="sla-label">Satisfaction Guarantee</div></div>
-</div>
+${slaHtml}
 ${pageFooter(d.company)}
 </div></div>
 
