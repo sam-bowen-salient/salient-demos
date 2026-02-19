@@ -2197,10 +2197,20 @@
         }
 
         function loadScenario(scenario) {
+            // Remove debrief if exists
+            const oldDebrief = document.getElementById('scenarioDebrief');
+            if (oldDebrief) oldDebrief.remove();
+            
+            // Restore scenario elements
+            document.getElementById('scenarioDescription').style.display = '';
+            document.getElementById('scenarioOptions').style.display = '';
+            document.getElementById('clock').style.display = '';
+            
             document.getElementById('scenarioTitle').textContent = scenario.title;
             document.getElementById('scenarioTime').textContent = scenario.initialTime;
             
             // Reset clock
+            clearInterval(clockInterval);
             currentScenarioStartTime = Date.now();
             assessmentData.scenarioElapsedTime = 0;
             startClock();
@@ -2297,7 +2307,19 @@
         }
 
         function showScenarioDebrief(scenario) {
-            const debriefHtml = `
+            // Hide scenario elements instead of destroying them
+            document.getElementById('scenarioDescription').style.display = 'none';
+            document.getElementById('scenarioOptions').style.display = 'none';
+            document.getElementById('scenarioButtons').style.display = 'none';
+            document.getElementById('clock').style.display = 'none';
+            
+            // Remove old debrief if exists
+            const oldDebrief = document.getElementById('scenarioDebrief');
+            if (oldDebrief) oldDebrief.remove();
+            
+            const debriefDiv = document.createElement('div');
+            debriefDiv.id = 'scenarioDebrief';
+            debriefDiv.innerHTML = `
                 <div class="debrief-card">
                     <h3>Scenario Complete: ${scenario.title}</h3>
                     <div style="font-size: 1.2rem; margin: 1rem 0;">
@@ -2314,7 +2336,7 @@
                 </div>
             `;
             
-            document.getElementById('scenarioContainer').innerHTML = debriefHtml;
+            document.getElementById('scenarioContainer').appendChild(debriefDiv);
         }
 
         function nextScenario() {
@@ -2438,9 +2460,14 @@
         }
 
         function generatePlan() {
-            const planContent = createEmergencyResponsePlan();
-            document.getElementById('planPreview').innerHTML = planContent;
-            goToPhase(5);
+            try {
+                const planContent = createEmergencyResponsePlan();
+                document.getElementById('planPreview').innerHTML = planContent;
+                goToPhase(5);
+            } catch(e) {
+                console.error('Plan generation error:', e);
+                alert('Error generating plan. Please try again.');
+            }
         }
 
         function createEmergencyResponsePlan() {
@@ -2646,6 +2673,45 @@
             };
             
             return protocols[industry] || protocols.warehouse;
+        }
+
+        function createSecurityRecommendations(data) {
+            const sqft = data.operation.facilitySize;
+            const hours = data.operation.operatingHours;
+            const measures = data.operation.securityMeasures || [];
+            
+            let guards = Math.max(1, Math.ceil(sqft / 50000));
+            if (hours === '24/7') guards = Math.ceil(guards * 3.5); // 3 shifts + coverage
+            else if (hours === 'extended') guards = Math.ceil(guards * 2);
+            
+            const hourlyMin = 22;
+            const hourlyMax = 25;
+            
+            let html = '<h4>Recommended Guard Program</h4><ul>';
+            html += `<li><strong>${guards} Security Officers</strong> — providing ${hours === '24/7' ? 'round-the-clock' : hours === 'extended' ? 'extended hours' : 'business hours'} coverage</li>`;
+            html += `<li><strong>Shift Supervisor</strong> — on-site leadership and quality assurance ($26-30/hr)</li>`;
+            html += `<li><strong>Estimated Hourly Rate:</strong> $${hourlyMin}-$${hourlyMax}/hr per officer</li>`;
+            html += '</ul>';
+            
+            html += '<h4>Technology Recommendations</h4><ul>';
+            if (!measures.includes('CCTV cameras')) html += '<li><span class="gap-highlight">ADD:</span> CCTV surveillance system with remote monitoring</li>';
+            if (!measures.includes('Access control')) html += '<li><span class="gap-highlight">ADD:</span> Electronic access control at all entry points</li>';
+            if (!measures.includes('Alarm system')) html += '<li><span class="gap-highlight">ADD:</span> Intrusion detection and alarm system</li>';
+            if (!measures.includes('Motion sensors')) html += '<li><span class="gap-highlight">ADD:</span> Motion detection sensors for perimeter security</li>';
+            if (!measures.includes('Lighting')) html += '<li><span class="gap-highlight">ADD:</span> Adequate security lighting at all entry points and parking areas</li>';
+            if (measures.length >= 4) html += '<li>Integrate existing systems into unified security operations center</li>';
+            html += '<li>GPS-tracked guard tours with real-time reporting</li>';
+            html += '<li>Digital incident reporting with photo/video documentation</li>';
+            html += '</ul>';
+            
+            html += '<h4>Procedure Improvements</h4><ul>';
+            html += '<li>Documented emergency response protocols for all incident types</li>';
+            html += '<li>Regular security drills and tabletop exercises</li>';
+            html += '<li>Visitor management and access logging system</li>';
+            html += '<li>Monthly security reports and quarterly business reviews</li>';
+            html += '</ul>';
+            
+            return html;
         }
 
         function calculateSecurityCosts(data) {
