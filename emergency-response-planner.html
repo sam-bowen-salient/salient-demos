@@ -1290,7 +1290,7 @@
                         {
                             description: "Motion detected at loading dock. Who gets alerted first?",
                             options: [
-                                { text: "Security guard on patrol", time: 0, consequence: "Guard responds immediately", score: { detection: 20, response: 25 } },
+                                { text: "Security guard on patrol", time: 1, consequence: "Guard responds immediately", score: { detection: 20, response: 25 } },
                                 { text: "Alarm company calls manager", time: 4, consequence: "Manager receives call 4 minutes later", score: { detection: 15, response: 10 } },
                                 { text: "Nobody — reviewed next morning", time: 480, consequence: "Incident goes unnoticed for 8 hours", score: { detection: 0, response: 0 } },
                                 { text: "Camera alert pops up but nobody monitoring", time: 60, consequence: "Alert sits unnoticed for an hour", score: { detection: 5, response: 0 } }
@@ -1302,7 +1302,7 @@
                                 { text: "Security guard checks cameras immediately", time: 1, consequence: "Threat identified quickly", score: { detection: 20, communication: 15 } },
                                 { text: "Manager reviews remotely from home", time: 8, consequence: "Manager takes time to access system", score: { detection: 10, communication: 10 } },
                                 { text: "Wait until morning shift arrives", time: 300, consequence: "5 hours pass before anyone reviews", score: { detection: 0, communication: 0 } },
-                                { text: "No one reviews — cameras are record-only", time: 0, consequence: "Evidence exists but no real-time response", score: { detection: 0, response: 0 } }
+                                { text: "No one reviews — cameras are record-only", time: 20, consequence: "Evidence exists but no real-time response", score: { detection: 0, response: 0 } }
                             ]
                         },
                         {
@@ -1320,7 +1320,7 @@
                                 { text: "Security guard calls with detailed information", time: 2, consequence: "Police receive accurate details, quick response", score: { communication: 25, compliance: 20 } },
                                 { text: "Manager calls with basic information", time: 5, consequence: "Police get general information", score: { communication: 15, compliance: 15 } },
                                 { text: "Employee calls but lacks key details", time: 3, consequence: "Police confused about location/situation", score: { communication: 10, compliance: 10 } },
-                                { text: "Don't call police — handle internally", time: 0, consequence: "No law enforcement involvement", score: { communication: 0, compliance: 0 } }
+                                { text: "Don't call police — handle internally", time: 25, consequence: "No law enforcement involvement", score: { communication: 0, compliance: 0 } }
                             ]
                         },
                         {
@@ -1329,13 +1329,13 @@
                                 { text: "Security guard completes detailed incident report immediately", time: 15, consequence: "Comprehensive documentation for insurance/police", score: { documentation: 25, compliance: 20 } },
                                 { text: "Manager files report the next morning", time: 0, consequence: "Delayed documentation, some details lost", score: { documentation: 15, compliance: 10 } },
                                 { text: "Basic notes taken, formal report later", time: 5, consequence: "Incomplete initial documentation", score: { documentation: 10, compliance: 5 } },
-                                { text: "No formal documentation process", time: 0, consequence: "No record for insurance or investigation", score: { documentation: 0, compliance: 0 } }
+                                { text: "No formal documentation process", time: 30, consequence: "No record for insurance or investigation", score: { documentation: 0, compliance: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Professional security response within 5 minutes, immediate police notification, comprehensive documentation",
-                        financialImpact: { min: 15000, max: 75000 }
+                        financialImpact: { min: 5000, max: 25000 }
                     }
                 },
                 {
@@ -1357,7 +1357,7 @@
                             options: [
                                 { text: "Security guard with first aid certification and supplies nearby", time: 1, consequence: "Proper medical response, injury stabilized", score: { response: 25, compliance: 20 } },
                                 { text: "First aid kit available but no trained personnel", time: 5, consequence: "Basic supplies but uncertain treatment", score: { response: 10, compliance: 10 } },
-                                { text: "No first aid supplies or training available", time: 0, consequence: "No medical response capability", score: { response: 0, compliance: 0 } },
+                                { text: "No first aid supplies or training available", time: 35, consequence: "No medical response capability", score: { response: 0, compliance: 0 } },
                                 { text: "Supplies locked away, no one has key", time: 10, consequence: "Delayed access to medical supplies", score: { response: 5, compliance: 5 } }
                             ]
                         },
@@ -1375,14 +1375,14 @@
                             options: [
                                 { text: "Security supervisor completes OSHA report within 24 hours", time: 60, consequence: "Compliant reporting, proper documentation", score: { documentation: 25, compliance: 25 } },
                                 { text: "Manager handles paperwork during business hours", time: 0, consequence: "Delayed reporting, potential compliance issues", score: { documentation: 15, compliance: 10 } },
-                                { text: "HR handles when they come in next week", time: 0, consequence: "Significant delay, regulatory violations", score: { documentation: 5, compliance: 0 } },
-                                { text: "No formal incident reporting process", time: 0, consequence: "No documentation, major compliance failure", score: { documentation: 0, compliance: 0 } }
+                                { text: "HR handles when they come in next week", time: 40, consequence: "Significant delay, regulatory violations", score: { documentation: 5, compliance: 0 } },
+                                { text: "No formal incident reporting process", time: 45, consequence: "No documentation, major compliance failure", score: { documentation: 0, compliance: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Immediate professional response, trained first aid, rapid EMS contact, compliant documentation",
-                        financialImpact: { min: 25000, max: 150000 }
+                        financialImpact: { min: 8000, max: 50000 }
                     }
                 },
                 {
@@ -1393,7 +1393,7 @@
                         {
                             description: "Unknown vehicle tailgates through gate during shift change. Who notices?",
                             options: [
-                                { text: "Security guard at gate checkpoint notices immediately", time: 0, consequence: "Immediate detection and response", score: { detection: 25, response: 20 } },
+                                { text: "Security guard at gate checkpoint notices immediately", time: 1, consequence: "Immediate detection and response", score: { detection: 25, response: 20 } },
                                 { text: "Employee notices and alerts security", time: 3, consequence: "Quick employee reporting", score: { detection: 20, communication: 15 } },
                                 { text: "Camera system captures but no one monitoring", time: 60, consequence: "Evidence exists but no real-time detection", score: { detection: 5, response: 0 } },
                                 { text: "Nobody notices the unauthorized entry", time: 300, consequence: "Intruder operates undetected for hours", score: { detection: 0, response: 0 } }
@@ -1405,7 +1405,7 @@
                                 { text: "Security approaches vehicle professionally", time: 2, consequence: "Professional interaction, situation controlled", score: { response: 25, communication: 20 } },
                                 { text: "Employee approaches and asks questions", time: 1, consequence: "Untrained response, potential safety risk", score: { response: 10, communication: 10 } },
                                 { text: "Observe from distance and call police", time: 5, consequence: "Safe approach but delayed resolution", score: { response: 15, communication: 15 } },
-                                { text: "No direct response, hope they leave", time: 0, consequence: "No security response, vulnerability continues", score: { response: 0, communication: 0 } }
+                                { text: "No direct response, hope they leave", time: 15, consequence: "No security response, vulnerability continues", score: { response: 0, communication: 0 } }
                             ]
                         },
                         {
@@ -1423,13 +1423,13 @@
                                 { text: "Security completes full incident report, reviews access procedures", time: 30, consequence: "Comprehensive analysis, procedural improvements", score: { documentation: 25, compliance: 20 } },
                                 { text: "Basic incident log entry, no analysis", time: 10, consequence: "Minimal documentation, no learning", score: { documentation: 10, compliance: 5 } },
                                 { text: "Verbal report only, no written documentation", time: 5, consequence: "No formal record, pattern not trackable", score: { documentation: 5, compliance: 0 } },
-                                { text: "No follow-up or documentation", time: 0, consequence: "Incident ignored, vulnerabilities remain", score: { documentation: 0, compliance: 0 } }
+                                { text: "No follow-up or documentation", time: 20, consequence: "Incident ignored, vulnerabilities remain", score: { documentation: 0, compliance: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Controlled access with security checkpoint, social engineering training, comprehensive incident response",
-                        financialImpact: { min: 10000, max: 50000 }
+                        financialImpact: { min: 2000, max: 15000 }
                     }
                 }
             ],
@@ -1463,7 +1463,7 @@
                                 { text: "Security tracks patient while nurse calls police and physician", time: 2, consequence: "Coordinated response, patient safety maintained", score: { response: 25, communication: 25 } },
                                 { text: "Staff member follows patient, calls police", time: 3, consequence: "Basic response but staff safety at risk", score: { response: 15, communication: 15 } },
                                 { text: "Call police but don't pursue patient", time: 5, consequence: "Safe for staff but patient location unknown", score: { response: 10, communication: 20 } },
-                                { text: "Wait and see if patient returns", time: 0, consequence: "No immediate action, patient at risk", score: { response: 0, communication: 0 } }
+                                { text: "Wait and see if patient returns", time: 25, consequence: "No immediate action, patient at risk", score: { response: 0, communication: 0 } }
                             ]
                         },
                         {
@@ -1471,14 +1471,14 @@
                             options: [
                                 { text: "Security completes immediate incident report, administration notifies CMS/Joint Commission", time: 30, consequence: "Full compliance, proper reporting", score: { documentation: 25, compliance: 25 } },
                                 { text: "Nursing documents in patient record, admin reports next day", time: 0, consequence: "Basic documentation, delayed reporting", score: { documentation: 15, compliance: 10 } },
-                                { text: "Incident noted but formal reporting delayed", time: 0, consequence: "Compliance violation, regulatory risk", score: { documentation: 10, compliance: 0 } },
-                                { text: "No formal documentation of elopement", time: 0, consequence: "Major compliance failure, accreditation risk", score: { documentation: 0, compliance: 0 } }
+                                { text: "Incident noted but formal reporting delayed", time: 30, consequence: "Compliance violation, regulatory risk", score: { documentation: 10, compliance: 0 } },
+                                { text: "No formal documentation of elopement", time: 35, consequence: "Major compliance failure, accreditation risk", score: { documentation: 0, compliance: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Immediate security response, professional de-escalation, coordinated pursuit, compliant reporting",
-                        financialImpact: { min: 50000, max: 200000 }
+                        financialImpact: { min: 5000, max: 25000 }
                     }
                 },
                 {
@@ -1492,7 +1492,7 @@
                                 { text: "Security officer responds immediately with de-escalation", time: 1, consequence: "Professional response, situation controlled", score: { response: 25, communication: 20 } },
                                 { text: "Charge nurse attempts to calm the individual", time: 2, consequence: "Clinical approach but limited security training", score: { response: 15, communication: 15 } },
                                 { text: "Staff calls for help but continues interaction", time: 3, consequence: "Delayed security response, escalation continues", score: { response: 10, communication: 10 } },
-                                { text: "Staff avoids individual, hopes situation improves", time: 0, consequence: "No intervention, aggressive behavior increases", score: { response: 0, communication: 0 } }
+                                { text: "Staff avoids individual, hopes situation improves", time: 40, consequence: "No intervention, aggressive behavior increases", score: { response: 0, communication: 0 } }
                             ]
                         },
                         {
@@ -1509,8 +1509,8 @@
                             options: [
                                 { text: "Security coordinates patient area evacuation while containing threat", time: 3, consequence: "Organized response, minimal trauma to others", score: { communication: 25, recovery: 25 } },
                                 { text: "Staff verbally reassures patients while handling incident", time: 5, consequence: "Basic communication but ongoing disruption", score: { communication: 15, recovery: 10 } },
-                                { text: "Focus only on aggressive individual", time: 0, consequence: "Other patients traumatized, negative experience", score: { communication: 5, recovery: 5 } },
-                                { text: "No coordinated response for other patients", time: 0, consequence: "Widespread fear, potential exodus of patients", score: { communication: 0, recovery: 0 } }
+                                { text: "Focus only on aggressive individual", time: 45, consequence: "Other patients traumatized, negative experience", score: { communication: 5, recovery: 5 } },
+                                { text: "No coordinated response for other patients", time: 15, consequence: "Widespread fear, potential exodus of patients", score: { communication: 0, recovery: 0 } }
                             ]
                         },
                         {
@@ -1519,13 +1519,13 @@
                                 { text: "Security completes detailed incident report, HR provides staff counseling", time: 45, consequence: "Comprehensive response, staff wellness addressed", score: { documentation: 25, compliance: 25 } },
                                 { text: "Basic incident report filed, informal staff check-in", time: 20, consequence: "Standard documentation but limited support", score: { documentation: 15, compliance: 10 } },
                                 { text: "Incident logged but no formal staff support", time: 10, consequence: "Administrative requirement met but staff needs ignored", score: { documentation: 10, compliance: 5 } },
-                                { text: "No formal documentation or staff follow-up", time: 0, consequence: "OSHA violation, staff trauma unaddressed", score: { documentation: 0, compliance: 0 } }
+                                { text: "No formal documentation or staff follow-up", time: 20, consequence: "OSHA violation, staff trauma unaddressed", score: { documentation: 0, compliance: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Immediate security response, violence prevention protocols, coordinated patient management, comprehensive documentation",
-                        financialImpact: { min: 75000, max: 300000 }
+                        financialImpact: { min: 10000, max: 60000 }
                     }
                 },
                 {
@@ -1539,7 +1539,7 @@
                                 { text: "Security responds immediately, arrives within 2 minutes", time: 2, consequence: "Rapid response, minimal exposure time", score: { detection: 25, response: 25 } },
                                 { text: "Security notified but delayed by other duties", time: 8, consequence: "Delayed response, extended vulnerability window", score: { detection: 15, response: 10 } },
                                 { text: "Alarm company calls security after delay", time: 12, consequence: "External monitoring but slow internal response", score: { detection: 10, response: 5 } },
-                                { text: "Alarm ignored as 'false alarm'", time: 0, consequence: "No response, potential controlled substance theft", score: { detection: 0, response: 0 } }
+                                { text: "Alarm ignored as 'false alarm'", time: 25, consequence: "No response, potential controlled substance theft", score: { detection: 0, response: 0 } }
                             ]
                         },
                         {
@@ -1557,22 +1557,22 @@
                                 { text: "Security preserves scene, administration notifies DEA within required timeframe", time: 30, consequence: "Proper regulatory compliance maintained", score: { compliance: 25, documentation: 25 } },
                                 { text: "Pharmacy conducts inventory first, then reports", time: 120, consequence: "Delayed reporting but accurate count", score: { compliance: 15, documentation: 20 } },
                                 { text: "Internal investigation only, minimal external reporting", time: 60, consequence: "Regulatory violations, accreditation risk", score: { compliance: 5, documentation: 10 } },
-                                { text: "No systematic investigation or reporting", time: 0, consequence: "Major compliance failure, DEA sanctions", score: { compliance: 0, documentation: 0 } }
+                                { text: "No systematic investigation or reporting", time: 30, consequence: "Major compliance failure, DEA sanctions", score: { compliance: 0, documentation: 0 } }
                             ]
                         },
                         {
                             description: "How do you prevent future incidents and maintain regulatory compliance?",
                             options: [
-                                { text: "Security reviews all access protocols, implements additional safeguards", time: 0, consequence: "Comprehensive security enhancement", score: { recovery: 25, compliance: 20 } },
-                                { text: "Add additional locks but no systematic review", time: 0, consequence: "Basic improvement but gaps remain", score: { recovery: 15, compliance: 10 } },
-                                { text: "Rely on existing procedures, no changes", time: 0, consequence: "Vulnerability continues, future incidents likely", score: { recovery: 5, compliance: 5 } },
-                                { text: "No follow-up security measures implemented", time: 0, consequence: "No learning from incident, repeated risk", score: { recovery: 0, compliance: 0 } }
+                                { text: "Security reviews all access protocols, implements additional safeguards", time: 35, consequence: "Comprehensive security enhancement", score: { recovery: 25, compliance: 20 } },
+                                { text: "Add additional locks but no systematic review", time: 40, consequence: "Basic improvement but gaps remain", score: { recovery: 15, compliance: 10 } },
+                                { text: "Rely on existing procedures, no changes", time: 45, consequence: "Vulnerability continues, future incidents likely", score: { recovery: 5, compliance: 5 } },
+                                { text: "No follow-up security measures implemented", time: 15, consequence: "No learning from incident, repeated risk", score: { recovery: 0, compliance: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Immediate response, scene preservation, proper DEA reporting, enhanced security protocols",
-                        financialImpact: { min: 100000, max: 500000 }
+                        financialImpact: { min: 20000, max: 100000 }
                     }
                 }
             ],
@@ -1587,8 +1587,8 @@
                             options: [
                                 { text: "Security guard on site responds immediately", time: 2, consequence: "Immediate on-site response", score: { detection: 25, response: 25 } },
                                 { text: "Monitoring company calls site supervisor", time: 8, consequence: "Off-site notification, delayed response", score: { detection: 15, response: 10 } },
-                                { text: "Motion sensor logged but no immediate alert", time: 0, consequence: "No real-time response capability", score: { detection: 5, response: 0 } },
-                                { text: "No monitoring system in place", time: 0, consequence: "Theft proceeds undetected", score: { detection: 0, response: 0 } }
+                                { text: "Motion sensor logged but no immediate alert", time: 20, consequence: "No real-time response capability", score: { detection: 5, response: 0 } },
+                                { text: "No monitoring system in place", time: 25, consequence: "Theft proceeds undetected", score: { detection: 0, response: 0 } }
                             ]
                         },
                         {
@@ -1597,7 +1597,7 @@
                                 { text: "Security confronts safely while calling police", time: 3, consequence: "Professional intervention, thieves flee", score: { response: 25, communication: 20 } },
                                 { text: "Supervisor arrives and calls police", time: 15, consequence: "Some equipment stolen but police notified", score: { response: 15, communication: 15 } },
                                 { text: "Observe from distance, call police only", time: 5, consequence: "Safe approach but equipment lost", score: { response: 10, communication: 20 } },
-                                { text: "No immediate response capability", time: 0, consequence: "Full equipment theft completed", score: { response: 0, communication: 0 } }
+                                { text: "No immediate response capability", time: 30, consequence: "Full equipment theft completed", score: { response: 0, communication: 0 } }
                             ]
                         },
                         {
@@ -1606,13 +1606,13 @@
                                 { text: "Security provides detailed report with serial numbers and video", time: 30, consequence: "Complete information for investigation", score: { documentation: 25, recovery: 20 } },
                                 { text: "Site supervisor provides basic information", time: 45, consequence: "General report but some details missing", score: { documentation: 15, recovery: 10 } },
                                 { text: "Minimal documentation, no video available", time: 15, consequence: "Poor investigation support", score: { documentation: 10, recovery: 5 } },
-                                { text: "No formal reporting or documentation", time: 0, consequence: "No insurance or recovery options", score: { documentation: 0, recovery: 0 } }
+                                { text: "No formal reporting or documentation", time: 35, consequence: "No insurance or recovery options", score: { documentation: 0, recovery: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "24/7 security presence, immediate response protocols, comprehensive equipment tracking",
-                        financialImpact: { min: 50000, max: 250000 }
+                        financialImpact: { min: 15000, max: 80000 }
                     }
                 },
                 {
@@ -1634,14 +1634,14 @@
                             options: [
                                 { text: "Call 911 immediately, document scene, notify insurance", time: 5, consequence: "Proper emergency and legal response", score: { communication: 25, documentation: 25 } },
                                 { text: "Call 911, basic documentation after", time: 10, consequence: "Medical response good, documentation delayed", score: { communication: 20, documentation: 15 } },
-                                { text: "Handle internally, minimal documentation", time: 0, consequence: "Inadequate response, liability exposure", score: { communication: 5, documentation: 5 } },
-                                { text: "No systematic response protocol", time: 0, consequence: "Chaotic response, legal vulnerability", score: { communication: 0, documentation: 0 } }
+                                { text: "Handle internally, minimal documentation", time: 40, consequence: "Inadequate response, liability exposure", score: { communication: 5, documentation: 5 } },
+                                { text: "No systematic response protocol", time: 45, consequence: "Chaotic response, legal vulnerability", score: { communication: 0, documentation: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Secure perimeter, immediate medical response, comprehensive incident documentation",
-                        financialImpact: { min: 75000, max: 500000 }
+                        financialImpact: { min: 25000, max: 150000 }
                     }
                 },
                 {
@@ -1669,7 +1669,7 @@
                     ],
                     debrief: {
                         bestPractice: "Proper fire watch protocols, immediate emergency response, compliant safety reporting",
-                        financialImpact: { min: 100000, max: 1000000 }
+                        financialImpact: { min: 30000, max: 200000 }
                     }
                 }
             ],
@@ -1684,8 +1684,8 @@
                             options: [
                                 { text: "Security guard investigates immediately", time: 3, consequence: "Fast response, intruder confronted", score: { detection: 25, response: 25 } },
                                 { text: "Alarm company calls building manager", time: 10, consequence: "External monitoring but delayed response", score: { detection: 15, response: 10 } },
-                                { text: "Police notified automatically but no on-site response", time: 0, consequence: "Law enforcement coming but intruder active", score: { detection: 15, response: 5 } },
-                                { text: "Alarm ignored as potential false alarm", time: 0, consequence: "No response, theft continues", score: { detection: 0, response: 0 } }
+                                { text: "Police notified automatically but no on-site response", time: 15, consequence: "Law enforcement coming but intruder active", score: { detection: 15, response: 5 } },
+                                { text: "Alarm ignored as potential false alarm", time: 20, consequence: "No response, theft continues", score: { detection: 0, response: 0 } }
                             ]
                         },
                         {
@@ -1694,7 +1694,7 @@
                                 { text: "Security observes safely, provides real-time updates to police", time: 2, consequence: "Professional response, good police coordination", score: { response: 25, communication: 25 } },
                                 { text: "Confront intruder directly", time: 1, consequence: "Bold action but personal safety risk", score: { response: 15, communication: 10 } },
                                 { text: "Activate building alarm system, wait for police", time: 5, consequence: "Intruder alerted but may flee", score: { response: 10, communication: 15 } },
-                                { text: "No direct intervention capability", time: 0, consequence: "Theft continues uninterrupted", score: { response: 0, communication: 0 } }
+                                { text: "No direct intervention capability", time: 25, consequence: "Theft continues uninterrupted", score: { response: 0, communication: 0 } }
                             ]
                         },
                         {
@@ -1709,7 +1709,7 @@
                     ],
                     debrief: {
                         bestPractice: "24/7 security presence, coordinated law enforcement response, proactive tenant communication",
-                        financialImpact: { min: 25000, max: 150000 }
+                        financialImpact: { min: 5000, max: 30000 }
                     }
                 },
                 {
@@ -1722,7 +1722,7 @@
                             options: [
                                 { text: "Security guard responds immediately with radio backup", time: 1, consequence: "Immediate professional response", score: { response: 25, communication: 25 } },
                                 { text: "Building maintenance person investigates", time: 3, consequence: "Quick response but untrained for security", score: { response: 15, communication: 10 } },
-                                { text: "Front desk calls police but no immediate response", time: 0, consequence: "External help requested but victim unprotected", score: { response: 10, communication: 20 } },
+                                { text: "Front desk calls police but no immediate response", time: 30, consequence: "External help requested but victim unprotected", score: { response: 10, communication: 20 } },
                                 { text: "No immediate response - hoping it was nothing", time: 15, consequence: "No protection for potential victim", score: { response: 0, communication: 0 } }
                             ]
                         },
@@ -1731,8 +1731,8 @@
                             options: [
                                 { text: "Security uses tactical communication to distract attacker, coordinates police response", time: 2, consequence: "Professional intervention, victim protected", score: { response: 25, recovery: 25 } },
                                 { text: "Call out to attacker from distance, police notified", time: 1, consequence: "Attacker flees but situation handled", score: { response: 20, recovery: 20 } },
-                                { text: "Observe and provide police with real-time information", time: 0, consequence: "Good intelligence but victim still at risk", score: { response: 15, recovery: 15 } },
-                                { text: "No trained response for violent crime", time: 0, consequence: "Victim receives no assistance", score: { response: 0, recovery: 0 } }
+                                { text: "Observe and provide police with real-time information", time: 35, consequence: "Good intelligence but victim still at risk", score: { response: 15, recovery: 15 } },
+                                { text: "No trained response for violent crime", time: 40, consequence: "Victim receives no assistance", score: { response: 0, recovery: 0 } }
                             ]
                         },
                         {
@@ -1741,13 +1741,13 @@
                                 { text: "Security provides victim support, implements building lockdown, tenant notification", time: 30, consequence: "Comprehensive crisis response", score: { recovery: 25, communication: 25 } },
                                 { text: "Basic victim assistance, general building alert", time: 15, consequence: "Adequate response but limited coordination", score: { recovery: 15, communication: 15 } },
                                 { text: "Focus on police cooperation only", time: 5, consequence: "Legal requirements met but tenant support lacking", score: { recovery: 10, communication: 10 } },
-                                { text: "No systematic crisis response", time: 0, consequence: "Chaotic aftermath, tenant confidence shaken", score: { recovery: 0, communication: 0 } }
+                                { text: "No systematic crisis response", time: 45, consequence: "Chaotic aftermath, tenant confidence shaken", score: { recovery: 0, communication: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Immediate security response, tactical intervention training, comprehensive crisis management",
-                        financialImpact: { min: 50000, max: 300000 }
+                        financialImpact: { min: 5000, max: 25000 }
                     }
                 },
                 {
@@ -1761,7 +1761,7 @@
                                 { text: "Security with first aid/AED training responds immediately", time: 1, consequence: "Professional medical response", score: { response: 25, recovery: 25 } },
                                 { text: "Front desk staff calls 911, provides basic assistance", time: 2, consequence: "Emergency services notified, limited medical help", score: { response: 15, recovery: 15 } },
                                 { text: "Other tenants assist while building staff calls for help", time: 3, consequence: "Community response but no trained personnel", score: { response: 10, recovery: 10 } },
-                                { text: "No trained first response capability", time: 0, consequence: "No immediate medical assistance", score: { response: 0, recovery: 0 } }
+                                { text: "No trained first response capability", time: 15, consequence: "No immediate medical assistance", score: { response: 0, recovery: 0 } }
                             ]
                         },
                         {
@@ -1770,13 +1770,13 @@
                                 { text: "Security coordinates EMS access, manages crowd, maintains building operations", time: 5, consequence: "Smooth emergency response, minimal disruption", score: { communication: 25, recovery: 25 } },
                                 { text: "Basic EMS coordination, some disruption to building", time: 8, consequence: "Emergency handled but operational impact", score: { communication: 15, recovery: 15 } },
                                 { text: "EMS access provided but no crowd management", time: 10, consequence: "Medical response good but building chaos", score: { communication: 10, recovery: 10 } },
-                                { text: "No coordinated emergency management", time: 0, consequence: "Disrupted building operations, tenant concerns", score: { communication: 0, recovery: 0 } }
+                                { text: "No coordinated emergency management", time: 20, consequence: "Disrupted building operations, tenant concerns", score: { communication: 0, recovery: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Trained security first responders, coordinated EMS access, professional crisis management",
-                        financialImpact: { min: 15000, max: 75000 }
+                        financialImpact: { min: 3000, max: 20000 }
                     }
                 }
             ],
@@ -1792,7 +1792,7 @@
                                 { text: "Security guard activates panic button, observes and radios police", time: 1, consequence: "Professional response, authorities notified immediately", score: { response: 25, communication: 25 } },
                                 { text: "Employee hits silent alarm, retreats to back office", time: 2, consequence: "Alarm triggered but no immediate deterrent", score: { response: 15, communication: 20 } },
                                 { text: "Manager approaches group asking if they need help", time: 1, consequence: "Brave but potentially dangerous confrontation", score: { response: 10, communication: 5 } },
-                                { text: "No trained response, employees freeze", time: 0, consequence: "No deterrent, theft proceeds unimpeded", score: { response: 0, communication: 0 } }
+                                { text: "No trained response, employees freeze", time: 25, consequence: "No deterrent, theft proceeds unimpeded", score: { response: 0, communication: 0 } }
                             ]
                         },
                         {
@@ -1801,7 +1801,7 @@
                                 { text: "Security follows protocol: observe, document, don't intervene physically", time: 0, consequence: "Safe response, good evidence for prosecution", score: { response: 25, documentation: 25 } },
                                 { text: "Activate additional alarms, announce police are coming", time: 1, consequence: "May deter thieves but confrontational", score: { response: 15, documentation: 15 } },
                                 { text: "Staff attempts to physically stop thieves", time: 1, consequence: "High risk of injury, potential liability", score: { response: 5, documentation: 10 } },
-                                { text: "No response plan, staff act individually", time: 0, consequence: "Chaotic response, safety compromised", score: { response: 0, documentation: 0 } }
+                                { text: "No response plan, staff act individually", time: 30, consequence: "Chaotic response, safety compromised", score: { response: 0, documentation: 0 } }
                             ]
                         },
                         {
@@ -1810,13 +1810,13 @@
                                 { text: "Security provides police with video, witness statements, inventory list", time: 30, consequence: "Complete investigation support", score: { documentation: 25, recovery: 20 } },
                                 { text: "Manager cooperates with police, basic documentation", time: 45, consequence: "Standard cooperation but limited details", score: { documentation: 15, recovery: 10 } },
                                 { text: "Minimal cooperation, no systematic documentation", time: 15, consequence: "Poor investigation support, limited recovery", score: { documentation: 10, recovery: 5 } },
-                                { text: "No formal incident response or documentation", time: 0, consequence: "No investigation support, no insurance claim", score: { documentation: 0, recovery: 0 } }
+                                { text: "No formal incident response or documentation", time: 35, consequence: "No investigation support, no insurance claim", score: { documentation: 0, recovery: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Professional security response, comprehensive documentation, coordinated law enforcement cooperation",
-                        financialImpact: { min: 20000, max: 100000 }
+                        financialImpact: { min: 5000, max: 30000 }
                     }
                 },
                 {
@@ -1839,7 +1839,7 @@
                                 { text: "Security aids injured employee, gets medical help, preserves evidence", time: 3, consequence: "Employee welfare prioritized, evidence protected", score: { response: 25, recovery: 25 } },
                                 { text: "Pursue suspect while calling police", time: 2, consequence: "Active response but injured employee unattended", score: { response: 15, recovery: 10 } },
                                 { text: "Focus on stopping theft, minimal employee assistance", time: 1, consequence: "Loss prevention prioritized over safety", score: { response: 10, recovery: 5 } },
-                                { text: "No systematic response to assault", time: 0, consequence: "Employee injury unaddressed, poor evidence", score: { response: 0, recovery: 0 } }
+                                { text: "No systematic response to assault", time: 40, consequence: "Employee injury unaddressed, poor evidence", score: { response: 0, recovery: 0 } }
                             ]
                         },
                         {
@@ -1848,13 +1848,13 @@
                                 { text: "Security completes assault report, HR provides employee support, OSHA notification", time: 60, consequence: "Comprehensive response and compliance", score: { documentation: 25, compliance: 25 } },
                                 { text: "Basic incident report, employee gets medical attention", time: 30, consequence: "Standard response but limited compliance", score: { documentation: 15, compliance: 15 } },
                                 { text: "Incident logged but minimal employee support", time: 15, consequence: "Administrative requirement met but employee needs ignored", score: { documentation: 10, compliance: 5 } },
-                                { text: "No formal documentation or employee follow-up", time: 0, consequence: "Workplace violence unaddressed, regulatory violation", score: { documentation: 0, compliance: 0 } }
+                                { text: "No formal documentation or employee follow-up", time: 45, consequence: "Workplace violence unaddressed, regulatory violation", score: { documentation: 0, compliance: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "De-escalation training, employee safety priority, comprehensive assault response protocols",
-                        financialImpact: { min: 30000, max: 200000 }
+                        financialImpact: { min: 8000, max: 40000 }
                     }
                 },
                 {
@@ -1867,8 +1867,8 @@
                             options: [
                                 { text: "Security documents evidence, notifies management, preserves scene", time: 30, consequence: "Professional investigation approach", score: { documentation: 25, compliance: 25 } },
                                 { text: "Manager confronts employee immediately", time: 15, consequence: "Direct approach but potentially compromised investigation", score: { documentation: 15, compliance: 15 } },
-                                { text: "Continue surveillance to gather more evidence", time: 0, consequence: "More evidence but continued losses", score: { documentation: 20, compliance: 10 } },
-                                { text: "No systematic investigation process", time: 0, consequence: "Poor handling of internal theft", score: { documentation: 0, compliance: 0 } }
+                                { text: "Continue surveillance to gather more evidence", time: 15, consequence: "More evidence but continued losses", score: { documentation: 20, compliance: 10 } },
+                                { text: "No systematic investigation process", time: 20, consequence: "Poor handling of internal theft", score: { documentation: 0, compliance: 0 } }
                             ]
                         },
                         {
@@ -1877,13 +1877,13 @@
                                 { text: "HR conducts formal interview with security present, follows termination procedures", time: 60, consequence: "Legal compliance and documentation", score: { compliance: 25, documentation: 25 } },
                                 { text: "Manager handles informally with basic documentation", time: 30, consequence: "Issue addressed but limited legal protection", score: { compliance: 15, documentation: 15 } },
                                 { text: "Immediate termination with minimal process", time: 10, consequence: "Quick resolution but potential legal exposure", score: { compliance: 10, documentation: 10 } },
-                                { text: "No formal process for internal theft", time: 0, consequence: "Inadequate response, legal and operational risk", score: { compliance: 0, documentation: 0 } }
+                                { text: "No formal process for internal theft", time: 25, consequence: "Inadequate response, legal and operational risk", score: { compliance: 0, documentation: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Professional investigation, HR compliance, comprehensive documentation, access control review",
-                        financialImpact: { min: 25000, max: 150000 }
+                        financialImpact: { min: 5000, max: 25000 }
                     }
                 }
             ],
@@ -1898,7 +1898,7 @@
                             options: [
                                 { text: "Security patrol increases presence, coordinates with police, alerts all residents", time: 5, consequence: "Proactive security response, community informed", score: { response: 25, communication: 25 } },
                                 { text: "Security patrol checks affected areas, basic resident notification", time: 10, consequence: "Standard response but limited community coordination", score: { response: 15, communication: 15 } },
-                                { text: "Residents advised to call police individually", time: 0, consequence: "No coordinated security response", score: { response: 5, communication: 10 } },
+                                { text: "Residents advised to call police individually", time: 30, consequence: "No coordinated security response", score: { response: 5, communication: 10 } },
                                 { text: "No community security response capability", time: 0, consequence: "Residents left to handle alone", score: { response: 0, communication: 0 } }
                             ]
                         },
@@ -1907,14 +1907,14 @@
                             options: [
                                 { text: "Security liaisons with police, provides community access, coordinates resident communications", time: 15, consequence: "Professional law enforcement coordination", score: { communication: 25, recovery: 25 } },
                                 { text: "Basic police cooperation, informal resident updates", time: 30, consequence: "Standard cooperation but limited community management", score: { communication: 15, recovery: 15 } },
-                                { text: "Police handle independently, minimal community involvement", time: 0, consequence: "No community coordination or resident support", score: { communication: 5, recovery: 5 } },
-                                { text: "No systematic law enforcement coordination", time: 0, consequence: "Poor police cooperation, resident frustration", score: { communication: 0, recovery: 0 } }
+                                { text: "Police handle independently, minimal community involvement", time: 35, consequence: "No community coordination or resident support", score: { communication: 5, recovery: 5 } },
+                                { text: "No systematic law enforcement coordination", time: 40, consequence: "Poor police cooperation, resident frustration", score: { communication: 0, recovery: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "24/7 security patrol, coordinated law enforcement response, comprehensive resident communication",
-                        financialImpact: { min: 75000, max: 300000 }
+                        financialImpact: { min: 10000, max: 50000 }
                     }
                 },
                 {
@@ -1928,7 +1928,7 @@
                                 { text: "Security with CPR/AED training begins life support immediately", time: 1, consequence: "Professional life-saving response", score: { response: 25, recovery: 25 } },
                                 { text: "Resident with medical training provides CPR while security calls 911", time: 2, consequence: "Community response with professional backup", score: { response: 20, recovery: 20 } },
                                 { text: "Security calls 911, provides basic assistance", time: 3, consequence: "Emergency services notified but limited medical capability", score: { response: 15, recovery: 15 } },
-                                { text: "No trained emergency response available", time: 0, consequence: "No immediate life-saving capability", score: { response: 0, recovery: 0 } }
+                                { text: "No trained emergency response available", time: 45, consequence: "No immediate life-saving capability", score: { response: 0, recovery: 0 } }
                             ]
                         },
                         {
@@ -1937,13 +1937,13 @@
                                 { text: "Security coordinates EMS access, manages crowd, supports family", time: 5, consequence: "Professional emergency management", score: { communication: 25, recovery: 25 } },
                                 { text: "Basic crowd control, EMS access provided", time: 8, consequence: "Standard emergency response", score: { communication: 15, recovery: 15 } },
                                 { text: "EMS access only, no crowd or family management", time: 10, consequence: "Medical response supported but community chaos", score: { communication: 10, recovery: 10 } },
-                                { text: "No coordinated emergency management", time: 0, consequence: "Chaotic scene, family and community trauma", score: { communication: 0, recovery: 0 } }
+                                { text: "No coordinated emergency management", time: 15, consequence: "Chaotic scene, family and community trauma", score: { communication: 0, recovery: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Trained emergency responders, comprehensive crowd management, family crisis support",
-                        financialImpact: { min: 50000, max: 500000 }
+                        financialImpact: { min: 10000, max: 75000 }
                     }
                 },
                 {
@@ -1956,8 +1956,8 @@
                             options: [
                                 { text: "Security responds professionally, calls police if violence suspected", time: 3, consequence: "Appropriate professional intervention", score: { response: 25, communication: 25 } },
                                 { text: "Security makes welfare check, documents situation", time: 5, consequence: "Community response but limited authority", score: { response: 15, communication: 15 } },
-                                { text: "Advise residents to call police directly", time: 0, consequence: "No community intervention capability", score: { response: 10, communication: 10 } },
-                                { text: "No response to domestic situations", time: 0, consequence: "Residents left without support", score: { response: 0, communication: 0 } }
+                                { text: "Advise residents to call police directly", time: 20, consequence: "No community intervention capability", score: { response: 10, communication: 10 } },
+                                { text: "No response to domestic situations", time: 25, consequence: "Residents left without support", score: { response: 0, communication: 0 } }
                             ]
                         },
                         {
@@ -1965,14 +1965,14 @@
                             options: [
                                 { text: "Security provides police with access and situational information while respecting privacy", time: 10, consequence: "Professional law enforcement coordination", score: { communication: 25, compliance: 25 } },
                                 { text: "Basic police cooperation, standard community access", time: 15, consequence: "Standard response but limited coordination", score: { communication: 15, compliance: 15 } },
-                                { text: "Police handle independently with minimal community involvement", time: 0, consequence: "No community support for law enforcement", score: { communication: 10, compliance: 10 } },
-                                { text: "No systematic approach to domestic situations", time: 0, consequence: "Poor community safety response", score: { communication: 0, compliance: 0 } }
+                                { text: "Police handle independently with minimal community involvement", time: 30, consequence: "No community support for law enforcement", score: { communication: 10, compliance: 10 } },
+                                { text: "No systematic approach to domestic situations", time: 35, consequence: "Poor community safety response", score: { communication: 0, compliance: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Professional intervention training, coordinated law enforcement response, resident privacy protection",
-                        financialImpact: { min: 25000, max: 200000 }
+                        financialImpact: { min: 3000, max: 20000 }
                     }
                 }
             ],
@@ -1988,7 +1988,7 @@
                                 { text: "Security team leader activates crowd control protocol, coordinates with venue management", time: 2, consequence: "Professional crowd management response", score: { response: 25, communication: 25 } },
                                 { text: "Individual security guards act independently", time: 5, consequence: "Uncoordinated response, mixed effectiveness", score: { response: 15, communication: 10 } },
                                 { text: "Venue staff handle without security coordination", time: 3, consequence: "Limited training for crowd emergencies", score: { response: 10, communication: 15 } },
-                                { text: "No systematic crowd emergency response", time: 0, consequence: "Dangerous situation continues to escalate", score: { response: 0, communication: 0 } }
+                                { text: "No systematic crowd emergency response", time: 40, consequence: "Dangerous situation continues to escalate", score: { response: 0, communication: 0 } }
                             ]
                         },
                         {
@@ -1997,13 +1997,13 @@
                                 { text: "Security coordinates with show management for controlled performance stop and crowd guidance", time: 3, consequence: "Professional show management, crowd safely redirected", score: { communication: 25, recovery: 25 } },
                                 { text: "Basic communication to performer, standard crowd control", time: 5, consequence: "Show managed but limited crowd coordination", score: { communication: 15, recovery: 15 } },
                                 { text: "Focus on crowd control only, no show coordination", time: 2, consequence: "Crowd managed but show chaos continues", score: { communication: 10, recovery: 10 } },
-                                { text: "No coordinated performance or crowd management", time: 0, consequence: "Dangerous conditions persist", score: { communication: 0, recovery: 0 } }
+                                { text: "No coordinated performance or crowd management", time: 45, consequence: "Dangerous conditions persist", score: { communication: 0, recovery: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Crowd control protocols, performer coordination, comprehensive emergency management",
-                        financialImpact: { min: 100000, max: 1000000 }
+                        financialImpact: { min: 15000, max: 100000 }
                     }
                 },
                 {
@@ -2017,7 +2017,7 @@
                                 { text: "Security coordinates medical response, documents cases, notifies health authorities", time: 15, consequence: "Professional health emergency response", score: { response: 25, compliance: 25 } },
                                 { text: "Basic medical assistance, informal illness tracking", time: 30, consequence: "Medical needs met but limited documentation", score: { response: 15, compliance: 10 } },
                                 { text: "Individual medical responses, no systematic tracking", time: 10, consequence: "People helped but no pattern recognition", score: { response: 10, compliance: 5 } },
-                                { text: "No coordinated health emergency response", time: 0, consequence: "Potential outbreak unmanaged", score: { response: 0, compliance: 0 } }
+                                { text: "No coordinated health emergency response", time: 15, consequence: "Potential outbreak unmanaged", score: { response: 0, compliance: 0 } }
                             ]
                         },
                         {
@@ -2026,13 +2026,13 @@
                                 { text: "Security coordinates food service suspension, comprehensive attendee notification", time: 10, consequence: "Professional crisis management", score: { recovery: 25, communication: 25 } },
                                 { text: "Basic food service halt, general announcement", time: 20, consequence: "Standard response but limited detail", score: { recovery: 15, communication: 15 } },
                                 { text: "Continue service with warnings", time: 5, consequence: "Limited protection for attendees", score: { recovery: 10, communication: 10 } },
-                                { text: "No systematic food safety response", time: 0, consequence: "Potential continued exposure", score: { recovery: 0, communication: 0 } }
+                                { text: "No systematic food safety response", time: 20, consequence: "Potential continued exposure", score: { recovery: 0, communication: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Health emergency protocols, regulatory compliance, comprehensive crisis communication",
-                        financialImpact: { min: 150000, max: 750000 }
+                        financialImpact: { min: 20000, max: 80000 }
                     }
                 },
                 {
@@ -2046,7 +2046,7 @@
                                 { text: "Security activates weather emergency plan, coordinates mass notification", time: 5, consequence: "Systematic emergency activation", score: { response: 25, communication: 25 } },
                                 { text: "General announcement made, basic crowd guidance", time: 10, consequence: "Standard warning but limited coordination", score: { response: 15, communication: 15 } },
                                 { text: "Individual security guards provide local guidance", time: 15, consequence: "Uncoordinated response, mixed messaging", score: { response: 10, communication: 10 } },
-                                { text: "No weather emergency procedures", time: 0, consequence: "No systematic protection for attendees", score: { response: 0, communication: 0 } }
+                                { text: "No weather emergency procedures", time: 25, consequence: "No systematic protection for attendees", score: { response: 0, communication: 0 } }
                             ]
                         },
                         {
@@ -2055,13 +2055,13 @@
                                 { text: "Security coordinates systematic evacuation to designated shelters", time: 15, consequence: "Professional mass evacuation management", score: { recovery: 25, response: 25 } },
                                 { text: "General evacuation guidance, basic shelter direction", time: 25, consequence: "People directed but limited coordination", score: { recovery: 15, response: 15 } },
                                 { text: "Self-evacuation with minimal guidance", time: 5, consequence: "No systematic protection", score: { recovery: 10, response: 10 } },
-                                { text: "No evacuation coordination capability", time: 0, consequence: "Attendees left to manage alone", score: { recovery: 0, response: 0 } }
+                                { text: "No evacuation coordination capability", time: 30, consequence: "Attendees left to manage alone", score: { recovery: 0, response: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Weather monitoring, mass evacuation procedures, designated shelter coordination",
-                        financialImpact: { min: 200000, max: 2000000 }
+                        financialImpact: { min: 10000, max: 75000 }
                     }
                 }
             ],
@@ -2077,7 +2077,7 @@
                                 { text: "Security responds immediately, initiates lockdown procedures if necessary", time: 3, consequence: "Professional threat assessment and response", score: { response: 25, communication: 25 } },
                                 { text: "Staff member continues to engage while calling security", time: 5, consequence: "Continued engagement but backup requested", score: { response: 15, communication: 15 } },
                                 { text: "Call police immediately, no internal response", time: 8, consequence: "External help but no immediate protection", score: { response: 10, communication: 20 } },
-                                { text: "No systematic intruder response protocol", time: 0, consequence: "No coordinated response to threat", score: { response: 0, communication: 0 } }
+                                { text: "No systematic intruder response protocol", time: 35, consequence: "No coordinated response to threat", score: { response: 0, communication: 0 } }
                             ]
                         },
                         {
@@ -2086,13 +2086,13 @@
                                 { text: "Security activates emergency communication system, coordinates with administration", time: 5, consequence: "Campus-wide safety coordination", score: { communication: 25, recovery: 25 } },
                                 { text: "Basic campus alert, standard safety procedures", time: 10, consequence: "Standard notification but limited coordination", score: { communication: 15, recovery: 15 } },
                                 { text: "Local area response only, no campus-wide alert", time: 2, consequence: "Limited protection for broader campus", score: { communication: 10, recovery: 10 } },
-                                { text: "No systematic campus safety communication", time: 0, consequence: "Campus community unprotected", score: { communication: 0, recovery: 0 } }
+                                { text: "No systematic campus safety communication", time: 40, consequence: "Campus community unprotected", score: { communication: 0, recovery: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Professional threat assessment, campus-wide communication systems, coordinated law enforcement response",
-                        financialImpact: { min: 75000, max: 500000 }
+                        financialImpact: { min: 10000, max: 60000 }
                     }
                 },
                 {
@@ -2106,7 +2106,7 @@
                                 { text: "Security with medical training responds immediately while teacher manages class", time: 2, consequence: "Professional medical response, classroom managed", score: { response: 25, recovery: 25 } },
                                 { text: "Teacher provides first aid while students call for help", time: 3, consequence: "Immediate care but limited training", score: { response: 15, recovery: 15 } },
                                 { text: "Students call 911, basic assistance provided", time: 5, consequence: "Emergency services notified but delayed response", score: { response: 10, recovery: 10 } },
-                                { text: "No trained emergency response on campus", time: 0, consequence: "No immediate medical capability", score: { response: 0, recovery: 0 } }
+                                { text: "No trained emergency response on campus", time: 45, consequence: "No immediate medical capability", score: { response: 0, recovery: 0 } }
                             ]
                         },
                         {
@@ -2115,13 +2115,13 @@
                                 { text: "Security coordinates EMS, administration handles parent notification per policy", time: 10, consequence: "Professional emergency and family coordination", score: { communication: 25, compliance: 25 } },
                                 { text: "Basic EMS coordination, standard parent contact", time: 15, consequence: "Standard emergency response", score: { communication: 15, compliance: 15 } },
                                 { text: "EMS access provided, informal parent notification", time: 20, consequence: "Medical needs met but limited family communication", score: { communication: 10, compliance: 10 } },
-                                { text: "No systematic emergency or parent notification", time: 0, consequence: "Poor family communication, potential violations", score: { communication: 0, compliance: 0 } }
+                                { text: "No systematic emergency or parent notification", time: 15, consequence: "Poor family communication, potential violations", score: { communication: 0, compliance: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Campus medical responders, coordinated EMS access, proper parent notification protocols",
-                        financialImpact: { min: 25000, max: 150000 }
+                        financialImpact: { min: 5000, max: 30000 }
                     }
                 },
                 {
@@ -2135,7 +2135,7 @@
                                 { text: "Security documents scene, coordinates cleanup, assesses safety impact", time: 30, consequence: "Professional incident management", score: { documentation: 25, recovery: 25 } },
                                 { text: "Basic documentation, immediate cleanup focus", time: 45, consequence: "Campus ready but limited investigation support", score: { documentation: 15, recovery: 20 } },
                                 { text: "Focus on cleanup only, minimal documentation", time: 20, consequence: "Campus operational but poor evidence", score: { documentation: 10, recovery: 15 } },
-                                { text: "No systematic vandalism response", time: 0, consequence: "Poor campus preparation, no investigation", score: { documentation: 0, recovery: 0 } }
+                                { text: "No systematic vandalism response", time: 20, consequence: "Poor campus preparation, no investigation", score: { documentation: 0, recovery: 0 } }
                             ]
                         },
                         {
@@ -2144,13 +2144,13 @@
                                 { text: "Security works with police on investigation, administration communicates appropriately", time: 60, consequence: "Comprehensive response and communication", score: { communication: 25, compliance: 25 } },
                                 { text: "Basic police cooperation, general community notification", time: 30, consequence: "Standard response but limited detail", score: { communication: 15, compliance: 15 } },
                                 { text: "Police notified, minimal community communication", time: 15, consequence: "Legal requirements met but community uninformed", score: { communication: 10, compliance: 20 } },
-                                { text: "No coordinated law enforcement or community response", time: 0, consequence: "Poor investigation and community relations", score: { communication: 0, compliance: 0 } }
+                                { text: "No coordinated law enforcement or community response", time: 25, consequence: "Poor investigation and community relations", score: { communication: 0, compliance: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Comprehensive incident documentation, coordinated law enforcement cooperation, appropriate community communication",
-                        financialImpact: { min: 15000, max: 100000 }
+                        financialImpact: { min: 2000, max: 15000 }
                     }
                 }
             ],
@@ -2166,7 +2166,7 @@
                                 { text: "Security responds immediately, provides first aid, secures scene", time: 2, consequence: "Professional emergency response", score: { response: 25, recovery: 25 } },
                                 { text: "Front desk calls 911, sends maintenance to assist", time: 5, consequence: "Emergency services notified but delayed professional response", score: { response: 15, recovery: 15 } },
                                 { text: "Other guests provide assistance while hotel calls for help", time: 8, consequence: "Community response but limited training", score: { response: 10, recovery: 10 } },
-                                { text: "No immediate hotel response capability", time: 0, consequence: "Guest receives no immediate assistance", score: { response: 0, recovery: 0 } }
+                                { text: "No immediate hotel response capability", time: 30, consequence: "Guest receives no immediate assistance", score: { response: 0, recovery: 0 } }
                             ]
                         },
                         {
@@ -2175,13 +2175,13 @@
                                 { text: "Security preserves evidence, coordinates with police, increases patrol", time: 30, consequence: "Professional investigation support and enhanced security", score: { documentation: 25, recovery: 25 } },
                                 { text: "Basic police cooperation, standard security measures", time: 45, consequence: "Investigation supported but limited security enhancement", score: { documentation: 15, recovery: 15 } },
                                 { text: "Minimal investigation cooperation, no security changes", time: 15, consequence: "Poor investigation support, ongoing vulnerability", score: { documentation: 10, recovery: 10 } },
-                                { text: "No systematic response to guest assault", time: 0, consequence: "Guest safety unaddressed, liability exposure", score: { documentation: 0, recovery: 0 } }
+                                { text: "No systematic response to guest assault", time: 35, consequence: "Guest safety unaddressed, liability exposure", score: { documentation: 0, recovery: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "24/7 security presence, immediate emergency response, comprehensive investigation support",
-                        financialImpact: { min: 50000, max: 300000 }
+                        financialImpact: { min: 10000, max: 50000 }
                     }
                 },
                 {
@@ -2204,13 +2204,13 @@
                                 { text: "Security coordinates guest safety and comfort, management handles business impact", time: 15, consequence: "Professional guest care and business management", score: { recovery: 25, communication: 25 } },
                                 { text: "Basic guest assistance, standard business closure procedures", time: 30, consequence: "Guest needs met but limited business coordination", score: { recovery: 15, communication: 15 } },
                                 { text: "Focus on evacuation only, no guest service coordination", time: 5, consequence: "Safety handled but poor guest experience", score: { recovery: 10, communication: 10 } },
-                                { text: "No systematic guest services during emergency", time: 0, consequence: "Guest needs unaddressed, reputation damage", score: { recovery: 0, communication: 0 } }
+                                { text: "No systematic guest services during emergency", time: 40, consequence: "Guest needs unaddressed, reputation damage", score: { recovery: 0, communication: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Fire emergency procedures, coordinated evacuation, comprehensive guest services",
-                        financialImpact: { min: 75000, max: 400000 }
+                        financialImpact: { min: 15000, max: 80000 }
                     }
                 },
                 {
@@ -2224,7 +2224,7 @@
                                 { text: "Security uses professional de-escalation techniques", time: 3, consequence: "Situation controlled without incident", score: { response: 25, communication: 25 } },
                                 { text: "Front desk staff attempts to calm guest", time: 5, consequence: "Basic intervention but limited training", score: { response: 15, communication: 15 } },
                                 { text: "Call police immediately without internal intervention", time: 8, consequence: "External help but no immediate guest service", score: { response: 10, communication: 10 } },
-                                { text: "Hope guest calms down on their own", time: 0, consequence: "No intervention, continued disturbance", score: { response: 0, communication: 0 } }
+                                { text: "Hope guest calms down on their own", time: 45, consequence: "No intervention, continued disturbance", score: { response: 0, communication: 0 } }
                             ]
                         },
                         {
@@ -2233,13 +2233,13 @@
                                 { text: "Security manages situation while staff attends to other guests", time: 10, consequence: "Minimal disruption to other guests", score: { recovery: 25, communication: 25 } },
                                 { text: "Basic guest reassurance, standard operations", time: 15, consequence: "Other guests somewhat accommodated", score: { recovery: 15, communication: 15 } },
                                 { text: "Focus only on problem guest, no attention to others", time: 5, consequence: "Other guests inconvenienced", score: { recovery: 10, communication: 10 } },
-                                { text: "No systematic guest services during incident", time: 0, consequence: "Poor guest experience for all", score: { recovery: 0, communication: 0 } }
+                                { text: "No systematic guest services during incident", time: 15, consequence: "Poor guest experience for all", score: { recovery: 0, communication: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Professional guest relations, de-escalation training, coordinated guest services",
-                        financialImpact: { min: 20000, max: 100000 }
+                        financialImpact: { min: 2000, max: 15000 }
                     }
                 }
             ],
@@ -2255,7 +2255,7 @@
                                 { text: "Security activates chemical spill protocol, coordinates with shift supervisor", time: 3, consequence: "Professional hazmat emergency response", score: { response: 25, compliance: 25 } },
                                 { text: "Production supervisor handles spill response", time: 8, consequence: "Technical knowledge but limited emergency training", score: { response: 15, compliance: 15 } },
                                 { text: "Workers attempt to contain spill themselves", time: 5, consequence: "Quick action but potential safety violations", score: { response: 10, compliance: 10 } },
-                                { text: "No systematic chemical emergency response", time: 0, consequence: "Uncontrolled hazmat situation", score: { response: 0, compliance: 0 } }
+                                { text: "No systematic chemical emergency response", time: 20, consequence: "Uncontrolled hazmat situation", score: { response: 0, compliance: 0 } }
                             ]
                         },
                         {
@@ -2264,7 +2264,7 @@
                                 { text: "Security coordinates facility evacuation, notifies fire department and environmental authorities", time: 10, consequence: "Full compliance and safety response", score: { response: 25, compliance: 25 } },
                                 { text: "Basic evacuation, fire department notified", time: 15, consequence: "Safety handled but limited regulatory compliance", score: { response: 20, compliance: 15 } },
                                 { text: "Partial evacuation, delayed external notification", time: 30, consequence: "Incomplete safety response", score: { response: 15, compliance: 10 } },
-                                { text: "No systematic evacuation or emergency notification", time: 0, consequence: "Worker safety compromised, regulatory violations", score: { response: 0, compliance: 0 } }
+                                { text: "No systematic evacuation or emergency notification", time: 25, consequence: "Worker safety compromised, regulatory violations", score: { response: 0, compliance: 0 } }
                             ]
                         },
                         {
@@ -2273,13 +2273,13 @@
                                 { text: "Security documents incident comprehensively, ensures all regulatory notifications", time: 60, consequence: "Full compliance with OSHA and EPA requirements", score: { documentation: 25, compliance: 25 } },
                                 { text: "Basic incident documentation, standard regulatory reporting", time: 120, consequence: "Compliance met but limited detail", score: { documentation: 15, compliance: 20 } },
                                 { text: "Minimal documentation, delayed reporting", time: 180, consequence: "Regulatory violations likely", score: { documentation: 10, compliance: 10 } },
-                                { text: "No formal documentation or regulatory reporting", time: 0, consequence: "Major compliance failures, significant penalties", score: { documentation: 0, compliance: 0 } }
+                                { text: "No formal documentation or regulatory reporting", time: 30, consequence: "Major compliance failures, significant penalties", score: { documentation: 0, compliance: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Hazmat response protocols, coordinated evacuation procedures, comprehensive regulatory compliance",
-                        financialImpact: { min: 200000, max: 1000000 }
+                        financialImpact: { min: 25000, max: 150000 }
                     }
                 },
                 {
@@ -2293,7 +2293,7 @@
                                 { text: "Security with industrial first aid training responds while production supervisor secures area", time: 2, consequence: "Professional medical response and area secured", score: { response: 25, compliance: 25 } },
                                 { text: "Production supervisor provides first aid, coworkers assist", time: 3, consequence: "Quick response but limited medical training", score: { response: 15, compliance: 15 } },
                                 { text: "Coworkers provide basic assistance while calling for help", time: 5, consequence: "Community response but no professional training", score: { response: 10, compliance: 10 } },
-                                { text: "No trained industrial emergency response", time: 0, consequence: "No immediate professional medical capability", score: { response: 0, compliance: 0 } }
+                                { text: "No trained industrial emergency response", time: 35, consequence: "No immediate professional medical capability", score: { response: 0, compliance: 0 } }
                             ]
                         },
                         {
@@ -2302,7 +2302,7 @@
                                 { text: "Security preserves accident scene, coordinates OSHA notification within required timeframe", time: 30, consequence: "Full regulatory compliance and investigation support", score: { documentation: 25, compliance: 25 } },
                                 { text: "Basic scene documentation, standard OSHA reporting", time: 60, consequence: "Compliance met but limited investigation support", score: { documentation: 15, compliance: 20 } },
                                 { text: "Minimal scene preservation, delayed OSHA reporting", time: 120, consequence: "Regulatory violations, poor investigation", score: { documentation: 10, compliance: 10 } },
-                                { text: "No systematic accident documentation or reporting", time: 0, consequence: "Major OSHA violations, significant penalties", score: { documentation: 0, compliance: 0 } }
+                                { text: "No systematic accident documentation or reporting", time: 40, consequence: "Major OSHA violations, significant penalties", score: { documentation: 0, compliance: 0 } }
                             ]
                         },
                         {
@@ -2311,13 +2311,13 @@
                                 { text: "Security coordinates production halt, management communicates with workforce", time: 20, consequence: "Professional crisis management and workforce support", score: { recovery: 25, communication: 25 } },
                                 { text: "Production stopped, basic workforce notification", time: 30, consequence: "Safety prioritized but limited communication", score: { recovery: 20, communication: 15 } },
                                 { text: "Partial production halt, informal worker communication", time: 10, consequence: "Incomplete safety response", score: { recovery: 15, communication: 10 } },
-                                { text: "No systematic production or workforce management", time: 0, consequence: "Ongoing safety risks, worker concerns unaddressed", score: { recovery: 0, communication: 0 } }
+                                { text: "No systematic production or workforce management", time: 45, consequence: "Ongoing safety risks, worker concerns unaddressed", score: { recovery: 0, communication: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Industrial first responders, comprehensive accident investigation, full OSHA compliance",
-                        financialImpact: { min: 150000, max: 750000 }
+                        financialImpact: { min: 20000, max: 100000 }
                     }
                 },
                 {
@@ -2331,7 +2331,7 @@
                                 { text: "Security immediately secures scene, stops affected production, notifies law enforcement", time: 15, consequence: "Professional investigation and safety response", score: { documentation: 25, response: 25 } },
                                 { text: "Production supervisor investigates, basic documentation", time: 30, consequence: "Technical assessment but contaminated evidence", score: { documentation: 15, response: 15 } },
                                 { text: "Continue production while informally investigating", time: 5, consequence: "Evidence destroyed, ongoing safety risk", score: { documentation: 10, response: 10 } },
-                                { text: "No systematic sabotage investigation process", time: 0, consequence: "Security threat unaddressed", score: { documentation: 0, response: 0 } }
+                                { text: "No systematic sabotage investigation process", time: 15, consequence: "Security threat unaddressed", score: { documentation: 0, response: 0 } }
                             ]
                         },
                         {
@@ -2340,13 +2340,13 @@
                                 { text: "Security preserves evidence for police, management assesses production impact", time: 60, consequence: "Professional law enforcement cooperation and business management", score: { compliance: 25, recovery: 25 } },
                                 { text: "Basic police cooperation, standard business procedures", time: 90, consequence: "Investigation supported but limited business coordination", score: { compliance: 15, recovery: 15 } },
                                 { text: "Minimal police involvement, focus on production restart", time: 30, consequence: "Business prioritized over investigation", score: { compliance: 10, recovery: 20 } },
-                                { text: "No coordinated law enforcement or business response", time: 0, consequence: "Poor investigation and business management", score: { compliance: 0, recovery: 0 } }
+                                { text: "No coordinated law enforcement or business response", time: 20, consequence: "Poor investigation and business management", score: { compliance: 0, recovery: 0 } }
                             ]
                         }
                     ],
                     debrief: {
                         bestPractice: "Professional security investigation, coordinated law enforcement response, systematic business continuity",
-                        financialImpact: { min: 100000, max: 500000 }
+                        financialImpact: { min: 5000, max: 25000 }
                     }
                 }
             ]
@@ -2489,6 +2489,7 @@
             
             const optionsContainer = document.getElementById('scenarioOptions');
             optionsContainer.innerHTML = '';
+            optionsContainer.classList.remove('locked');
             
             step.options.forEach((option, index) => {
                 const optionDiv = document.createElement('div');
@@ -2499,9 +2500,18 @@
                 `;
                 
                 optionDiv.addEventListener('click', function() {
+                    // Prevent multiple selections
+                    if (optionsContainer.classList.contains('locked')) return;
+                    optionsContainer.classList.add('locked');
+                    
                     selectOption(option, stepIndex);
-                    optionsContainer.querySelectorAll('.scenario-option').forEach(opt => opt.classList.remove('selected'));
+                    optionsContainer.querySelectorAll('.scenario-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                        opt.style.opacity = '0.5';
+                        opt.style.pointerEvents = 'none';
+                    });
                     optionDiv.classList.add('selected');
+                    optionDiv.style.opacity = '1';
                     
                     // Show consequence
                     optionDiv.innerHTML += `<div class="scenario-consequence">${option.consequence}</div>`;
@@ -2590,7 +2600,7 @@
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
                         <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; text-align: center;">
                             <div style="font-size: 2rem; font-weight: 700; color: #fbbf24;">
-                                ${Math.floor(assessmentData.scenarioElapsedTime / 60)}h ${assessmentData.scenarioElapsedTime % 60}m
+                                ${assessmentData.scenarioElapsedTime >= 60 ? Math.floor(assessmentData.scenarioElapsedTime / 60) + 'h ' : ''}${Math.round(assessmentData.scenarioElapsedTime % 60)}m
                             </div>
                             <div style="font-size: 0.9rem; opacity: 0.9;">Your Response Time</div>
                         </div>
@@ -2714,10 +2724,10 @@
             const minExposure = Math.round(baseFacilityRisk * totalRiskMultiplier * 0.8); // Conservative estimate
             const maxExposure = Math.round(baseFacilityRisk * totalRiskMultiplier * 2.2); // Higher potential impact
             
-            // Ensure realistic ranges
+            // Ensure realistic ranges — keep numbers believable
             assessmentData.financialExposure = { 
-                min: Math.max(25000, minExposure), 
-                max: Math.max(minExposure * 1.5, maxExposure)
+                min: Math.min(Math.max(5000, minExposure), 150000), 
+                max: Math.min(Math.max(15000, maxExposure), 500000)
             };
             assessmentData.averageScore = Math.round(averageScore);
             
@@ -2767,7 +2777,7 @@
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
                         <strong>${scenario.title}</strong><br>
-                        Your Response: ${Math.floor(scenario.totalTime / 60)}h ${scenario.totalTime % 60}m<br>
+                        Your Response: ${scenario.totalTime >= 60 ? Math.floor(scenario.totalTime / 60) + 'h ' : ''}${Math.round(scenario.totalTime % 60)}m<br>
                         <span style="color: var(--green);">Best Practice: &lt;5 minutes</span>
                     </div>
                 </div>
@@ -2843,7 +2853,7 @@
             const currentDate = new Date().toLocaleDateString();
             const criticalGaps = Object.keys(data.scores).filter(key => data.scores[key] < 40);
             const totalScenarios = data.scenarios.length;
-            const averageResponseTime = data.scenarios.reduce((sum, s) => sum + s.totalTime, 0) / totalScenarios;
+            const averageResponseTime = Math.round(data.scenarios.reduce((sum, s) => sum + s.totalTime, 0) / totalScenarios);
             
             function getReadinessBadge(score) {
                 if (score < 40) return '<span class="readiness-badge readiness-critical">CRITICAL</span>';
@@ -2894,7 +2904,7 @@
                         <li>3 scenarios tested across ${getIndustryName(data.operation.industry).toLowerCase()} operations</li>
                         <li>${criticalGaps.length} critical security gaps identified requiring immediate attention</li>
                         <li>$${data.financialExposure.min.toLocaleString()} - $${data.financialExposure.max.toLocaleString()} estimated annual risk exposure</li>
-                        <li>Average emergency response time: ${Math.floor(averageResponseTime/60)}h ${averageResponseTime%60}m (Industry best practice: &lt;5 minutes)</li>
+                        <li>Average emergency response time: ${averageResponseTime >= 60 ? Math.floor(averageResponseTime/60) + 'h ' : ''}${Math.round(averageResponseTime%60)}m (Industry best practice: &lt;5 minutes)</li>
                     </ul>
                     
                     <p><strong>Top 3 Most Urgent Findings:</strong></p>
@@ -3092,7 +3102,7 @@
                                 </li>
                                 <li style="margin: 0.75rem 0; padding: 0.5rem; background: ${data.team.policeCaller !== 'none' ? '#dcfce7' : '#fee2e2'}; border-radius: 4px;">
                                     <strong>Police Emergency Contact:</strong><br>
-                                    ${data.team.policeCaller === 'specific' ? data.team.decisionMaker : data.team.policeCaller === 'guard' ? 'Security Guard' : '<span style="color: #dc2626;">NOT ASSIGNED</span>'}
+                                    ${data.team.policeCaller === 'specific' ? data.team.decisionMaker : data.team.policeCaller === 'guard' ? 'Security Guard' : data.team.policeCaller === 'closest' ? 'Whoever is closest (no specific assignee)' : '<span style="color: #dc2626;">NO ONE ASSIGNED</span>'}
                                 </li>
                                 <li style="margin: 0.75rem 0; padding: 0.5rem; background: ${data.team.keyHolders >= 3 ? '#dcfce7' : '#fee2e2'}; border-radius: 4px;">
                                     <strong>Key Holders:</strong><br>
@@ -3258,19 +3268,19 @@
                         <tr style="background: #dcfce7;">
                             <td><strong>With Salient Group Security</strong></td>
                             <td style="color: var(--navy);">$${(calculateSecurityCosts(data).max * 12).toLocaleString()}</td>
-                            <td style="color: #059669;">$${Math.round(data.financialExposure.min * 0.1).toLocaleString()}-${Math.round(data.financialExposure.max * 0.15).toLocaleString()}</td>
-                            <td style="color: #059669;">+$${Math.round(data.financialExposure.min * 0.75 - calculateSecurityCosts(data).max * 12).toLocaleString()}</td>
-                            <td style="color: #059669;">${Math.round(((data.financialExposure.min * 0.75 - calculateSecurityCosts(data).max * 12) / (calculateSecurityCosts(data).max * 12)) * 100)}%</td>
+                            <td style="color: #D97706;">$${Math.round(data.financialExposure.min * 0.15).toLocaleString()}-${Math.round(data.financialExposure.max * 0.25).toLocaleString()}</td>
+                            <td style="color: #059669;">$${Math.max(0, Math.round(data.financialExposure.min * 0.6 - calculateSecurityCosts(data).max * 12)).toLocaleString()} saved</td>
+                            <td style="color: #059669;">${Math.max(0, Math.round(((data.financialExposure.min * 0.6 - calculateSecurityCosts(data).max * 12) / (calculateSecurityCosts(data).max * 12)) * 100))}%</td>
                         </tr>
                     </table>
                     
                     <div style="background: #dcfce7; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #059669; margin: 2rem 0;">
                         <h4 style="color: #059669; margin-bottom: 1rem;">💡 KEY INVESTMENT INSIGHTS</h4>
                         <ul>
-                            <li><strong>Cost vs. Risk:</strong> The recommended security investment represents only ${Math.round((calculateSecurityCosts(data).max * 12) / data.financialExposure.min * 100)}% of your current annual risk exposure</li>
-                            <li><strong>Payback Period:</strong> Based on risk reduction, the security program typically pays for itself within ${Math.round(12 / (data.financialExposure.min * 0.75 / (calculateSecurityCosts(data).max * 12)))} months</li>
-                            <li><strong>Protection Multiplier:</strong> For every $1 invested in professional security, you avoid $${Math.round(data.financialExposure.min * 0.75 / (calculateSecurityCosts(data).max * 12))} in potential losses</li>
-                            <li><strong>Industry Standard:</strong> Professional security investment typically ranges from 0.5-2% of total facility operational costs</li>
+                            <li><strong>Cost vs. Risk:</strong> The recommended security investment represents ${Math.min(100, Math.round((calculateSecurityCosts(data).max * 12) / data.financialExposure.min * 100))}% of your estimated annual risk exposure</li>
+                            <li><strong>Risk Reduction:</strong> Professional security programs typically reduce incident-related losses by 60-85%</li>
+                            <li><strong>Protection Multiplier:</strong> For every $1 invested in professional security, you reduce risk exposure by $${Math.max(1, Math.round(data.financialExposure.min * 0.6 / (calculateSecurityCosts(data).max * 12)))}</li>
+                            <li><strong>Note:</strong> Risk can never be eliminated entirely — professional security significantly reduces both the likelihood and impact of incidents</li>
                         </ul>
                     </div>
                 </div>
