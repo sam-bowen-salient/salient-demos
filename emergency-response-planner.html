@@ -251,6 +251,18 @@
             margin-bottom: 0.5rem;
         }
 
+        .step-counter {
+            display: inline-block;
+            background: rgba(220, 38, 38, 0.2);
+            color: var(--red);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(220, 38, 38, 0.3);
+        }
+
         .scenario-time {
             font-size: 1.3rem;
             color: var(--red);
@@ -408,6 +420,83 @@
         .score-value {
             font-weight: 500;
             text-align: right;
+        }
+
+        .radar-chart-container {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .radar-chart {
+            max-width: 400px;
+            width: 100%;
+            height: 400px;
+        }
+
+        .radar-grid {
+            fill: none;
+            stroke: #e2e8f0;
+            stroke-width: 1;
+        }
+
+        .radar-axis {
+            stroke: #64748b;
+            stroke-width: 1;
+        }
+
+        .radar-score-fill {
+            fill: rgba(220, 38, 38, 0.2);
+            stroke: var(--red);
+            stroke-width: 2;
+        }
+
+        .radar-benchmark {
+            fill: none;
+            stroke: var(--green);
+            stroke-width: 2;
+            stroke-dasharray: 5,5;
+        }
+
+        .radar-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-anchor: middle;
+            dominant-baseline: central;
+            fill: var(--navy);
+        }
+
+        .scenario-time.fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        .scenario-description.typewriter {
+            overflow: hidden;
+            border-right: 2px solid rgba(255, 255, 255, 0.75);
+            white-space: nowrap;
+            animation: typewriter 3s steps(40, end), blink-caret 0.75s step-end infinite;
+            animation-delay: 1s, 1s;
+            animation-fill-mode: forwards;
+        }
+
+        .scenario-options.fade-in-delayed {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-in 4.5s forwards;
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: rgba(255, 255, 255, 0.75); }
+        }
+
+        .scenario-description.typewriter-complete {
+            border-right: none;
+            white-space: normal;
         }
 
         .financial-exposure {
@@ -898,8 +987,8 @@
                 <div class="progress-step" data-phase="2">Your Team</div>
                 <div class="progress-step" data-phase="3">Scenarios</div>
                 <div class="progress-step" data-phase="4">Gap Analysis</div>
-                <div class="progress-step" data-phase="5">Your Plan</div>
-                <div class="progress-step" data-phase="6">Download</div>
+                <div class="progress-step" data-phase="5">Get Your Plan</div>
+                <div class="progress-step" data-phase="6">Your Plan</div>
             </div>
         </div>
 
@@ -1123,6 +1212,7 @@
             <div class="scenario-container" id="scenarioContainer">
                 <div class="scenario-header">
                     <h1 class="scenario-title" id="scenarioTitle">Loading Scenario...</h1>
+                    <div class="step-counter" id="stepCounter" style="display: none;">Step 1 of 5</div>
                     <div class="scenario-time" id="scenarioTime">Preparing...</div>
                 </div>
                 
@@ -1155,6 +1245,12 @@
                     <div class="exposure-amount" id="exposureAmount">$0 - $0</div>
                     <p>Based on your facility profile and identified response gaps</p>
                 </div>
+
+                <div class="radar-chart-container">
+                    <svg class="radar-chart" id="radarChart" viewBox="0 0 400 400">
+                        <!-- Chart will be populated by JavaScript -->
+                    </svg>
+                </div>
                 
                 <div class="gap-scorecard" id="gapScorecard">
                     <!-- Scores will be populated by JavaScript -->
@@ -1173,13 +1269,13 @@
                 </div>
                 
                 <div class="btn-group">
-                    <button class="btn" onclick="generatePlan()">Generate Your Emergency Response Plan</button>
+                    <button class="btn" onclick="goToPhase(5)">Get Your Emergency Response Plan</button>
                 </div>
             </div>
         </div>
 
-        <!-- Phase 5: Emergency Response Plan -->
-        <div class="phase" id="phase5">
+        <!-- Phase 6: Emergency Response Plan -->
+        <div class="phase" id="phase6">
             <div class="card">
                 <div class="card-header">
                     <h1 class="card-title">Your Emergency Response Plan</h1>
@@ -1191,13 +1287,14 @@
                 </div>
                 
                 <div class="btn-group">
-                    <button class="btn btn-secondary" onclick="goToPhase(6)">Continue to Download</button>
+                    <button class="btn" onclick="downloadPlan()">Download PDF</button>
+                    <a href="https://calendly.com/salient-security/consultation" target="_blank" class="btn btn-secondary">Schedule Expert Consultation</a>
                 </div>
             </div>
         </div>
 
-        <!-- Phase 6: Lead Capture -->
-        <div class="phase" id="phase6">
+        <!-- Phase 5: Lead Capture -->
+        <div class="phase" id="phase5">
             <div class="card">
                 <div class="card-header">
                     <h1 class="card-title">Your Emergency Response Plan is Ready</h1>
@@ -1231,18 +1328,6 @@
                         <button type="submit" class="btn">Get My Emergency Response Plan</button>
                     </div>
                 </form>
-                
-                <div id="downloadSection" style="display: none;">
-                    <div class="card" style="background: var(--green); color: white; margin-top: 2rem;">
-                        <h3 style="color: white;">✅ Plan Ready for Download</h3>
-                        <p>Your comprehensive Emergency Response Plan is ready. You can now download or print it.</p>
-                    </div>
-                    
-                    <div class="btn-group">
-                        <button class="btn" onclick="downloadPlan()">Download PDF</button>
-                        <a href="https://calendly.com/salient-security/consultation" target="_blank" class="btn btn-secondary">Schedule Expert Consultation</a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -1283,7 +1368,7 @@
         const scenarios = {
             warehouse: [
                 {
-                    title: "Cargo Theft in Progress",
+                    title: "Someone Is Cutting Your Trailer Lock at 2 AM",
                     initialTime: "2:14 AM",
                     description: "Motion sensor triggered at Loading Dock 3. Your monitoring system shows movement near the trailer parking area.",
                     steps: [
@@ -1339,7 +1424,7 @@
                     }
                 },
                 {
-                    title: "Employee Injury During Off-Hours",
+                    title: "Your Employee Just Fell 15 Feet — Nobody Saw It",
                     initialTime: "11:47 PM",
                     description: "An employee working late shift has fallen from equipment and appears injured.",
                     steps: [
@@ -1386,7 +1471,7 @@
                     }
                 },
                 {
-                    title: "Unauthorized Vehicle Tailgates Through Gate",
+                    title: "Unknown Vehicle Just Followed Your Truck Inside",
                     initialTime: "6:32 AM",
                     description: "During shift change, an unknown vehicle follows a delivery truck through your access gate.",
                     steps: [
@@ -1435,7 +1520,7 @@
             ],
             healthcare: [
                 {
-                    title: "Behavioral Health Patient Elopement",
+                    title: "A Patient Just Walked Off Your Unit Undetected",
                     initialTime: "3:22 AM",
                     description: "During routine patient checks, a behavioral health patient is discovered missing from their room.",
                     steps: [
@@ -1482,7 +1567,7 @@
                     }
                 },
                 {
-                    title: "Combative Individual in ER",
+                    title: "Someone Is Threatening Your ER Staff Right Now",
                     initialTime: "9:15 PM",
                     description: "An agitated individual in the ER waiting room is becoming increasingly hostile and threatening staff.",
                     steps: [
@@ -1529,7 +1614,7 @@
                     }
                 },
                 {
-                    title: "After-Hours Pharmacy Access",
+                    title: "Your Pharmacy Door Alarm Just Went Off at 2 AM",
                     initialTime: "1:44 AM",
                     description: "Door alarm triggered at the hospital pharmacy. Controlled substances are potentially at risk.",
                     steps: [
@@ -1578,7 +1663,7 @@
             ],
             construction: [
                 {
-                    title: "Equipment Theft Overnight",
+                    title: "Your $80K Excavator Is Gone This Morning",
                     initialTime: "2:30 AM",
                     description: "Your job site surveillance detects movement near high-value construction equipment storage.",
                     steps: [
@@ -1616,7 +1701,7 @@
                     }
                 },
                 {
-                    title: "Trespasser Injury on Job Site",
+                    title: "A Trespasser Just Got Hurt on Your Job Site",
                     initialTime: "7:45 PM",
                     description: "After hours, someone has entered your construction site and been injured by equipment.",
                     steps: [
@@ -1645,7 +1730,7 @@
                     }
                 },
                 {
-                    title: "Fire Watch Failure",
+                    title: "Your Fire Watch Guard Never Showed Up",
                     initialTime: "11:20 PM",
                     description: "Hot work was completed today but fire watch protocols may not have been properly followed.",
                     steps: [
@@ -1675,7 +1760,7 @@
             ],
             commercial: [
                 {
-                    title: "After-Hours Break-In",
+                    title: "Glass Just Shattered in Your Building at 3 AM",
                     initialTime: "1:15 AM",
                     description: "Glass breaking alarm triggered at one of your tenant offices in the commercial building.",
                     steps: [
@@ -1713,7 +1798,7 @@
                     }
                 },
                 {
-                    title: "Parking Garage Assault",
+                    title: "Someone Is Being Attacked in Your Parking Garage",
                     initialTime: "8:30 PM",
                     description: "Scream heard from the parking garage. A tenant may be under attack.",
                     steps: [
@@ -1751,7 +1836,7 @@
                     }
                 },
                 {
-                    title: "Tenant Emergency — Medical Event",
+                    title: "A Tenant Just Collapsed in the Lobby",
                     initialTime: "2:45 PM",
                     description: "Tenant employee has collapsed in office lobby. Other tenants are witnessing the emergency.",
                     steps: [
@@ -1782,7 +1867,7 @@
             ],
             retail: [
                 {
-                    title: "Smash and Grab",
+                    title: "A Car Just Drove Through Your Storefront",
                     initialTime: "10:15 PM",
                     description: "Multiple individuals rush into your store just before closing, heading directly for high-value merchandise.",
                     steps: [
@@ -1820,7 +1905,7 @@
                     }
                 },
                 {
-                    title: "Shoplifting Escalation to Assault",
+                    title: "A Shoplifter Just Punched Your Employee",
                     initialTime: "3:30 PM",
                     description: "Loss prevention observes customer concealing merchandise. When approached, the situation turns violent.",
                     steps: [
@@ -1858,7 +1943,7 @@
                     }
                 },
                 {
-                    title: "Employee Theft Discovery",
+                    title: "Your Inventory Is $47K Short — And You Know Who Did It",
                     initialTime: "6:45 AM",
                     description: "Security cameras reveal an employee accessing the cash office after hours using unauthorized credentials.",
                     steps: [
@@ -1889,7 +1974,7 @@
             ],
             hoa: [
                 {
-                    title: "Residential Break-In Spree",
+                    title: "Three Homes Were Broken Into Last Night",
                     initialTime: "2:20 AM",
                     description: "Multiple break-ins reported in the community within 2 hours. Residents are calling for immediate security response.",
                     steps: [
@@ -1918,7 +2003,7 @@
                     }
                 },
                 {
-                    title: "Pool Area Medical Emergency",
+                    title: "A Child Just Went Unconscious at the Pool",
                     initialTime: "7:15 PM",
                     description: "Child found unresponsive in community pool area. Family members are panicking and other residents are gathering.",
                     steps: [
@@ -1947,7 +2032,7 @@
                     }
                 },
                 {
-                    title: "Domestic Dispute Escalation",
+                    title: "A Domestic Fight Just Spilled Into the Parking Lot",
                     initialTime: "9:30 PM",
                     description: "Loud argument and possible domestic violence reported in residential unit. Neighbors are concerned and calling for help.",
                     steps: [
@@ -1978,7 +2063,7 @@
             ],
             events: [
                 {
-                    title: "Concert Crowd Emergency",
+                    title: "Someone Just Collapsed in a Crowd of 5,000",
                     initialTime: "9:45 PM",
                     description: "During peak concert performance, crowd surge creates dangerous conditions near the stage area.",
                     steps: [
@@ -2007,7 +2092,7 @@
                     }
                 },
                 {
-                    title: "Food Poisoning Outbreak",
+                    title: "12 People Are Sick — And They All Ate Your Food",
                     initialTime: "8:20 PM",
                     description: "Multiple event attendees reporting illness, possibly from food service. Health department may need notification.",
                     steps: [
@@ -2036,7 +2121,7 @@
                     }
                 },
                 {
-                    title: "Weather Emergency During Outdoor Event",
+                    title: "A Severe Storm Warning Just Hit — 3,000 People Are Outside",
                     initialTime: "4:10 PM",
                     description: "Severe weather warning issued during large outdoor festival. Thousands of attendees need potential evacuation.",
                     steps: [
@@ -2067,7 +2152,7 @@
             ],
             education: [
                 {
-                    title: "Campus Intruder Alert",
+                    title: "An Unauthorized Person Was Just Spotted Near the School",
                     initialTime: "10:20 AM",
                     description: "Unauthorized individual reported on campus behaving erratically and refusing to leave when asked.",
                     steps: [
@@ -2096,7 +2181,7 @@
                     }
                 },
                 {
-                    title: "Student Medical Emergency",
+                    title: "A Student Just Had a Seizure in Class",
                     initialTime: "1:15 PM",
                     description: "Student collapses during class. Multiple students and faculty are witnessing the medical emergency.",
                     steps: [
@@ -2125,7 +2210,7 @@
                     }
                 },
                 {
-                    title: "After-Hours Vandalism Discovery",
+                    title: "Your Campus Was Vandalized Overnight — $30K in Damage",
                     initialTime: "6:30 AM",
                     description: "Significant vandalism discovered on campus buildings and grounds. Classes start in 2 hours.",
                     steps: [
@@ -2156,7 +2241,7 @@
             ],
             hospitality: [
                 {
-                    title: "Hotel Guest Assault in Parking Garage",
+                    title: "A Guest Is Being Robbed in Your Parking Garage",
                     initialTime: "11:30 PM",
                     description: "Hotel guest attacked in parking garage. Suspect fled but guest is injured and other guests witnessed the incident.",
                     steps: [
@@ -2185,7 +2270,7 @@
                     }
                 },
                 {
-                    title: "Kitchen Fire During Dinner Service",
+                    title: "Your Kitchen Just Caught Fire — 200 Guests Are Seated",
                     initialTime: "7:45 PM",
                     description: "Fire breaks out in restaurant kitchen during peak dinner service. Guests and staff need immediate evacuation.",
                     steps: [
@@ -2214,7 +2299,7 @@
                     }
                 },
                 {
-                    title: "Intoxicated Guest Disturbance",
+                    title: "A Drunk Guest Is Harassing Other Guests in the Lobby",
                     initialTime: "12:45 AM",
                     description: "Heavily intoxicated guest causing disturbance in hotel lobby, bothering other guests and staff.",
                     steps: [
@@ -2245,7 +2330,7 @@
             ],
             manufacturing: [
                 {
-                    title: "Chemical Spill During Night Shift",
+                    title: "Chemical Alarm Just Triggered on the Factory Floor",
                     initialTime: "2:10 AM",
                     description: "Hazardous chemical spill in production area. Few staff on duty and emergency systems may be compromised.",
                     steps: [
@@ -2283,7 +2368,7 @@
                     }
                 },
                 {
-                    title: "Industrial Accident with Injury",
+                    title: "A Worker's Hand Just Got Caught in the Machine",
                     initialTime: "10:30 AM",
                     description: "Employee seriously injured by machinery. OSHA reporting required and production may need to stop.",
                     steps: [
@@ -2321,7 +2406,7 @@
                     }
                 },
                 {
-                    title: "Sabotage Discovery",
+                    title: "Someone Tampered with Your Production Line Overnight",
                     initialTime: "5:45 AM",
                     description: "Evidence of potential sabotage found on critical production equipment. Production integrity and worker safety at risk.",
                     steps: [
@@ -2471,7 +2556,14 @@
             
             // Update scenario header
             document.getElementById('scenarioTitle').textContent = scenario.title;
-            document.getElementById('scenarioTime').textContent = scenario.initialTime;
+            
+            // Add fade-in effect to time
+            const timeElement = document.getElementById('scenarioTime');
+            timeElement.textContent = scenario.initialTime;
+            timeElement.classList.remove('fade-in');
+            // Force reflow to restart animation
+            timeElement.offsetHeight;
+            timeElement.classList.add('fade-in');
             
             // Reset clock
             clearInterval(clockInterval);
@@ -2485,9 +2577,35 @@
 
         function loadScenarioStep(scenario, stepIndex) {
             const step = scenario.steps[stepIndex];
-            document.getElementById('scenarioDescription').innerHTML = step.description;
             
+            // Update step counter
+            const stepCounter = document.getElementById('stepCounter');
+            stepCounter.textContent = `Step ${stepIndex + 1} of ${scenario.steps.length}`;
+            stepCounter.style.display = 'inline-block';
+            
+            const descriptionElement = document.getElementById('scenarioDescription');
             const optionsContainer = document.getElementById('scenarioOptions');
+            
+            // Reset classes and content
+            descriptionElement.classList.remove('typewriter', 'typewriter-complete');
+            optionsContainer.classList.remove('fade-in-delayed');
+            
+            // Set description and add typewriter effect only for first step
+            if (stepIndex === 0) {
+                descriptionElement.innerHTML = step.description;
+                // Force reflow to restart animation
+                descriptionElement.offsetHeight;
+                descriptionElement.classList.add('typewriter');
+                
+                // Remove typewriter styling after animation completes
+                setTimeout(() => {
+                    descriptionElement.classList.add('typewriter-complete');
+                    descriptionElement.classList.remove('typewriter');
+                }, 4000);
+            } else {
+                descriptionElement.innerHTML = step.description;
+            }
+            
             optionsContainer.innerHTML = '';
             window._stepLocked = false;
             
@@ -2522,6 +2640,11 @@
                 
                 optionsContainer.appendChild(optionDiv);
             });
+            
+            // Add fade-in delay for options only on first step
+            if (stepIndex === 0) {
+                optionsContainer.classList.add('fade-in-delayed');
+            }
             
             document.getElementById('scenarioButtons').style.display = 'none';
         }
@@ -2587,6 +2710,7 @@
             document.getElementById('scenarioOptions').style.display = 'none';
             document.getElementById('scenarioButtons').style.display = 'none';
             document.getElementById('clock').style.display = 'none';
+            document.getElementById('stepCounter').style.display = 'none';
             
             // Remove old debrief if exists
             const oldDebrief = document.getElementById('scenarioDebrief');
@@ -2656,6 +2780,11 @@
                 // Remove debrief before loading new scenario
                 const oldDebrief = document.getElementById('scenarioDebrief');
                 if (oldDebrief) oldDebrief.remove();
+                
+                // Reset animation classes
+                document.getElementById('scenarioTime').classList.remove('fade-in');
+                document.getElementById('scenarioDescription').classList.remove('typewriter', 'typewriter-complete');
+                document.getElementById('scenarioOptions').classList.remove('fade-in-delayed');
                 
                 // Load next scenario
                 loadScenario(industryScenarios[assessmentData.currentScenario]);
@@ -2739,6 +2868,9 @@
             document.getElementById('exposureAmount').textContent = 
                 `$${assessmentData.financialExposure.min.toLocaleString()} - $${assessmentData.financialExposure.max.toLocaleString()}`;
             
+            // Create radar chart
+            createRadarChart();
+            
             // Display scorecard
             const scorecard = document.getElementById('gapScorecard');
             const scoreCategories = [
@@ -2785,6 +2917,101 @@
             
             // Display benchmark
             document.getElementById('averageScore').textContent = assessmentData.averageScore;
+        }
+
+        function createRadarChart() {
+            const categories = ['Detection', 'Response', 'Communication', 'Documentation', 'Compliance', 'Recovery'];
+            const scores = [
+                assessmentData.scores.detection,
+                assessmentData.scores.response,
+                assessmentData.scores.communication,
+                assessmentData.scores.documentation,
+                assessmentData.scores.compliance,
+                assessmentData.scores.recovery
+            ];
+            
+            const centerX = 200;
+            const centerY = 200;
+            const maxRadius = 120;
+            const levels = 5;
+            
+            const svg = document.getElementById('radarChart');
+            svg.innerHTML = '';
+            
+            // Create grid circles and benchmark
+            for (let i = 1; i <= levels; i++) {
+                const radius = (maxRadius / levels) * i;
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', centerX);
+                circle.setAttribute('cy', centerY);
+                circle.setAttribute('r', radius);
+                circle.setAttribute('class', 'radar-grid');
+                svg.appendChild(circle);
+                
+                // Add benchmark line at 85 score level (4.25 out of 5 levels)
+                if (i === Math.round(4.25)) {
+                    const benchmarkCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    benchmarkCircle.setAttribute('cx', centerX);
+                    benchmarkCircle.setAttribute('cy', centerY);
+                    benchmarkCircle.setAttribute('r', radius);
+                    benchmarkCircle.setAttribute('class', 'radar-benchmark');
+                    svg.appendChild(benchmarkCircle);
+                }
+            }
+            
+            // Create axes and labels
+            const angleStep = (Math.PI * 2) / categories.length;
+            const axisPoints = [];
+            
+            categories.forEach((category, i) => {
+                const angle = angleStep * i - Math.PI / 2; // Start from top
+                const x = centerX + Math.cos(angle) * maxRadius;
+                const y = centerY + Math.sin(angle) * maxRadius;
+                
+                axisPoints.push({ x, y, angle, category });
+                
+                // Draw axis line
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', centerX);
+                line.setAttribute('y1', centerY);
+                line.setAttribute('x2', x);
+                line.setAttribute('y2', y);
+                line.setAttribute('class', 'radar-axis');
+                svg.appendChild(line);
+                
+                // Add label
+                const labelDistance = maxRadius + 30;
+                const labelX = centerX + Math.cos(angle) * labelDistance;
+                const labelY = centerY + Math.sin(angle) * labelDistance;
+                
+                const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                label.setAttribute('x', labelX);
+                label.setAttribute('y', labelY);
+                label.setAttribute('class', 'radar-label');
+                label.textContent = category;
+                svg.appendChild(label);
+            });
+            
+            // Create score polygon
+            let pathData = '';
+            scores.forEach((score, i) => {
+                const angle = angleStep * i - Math.PI / 2;
+                const radius = (score / 100) * maxRadius;
+                const x = centerX + Math.cos(angle) * radius;
+                const y = centerY + Math.sin(angle) * radius;
+                
+                if (i === 0) {
+                    pathData += `M ${x} ${y}`;
+                } else {
+                    pathData += ` L ${x} ${y}`;
+                }
+            });
+            pathData += ' Z';
+            
+            const scorePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            scorePath.setAttribute('d', pathData);
+            scorePath.setAttribute('class', 'radar-score-fill');
+            svg.appendChild(scorePath);
         }
 
         function generatePlan() {
@@ -3893,22 +4120,16 @@
                     body: JSON.stringify(submissionData)
                 });
                 
-                if (response.ok) {
-                    // Show download section
-                    document.getElementById('downloadSection').style.display = 'block';
-                    
-                    // Hide form
-                    document.getElementById('leadForm').style.display = 'none';
-                } else {
-                    // Even if CRM fails, still allow download
-                    document.getElementById('downloadSection').style.display = 'block';
-                    document.getElementById('leadForm').style.display = 'none';
-                }
+                // Generate the plan and go to phase 6 regardless of CRM response
+                const planContent = createEmergencyResponsePlan();
+                document.getElementById('planPreview').innerHTML = planContent;
+                goToPhase(6);
             } catch (error) {
                 console.error('CRM submission failed:', error);
-                // Still allow download even if CRM fails
-                document.getElementById('downloadSection').style.display = 'block';
-                document.getElementById('leadForm').style.display = 'none';
+                // Still generate plan even if CRM fails
+                const planContent = createEmergencyResponsePlan();
+                document.getElementById('planPreview').innerHTML = planContent;
+                goToPhase(6);
             }
         }
 
