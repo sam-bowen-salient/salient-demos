@@ -2489,7 +2489,7 @@
             
             const optionsContainer = document.getElementById('scenarioOptions');
             optionsContainer.innerHTML = '';
-            optionsContainer.classList.remove('locked');
+            window._stepLocked = false;
             
             step.options.forEach((option, index) => {
                 const optionDiv = document.createElement('div');
@@ -2501,14 +2501,14 @@
                 
                 optionDiv.addEventListener('click', function() {
                     // Prevent multiple selections
-                    if (optionsContainer.classList.contains('locked')) return;
-                    optionsContainer.classList.add('locked');
+                    if (window._stepLocked) return;
+                    window._stepLocked = true;
                     
                     selectOption(option, stepIndex);
                     optionsContainer.querySelectorAll('.scenario-option').forEach(opt => {
                         opt.classList.remove('selected');
-                        opt.style.opacity = '0.5';
-                        opt.style.pointerEvents = 'none';
+                        opt.style.opacity = '0.4';
+                        opt.style.cursor = 'default';
                     });
                     optionDiv.classList.add('selected');
                     optionDiv.style.opacity = '1';
@@ -2687,19 +2687,19 @@
             });
             
             // Calculate financial exposure based on facility characteristics and gaps
-            const baseFacilityRisk = Math.max(10000, assessmentData.operation.facilitySize * 0.75); // Minimum $10k base risk
+            const baseFacilityRisk = Math.max(5000, assessmentData.operation.facilitySize * 0.35); // Base risk per sqft
             
             const industryMultipliers = {
-                warehouse: 2.8,
-                healthcare: 4.2,
-                commercial: 2.2,
-                retail: 3.2,
-                construction: 3.8,
-                hoa: 1.8,
-                events: 4.8,
-                education: 2.6,
-                hospitality: 3.0,
-                manufacturing: 4.0
+                warehouse: 1.8,
+                healthcare: 2.5,
+                commercial: 1.5,
+                retail: 2.0,
+                construction: 2.2,
+                hoa: 1.0,
+                events: 2.0,
+                education: 1.5,
+                hospitality: 1.2,
+                manufacturing: 2.5
             };
             
             // Operating hours multiplier
@@ -2712,7 +2712,7 @@
             const industryMultiplier = industryMultipliers[assessmentData.operation.industry] || 2.5;
             const operatingMultiplier = hoursMultiplier[assessmentData.operation.operatingHours] || 1.0;
             const averageScore = scoreCategories.reduce((sum, cat) => sum + assessmentData.scores[cat], 0) / scoreCategories.length;
-            const gapMultiplier = Math.max(1.2, (100 - averageScore) / 15); // Higher gaps = exponentially higher risk
+            const gapMultiplier = Math.max(1.0, (100 - averageScore) / 30); // Higher gaps = higher risk
             
             // Additional risk factors
             const entryPointsRisk = assessmentData.operation.entryPoints > 3 ? 1.2 : 1.0;
