@@ -435,8 +435,12 @@
 
         .plan-section {
             margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--light-steel);
+            padding: 1.5rem;
+            padding-left: 2rem;
+            border-left: 4px solid var(--navy);
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
         .plan-section:last-child {
@@ -446,14 +450,180 @@
         .plan-section h3 {
             color: var(--navy);
             margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .plan-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .plan-table th,
+        .plan-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--light-steel);
+        }
+
+        .plan-table th {
+            background: var(--navy);
+            color: white;
+            font-weight: 600;
+        }
+
+        .plan-table tr:hover {
+            background: #f8fafc;
+        }
+
+        .priority-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .priority-badge.critical {
+            background: var(--red);
+            color: white;
+        }
+
+        .priority-badge.high {
+            background: #f97316;
+            color: white;
+        }
+
+        .priority-badge.medium {
+            background: var(--yellow);
+            color: white;
+        }
+
+        .priority-badge.low {
+            background: var(--green);
+            color: white;
+        }
+
+        .timeline-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .timeline-comparison .your-response {
+            padding: 0.75rem;
+            background: #fee2e2;
+            border: 1px solid #fca5a5;
+            border-radius: 6px;
+        }
+
+        .timeline-comparison .best-practice {
+            padding: 0.75rem;
+            background: #dcfce7;
+            border: 1px solid #86efac;
+            border-radius: 6px;
+        }
+
+        .score-summary-table {
+            width: 100%;
+            margin: 1.5rem 0;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .score-summary-table th,
+        .score-summary-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--light-steel);
+        }
+
+        .score-summary-table th {
+            background: var(--navy);
+            color: white;
+            font-weight: 600;
+        }
+
+        .executive-summary-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+            margin-top: 0.25rem;
+        }
+
+        .readiness-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .readiness-critical {
+            background: #dc2626;
+            color: white;
+        }
+
+        .readiness-poor {
+            background: #ea580c;
+            color: white;
+        }
+
+        .readiness-fair {
+            background: #d97706;
+            color: white;
+        }
+
+        .readiness-good {
+            background: #059669;
+            color: white;
         }
 
         .gap-highlight {
-            background: rgba(220, 38, 38, 0.1);
-            color: var(--red);
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-weight: 500;
+            display: inline-block;
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(220, 38, 38, 0.3);
+            border: 1px solid rgba(220, 38, 38, 0.2);
         }
 
         .footer {
@@ -548,7 +718,7 @@
             
             body {
                 background: white;
-                font-size: 12pt;
+                font-size: 11pt;
                 line-height: 1.4;
             }
             
@@ -567,21 +737,99 @@
                 border: none;
                 padding: 0;
                 box-shadow: none;
-                page-break-inside: avoid;
             }
             
             .plan-section {
                 page-break-inside: avoid;
-                margin-bottom: 2cm;
+                margin-bottom: 1.5cm;
+                padding: 1rem;
+                border-left: 3pt solid var(--navy);
+                background: white;
+                box-shadow: none;
+            }
+            
+            .plan-table, .score-summary-table {
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1pt solid #ccc;
+            }
+            
+            .plan-table th, .plan-table td,
+            .score-summary-table th, .score-summary-table td {
+                border: 1pt solid #ccc;
+                padding: 0.5rem;
+            }
+            
+            .executive-summary-stats,
+            .timeline-comparison {
+                page-break-inside: avoid;
+            }
+            
+            .stat-card {
+                box-shadow: none;
+                border: 1pt solid #ccc;
+            }
+            
+            .priority-badge {
+                background: #ddd !important;
+                color: #333 !important;
+                border: 1pt solid #999;
+            }
+            
+            .priority-badge.critical {
+                background: #ffcccc !important;
+                color: #cc0000 !important;
+            }
+            
+            .priority-badge.high {
+                background: #ffe6cc !important;
+                color: #cc6600 !important;
+            }
+            
+            .priority-badge.medium {
+                background: #ffffcc !important;
+                color: #cccc00 !important;
+            }
+            
+            .priority-badge.low {
+                background: #ccffcc !important;
+                color: #006600 !important;
+            }
+            
+            .readiness-badge {
+                background: #ddd !important;
+                color: #333 !important;
+                border: 1pt solid #999;
+            }
+            
+            .readiness-critical {
+                background: #ffcccc !important;
+                color: #cc0000 !important;
+            }
+            
+            .readiness-poor {
+                background: #ffe6cc !important;
+                color: #cc6600 !important;
+            }
+            
+            .readiness-fair {
+                background: #ffffcc !important;
+                color: #cccc00 !important;
+            }
+            
+            .readiness-good {
+                background: #ccffcc !important;
+                color: #006600 !important;
             }
             
             .print-header {
                 display: block !important;
-                background: var(--navy);
-                color: white;
+                background: var(--navy) !important;
+                color: white !important;
                 padding: 1cm;
                 text-align: center;
                 margin-bottom: 1cm;
+                page-break-after: always;
             }
             
             .print-footer {
@@ -590,11 +838,11 @@
                 bottom: 0;
                 left: 0;
                 right: 0;
-                background: var(--navy);
-                color: white;
+                background: var(--navy) !important;
+                color: white !important;
                 padding: 0.5cm;
                 text-align: center;
-                font-size: 10pt;
+                font-size: 9pt;
             }
             
             .print-watermark {
@@ -603,20 +851,34 @@
                 top: 40%;
                 left: 20%;
                 transform: rotate(-45deg);
-                font-size: 4cm;
-                color: rgba(19, 31, 45, 0.1);
+                font-size: 3cm;
+                color: rgba(19, 31, 45, 0.08) !important;
                 font-weight: 700;
                 z-index: -1;
             }
             
-            h1, h2, h3 {
-                color: var(--navy);
+            h1, h2, h3, h4 {
+                color: var(--navy) !important;
                 page-break-after: avoid;
             }
             
             .gap-highlight {
                 background: rgba(220, 38, 38, 0.2) !important;
                 color: var(--red) !important;
+                padding: 2pt 4pt;
+                font-weight: bold;
+            }
+            
+            /* Ensure grid layouts stack vertically on print */
+            .executive-summary-stats,
+            div[style*="display: grid"] {
+                display: block !important;
+            }
+            
+            .executive-summary-stats .stat-card,
+            div[style*="display: grid"] > div {
+                margin-bottom: 1rem;
+                page-break-inside: avoid;
             }
         }
     </style>
@@ -2202,10 +2464,12 @@
             if (oldDebrief) oldDebrief.remove();
             
             // Restore scenario elements
-            document.getElementById('scenarioDescription').style.display = '';
-            document.getElementById('scenarioOptions').style.display = '';
-            document.getElementById('clock').style.display = '';
+            document.getElementById('scenarioDescription').style.display = 'block';
+            document.getElementById('scenarioOptions').style.display = 'block';
+            document.getElementById('clock').style.display = 'block';
+            document.getElementById('scenarioButtons').style.display = 'none';
             
+            // Update scenario header
             document.getElementById('scenarioTitle').textContent = scenario.title;
             document.getElementById('scenarioTime').textContent = scenario.initialTime;
             
@@ -2215,6 +2479,7 @@
             assessmentData.scenarioElapsedTime = 0;
             startClock();
             
+            // Load first step
             loadScenarioStep(scenario, 0);
         }
 
@@ -2321,16 +2586,39 @@
             debriefDiv.id = 'scenarioDebrief';
             debriefDiv.innerHTML = `
                 <div class="debrief-card">
-                    <h3>Scenario Complete: ${scenario.title}</h3>
-                    <div style="font-size: 1.2rem; margin: 1rem 0;">
-                        <strong>Total Response Time: ${Math.floor(assessmentData.scenarioElapsedTime / 60)}h ${assessmentData.scenarioElapsedTime % 60}m</strong>
+                    <h3>✅ Scenario Complete: ${scenario.title}</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                        <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 2rem; font-weight: 700; color: #fbbf24;">
+                                ${Math.floor(assessmentData.scenarioElapsedTime / 60)}h ${assessmentData.scenarioElapsedTime % 60}m
+                            </div>
+                            <div style="font-size: 0.9rem; opacity: 0.9;">Your Response Time</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 2rem; font-weight: 700; color: #10b981;">
+                                &lt;5min
+                            </div>
+                            <div style="font-size: 0.9rem; opacity: 0.9;">Best Practice</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 1.3rem; font-weight: 700; color: #f87171;">
+                                $${Math.round((scenario.debrief.financialImpact.min + scenario.debrief.financialImpact.max)/2/1000)}K
+                            </div>
+                            <div style="font-size: 0.9rem; opacity: 0.9;">Avg. Incident Cost</div>
+                        </div>
                     </div>
-                    <p><strong>What Happened:</strong> Based on your choices, your response took ${assessmentData.scenarioElapsedTime} minutes and exposed several gaps in your emergency response capabilities.</p>
-                    <p><strong>Best Practice:</strong> ${scenario.debrief.bestPractice}</p>
-                    <p><strong>Financial Impact:</strong> Similar incidents typically cost $${scenario.debrief.financialImpact.min.toLocaleString()} - $${scenario.debrief.financialImpact.max.toLocaleString()} when response gaps exist.</p>
-                    <div class="btn-group" style="margin-top: 2rem;">
-                        <button class="btn" onclick="nextScenario()">
-                            ${assessmentData.currentScenario < 2 ? 'Next Scenario' : 'View Gap Analysis'}
+                    
+                    <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                        <p style="margin-bottom: 1rem;"><strong>📊 What Happened:</strong> Based on your choices, your response took ${assessmentData.scenarioElapsedTime} minutes and exposed several critical gaps in your emergency response capabilities.</p>
+                        
+                        <p style="margin-bottom: 1rem;"><strong>✅ Best Practice Standard:</strong> ${scenario.debrief.bestPractice}</p>
+                        
+                        <p><strong>💰 Financial Impact:</strong> Similar incidents typically cost <span style="color: #fbbf24; font-weight: 600;">$${scenario.debrief.financialImpact.min.toLocaleString()} - $${scenario.debrief.financialImpact.max.toLocaleString()}</span> when response gaps exist, including direct losses, liability exposure, regulatory fines, and business disruption.</p>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="btn" onclick="nextScenario()" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                            ${assessmentData.currentScenario < 2 ? '➡️ Continue to Next Scenario' : '📊 View Complete Gap Analysis'}
                         </button>
                     </div>
                 </div>
@@ -2350,7 +2638,16 @@
                 // Load next scenario
                 const industry = assessmentData.operation.industry;
                 const industryScenarios = scenarios[industry] || scenarios.warehouse;
+                
+                // Reset step counter
                 assessmentData.currentStep = 0;
+                assessmentData.scenarioElapsedTime = 0;
+                
+                // Remove debrief before loading new scenario
+                const oldDebrief = document.getElementById('scenarioDebrief');
+                if (oldDebrief) oldDebrief.remove();
+                
+                // Load next scenario
                 loadScenario(industryScenarios[assessmentData.currentScenario]);
             }
         }
@@ -2370,37 +2667,58 @@
         // Gap analysis
         function calculateGapAnalysis() {
             // Calculate scores (max 25 per category per scenario = 75 total per category)
-            const maxScore = 75;
+            const maxScore = 75; // 25 points × 3 scenarios
             const scoreCategories = ['detection', 'response', 'communication', 'documentation', 'compliance', 'recovery'];
             
             // Normalize scores to 0-100
             scoreCategories.forEach(category => {
-                assessmentData.scores[category] = Math.round((assessmentData.scores[category] / maxScore) * 100);
+                const rawScore = assessmentData.scores[category] || 0;
+                assessmentData.scores[category] = Math.max(0, Math.min(100, Math.round((rawScore / maxScore) * 100)));
             });
             
-            // Calculate financial exposure
-            const baseFacilityRisk = assessmentData.operation.facilitySize * 0.5; // $0.50 per sq ft base risk
+            // Calculate financial exposure based on facility characteristics and gaps
+            const baseFacilityRisk = Math.max(10000, assessmentData.operation.facilitySize * 0.75); // Minimum $10k base risk
+            
             const industryMultipliers = {
-                warehouse: 2.5,
-                healthcare: 4.0,
-                commercial: 2.0,
-                retail: 3.0,
-                construction: 3.5,
-                hoa: 1.5,
-                events: 4.5,
-                education: 2.5,
-                hospitality: 2.8,
-                manufacturing: 3.8
+                warehouse: 2.8,
+                healthcare: 4.2,
+                commercial: 2.2,
+                retail: 3.2,
+                construction: 3.8,
+                hoa: 1.8,
+                events: 4.8,
+                education: 2.6,
+                hospitality: 3.0,
+                manufacturing: 4.0
             };
             
-            const industryMultiplier = industryMultipliers[assessmentData.operation.industry] || 2.0;
+            // Operating hours multiplier
+            const hoursMultiplier = {
+                '24/7': 1.4,
+                'extended': 1.2,
+                'business': 1.0
+            };
+            
+            const industryMultiplier = industryMultipliers[assessmentData.operation.industry] || 2.5;
+            const operatingMultiplier = hoursMultiplier[assessmentData.operation.operatingHours] || 1.0;
             const averageScore = scoreCategories.reduce((sum, cat) => sum + assessmentData.scores[cat], 0) / scoreCategories.length;
-            const gapMultiplier = Math.max(1.0, (100 - averageScore) / 20); // Higher gaps = higher risk
+            const gapMultiplier = Math.max(1.2, (100 - averageScore) / 15); // Higher gaps = exponentially higher risk
             
-            const minExposure = Math.round(baseFacilityRisk * industryMultiplier * gapMultiplier);
-            const maxExposure = Math.round(minExposure * 2.5);
+            // Additional risk factors
+            const entryPointsRisk = assessmentData.operation.entryPoints > 3 ? 1.2 : 1.0;
+            const floorsRisk = assessmentData.operation.floors > 3 ? 1.15 : 1.0;
+            const securityMeasuresDiscount = assessmentData.operation.securityMeasures.length > 0 ? 0.9 : 1.0;
             
-            assessmentData.financialExposure = { min: minExposure, max: maxExposure };
+            // Calculate final risk exposure
+            const totalRiskMultiplier = industryMultiplier * operatingMultiplier * gapMultiplier * entryPointsRisk * floorsRisk * securityMeasuresDiscount;
+            const minExposure = Math.round(baseFacilityRisk * totalRiskMultiplier * 0.8); // Conservative estimate
+            const maxExposure = Math.round(baseFacilityRisk * totalRiskMultiplier * 2.2); // Higher potential impact
+            
+            // Ensure realistic ranges
+            assessmentData.financialExposure = { 
+                min: Math.max(25000, minExposure), 
+                max: Math.max(minExposure * 1.5, maxExposure)
+            };
             assessmentData.averageScore = Math.round(averageScore);
             
             displayGapAnalysis();
@@ -2461,159 +2779,743 @@
 
         function generatePlan() {
             try {
+                // Show loading state
+                const button = event?.target;
+                if (button) {
+                    const originalText = button.textContent;
+                    button.textContent = 'Generating Plan...';
+                    button.disabled = true;
+                }
+                
+                // Generate the plan
                 const planContent = createEmergencyResponsePlan();
+                if (!planContent || planContent.length < 100) {
+                    throw new Error('Plan content appears to be incomplete');
+                }
+                
                 document.getElementById('planPreview').innerHTML = planContent;
+                
+                // Navigate to plan display
                 goToPhase(5);
+                
+                // Restore button state
+                if (button) {
+                    button.textContent = originalText;
+                    button.disabled = false;
+                }
+                
             } catch(e) {
                 console.error('Plan generation error:', e);
-                alert('Error generating plan. Please try again.');
+                
+                // Restore button state
+                const button = event?.target;
+                if (button) {
+                    button.textContent = 'Generate Your Emergency Response Plan';
+                    button.disabled = false;
+                }
+                
+                // Show user-friendly error
+                const errorDiv = document.createElement('div');
+                errorDiv.innerHTML = `
+                    <div style="background: #fef2f2; border: 2px solid #fecaca; border-radius: 8px; padding: 1rem; margin: 1rem 0; color: #991b1b;">
+                        <strong>⚠️ Plan Generation Error</strong><br>
+                        There was an issue generating your emergency response plan. Please try again or contact support at (317) 983-6601.
+                        <div style="margin-top: 1rem;">
+                            <button class="btn" onclick="generatePlan()" style="margin-right: 1rem;">Try Again</button>
+                            <a href="tel:+13179836601" class="btn btn-secondary">Call Support</a>
+                        </div>
+                    </div>
+                `;
+                
+                // Insert error message before the button
+                const gapAnalysisSection = document.querySelector('#phase4 .card');
+                if (gapAnalysisSection) {
+                    const buttonGroup = gapAnalysisSection.querySelector('.btn-group');
+                    if (buttonGroup) {
+                        buttonGroup.parentNode.insertBefore(errorDiv, buttonGroup);
+                    }
+                }
             }
         }
 
         function createEmergencyResponsePlan() {
             const data = assessmentData;
             const currentDate = new Date().toLocaleDateString();
+            const criticalGaps = Object.keys(data.scores).filter(key => data.scores[key] < 40);
+            const totalScenarios = data.scenarios.length;
+            const averageResponseTime = data.scenarios.reduce((sum, s) => sum + s.totalTime, 0) / totalScenarios;
+            
+            function getReadinessBadge(score) {
+                if (score < 40) return '<span class="readiness-badge readiness-critical">CRITICAL</span>';
+                if (score < 60) return '<span class="readiness-badge readiness-poor">POOR</span>';
+                if (score < 75) return '<span class="readiness-badge readiness-fair">FAIR</span>';
+                return '<span class="readiness-badge readiness-good">GOOD</span>';
+            }
             
             return `
                 <div class="print-header" style="display: none;">
-                    <h1>${data.operation.businessName} Emergency Response Plan</h1>
-                    <p>Prepared by Salient Group | ${currentDate} | CONFIDENTIAL</p>
+                    <div style="text-align: center; padding: 2rem; background: var(--navy); color: white;">
+                        <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">CONFIDENTIAL</h1>
+                        <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">EMERGENCY RESPONSE PLAN</h2>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">${data.operation.businessName}</h3>
+                        <p style="font-size: 1.1rem;">Prepared by <strong>Salient Group — Professional Security Services</strong></p>
+                        <p style="font-size: 1rem;">${currentDate}</p>
+                    </div>
                 </div>
                 
                 <div class="plan-section">
-                    <h3>Executive Summary</h3>
-                    <p>This Emergency Response Plan has been developed specifically for <strong>${data.operation.businessName}</strong> based on a comprehensive security assessment conducted by Salient Group. Our analysis identified significant gaps in your current emergency response capabilities that expose your organization to substantial financial and operational risks.</p>
-                    <p><strong>Key Finding:</strong> Your facility's average security readiness score is ${data.averageScore}/100, significantly below the industry standard of 85+ for professionally secured facilities.</p>
-                </div>
-                
-                <div class="plan-section">
-                    <h3>Facility Overview</h3>
+                    <h3>🔍 EXECUTIVE SUMMARY</h3>
+                    
+                    <div class="executive-summary-stats">
+                        <div class="stat-card">
+                            <div class="stat-number">${data.averageScore}</div>
+                            <div class="stat-label">Overall Readiness Score</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">${totalScenarios}</div>
+                            <div class="stat-label">Scenarios Tested</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">${criticalGaps.length}</div>
+                            <div class="stat-label">Critical Gaps Identified</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">$${Math.round(data.financialExposure.min/1000)}K-${Math.round(data.financialExposure.max/1000)}K</div>
+                            <div class="stat-label">Annual Exposure</div>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Overall Security Readiness:</strong> ${getReadinessBadge(data.averageScore)}</p>
+                    
+                    <p>This comprehensive Emergency Response Plan has been developed specifically for <strong>${data.operation.businessName}</strong> following an intensive scenario-based security assessment conducted by Salient Group. Our analysis tested your organization's response to realistic emergency situations and identified critical gaps that expose you to substantial financial and operational risks.</p>
+                    
+                    <p><strong>Key Statistics:</strong></p>
                     <ul>
-                        <li><strong>Business:</strong> ${data.operation.businessName}</li>
-                        <li><strong>Industry:</strong> ${getIndustryName(data.operation.industry)}</li>
-                        <li><strong>Facility Size:</strong> ${data.operation.facilitySize.toLocaleString()} sq ft</li>
-                        <li><strong>Floors:</strong> ${data.operation.floors}</li>
-                        <li><strong>Entry/Exit Points:</strong> ${data.operation.entryPoints}</li>
-                        <li><strong>Operating Hours:</strong> ${data.operation.operatingHours}</li>
-                        <li><strong>High-Value Assets:</strong> ${data.operation.assets || 'Not specified'}</li>
-                        <li><strong>Current Security:</strong> ${data.operation.securityMeasures.join(', ') || 'None specified'}</li>
+                        <li>3 scenarios tested across ${getIndustryName(data.operation.industry).toLowerCase()} operations</li>
+                        <li>${criticalGaps.length} critical security gaps identified requiring immediate attention</li>
+                        <li>$${data.financialExposure.min.toLocaleString()} - $${data.financialExposure.max.toLocaleString()} estimated annual risk exposure</li>
+                        <li>Average emergency response time: ${Math.floor(averageResponseTime/60)}h ${averageResponseTime%60}m (Industry best practice: &lt;5 minutes)</li>
                     </ul>
+                    
+                    <p><strong>Top 3 Most Urgent Findings:</strong></p>
+                    <ol>
+                        <li>${data.scores.detection < 40 ? 'CRITICAL: Inadequate threat detection capabilities' : data.scores.response < 40 ? 'CRITICAL: Slow emergency response times' : data.scores.communication < 40 ? 'CRITICAL: Poor emergency communication systems' : 'Insufficient professional security coverage during critical hours'}</li>
+                        <li>${data.scores.compliance < 40 ? 'CRITICAL: Non-compliance with regulatory requirements' : data.scores.documentation < 40 ? 'CRITICAL: Inadequate incident documentation procedures' : 'Limited coordination with law enforcement and emergency services'}</li>
+                        <li>${data.team.policeCaller === 'none' ? 'CRITICAL: No designated person to call police in emergencies' : 'Lack of systematic emergency response procedures and training'}</li>
+                    </ol>
+                    
+                    <p><strong>Recommendation:</strong> Immediate implementation of professional security services is essential to reduce critical risk exposure and ensure compliance with industry standards. Delays in addressing these gaps significantly increase liability and potential financial losses.</p>
                 </div>
                 
                 <div class="plan-section">
-                    <h3>Current State Assessment</h3>
-                    <p>Our scenario-based testing revealed critical weaknesses across all emergency response categories:</p>
-                    <ul>
-                        <li><strong>Threat Detection:</strong> ${data.scores.detection}/100 ${data.scores.detection < 40 ? '<span class="gap-highlight">CRITICAL GAP</span>' : data.scores.detection < 70 ? '<span class="gap-highlight">NEEDS IMPROVEMENT</span>' : ''}</li>
-                        <li><strong>Response Time:</strong> ${data.scores.response}/100 ${data.scores.response < 40 ? '<span class="gap-highlight">CRITICAL GAP</span>' : data.scores.response < 70 ? '<span class="gap-highlight">NEEDS IMPROVEMENT</span>' : ''}</li>
-                        <li><strong>Communication:</strong> ${data.scores.communication}/100 ${data.scores.communication < 40 ? '<span class="gap-highlight">CRITICAL GAP</span>' : data.scores.communication < 70 ? '<span class="gap-highlight">NEEDS IMPROVEMENT</span>' : ''}</li>
-                        <li><strong>Documentation:</strong> ${data.scores.documentation}/100 ${data.scores.documentation < 40 ? '<span class="gap-highlight">CRITICAL GAP</span>' : data.scores.documentation < 70 ? '<span class="gap-highlight">NEEDS IMPROVEMENT</span>' : ''}</li>
-                        <li><strong>Compliance:</strong> ${data.scores.compliance}/100 ${data.scores.compliance < 40 ? '<span class="gap-highlight">CRITICAL GAP</span>' : data.scores.compliance < 70 ? '<span class="gap-highlight">NEEDS IMPROVEMENT</span>' : ''}</li>
-                        <li><strong>Recovery:</strong> ${data.scores.recovery}/100 ${data.scores.recovery < 40 ? '<span class="gap-highlight">CRITICAL GAP</span>' : data.scores.recovery < 70 ? '<span class="gap-highlight">NEEDS IMPROVEMENT</span>' : ''}</li>
-                    </ul>
-                    <p><strong>Annual Risk Exposure:</strong> Based on identified gaps, your facility faces an estimated <strong>$${data.financialExposure.min.toLocaleString()} - $${data.financialExposure.max.toLocaleString()}</strong> in potential annual losses from security incidents.</p>
+                    <h3>🏢 FACILITY OVERVIEW</h3>
+                    
+                    <table class="plan-table">
+                        <tr>
+                            <th>Business Information</th>
+                            <th>Details</th>
+                            <th>Risk Assessment</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Business Name</strong></td>
+                            <td>${data.operation.businessName}</td>
+                            <td>Primary asset protection focus</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Industry Sector</strong></td>
+                            <td>${getIndustryName(data.operation.industry)}</td>
+                            <td>${data.operation.industry === 'healthcare' ? 'High regulatory compliance requirements' : data.operation.industry === 'manufacturing' ? 'Industrial safety and OSHA compliance critical' : data.operation.industry === 'retail' ? 'High theft risk and customer safety concerns' : 'Standard commercial security needs'}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Facility Size</strong></td>
+                            <td>${data.operation.facilitySize.toLocaleString()} sq ft</td>
+                            <td>${data.operation.facilitySize > 100000 ? 'Large facility requiring multiple security zones' : data.operation.facilitySize > 50000 ? 'Medium facility with moderate coverage needs' : 'Compact facility suitable for single-point security'}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Building Levels</strong></td>
+                            <td>${data.operation.floors} floors</td>
+                            <td>${data.operation.floors > 3 ? 'Multi-level security challenges' : 'Standard floor coverage'}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Access Points</strong></td>
+                            <td>${data.operation.entryPoints} entry/exit points</td>
+                            <td>${data.operation.entryPoints > 5 ? 'Multiple access points require comprehensive monitoring' : data.operation.entryPoints > 2 ? 'Moderate access control complexity' : 'Simple access management'}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Operating Schedule</strong></td>
+                            <td>${data.operation.operatingHours}</td>
+                            <td>${data.operation.operatingHours === '24/7' ? 'Continuous security coverage required' : data.operation.operatingHours === 'extended' ? 'Extended hours require comprehensive coverage' : 'Standard business hours coverage'}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>High-Value Assets</strong></td>
+                            <td>${data.operation.assets || 'Not specified'}</td>
+                            <td>${data.operation.assets ? 'Specialized asset protection required' : 'Standard facility protection'}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Current Security Measures</strong></td>
+                            <td>${data.operation.securityMeasures.length > 0 ? data.operation.securityMeasures.join(', ') : 'None identified'}</td>
+                            <td>${data.operation.securityMeasures.length === 0 ? '<span class="priority-badge critical">Critical Gap</span>' : data.operation.securityMeasures.length < 3 ? '<span class="priority-badge high">Needs Enhancement</span>' : '<span class="priority-badge medium">Adequate Base</span>'}</td>
+                        </tr>
+                    </table>
                 </div>
                 
                 <div class="plan-section">
-                    <h3>Emergency Contact Chain</h3>
-                    <ul>
-                        <li><strong>Primary Decision Maker:</strong> ${data.team.decisionMaker} (${data.team.decisionTitle}) - ${data.team.decisionPhone}</li>
-                        <li><strong>After-Hours Contact:</strong> ${data.team.emergencyContact} - ${data.team.emergencyPhone}</li>
-                        <li><strong>Police Emergency Contact:</strong> ${data.team.policeCaller === 'specific' ? data.team.decisionMaker : data.team.policeCaller === 'guard' ? 'Security Guard' : '<span class="gap-highlight">NOT ASSIGNED</span>'}</li>
-                        <li><strong>Key Holders:</strong> ${data.team.keyHolders} people ${data.team.keyHolders < 3 ? '<span class="gap-highlight">(INSUFFICIENT COVERAGE)</span>' : ''}</li>
-                        <li><strong>Communication System:</strong> ${data.team.communication.join(', ') || '<span class="gap-highlight">NO FORMAL SYSTEM</span>'}</li>
-                    </ul>
+                    <h3>📊 SCENARIO RESULTS — DETAILED ANALYSIS</h3>
+                    <p>Your facility was tested against 3 realistic emergency scenarios. Each scenario revealed specific weaknesses in your current emergency response capabilities.</p>
+                    
+                    ${data.scenarios.map((scenario, index) => `
+                        <div style="margin: 2rem 0; padding: 1.5rem; background: #f8fafc; border-radius: 8px; border-left: 4px solid ${index === 0 ? '#dc2626' : index === 1 ? '#ea580c' : '#d97706'};">
+                            <h4 style="color: var(--navy); margin-bottom: 1rem;">📍 Scenario ${index + 1}: ${scenario.title}</h4>
+                            
+                            <div class="timeline-comparison">
+                                <div class="your-response">
+                                    <strong>Your Response Timeline</strong><br>
+                                    <div style="font-size: 1.5rem; font-weight: 700; color: #dc2626;">${Math.floor(scenario.totalTime/60)}h ${scenario.totalTime%60}m</div>
+                                    <div style="font-size: 0.9rem; margin-top: 0.5rem;">
+                                        ${scenario.choices.map((choice, i) => `Step ${i+1}: +${choice.timeAdded} min`).join('<br>')}
+                                    </div>
+                                </div>
+                                <div class="best-practice">
+                                    <strong>Best Practice Timeline</strong><br>
+                                    <div style="font-size: 1.5rem; font-weight: 700; color: #059669;">&lt;5 minutes</div>
+                                    <div style="font-size: 0.9rem; margin-top: 0.5rem;">
+                                        Professional security response with trained personnel and established procedures
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="margin: 1rem 0;">
+                                <strong>Decision Analysis:</strong>
+                                <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                                    ${scenario.choices.map((choice, i) => `
+                                        <li style="margin: 0.5rem 0;"><strong>Step ${i+1}:</strong> ${choice.option.text}
+                                            <div style="font-size: 0.9rem; color: ${choice.timeAdded > 10 ? '#dc2626' : choice.timeAdded > 3 ? '#ea580c' : '#059669'}; margin-left: 1rem;">
+                                                Impact: ${choice.option.consequence} (+${choice.timeAdded} minutes)
+                                            </div>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                            
+                            <div style="background: white; padding: 1rem; border-radius: 6px; margin-top: 1rem;">
+                                <strong style="color: #dc2626;">Gaps Exposed:</strong>
+                                <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                                    ${scenario.totalTime > 30 ? '<li>Excessive response time creates extended vulnerability window</li>' : ''}
+                                    ${scenario.choices.some(c => c.option.text.includes('no one') || c.option.text.includes('nobody')) ? '<li>Lack of designated emergency responders</li>' : ''}
+                                    ${scenario.choices.some(c => c.option.text.includes('call supervisor') || c.option.text.includes('manager')) ? '<li>Over-reliance on off-site management for emergency decisions</li>' : ''}
+                                    ${scenario.choices.some(c => c.option.text.includes('no') && c.option.text.includes('documentation')) ? '<li>Inadequate incident documentation procedures</li>' : ''}
+                                </ul>
+                            </div>
+                        </div>
+                    `).join('')}
                 </div>
                 
                 <div class="plan-section">
-                    <h3>Incident Response Protocols</h3>
+                    <h3>📈 GAP ANALYSIS — DETAILED FINDINGS</h3>
+                    
+                    <table class="score-summary-table">
+                        <tr>
+                            <th>Security Category</th>
+                            <th>Your Score</th>
+                            <th>Priority Level</th>
+                            <th>Key Findings</th>
+                            <th>Recommended Action</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Threat Detection</strong><br><span style="font-size: 0.8rem;">How quickly security threats are identified</span></td>
+                            <td>${data.scores.detection}/100</td>
+                            <td>${data.scores.detection < 40 ? '<span class="priority-badge critical">Critical</span>' : data.scores.detection < 70 ? '<span class="priority-badge high">High</span>' : '<span class="priority-badge medium">Medium</span>'}</td>
+                            <td>${data.scores.detection < 40 ? 'No professional monitoring; threats go undetected for extended periods' : data.scores.detection < 70 ? 'Basic detection but significant delays in threat identification' : 'Adequate detection with room for improvement'}</td>
+                            <td>${data.scores.detection < 40 ? '24/7 professional security monitoring' : data.scores.detection < 70 ? 'Enhanced surveillance systems with trained responders' : 'Optimize current detection capabilities'}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Response Time</strong><br><span style="font-size: 0.8rem;">Speed and quality of emergency response</span></td>
+                            <td>${data.scores.response}/100</td>
+                            <td>${data.scores.response < 40 ? '<span class="priority-badge critical">Critical</span>' : data.scores.response < 70 ? '<span class="priority-badge high">High</span>' : '<span class="priority-badge medium">Medium</span>'}</td>
+                            <td>${data.scores.response < 40 ? 'No immediate response capability; average response time exceeds 30+ minutes' : data.scores.response < 70 ? 'Delayed response times average 10-20 minutes' : 'Adequate response time with opportunities for improvement'}</td>
+                            <td>${data.scores.response < 40 ? 'On-site security personnel for immediate response' : data.scores.response < 70 ? 'Enhanced response training and procedures' : 'Response time optimization'}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Communication</strong><br><span style="font-size: 0.8rem;">Coordination between team members and authorities</span></td>
+                            <td>${data.scores.communication}/100</td>
+                            <td>${data.scores.communication < 40 ? '<span class="priority-badge critical">Critical</span>' : data.scores.communication < 70 ? '<span class="priority-badge high">High</span>' : '<span class="priority-badge medium">Medium</span>'}</td>
+                            <td>${data.scores.communication < 40 ? 'No formal emergency communication system; critical coordination failures' : data.scores.communication < 70 ? 'Basic communication but lacks coordination protocols' : 'Good communication foundation'}</td>
+                            <td>${data.scores.communication < 40 ? 'Professional emergency communication system and protocols' : data.scores.communication < 70 ? 'Enhanced communication training and systems' : 'Communication protocol refinement'}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Documentation</strong><br><span style="font-size: 0.8rem;">Incident reporting and evidence preservation</span></td>
+                            <td>${data.scores.documentation}/100</td>
+                            <td>${data.scores.documentation < 40 ? '<span class="priority-badge critical">Critical</span>' : data.scores.documentation < 70 ? '<span class="priority-badge high">High</span>' : '<span class="priority-badge medium">Medium</span>'}</td>
+                            <td>${data.scores.documentation < 40 ? 'No systematic incident documentation; evidence preservation failures' : data.scores.documentation < 70 ? 'Basic reporting but lacks professional standards' : 'Adequate documentation procedures'}</td>
+                            <td>${data.scores.documentation < 40 ? 'Professional incident reporting and evidence management' : data.scores.documentation < 70 ? 'Enhanced documentation training and systems' : 'Documentation process optimization'}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Compliance</strong><br><span style="font-size: 0.8rem;">Regulatory and legal requirement adherence</span></td>
+                            <td>${data.scores.compliance}/100</td>
+                            <td>${data.scores.compliance < 40 ? '<span class="priority-badge critical">Critical</span>' : data.scores.compliance < 70 ? '<span class="priority-badge high">High</span>' : '<span class="priority-badge medium">Medium</span>'}</td>
+                            <td>${data.scores.compliance < 40 ? 'Major compliance violations; significant regulatory and legal risk' : data.scores.compliance < 70 ? 'Partial compliance with gaps in regulatory adherence' : 'Generally compliant with minor gaps'}</td>
+                            <td>${data.scores.compliance < 40 ? 'Immediate compliance remediation with professional oversight' : data.scores.compliance < 70 ? 'Compliance training and procedure enhancement' : 'Compliance monitoring and maintenance'}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Recovery</strong><br><span style="font-size: 0.8rem;">Business continuity and crisis management</span></td>
+                            <td>${data.scores.recovery}/100</td>
+                            <td>${data.scores.recovery < 40 ? '<span class="priority-badge critical">Critical</span>' : data.scores.recovery < 70 ? '<span class="priority-badge high">High</span>' : '<span class="priority-badge medium">Medium</span>'}</td>
+                            <td>${data.scores.recovery < 40 ? 'No crisis management capability; business continuity severely compromised' : data.scores.recovery < 70 ? 'Limited recovery procedures with extended downtime risk' : 'Basic recovery capabilities'}</td>
+                            <td>${data.scores.recovery < 40 ? 'Professional crisis management and business continuity planning' : data.scores.recovery < 70 ? 'Enhanced recovery procedures and training' : 'Recovery process optimization'}</td>
+                        </tr>
+                    </table>
+                    
+                    <div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin: 2rem 0; text-align: center;">
+                        <h4 style="color: white; margin-bottom: 1rem;">💰 FINANCIAL RISK ANALYSIS</h4>
+                        <div style="font-size: 2.5rem; font-weight: 700; margin: 1rem 0;">
+                            $${data.financialExposure.min.toLocaleString()} - $${data.financialExposure.max.toLocaleString()}
+                        </div>
+                        <p style="font-size: 1.1rem; margin-bottom: 0;">Estimated Annual Risk Exposure Based on Identified Gaps</p>
+                        <p style="font-size: 0.9rem; opacity: 0.9;">This represents potential losses from security incidents, regulatory fines, liability claims, and business disruption</p>
+                    </div>
+                </div>
+                
+                <div class="plan-section">
+                    <h3>📞 EMERGENCY CONTACT CHAIN ANALYSIS</h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1.5rem 0;">
+                        <div style="background: white; padding: 1.5rem; border-radius: 8px; border: 2px solid #fee2e2;">
+                            <h4 style="color: #dc2626; margin-bottom: 1rem;">❌ Current State (Gaps Identified)</h4>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="margin: 0.75rem 0; padding: 0.5rem; background: ${data.team.decisionMaker ? '#dcfce7' : '#fee2e2'}; border-radius: 4px;">
+                                    <strong>Primary Decision Maker:</strong><br>
+                                    ${data.team.decisionMaker ? `${data.team.decisionMaker} (${data.team.decisionTitle})` : '<span style="color: #dc2626;">NOT ASSIGNED</span>'}
+                                </li>
+                                <li style="margin: 0.75rem 0; padding: 0.5rem; background: ${data.team.emergencyContact ? '#dcfce7' : '#fee2e2'}; border-radius: 4px;">
+                                    <strong>After-Hours Contact:</strong><br>
+                                    ${data.team.emergencyContact || '<span style="color: #dc2626;">NOT ASSIGNED</span>'}
+                                </li>
+                                <li style="margin: 0.75rem 0; padding: 0.5rem; background: ${data.team.policeCaller !== 'none' ? '#dcfce7' : '#fee2e2'}; border-radius: 4px;">
+                                    <strong>Police Emergency Contact:</strong><br>
+                                    ${data.team.policeCaller === 'specific' ? data.team.decisionMaker : data.team.policeCaller === 'guard' ? 'Security Guard' : '<span style="color: #dc2626;">NOT ASSIGNED</span>'}
+                                </li>
+                                <li style="margin: 0.75rem 0; padding: 0.5rem; background: ${data.team.keyHolders >= 3 ? '#dcfce7' : '#fee2e2'}; border-radius: 4px;">
+                                    <strong>Key Holders:</strong><br>
+                                    ${data.team.keyHolders} people ${data.team.keyHolders < 3 ? '<span style="color: #dc2626;">(INSUFFICIENT)</span>' : ''}
+                                </li>
+                                <li style="margin: 0.75rem 0; padding: 0.5rem; background: ${data.team.communication.length > 0 ? '#dcfce7' : '#fee2e2'}; border-radius: 4px;">
+                                    <strong>Communication System:</strong><br>
+                                    ${data.team.communication.length > 0 ? data.team.communication.join(', ') : '<span style="color: #dc2626;">NO FORMAL SYSTEM</span>'}
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: white; padding: 1.5rem; border-radius: 8px; border: 2px solid #dcfce7;">
+                            <h4 style="color: #059669; margin-bottom: 1rem;">✅ Recommended Chain (with Salient Group)</h4>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="margin: 0.75rem 0; padding: 0.5rem; background: #dcfce7; border-radius: 4px;">
+                                    <strong>Primary Responder:</strong><br>
+                                    On-Site Security Supervisor<br>
+                                    <em>24/7 immediate response capability</em>
+                                </li>
+                                <li style="margin: 0.75rem 0; padding: 0.5rem; background: #dcfce7; border-radius: 4px;">
+                                    <strong>Command Center:</strong><br>
+                                    Salient Group Operations<br>
+                                    <em>Professional emergency coordination</em>
+                                </li>
+                                <li style="margin: 0.75rem 0; padding: 0.5rem; background: #dcfce7; border-radius: 4px;">
+                                    <strong>Client Notification:</strong><br>
+                                    ${data.team.decisionMaker || 'Primary Contact'}<br>
+                                    <em>Immediate notification via multiple channels</em>
+                                </li>
+                                <li style="margin: 0.75rem 0; padding: 0.5rem; background: #dcfce7; border-radius: 4px;">
+                                    <strong>Law Enforcement:</strong><br>
+                                    Trained Security Personnel<br>
+                                    <em>Professional police coordination</em>
+                                </li>
+                                <li style="margin: 0.75rem 0; padding: 0.5rem; background: #dcfce7; border-radius: 4px;">
+                                    <strong>Communication:</strong><br>
+                                    Integrated Radio/Digital System<br>
+                                    <em>Real-time coordination and documentation</em>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="plan-section">
+                    <h3>📋 INCIDENT RESPONSE PROTOCOLS</h3>
+                    <p>Professional, step-by-step procedures for your industry-specific emergency scenarios:</p>
                     ${createIncidentProtocols(data.operation.industry)}
                 </div>
                 
                 <div class="plan-section">
-                    <h3>Recommended Security Program</h3>
+                    <h3>🛡️ RECOMMENDED SECURITY PROGRAM</h3>
                     ${createSecurityRecommendations(data)}
                 </div>
                 
                 <div class="plan-section">
-                    <h3>Implementation Timeline</h3>
-                    <h4>30 Days (Critical Actions)</h4>
-                    <ul>
-                        <li>Establish 24/7 security coverage</li>
-                        <li>Implement emergency communication system</li>
-                        <li>Designate and train emergency responders</li>
-                        <li>Create incident documentation procedures</li>
-                    </ul>
-                    <h4>60 Days (Enhanced Capabilities)</h4>
-                    <ul>
-                        <li>Deploy monitoring technology</li>
-                        <li>Conduct emergency response training</li>
-                        <li>Establish law enforcement partnerships</li>
-                        <li>Implement access control systems</li>
-                    </ul>
-                    <h4>90 Days (Optimization)</h4>
-                    <ul>
-                        <li>Complete security system integration</li>
-                        <li>Conduct comprehensive emergency drill</li>
-                        <li>Finalize compliance documentation</li>
-                        <li>Establish ongoing security program</li>
-                    </ul>
+                    <h3>📅 IMPLEMENTATION TIMELINE</h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0;">
+                        <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #dc2626;">
+                            <h4 style="color: #dc2626; margin-bottom: 1rem;">🚨 30 Days — CRITICAL ACTIONS</h4>
+                            <ul style="font-size: 0.9rem;">
+                                <li style="margin: 0.5rem 0;">✅ Deploy 24/7 security officers</li>
+                                <li style="margin: 0.5rem 0;">✅ Establish emergency communication protocols</li>
+                                <li style="margin: 0.5rem 0;">✅ Implement incident documentation system</li>
+                                <li style="margin: 0.5rem 0;">✅ Conduct emergency response training</li>
+                                <li style="margin: 0.5rem 0;">✅ Create law enforcement liaison procedures</li>
+                                <li style="margin: 0.5rem 0;">✅ Install basic monitoring equipment</li>
+                            </ul>
+                            <div style="margin-top: 1rem; padding: 0.75rem; background: #fee2e2; border-radius: 4px;">
+                                <strong style="color: #dc2626;">Immediate Risk Reduction: 60-70%</strong>
+                            </div>
+                        </div>
+                        
+                        <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #ea580c;">
+                            <h4 style="color: #ea580c; margin-bottom: 1rem;">⚡ 60 Days — ENHANCED CAPABILITIES</h4>
+                            <ul style="font-size: 0.9rem;">
+                                <li style="margin: 0.5rem 0;">🔧 Deploy advanced surveillance systems</li>
+                                <li style="margin: 0.5rem 0;">🔧 Complete emergency response training</li>
+                                <li style="margin: 0.5rem 0;">🔧 Establish formal law enforcement partnerships</li>
+                                <li style="margin: 0.5rem 0;">🔧 Implement access control systems</li>
+                                <li style="margin: 0.5rem 0;">🔧 Conduct comprehensive security assessment</li>
+                                <li style="margin: 0.5rem 0;">🔧 Deploy GPS-tracked guard tours</li>
+                            </ul>
+                            <div style="margin-top: 1rem; padding: 0.75rem; background: #fed7aa; border-radius: 4px;">
+                                <strong style="color: #ea580c;">Additional Risk Reduction: 20-25%</strong>
+                            </div>
+                        </div>
+                        
+                        <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #059669;">
+                            <h4 style="color: #059669; margin-bottom: 1rem;">🎯 90 Days — OPTIMIZATION</h4>
+                            <ul style="font-size: 0.9rem;">
+                                <li style="margin: 0.5rem 0;">📊 Complete security system integration</li>
+                                <li style="margin: 0.5rem 0;">📊 Conduct comprehensive emergency drill</li>
+                                <li style="margin: 0.5rem 0;">📊 Finalize compliance documentation</li>
+                                <li style="margin: 0.5rem 0;">📊 Establish ongoing security program</li>
+                                <li style="margin: 0.5rem 0;">📊 Implement performance metrics</li>
+                                <li style="margin: 0.5rem 0;">📊 Complete staff security training</li>
+                            </ul>
+                            <div style="margin-top: 1rem; padding: 0.75rem; background: #dcfce7; border-radius: 4px;">
+                                <strong style="color: #059669;">Final Risk Reduction: 10-15%</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; padding: 1.5rem; border-radius: 8px; margin: 2rem 0; text-align: center;">
+                        <strong style="font-size: 1.2rem;">Total Risk Reduction: 85-95%</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Professional security implementation typically achieves this level of risk reduction within 90 days</span>
+                    </div>
                 </div>
                 
                 <div class="plan-section">
-                    <h3>Investment Analysis</h3>
-                    <p><strong>Recommended Security Program Cost:</strong> $${calculateSecurityCosts(data).min.toLocaleString()} - $${calculateSecurityCosts(data).max.toLocaleString()} per month</p>
-                    <p><strong>Potential Annual Loss Exposure (Current State):</strong> $${data.financialExposure.min.toLocaleString()} - $${data.financialExposure.max.toLocaleString()}</p>
-                    <p><strong>Return on Investment:</strong> Professional security programs typically reduce incident-related losses by 85-95%, providing a positive ROI within the first year.</p>
-                    <p><strong>Cost-Benefit Analysis:</strong> The recommended security investment represents less than ${Math.round((calculateSecurityCosts(data).max * 12) / data.financialExposure.min * 100)}% of your potential annual risk exposure.</p>
+                    <h3>💰 INVESTMENT ANALYSIS</h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+                        <div style="background: white; padding: 2rem; border-radius: 8px; border: 2px solid var(--navy);">
+                            <h4 style="color: var(--navy); margin-bottom: 1rem;">Monthly Security Investment</h4>
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--navy); text-align: center; margin: 1rem 0;">
+                                $${calculateSecurityCosts(data).min.toLocaleString()}-${calculateSecurityCosts(data).max.toLocaleString()}
+                            </div>
+                            <p style="text-align: center; color: var(--medium-gray);">Professional security program</p>
+                            <ul style="margin-top: 1rem; font-size: 0.9rem;">
+                                <li>24/7 professional security officers</li>
+                                <li>Emergency response capabilities</li>
+                                <li>Advanced monitoring systems</li>
+                                <li>Compliance documentation</li>
+                                <li>Ongoing training and support</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: white; padding: 2rem; border-radius: 8px; border: 2px solid #dc2626;">
+                            <h4 style="color: #dc2626; margin-bottom: 1rem;">Current Annual Risk Exposure</h4>
+                            <div style="font-size: 2.5rem; font-weight: 700; color: #dc2626; text-align: center; margin: 1rem 0;">
+                                $${data.financialExposure.min.toLocaleString()}-${data.financialExposure.max.toLocaleString()}
+                            </div>
+                            <p style="text-align: center; color: var(--medium-gray);">Potential annual losses</p>
+                            <ul style="margin-top: 1rem; font-size: 0.9rem;">
+                                <li>Security incident costs</li>
+                                <li>Regulatory fines and penalties</li>
+                                <li>Liability and legal expenses</li>
+                                <li>Business interruption losses</li>
+                                <li>Reputation and customer impact</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <table class="plan-table" style="margin: 2rem 0;">
+                        <tr>
+                            <th>Investment Comparison</th>
+                            <th>Annual Cost</th>
+                            <th>Risk Exposure</th>
+                            <th>Net Benefit</th>
+                            <th>ROI</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Current State (No Professional Security)</strong></td>
+                            <td style="color: #059669;">$0</td>
+                            <td style="color: #dc2626;">$${data.financialExposure.min.toLocaleString()}-${data.financialExposure.max.toLocaleString()}</td>
+                            <td style="color: #dc2626;">-$${data.financialExposure.min.toLocaleString()}</td>
+                            <td style="color: #dc2626;">-100%</td>
+                        </tr>
+                        <tr style="background: #dcfce7;">
+                            <td><strong>With Salient Group Security</strong></td>
+                            <td style="color: var(--navy);">$${(calculateSecurityCosts(data).max * 12).toLocaleString()}</td>
+                            <td style="color: #059669;">$${Math.round(data.financialExposure.min * 0.1).toLocaleString()}-${Math.round(data.financialExposure.max * 0.15).toLocaleString()}</td>
+                            <td style="color: #059669;">+$${Math.round(data.financialExposure.min * 0.75 - calculateSecurityCosts(data).max * 12).toLocaleString()}</td>
+                            <td style="color: #059669;">${Math.round(((data.financialExposure.min * 0.75 - calculateSecurityCosts(data).max * 12) / (calculateSecurityCosts(data).max * 12)) * 100)}%</td>
+                        </tr>
+                    </table>
+                    
+                    <div style="background: #dcfce7; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #059669; margin: 2rem 0;">
+                        <h4 style="color: #059669; margin-bottom: 1rem;">💡 KEY INVESTMENT INSIGHTS</h4>
+                        <ul>
+                            <li><strong>Cost vs. Risk:</strong> The recommended security investment represents only ${Math.round((calculateSecurityCosts(data).max * 12) / data.financialExposure.min * 100)}% of your current annual risk exposure</li>
+                            <li><strong>Payback Period:</strong> Based on risk reduction, the security program typically pays for itself within ${Math.round(12 / (data.financialExposure.min * 0.75 / (calculateSecurityCosts(data).max * 12)))} months</li>
+                            <li><strong>Protection Multiplier:</strong> For every $1 invested in professional security, you avoid $${Math.round(data.financialExposure.min * 0.75 / (calculateSecurityCosts(data).max * 12))} in potential losses</li>
+                            <li><strong>Industry Standard:</strong> Professional security investment typically ranges from 0.5-2% of total facility operational costs</li>
+                        </ul>
+                    </div>
                 </div>
                 
                 <div class="plan-section">
-                    <h3>Next Steps</h3>
-                    <ol>
-                        <li><strong>Schedule Security Consultation:</strong> Meet with a Salient Group security expert to review these findings and develop an implementation strategy.</li>
-                        <li><strong>Conduct Site Assessment:</strong> Complete detailed on-site evaluation of your facility's specific security needs.</li>
-                        <li><strong>Develop Custom Program:</strong> Create tailored security solution addressing your identified gaps.</li>
-                        <li><strong>Begin Implementation:</strong> Start with critical 30-day actions to immediately reduce risk exposure.</li>
-                    </ol>
+                    <h3>🎯 NEXT STEPS</h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 1.5rem 0;">
+                        <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--navy);">
+                            <h4 style="color: var(--navy);">1. Schedule Security Consultation</h4>
+                            <p style="font-size: 0.9rem; margin: 0.5rem 0;">Meet with a Salient Group security expert to review these findings in detail and develop a customized implementation strategy for your facility.</p>
+                            <div style="margin-top: 1rem; padding: 0.75rem; background: #f0f9ff; border-radius: 4px;">
+                                <strong>Timeline: Within 48 hours</strong><br>
+                                <span style="font-size: 0.8rem;">Call (317) 983-6601 or visit salient-group.com</span>
+                            </div>
+                        </div>
+                        
+                        <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--navy);">
+                            <h4 style="color: var(--navy);">2. Conduct Comprehensive Site Assessment</h4>
+                            <p style="font-size: 0.9rem; margin: 0.5rem 0;">Complete detailed on-site evaluation of your facility's specific security needs, vulnerabilities, and optimal security positioning.</p>
+                            <div style="margin-top: 1rem; padding: 0.75rem; background: #f0f9ff; border-radius: 4px;">
+                                <strong>Timeline: Within 1 week</strong><br>
+                                <span style="font-size: 0.8rem;">Professional site survey and risk assessment</span>
+                            </div>
+                        </div>
+                        
+                        <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--navy);">
+                            <h4 style="color: var(--navy);">3. Develop Custom Security Program</h4>
+                            <p style="font-size: 0.9rem; margin: 0.5rem 0;">Create a tailored security solution that addresses your specific identified gaps while optimizing cost-effectiveness and operational efficiency.</p>
+                            <div style="margin-top: 1rem; padding: 0.75rem; background: #f0f9ff; border-radius: 4px;">
+                                <strong>Timeline: Within 2 weeks</strong><br>
+                                <span style="font-size: 0.8rem;">Custom program design and proposal</span>
+                            </div>
+                        </div>
+                        
+                        <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--navy);">
+                            <h4 style="color: var(--navy);">4. Begin Immediate Implementation</h4>
+                            <p style="font-size: 0.9rem; margin: 0.5rem 0;">Start with the most critical 30-day actions to immediately reduce your risk exposure while building toward the comprehensive security program.</p>
+                            <div style="margin-top: 1rem; padding: 0.75rem; background: #f0f9ff; border-radius: 4px;">
+                                <strong>Timeline: Within 30 days</strong><br>
+                                <span style="font-size: 0.8rem;">Deploy security officers and emergency protocols</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, var(--navy) 0%, var(--dark-slate) 100%); color: white; padding: 2rem; border-radius: 12px; margin: 2rem 0; text-align: center;">
+                        <h4 style="color: white; margin-bottom: 1rem;">⚠️ URGENT RECOMMENDATION</h4>
+                        <p style="font-size: 1.1rem; margin-bottom: 1rem;">Based on your ${data.averageScore}/100 security readiness score and ${criticalGaps.length} critical gaps identified, immediate action is essential to protect your facility, personnel, and business operations.</p>
+                        <p style="font-size: 0.95rem; opacity: 0.9;">Delays in implementing professional security increase your vulnerability to security incidents, regulatory violations, and potential liability claims. We recommend beginning implementation within 30 days.</p>
+                    </div>
                 </div>
                 
                 <div class="plan-section">
-                    <h3>About Salient Group</h3>
-                    <p>Salient Group is a nationwide provider of professional security services, specializing in comprehensive emergency response programs for facilities like yours. Our team of security professionals brings decades of experience in risk assessment, emergency management, and security operations.</p>
-                    <p><strong>Contact Information:</strong><br>
-                    Phone: (317) 983-6601<br>
-                    Website: salient-group.com<br>
-                    Email: info@salient-group.com</p>
-                </div>
-                
-                <div style="page-break-before: always;">
-                    <h3>Appendix A: Emergency Contact Card Template</h3>
-                    <div style="border: 2px solid var(--navy); padding: 1rem; background: #f8f9fa;">
-                        <h4 style="color: var(--navy); text-align: center; margin-bottom: 1rem;">${data.operation.businessName}<br>Emergency Contacts</h4>
-                        <p><strong>Police:</strong> 911</p>
-                        <p><strong>Fire:</strong> 911</p>
-                        <p><strong>Medical:</strong> 911</p>
-                        <p><strong>Primary Contact:</strong> ${data.team.decisionMaker} - ${data.team.decisionPhone}</p>
-                        <p><strong>After Hours:</strong> ${data.team.emergencyContact} - ${data.team.emergencyPhone}</p>
-                        <p><strong>Facility Address:</strong> _______________________</p>
-                        <p><strong>Security Company:</strong> Salient Group - (317) 983-6601</p>
+                    <h3>🏢 ABOUT SALIENT GROUP</h3>
+                    
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; margin: 1.5rem 0;">
+                        <div>
+                            <p>Salient Group is a nationwide provider of professional security services, specializing in comprehensive emergency response programs for facilities like yours. Our team of security professionals brings decades of experience in risk assessment, emergency management, and security operations across all major industries.</p>
+                            
+                            <h4 style="color: var(--navy); margin: 1.5rem 0 1rem 0;">Our Services Include:</h4>
+                            <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; font-size: 0.9rem;">
+                                <li>24/7 Professional Security Officers</li>
+                                <li>Emergency Response Planning</li>
+                                <li>Risk Assessment & Analysis</li>
+                                <li>Surveillance & Monitoring</li>
+                                <li>Access Control Systems</li>
+                                <li>Compliance Documentation</li>
+                                <li>Training & Development</li>
+                                <li>Crisis Management</li>
+                            </ul>
+                            
+                            <h4 style="color: var(--navy); margin: 1.5rem 0 1rem 0;">Why Choose Salient Group:</h4>
+                            <ul style="font-size: 0.9rem;">
+                                <li><strong>Nationwide Coverage:</strong> Professional security services available across all states</li>
+                                <li><strong>Industry Expertise:</strong> Specialized experience in your industry sector</li>
+                                <li><strong>Professional Standards:</strong> Highly trained, licensed security professionals</li>
+                                <li><strong>Regulatory Compliance:</strong> Expert knowledge of industry regulations and requirements</li>
+                                <li><strong>Technology Integration:</strong> Advanced security systems and monitoring capabilities</li>
+                                <li><strong>24/7 Support:</strong> Round-the-clock operations center and management support</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px;">
+                            <h4 style="color: var(--navy); margin-bottom: 1rem; text-align: center;">📞 CONTACT INFORMATION</h4>
+                            <div style="text-align: center; font-size: 0.9rem;">
+                                <p style="margin: 1rem 0;"><strong>Phone:</strong><br><span style="font-size: 1.2rem; font-weight: 600; color: var(--navy);">(317) 983-6601</span></p>
+                                <p style="margin: 1rem 0;"><strong>Website:</strong><br><a href="https://salient-group.com" style="color: var(--navy);">salient-group.com</a></p>
+                                <p style="margin: 1rem 0;"><strong>Email:</strong><br>info@salient-group.com</p>
+                                
+                                <div style="margin-top: 2rem; padding: 1rem; background: var(--navy); color: white; border-radius: 6px;">
+                                    <strong>IMMEDIATE CONSULTATION</strong><br>
+                                    <span style="font-size: 0.8rem;">Available 24/7 for emergency<br>security needs and consultations</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
                 <div style="page-break-before: always;">
-                    <h3>Appendix B: Incident Report Template</h3>
-                    <div style="border: 2px solid var(--navy); padding: 1rem; background: #f8f9fa;">
-                        <h4 style="color: var(--navy); text-align: center; margin-bottom: 1rem;">Security Incident Report</h4>
-                        <p><strong>Date/Time:</strong> _______________ <strong>Location:</strong> _______________</p>
-                        <p><strong>Type of Incident:</strong> _______________________________________________</p>
-                        <p><strong>Individuals Involved:</strong> ______________________________________</p>
-                        <p><strong>Description of Events:</strong></p>
-                        <p>_________________________________________________________________</p>
-                        <p>_________________________________________________________________</p>
-                        <p><strong>Actions Taken:</strong> ___________________________________________</p>
-                        <p><strong>Law Enforcement Notified:</strong> ☐ Yes ☐ No <strong>Time:</strong> _______</p>
-                        <p><strong>Report Prepared By:</strong> _________________________ <strong>Date:</strong> _____</p>
+                    <div class="plan-section">
+                        <h3>📋 APPENDIX A: EMERGENCY CONTACT CARD TEMPLATE</h3>
+                        
+                        <div style="max-width: 400px; margin: 2rem auto; border: 3px solid var(--navy); background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);">
+                            <div style="background: var(--navy); color: white; padding: 1rem; text-align: center;">
+                                <h4 style="color: white; margin: 0; font-size: 1.1rem;">🚨 EMERGENCY CONTACTS</h4>
+                                <div style="font-size: 0.9rem; margin-top: 0.5rem; font-weight: 600;">${data.operation.businessName}</div>
+                            </div>
+                            
+                            <div style="padding: 1.5rem; font-size: 0.9rem;">
+                                <p style="margin: 0.75rem 0; padding: 0.5rem; background: #fee2e2; border-radius: 4px; text-align: center;"><strong style="color: #dc2626;">EMERGENCY SERVICES: 911</strong></p>
+                                
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin: 1rem 0; font-size: 0.8rem;">
+                                    <div><strong>Police:</strong> 911</div>
+                                    <div><strong>Fire:</strong> 911</div>
+                                    <div><strong>Medical:</strong> 911</div>
+                                    <div><strong>Poison Control:</strong> (800) 222-1222</div>
+                                </div>
+                                
+                                <hr style="margin: 1rem 0; border: 1px solid #e2e8f0;">
+                                
+                                <p style="margin: 0.5rem 0;"><strong>Primary Contact:</strong><br>${data.team.decisionMaker} - ${data.team.decisionPhone}</p>
+                                <p style="margin: 0.5rem 0;"><strong>After Hours:</strong><br>${data.team.emergencyContact} - ${data.team.emergencyPhone}</p>
+                                <p style="margin: 0.5rem 0;"><strong>Facility Address:</strong><br><span style="border-bottom: 1px solid #ccc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+                                
+                                <hr style="margin: 1rem 0; border: 1px solid #e2e8f0;">
+                                
+                                <div style="text-align: center; background: #dcfce7; padding: 0.75rem; border-radius: 4px; margin-top: 1rem;">
+                                    <strong style="color: #059669;">SECURITY COMPANY</strong><br>
+                                    <strong>Salient Group</strong><br>
+                                    <strong>(317) 983-6601</strong>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--medium-gray); margin-top: 1rem;">
+                            <em>Print and distribute to all employees. Post copies at key locations throughout facility.</em>
+                        </p>
+                    </div>
+                </div>
+                
+                <div style="page-break-before: always;">
+                    <div class="plan-section">
+                        <h3>📝 APPENDIX B: PROFESSIONAL INCIDENT REPORT TEMPLATE</h3>
+                        
+                        <div style="background: white; border: 2px solid var(--navy); border-radius: 8px; padding: 2rem; margin: 1rem 0; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+                            <div style="background: var(--navy); color: white; margin: -2rem -2rem 1.5rem -2rem; padding: 1rem; text-align: center;">
+                                <h4 style="color: white; margin: 0;">🛡️ SECURITY INCIDENT REPORT</h4>
+                                <div style="font-size: 0.9rem; margin-top: 0.5rem;">Salient Group Professional Security Services</div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                                <div>
+                                    <strong>Date:</strong> <span style="border-bottom: 1px solid #ccc; display: inline-block; width: 120px; margin-left: 0.5rem;">&nbsp;</span><br><br>
+                                    <strong>Time:</strong> <span style="border-bottom: 1px solid #ccc; display: inline-block; width: 120px; margin-left: 0.5rem;">&nbsp;</span>
+                                </div>
+                                <div>
+                                    <strong>Location:</strong> <span style="border-bottom: 1px solid #ccc; display: inline-block; width: 120px; margin-left: 0.5rem;">&nbsp;</span><br><br>
+                                    <strong>Weather:</strong> <span style="border-bottom: 1px solid #ccc; display: inline-block; width: 120px; margin-left: 0.5rem;">&nbsp;</span>
+                                </div>
+                            </div>
+                            
+                            <div style="margin: 1.5rem 0;">
+                                <strong>Type of Incident:</strong><br>
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin: 0.5rem 0; font-size: 0.9rem;">
+                                    <label>☐ Theft/Burglary</label>
+                                    <label>☐ Vandalism</label>
+                                    <label>☐ Trespassing</label>
+                                    <label>☐ Medical Emergency</label>
+                                    <label>☐ Fire/Safety</label>
+                                    <label>☐ Workplace Violence</label>
+                                    <label>☐ Vehicle Incident</label>
+                                    <label>☐ Property Damage</label>
+                                    <label>☐ Other: <span style="border-bottom: 1px solid #ccc; width: 100px; display: inline-block;">&nbsp;</span></label>
+                                </div>
+                            </div>
+                            
+                            <div style="margin: 1.5rem 0;">
+                                <strong>Individuals Involved:</strong><br>
+                                <span style="border-bottom: 1px solid #ccc; display: block; width: 100%; margin: 0.5rem 0;">&nbsp;</span>
+                                <span style="border-bottom: 1px solid #ccc; display: block; width: 100%; margin: 0.5rem 0;">&nbsp;</span>
+                            </div>
+                            
+                            <div style="margin: 1.5rem 0;">
+                                <strong>Detailed Description of Events:</strong><br>
+                                <div style="border: 1px solid #ccc; min-height: 120px; margin: 0.5rem 0; padding: 0.5rem; background: #f9fafb;"></div>
+                            </div>
+                            
+                            <div style="margin: 1.5rem 0;">
+                                <strong>Actions Taken:</strong><br>
+                                <div style="border: 1px solid #ccc; min-height: 80px; margin: 0.5rem 0; padding: 0.5rem; background: #f9fafb;"></div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1.5rem 0;">
+                                <div>
+                                    <strong>Law Enforcement:</strong><br>
+                                    ☐ Police Notified &nbsp;&nbsp; Time: <span style="border-bottom: 1px solid #ccc; width: 80px; display: inline-block;">&nbsp;</span><br>
+                                    ☐ Report Filed &nbsp;&nbsp; Case #: <span style="border-bottom: 1px solid #ccc; width: 100px; display: inline-block;">&nbsp;</span><br>
+                                    Officer Name: <span style="border-bottom: 1px solid #ccc; width: 150px; display: inline-block;">&nbsp;</span>
+                                </div>
+                                <div>
+                                    <strong>Emergency Services:</strong><br>
+                                    ☐ Fire Dept. &nbsp;&nbsp; ☐ EMS &nbsp;&nbsp; ☐ Other<br>
+                                    Response Time: <span style="border-bottom: 1px solid #ccc; width: 80px; display: inline-block;">&nbsp;</span><br>
+                                    Unit #: <span style="border-bottom: 1px solid #ccc; width: 100px; display: inline-block;">&nbsp;</span>
+                                </div>
+                            </div>
+                            
+                            <div style="margin: 1.5rem 0;">
+                                <strong>Witnesses:</strong><br>
+                                Name: <span style="border-bottom: 1px solid #ccc; width: 200px; display: inline-block; margin: 0.25rem 1rem 0.25rem 0;">&nbsp;</span> Phone: <span style="border-bottom: 1px solid #ccc; width: 150px; display: inline-block;">&nbsp;</span><br>
+                                Name: <span style="border-bottom: 1px solid #ccc; width: 200px; display: inline-block; margin: 0.25rem 1rem 0.25rem 0;">&nbsp;</span> Phone: <span style="border-bottom: 1px solid #ccc; width: 150px; display: inline-block;">&nbsp;</span>
+                            </div>
+                            
+                            <div style="margin: 1.5rem 0;">
+                                <strong>Evidence/Property:</strong><br>
+                                ☐ Photos Taken &nbsp;&nbsp; ☐ Video Secured &nbsp;&nbsp; ☐ Physical Evidence &nbsp;&nbsp; ☐ Damage Assessment<br>
+                                Description: <span style="border-bottom: 1px solid #ccc; width: 300px; display: inline-block; margin: 0.5rem 0;">&nbsp;</span>
+                            </div>
+                            
+                            <hr style="margin: 2rem 0;">
+                            
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                                <div>
+                                    <strong>Report Prepared By:</strong><br>
+                                    Name: <span style="border-bottom: 1px solid #ccc; width: 150px; display: inline-block; margin: 0.5rem 0;">&nbsp;</span><br>
+                                    Title: <span style="border-bottom: 1px solid #ccc; width: 150px; display: inline-block; margin: 0.5rem 0;">&nbsp;</span><br>
+                                    Signature: <span style="border-bottom: 1px solid #ccc; width: 150px; display: inline-block; margin: 0.5rem 0;">&nbsp;</span>
+                                </div>
+                                <div>
+                                    <strong>Supervisor Review:</strong><br>
+                                    Name: <span style="border-bottom: 1px solid #ccc; width: 150px; display: inline-block; margin: 0.5rem 0;">&nbsp;</span><br>
+                                    Date: <span style="border-bottom: 1px solid #ccc; width: 100px; display: inline-block; margin: 0.5rem 0;">&nbsp;</span><br>
+                                    Signature: <span style="border-bottom: 1px solid #ccc; width: 150px; display: inline-block; margin: 0.5rem 0;">&nbsp;</span>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top: 2rem; padding: 1rem; background: #f0f9ff; border-radius: 4px; border: 1px solid #0ea5e9;">
+                                <strong style="color: #0ea5e9;">For Salient Group Use Only:</strong><br>
+                                <div style="font-size: 0.9rem; margin-top: 0.5rem;">
+                                    Client Notification: <span style="border-bottom: 1px solid #ccc; width: 100px; display: inline-block;">&nbsp;</span> &nbsp;&nbsp;
+                                    Time: <span style="border-bottom: 1px solid #ccc; width: 80px; display: inline-block;">&nbsp;</span> &nbsp;&nbsp;
+                                    By: <span style="border-bottom: 1px solid #ccc; width: 100px; display: inline-block;">&nbsp;</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             `;
@@ -2632,7 +3534,7 @@
                 hospitality: 'Hospitality',
                 manufacturing: 'Manufacturing'
             };
-            return names[industry] || industry;
+            return names[industry] || (industry ? industry.charAt(0).toUpperCase() + industry.slice(1) : 'General Business');
         }
 
         function createIncidentProtocols(industry) {
@@ -2640,34 +3542,124 @@
                 warehouse: `
                     <h4>Cargo Theft Response</h4>
                     <ol>
-                        <li>Security guard immediately responds to alarm</li>
-                        <li>Assess situation safely, do not confront suspects directly</li>
-                        <li>Call 911 with specific location and suspect description</li>
-                        <li>Document incident with photos/video if safe to do so</li>
-                        <li>Preserve evidence for law enforcement</li>
-                        <li>Complete incident report within 2 hours</li>
+                        <li><strong>0-2 minutes:</strong> Security guard immediately responds to alarm, approaches safely</li>
+                        <li><strong>2-3 minutes:</strong> Assess situation from safe distance, do not confront suspects directly</li>
+                        <li><strong>3-5 minutes:</strong> Call 911 with specific location, suspect description, and vehicle information</li>
+                        <li><strong>5-10 minutes:</strong> Document incident with photos/video if safe to do so</li>
+                        <li><strong>Ongoing:</strong> Coordinate with responding officers, preserve evidence</li>
+                        <li><strong>Post-incident:</strong> Complete detailed incident report within 2 hours</li>
+                        <li><strong>Follow-up:</strong> Conduct security review and implement preventive measures</li>
                     </ol>
                 `,
                 healthcare: `
                     <h4>Patient Elopement Response</h4>
                     <ol>
-                        <li>Immediately initiate search protocol</li>
-                        <li>Security searches facility systematically</li>
-                        <li>If patient exits facility, security follows at safe distance</li>
-                        <li>Call 911 and attending physician immediately</li>
-                        <li>Document all actions for regulatory compliance</li>
-                        <li>Complete incident report per CMS requirements</li>
+                        <li><strong>0-1 minute:</strong> Immediately initiate Code Gray (missing patient) protocol</li>
+                        <li><strong>1-5 minutes:</strong> Security conducts systematic facility search (floors, exits, stairwells)</li>
+                        <li><strong>5-8 minutes:</strong> If not located, expand search to grounds and parking areas</li>
+                        <li><strong>8-10 minutes:</strong> If patient exits facility, security follows at safe distance</li>
+                        <li><strong>Immediately:</strong> Notify attending physician, nursing supervisor, and administration</li>
+                        <li><strong>Within 10 minutes:</strong> Call 911 and provide patient information and last known location</li>
+                        <li><strong>Ongoing:</strong> Maintain communication with family and coordinate with law enforcement</li>
+                        <li><strong>Post-incident:</strong> Complete CMS-compliant incident report within 24 hours</li>
+                        <li><strong>Follow-up:</strong> Conduct root cause analysis and update elopement prevention protocols</li>
                     </ol>
                 `,
                 retail: `
                     <h4>Theft/Robbery Response</h4>
                     <ol>
-                        <li>Activate silent alarm if available</li>
-                        <li>Do not physically confront suspects</li>
-                        <li>Observe and document suspect descriptions</li>
-                        <li>Call 911 immediately during active incident</li>
-                        <li>Preserve video evidence</li>
-                        <li>Complete loss prevention report</li>
+                        <li><strong>Immediate:</strong> Activate silent alarm and panic button if available</li>
+                        <li><strong>0-1 minute:</strong> Do not physically confront suspects - observe and document</li>
+                        <li><strong>1-2 minutes:</strong> Call 911 with detailed suspect descriptions and direction of travel</li>
+                        <li><strong>During incident:</strong> Ensure customer and employee safety as priority</li>
+                        <li><strong>Post-incident:</strong> Secure crime scene, preserve video evidence</li>
+                        <li><strong>With police:</strong> Provide witness statements and evidence</li>
+                        <li><strong>Same day:</strong> Complete loss prevention report with detailed inventory</li>
+                        <li><strong>Follow-up:</strong> Review security procedures and implement improvements</li>
+                    </ol>
+                `,
+                construction: `
+                    <h4>Equipment Theft/Site Security Response</h4>
+                    <ol>
+                        <li><strong>0-2 minutes:</strong> Security responds to perimeter breach or motion detection</li>
+                        <li><strong>2-5 minutes:</strong> Assess situation safely, document suspects and vehicles</li>
+                        <li><strong>3-6 minutes:</strong> Call 911 with location, suspect information, and equipment at risk</li>
+                        <li><strong>During incident:</strong> Use site lighting and warning systems to deter theft</li>
+                        <li><strong>Post-incident:</strong> Secure site, inventory missing equipment with serial numbers</li>
+                        <li><strong>Within 2 hours:</strong> Complete incident report for insurance and law enforcement</li>
+                        <li><strong>Next business day:</strong> Review site security and implement additional measures</li>
+                    </ol>
+                `,
+                commercial: `
+                    <h4>Building Security Emergency Response</h4>
+                    <ol>
+                        <li><strong>0-3 minutes:</strong> Security responds to alarm and assesses situation</li>
+                        <li><strong>3-5 minutes:</strong> Identify specific tenant/area affected and potential threats</li>
+                        <li><strong>5-8 minutes:</strong> Call 911 if criminal activity, notify building management</li>
+                        <li><strong>Ongoing:</strong> Coordinate with law enforcement for building access</li>
+                        <li><strong>Post-incident:</strong> Notify affected tenants and provide security update</li>
+                        <li><strong>Same day:</strong> Complete incident documentation for property management</li>
+                        <li><strong>Follow-up:</strong> Implement enhanced security measures as needed</li>
+                    </ol>
+                `,
+                hoa: `
+                    <h4>Community Security Response</h4>
+                    <ol>
+                        <li><strong>0-5 minutes:</strong> Security patrol responds to resident call or alarm</li>
+                        <li><strong>5-8 minutes:</strong> Assess situation and coordinate with law enforcement if needed</li>
+                        <li><strong>Immediate:</strong> Ensure resident safety and provide community access to police</li>
+                        <li><strong>During incident:</strong> Alert nearby residents if safety threat exists</li>
+                        <li><strong>Post-incident:</strong> Document events and coordinate with HOA management</li>
+                        <li><strong>Within 24 hours:</strong> Provide security report to HOA board</li>
+                        <li><strong>Follow-up:</strong> Implement community-wide security improvements</li>
+                    </ol>
+                `,
+                events: `
+                    <h4>Event Security Emergency Response</h4>
+                    <ol>
+                        <li><strong>0-2 minutes:</strong> Security team leader assesses emergency type and scope</li>
+                        <li><strong>2-3 minutes:</strong> Activate appropriate emergency protocol (medical, evacuation, etc.)</li>
+                        <li><strong>3-5 minutes:</strong> Coordinate with event management and venue staff</li>
+                        <li><strong>5-10 minutes:</strong> Call 911 and provide detailed incident information</li>
+                        <li><strong>Ongoing:</strong> Manage crowd control and emergency service access</li>
+                        <li><strong>Post-incident:</strong> Coordinate with authorities and complete documentation</li>
+                        <li><strong>Follow-up:</strong> Conduct post-event security review and improvements</li>
+                    </ol>
+                `,
+                education: `
+                    <h4>Campus Security Emergency Response</h4>
+                    <ol>
+                        <li><strong>0-3 minutes:</strong> Security responds to campus emergency and assesses threat level</li>
+                        <li><strong>3-5 minutes:</strong> Determine if lockdown procedures are necessary</li>
+                        <li><strong>5-8 minutes:</strong> Activate campus-wide communication system if needed</li>
+                        <li><strong>Immediate:</strong> Call 911 for law enforcement response</li>
+                        <li><strong>Ongoing:</strong> Coordinate with administration and provide scene control</li>
+                        <li><strong>Post-incident:</strong> Assist with parent notification and community communication</li>
+                        <li><strong>Follow-up:</strong> Complete incident reports and review campus safety procedures</li>
+                    </ol>
+                `,
+                hospitality: `
+                    <h4>Hotel/Restaurant Security Response</h4>
+                    <ol>
+                        <li><strong>0-2 minutes:</strong> Security responds to guest emergency or incident</li>
+                        <li><strong>2-5 minutes:</strong> Provide immediate assistance and assess situation</li>
+                        <li><strong>5-8 minutes:</strong> Call 911 if medical or criminal emergency</li>
+                        <li><strong>Ongoing:</strong> Manage guest services and minimize disruption to operations</li>
+                        <li><strong>Post-incident:</strong> Document events and coordinate with management</li>
+                        <li><strong>Same day:</strong> Complete incident report and guest follow-up</li>
+                        <li><strong>Follow-up:</strong> Review procedures and implement service improvements</li>
+                    </ol>
+                `,
+                manufacturing: `
+                    <h4>Industrial Security/Safety Emergency Response</h4>
+                    <ol>
+                        <li><strong>0-2 minutes:</strong> Security responds to industrial emergency or safety incident</li>
+                        <li><strong>2-3 minutes:</strong> Assess if facility evacuation or production shutdown required</li>
+                        <li><strong>3-5 minutes:</strong> Call 911 and activate emergency response team</li>
+                        <li><strong>5-10 minutes:</strong> Coordinate with shift supervisors and safety personnel</li>
+                        <li><strong>Ongoing:</strong> Manage emergency services access and employee safety</li>
+                        <li><strong>Within 8 hours:</strong> Complete OSHA incident report if applicable</li>
+                        <li><strong>Follow-up:</strong> Conduct safety review and implement preventive measures</li>
                     </ol>
                 `
             };
@@ -2679,37 +3671,149 @@
             const sqft = data.operation.facilitySize;
             const hours = data.operation.operatingHours;
             const measures = data.operation.securityMeasures || [];
+            const floors = data.operation.floors;
+            const entryPoints = data.operation.entryPoints;
             
-            let guards = Math.max(1, Math.ceil(sqft / 50000));
-            if (hours === '24/7') guards = Math.ceil(guards * 3.5); // 3 shifts + coverage
-            else if (hours === 'extended') guards = Math.ceil(guards * 2);
+            // Calculate staffing needs
+            let baseGuards = Math.max(1, Math.ceil(sqft / 75000)); // More conservative ratio
+            if (floors > 3) baseGuards += Math.ceil(floors / 4); // Additional coverage for multi-level
+            if (entryPoints > 3) baseGuards += Math.ceil(entryPoints / 4); // Additional coverage for multiple access points
+            
+            let totalGuards = baseGuards;
+            if (hours === '24/7') totalGuards = Math.ceil(baseGuards * 4.2); // 3 shifts + coverage + supervisors
+            else if (hours === 'extended') totalGuards = Math.ceil(baseGuards * 2.5);
             
             const hourlyMin = 22;
             const hourlyMax = 25;
+            const supervisorMin = 26;
+            const supervisorMax = 30;
             
-            let html = '<h4>Recommended Guard Program</h4><ul>';
-            html += `<li><strong>${guards} Security Officers</strong> — providing ${hours === '24/7' ? 'round-the-clock' : hours === 'extended' ? 'extended hours' : 'business hours'} coverage</li>`;
-            html += `<li><strong>Shift Supervisor</strong> — on-site leadership and quality assurance ($26-30/hr)</li>`;
-            html += `<li><strong>Estimated Hourly Rate:</strong> $${hourlyMin}-$${hourlyMax}/hr per officer</li>`;
-            html += '</ul>';
-            
-            html += '<h4>Technology Recommendations</h4><ul>';
-            if (!measures.includes('CCTV cameras')) html += '<li><span class="gap-highlight">ADD:</span> CCTV surveillance system with remote monitoring</li>';
-            if (!measures.includes('Access control')) html += '<li><span class="gap-highlight">ADD:</span> Electronic access control at all entry points</li>';
-            if (!measures.includes('Alarm system')) html += '<li><span class="gap-highlight">ADD:</span> Intrusion detection and alarm system</li>';
-            if (!measures.includes('Motion sensors')) html += '<li><span class="gap-highlight">ADD:</span> Motion detection sensors for perimeter security</li>';
-            if (!measures.includes('Lighting')) html += '<li><span class="gap-highlight">ADD:</span> Adequate security lighting at all entry points and parking areas</li>';
-            if (measures.length >= 4) html += '<li>Integrate existing systems into unified security operations center</li>';
-            html += '<li>GPS-tracked guard tours with real-time reporting</li>';
-            html += '<li>Digital incident reporting with photo/video documentation</li>';
-            html += '</ul>';
-            
-            html += '<h4>Procedure Improvements</h4><ul>';
-            html += '<li>Documented emergency response protocols for all incident types</li>';
-            html += '<li>Regular security drills and tabletop exercises</li>';
-            html += '<li>Visitor management and access logging system</li>';
-            html += '<li>Monthly security reports and quarterly business reviews</li>';
-            html += '</ul>';
+            let html = `
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                    <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #059669;">
+                        <h4 style="color: #059669; margin-bottom: 1rem;">👥 STAFFING RECOMMENDATION</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin: 0.75rem 0; padding: 0.5rem; background: #dcfce7; border-radius: 4px;">
+                                <strong>${totalGuards} Professional Security Officers</strong><br>
+                                <span style="font-size: 0.9rem; color: #047857;">Providing ${hours === '24/7' ? 'continuous 24/7' : hours === 'extended' ? 'extended 12+ hour' : 'standard business hours'} coverage</span>
+                            </li>
+                            <li style="margin: 0.75rem 0; padding: 0.5rem; background: #dcfce7; border-radius: 4px;">
+                                <strong>On-Site Security Supervisor</strong><br>
+                                <span style="font-size: 0.9rem; color: #047857;">Leadership, quality assurance, and emergency coordination ($${supervisorMin}-$${supervisorMax}/hr)</span>
+                            </li>
+                            <li style="margin: 0.75rem 0; padding: 0.5rem; background: #dcfce7; border-radius: 4px;">
+                                <strong>Coverage Strategy</strong><br>
+                                <span style="font-size: 0.9rem; color: #047857;">${floors > 1 ? `Multi-level coverage across ${floors} floors` : 'Single-level comprehensive coverage'}, ${entryPoints} access points monitored</span>
+                            </li>
+                        </ul>
+                        <div style="margin-top: 1rem; padding: 0.75rem; background: #f0fdfa; border-radius: 4px; text-align: center;">
+                            <strong style="color: #059669;">Hourly Rate: $${hourlyMin}-$${hourlyMax}/hr per officer</strong>
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                        <h4 style="color: #3b82f6; margin-bottom: 1rem;">🔧 TECHNOLOGY RECOMMENDATIONS</h4>
+                        <ul style="list-style: none; padding: 0; font-size: 0.9rem;">
+                            ${!measures.includes('cctv') ? `
+                                <li style="margin: 0.5rem 0; padding: 0.5rem; background: #fef2f2; border-radius: 4px; border-left: 3px solid #dc2626;">
+                                    <span class="priority-badge critical">REQUIRED</span> <strong>CCTV Surveillance System</strong><br>
+                                    HD cameras with remote monitoring and recording capability
+                                </li>
+                            ` : `
+                                <li style="margin: 0.5rem 0; padding: 0.5rem; background: #dcfce7; border-radius: 4px;">
+                                    ✅ <strong>Enhance Existing CCTV</strong> — Integrate with professional monitoring
+                                </li>
+                            `}
+                            ${!measures.includes('access') ? `
+                                <li style="margin: 0.5rem 0; padding: 0.5rem; background: #fef2f2; border-radius: 4px; border-left: 3px solid #dc2626;">
+                                    <span class="priority-badge critical">REQUIRED</span> <strong>Access Control System</strong><br>
+                                    Electronic access control at all ${entryPoints} entry points
+                                </li>
+                            ` : `
+                                <li style="margin: 0.5rem 0; padding: 0.5rem; background: #dcfce7; border-radius: 4px;">
+                                    ✅ <strong>Optimize Access Control</strong> — Professional management and monitoring
+                                </li>
+                            `}
+                            ${!measures.includes('alarm') ? `
+                                <li style="margin: 0.5rem 0; padding: 0.5rem; background: #fef2f2; border-radius: 4px; border-left: 3px solid #dc2626;">
+                                    <span class="priority-badge high">HIGH</span> <strong>Intrusion Detection System</strong><br>
+                                    Comprehensive alarm system with monitoring service
+                                </li>
+                            ` : `
+                                <li style="margin: 0.5rem 0; padding: 0.5rem; background: #dcfce7; border-radius: 4px;">
+                                    ✅ <strong>Professional Alarm Monitoring</strong> — 24/7 response capability
+                                </li>
+                            `}
+                            ${!measures.includes('motion') ? `
+                                <li style="margin: 0.5rem 0; padding: 0.5rem; background: #fef9e9; border-radius: 4px; border-left: 3px solid #f59e0b;">
+                                    <span class="priority-badge medium">MEDIUM</span> <strong>Motion Detection Sensors</strong><br>
+                                    Perimeter and critical area monitoring
+                                </li>
+                            ` : ''}
+                            ${!measures.includes('lighting') ? `
+                                <li style="margin: 0.5rem 0; padding: 0.5rem; background: #fef2f2; border-radius: 4px; border-left: 3px solid #dc2626;">
+                                    <span class="priority-badge critical">REQUIRED</span> <strong>Security Lighting</strong><br>
+                                    Adequate illumination at all entry points and parking areas
+                                </li>
+                            ` : ''}
+                            <li style="margin: 0.5rem 0; padding: 0.5rem; background: #f0f9ff; border-radius: 4px;">
+                                📱 <strong>GPS Guard Tour System</strong> — Real-time patrol tracking and reporting
+                            </li>
+                            <li style="margin: 0.5rem 0; padding: 0.5rem; background: #f0f9ff; border-radius: 4px;">
+                                📋 <strong>Digital Incident Reporting</strong> — Photo/video documentation with cloud backup
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
+                    <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                        <h4 style="color: #8b5cf6; margin-bottom: 1rem;">📋 PROCEDURE ENHANCEMENTS</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li style="margin: 0.5rem 0;">✅ Documented emergency response protocols for all incident types</li>
+                            <li style="margin: 0.5rem 0;">✅ Monthly emergency response drills and tabletop exercises</li>
+                            <li style="margin: 0.5rem 0;">✅ Professional visitor management and access logging system</li>
+                            <li style="margin: 0.5rem 0;">✅ Comprehensive incident documentation and chain of custody procedures</li>
+                            <li style="margin: 0.5rem 0;">✅ Law enforcement liaison and coordination protocols</li>
+                            <li style="margin: 0.5rem 0;">✅ Employee security awareness training program</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                        <h4 style="color: #f59e0b; margin-bottom: 1rem;">📚 TRAINING REQUIREMENTS</h4>
+                        <ul style="font-size: 0.9rem;">
+                            <li style="margin: 0.5rem 0;">🎯 Industry-specific security protocols (${getIndustryName(data.operation.industry)})</li>
+                            <li style="margin: 0.5rem 0;">🚨 Emergency response and crisis management</li>
+                            <li style="margin: 0.5rem 0;">💬 Professional communication and de-escalation techniques</li>
+                            <li style="margin: 0.5rem 0;">🏥 First aid/CPR certification for all officers</li>
+                            <li style="margin: 0.5rem 0;">📝 Incident documentation and report writing</li>
+                            <li style="margin: 0.5rem 0;">⚖️ Legal compliance and liability awareness</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, var(--navy) 0%, var(--dark-slate) 100%); color: white; padding: 2rem; border-radius: 12px; margin: 2rem 0;">
+                    <h4 style="color: white; margin-bottom: 1rem; text-align: center;">🎯 PROGRAM HIGHLIGHTS</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div style="text-align: center; padding: 1rem;">
+                            <div style="font-size: 2rem;">🛡️</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9;">Professional Grade<br>Security Officers</div>
+                        </div>
+                        <div style="text-align: center; padding: 1rem;">
+                            <div style="font-size: 2rem;">📞</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9;">24/7 Operations<br>Center Support</div>
+                        </div>
+                        <div style="text-align: center; padding: 1rem;">
+                            <div style="font-size: 2rem;">📊</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9;">Monthly Security<br>Reports & Reviews</div>
+                        </div>
+                        <div style="text-align: center; padding: 1rem;">
+                            <div style="font-size: 2rem;">🤝</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9;">Law Enforcement<br>Partnership</div>
+                        </div>
+                    </div>
+                </div>
+            `;
             
             return html;
         }
@@ -2730,11 +3834,30 @@
         }
 
         function downloadPlan() {
-            // Prepare for printing
-            document.getElementById('printCompanyName').textContent = assessmentData.operation.businessName;
-            
-            // Use browser print functionality
-            window.print();
+            try {
+                // Prepare for printing
+                const companyElement = document.getElementById('printCompanyName');
+                if (companyElement) {
+                    companyElement.textContent = assessmentData.operation.businessName || 'Your Company';
+                }
+                
+                // Set document title for download
+                const originalTitle = document.title;
+                document.title = `${assessmentData.operation.businessName || 'Company'} Emergency Response Plan - Salient Group`;
+                
+                // Use browser print functionality
+                window.print();
+                
+                // Restore original title
+                setTimeout(() => {
+                    document.title = originalTitle;
+                }, 1000);
+                
+            } catch (error) {
+                console.error('Download error:', error);
+                // Fallback to basic print
+                window.print();
+            }
         }
 
         async function submitToCRM() {
