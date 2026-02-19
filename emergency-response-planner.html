@@ -1,0 +1,2730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Response Plan Builder | Salient Group</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #131F2D;
+            --white: #FFFFFF;
+            --black: #000000;
+            --dark-slate: #314151;
+            --light-steel: #D6D7D8;
+            --medium-gray: #606060;
+            --red: #DC2626;
+            --yellow: #D97706;
+            --green: #059669;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: var(--navy);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .progress-bar {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 0.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-track {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            padding: 0.75rem 0.5rem;
+            border-radius: 15px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-step.active {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .progress-step.completed {
+            background: var(--green);
+            color: var(--white);
+        }
+
+        .phase {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .phase.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .card-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-subtitle {
+            color: var(--medium-gray);
+            font-size: 1.1rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--light-steel);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--navy);
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--navy);
+        }
+
+        .btn {
+            background: var(--navy);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--dark-slate);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(19, 31, 45, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--navy);
+            border: 2px solid var(--navy);
+        }
+
+        .btn-secondary:hover {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .scenario-container {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--dark-slate) 100%);
+            color: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scenario-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .scenario-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .scenario-time {
+            font-size: 1.3rem;
+            color: var(--red);
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .clock {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 2rem 0;
+            color: var(--red);
+            text-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+        }
+
+        .clock.ticking {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .scenario-description {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--red);
+        }
+
+        .scenario-options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .scenario-option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .scenario-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .scenario-option.selected {
+            background: rgba(220, 38, 38, 0.2);
+            border-color: var(--red);
+        }
+
+        .scenario-consequence {
+            background: rgba(220, 38, 38, 0.1);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .debrief-card {
+            background: linear-gradient(135deg, var(--red) 0%, #B91C1C 100%);
+            color: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-container {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-marker {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--navy);
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .timeline-marker.best-practice {
+            background: var(--green);
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .gap-scorecard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .score-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .score-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--navy);
+        }
+
+        .score-bar {
+            background: #f1f5f9;
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .score-fill {
+            height: 100%;
+            transition: width 0.5s ease;
+        }
+
+        .score-fill.low { background: var(--red); }
+        .score-fill.medium { background: var(--yellow); }
+        .score-fill.high { background: var(--green); }
+
+        .score-value {
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .financial-exposure {
+            background: linear-gradient(135deg, var(--red) 0%, #B91C1C 100%);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .exposure-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        .plan-preview {
+            background: var(--white);
+            border: 2px solid var(--navy);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .plan-section {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--light-steel);
+        }
+
+        .plan-section:last-child {
+            border-bottom: none;
+        }
+
+        .plan-section h3 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .gap-highlight {
+            background: rgba(220, 38, 38, 0.1);
+            color: var(--red);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
+
+        .footer-contact {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 8rem;
+            color: rgba(19, 31, 45, 0.03);
+            font-weight: 700;
+            z-index: -1;
+            pointer-events: none;
+            letter-spacing: 0.2em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .progress-step {
+                font-size: 0.8rem;
+                padding: 0.5rem 0.25rem;
+            }
+            
+            .exposure-amount {
+                font-size: 2rem;
+            }
+            
+            .clock {
+                font-size: 2rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+            
+            body {
+                background: white;
+                font-size: 12pt;
+                line-height: 1.4;
+            }
+            
+            .header, .progress-bar, .btn, .btn-group, .footer, 
+            .watermark, .scenario-container, .form-input, 
+            .form-select, .form-textarea {
+                display: none !important;
+            }
+            
+            .phase:not(.active) {
+                display: none !important;
+            }
+            
+            .plan-preview {
+                display: block !important;
+                border: none;
+                padding: 0;
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+            
+            .plan-section {
+                page-break-inside: avoid;
+                margin-bottom: 2cm;
+            }
+            
+            .print-header {
+                display: block !important;
+                background: var(--navy);
+                color: white;
+                padding: 1cm;
+                text-align: center;
+                margin-bottom: 1cm;
+            }
+            
+            .print-footer {
+                display: block !important;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: var(--navy);
+                color: white;
+                padding: 0.5cm;
+                text-align: center;
+                font-size: 10pt;
+            }
+            
+            .print-watermark {
+                display: block !important;
+                position: fixed;
+                top: 40%;
+                left: 20%;
+                transform: rotate(-45deg);
+                font-size: 4cm;
+                color: rgba(19, 31, 45, 0.1);
+                font-weight: 700;
+                z-index: -1;
+            }
+            
+            h1, h2, h3 {
+                color: var(--navy);
+                page-break-after: avoid;
+            }
+            
+            .gap-highlight {
+                background: rgba(220, 38, 38, 0.2) !important;
+                color: var(--red) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="watermark">SALIENT GROUP</div>
+    
+    <header class="header">
+        <div class="logo">SALIENT GROUP</div>
+        <div class="subtitle">Emergency Response Plan Builder</div>
+    </header>
+
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress-track">
+                <div class="progress-step active" data-phase="1">Your Operation</div>
+                <div class="progress-step" data-phase="2">Your Team</div>
+                <div class="progress-step" data-phase="3">Scenarios</div>
+                <div class="progress-step" data-phase="4">Gap Analysis</div>
+                <div class="progress-step" data-phase="5">Your Plan</div>
+                <div class="progress-step" data-phase="6">Download</div>
+            </div>
+        </div>
+
+        <!-- Phase 1: Your Operation -->
+        <div class="phase active" id="phase1">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="card-title">Tell Us About Your Operation</h1>
+                    <p class="card-subtitle">We need to understand your facility to create a customized emergency response plan</p>
+                </div>
+                
+                <form id="operationForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="businessName">Business Name *</label>
+                            <input type="text" id="businessName" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="industry">Industry *</label>
+                            <select id="industry" class="form-select" required>
+                                <option value="">Select your industry</option>
+                                <option value="warehouse">Warehouse/Distribution</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="commercial">Commercial Real Estate</option>
+                                <option value="retail">Retail</option>
+                                <option value="construction">Construction</option>
+                                <option value="hoa">HOA/Residential</option>
+                                <option value="events">Events/Entertainment</option>
+                                <option value="education">Education</option>
+                                <option value="hospitality">Hospitality</option>
+                                <option value="manufacturing">Manufacturing</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="facilitySize">Facility Size (sq ft) *</label>
+                            <input type="number" id="facilitySize" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="floors">Number of Floors *</label>
+                            <input type="number" id="floors" class="form-input" min="1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="entryPoints">Entry/Exit Points *</label>
+                            <input type="number" id="entryPoints" class="form-input" min="1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="operatingHours">Operating Hours *</label>
+                            <select id="operatingHours" class="form-select" required>
+                                <option value="">Select operating hours</option>
+                                <option value="24/7">24/7</option>
+                                <option value="extended">Extended (12+ hours/day)</option>
+                                <option value="business">Business Hours Only</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="assets">High-Value Assets Description</label>
+                        <textarea id="assets" class="form-textarea" placeholder="Describe your most valuable assets, equipment, or inventory..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Current Security Measures</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="guards" name="security" value="guards">
+                                <label for="guards">Security Guards</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cctv" name="security" value="cctv">
+                                <label for="cctv">CCTV Cameras</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="alarm" name="security" value="alarm">
+                                <label for="alarm">Alarm System</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="access" name="security" value="access">
+                                <label for="access">Access Control</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="motion" name="security" value="motion">
+                                <label for="motion">Motion Sensors</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="lighting" name="security" value="lighting">
+                                <label for="lighting">Security Lighting</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="fencing" name="security" value="fencing">
+                                <label for="fencing">Perimeter Fencing</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="nothing" name="security" value="nothing">
+                                <label for="nothing">No Current Security</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button type="submit" class="btn">Continue to Team Assessment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Phase 2: Your Team -->
+        <div class="phase" id="phase2">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="card-title">Your Emergency Response Team</h1>
+                    <p class="card-subtitle">Understanding your team structure is critical for effective emergency response</p>
+                </div>
+                
+                <form id="teamForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="decisionMaker">Primary Security Decision Maker *</label>
+                            <input type="text" id="decisionMaker" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="decisionTitle">Title *</label>
+                            <input type="text" id="decisionTitle" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="decisionPhone">Phone Number *</label>
+                            <input type="tel" id="decisionPhone" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="emergencyContact">After-Hours Emergency Contact *</label>
+                            <input type="text" id="emergencyContact" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="emergencyPhone">Emergency Contact Phone *</label>
+                            <input type="tel" id="emergencyPhone" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="keyHolders">People with Building Keys/Access *</label>
+                            <input type="number" id="keyHolders" class="form-input" min="1" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="hasERP">Documented Emergency Response Plan? *</label>
+                            <select id="hasERP" class="form-select" required>
+                                <option value="">Select option</option>
+                                <option value="yes">Yes</option>
+                                <option value="partial">Partial</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="meetingPoint">Designated Evacuation Meeting Point? *</label>
+                            <select id="meetingPoint" class="form-select" required>
+                                <option value="">Select option</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="policeCaller">Who Calls Police in Emergency? *</label>
+                            <select id="policeCaller" class="form-select" required>
+                                <option value="">Select option</option>
+                                <option value="specific">Specific Designated Person</option>
+                                <option value="closest">Whoever's Closest</option>
+                                <option value="none">No One Assigned</option>
+                                <option value="guard">Security Guard</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">How Are Emergencies Currently Communicated?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="phoneComm" name="communication" value="phone">
+                                <label for="phoneComm">Phone Calls</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="radioComm" name="communication" value="radio">
+                                <label for="radioComm">Radio System</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="paComm" name="communication" value="pa">
+                                <label for="paComm">PA System</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="textComm" name="communication" value="text">
+                                <label for="textComm">Text/Group Chat</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="noComm" name="communication" value="none">
+                                <label for="noComm">No Formal System</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary" onclick="goToPhase(1)">Back</button>
+                        <button type="submit" class="btn">Start Security Scenarios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Phase 3: Scenarios -->
+        <div class="phase" id="phase3">
+            <div class="scenario-container" id="scenarioContainer">
+                <div class="scenario-header">
+                    <h1 class="scenario-title" id="scenarioTitle">Loading Scenario...</h1>
+                    <div class="scenario-time" id="scenarioTime">Preparing...</div>
+                </div>
+                
+                <div class="clock" id="clock">00:00</div>
+                
+                <div class="scenario-description" id="scenarioDescription">
+                    Loading scenario...
+                </div>
+                
+                <div class="scenario-options" id="scenarioOptions">
+                    <!-- Options will be populated by JavaScript -->
+                </div>
+                
+                <div class="btn-group" id="scenarioButtons" style="display: none;">
+                    <button class="btn" id="nextStepBtn" onclick="nextScenarioStep()">Continue</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 4: Gap Analysis -->
+        <div class="phase" id="phase4">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="card-title">Your Security Gap Analysis</h1>
+                    <p class="card-subtitle">Based on your responses, here's where your emergency response falls short</p>
+                </div>
+                
+                <div class="financial-exposure">
+                    <h2>Estimated Annual Risk Exposure</h2>
+                    <div class="exposure-amount" id="exposureAmount">$0 - $0</div>
+                    <p>Based on your facility profile and identified response gaps</p>
+                </div>
+                
+                <div class="gap-scorecard" id="gapScorecard">
+                    <!-- Scores will be populated by JavaScript -->
+                </div>
+                
+                <div class="timeline-container">
+                    <h3>Response Timeline Analysis</h3>
+                    <div id="timelineAnalysis">
+                        <!-- Timeline will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="card" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; margin-top: 2rem;">
+                    <h3 style="color: white;">Industry Benchmark</h3>
+                    <p id="benchmarkText">Facilities like yours with professional security programs score 85+ across all categories. Your average: <strong id="averageScore">0</strong></p>
+                </div>
+                
+                <div class="btn-group">
+                    <button class="btn" onclick="generatePlan()">Generate Your Emergency Response Plan</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 5: Emergency Response Plan -->
+        <div class="phase" id="phase5">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="card-title">Your Emergency Response Plan</h1>
+                    <p class="card-subtitle">A comprehensive plan addressing your identified gaps</p>
+                </div>
+                
+                <div class="plan-preview" id="planPreview">
+                    <!-- Plan content will be generated by JavaScript -->
+                </div>
+                
+                <div class="btn-group">
+                    <button class="btn btn-secondary" onclick="goToPhase(6)">Continue to Download</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 6: Lead Capture -->
+        <div class="phase" id="phase6">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="card-title">Your Emergency Response Plan is Ready</h1>
+                    <p class="card-subtitle">Enter your information to receive a copy and unlock the download</p>
+                </div>
+                
+                <form id="leadForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="leadName">Full Name *</label>
+                            <input type="text" id="leadName" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="leadEmail">Email Address *</label>
+                            <input type="email" id="leadEmail" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="leadPhone">Phone Number *</label>
+                            <input type="tel" id="leadPhone" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="leadTitle">Job Title *</label>
+                            <input type="text" id="leadTitle" class="form-input" required>
+                        </div>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button type="submit" class="btn">Get My Emergency Response Plan</button>
+                    </div>
+                </form>
+                
+                <div id="downloadSection" style="display: none;">
+                    <div class="card" style="background: var(--green); color: white; margin-top: 2rem;">
+                        <h3 style="color: white;">✅ Plan Ready for Download</h3>
+                        <p>Your comprehensive Emergency Response Plan is ready. You can now download or print it.</p>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn" onclick="downloadPlan()">Download PDF</button>
+                        <a href="https://calendly.com/salient-security/consultation" target="_blank" class="btn btn-secondary">Schedule Expert Consultation</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">SALIENT GROUP</div>
+            <div class="footer-contact">salient-group.com | (317) 983-6601</div>
+        </div>
+    </footer>
+
+    <!-- Print Elements (Hidden by default) -->
+    <div class="print-header" style="display: none;">
+        <h1>EMERGENCY RESPONSE PLAN</h1>
+        <p>Prepared by Salient Group | CONFIDENTIAL</p>
+    </div>
+    
+    <div class="print-footer" style="display: none;">
+        Salient Group | CONFIDENTIAL — Prepared for <span id="printCompanyName"></span>
+    </div>
+    
+    <div class="print-watermark" style="display: none;">SALIENT GROUP</div>
+
+    <script>
+        // Global data storage
+        let assessmentData = {
+            operation: {},
+            team: {},
+            scenarios: [],
+            scores: {},
+            currentScenario: 0,
+            currentStep: 0,
+            scenarioStartTime: 0,
+            scenarioElapsedTime: 0
+        };
+
+        // Scenario definitions
+        const scenarios = {
+            warehouse: [
+                {
+                    title: "Cargo Theft in Progress",
+                    initialTime: "2:14 AM",
+                    description: "Motion sensor triggered at Loading Dock 3. Your monitoring system shows movement near the trailer parking area.",
+                    steps: [
+                        {
+                            description: "Motion detected at loading dock. Who gets alerted first?",
+                            options: [
+                                { text: "Security guard on patrol", time: 0, consequence: "Guard responds immediately", score: { detection: 20, response: 25 } },
+                                { text: "Alarm company calls manager", time: 4, consequence: "Manager receives call 4 minutes later", score: { detection: 15, response: 10 } },
+                                { text: "Nobody — reviewed next morning", time: 480, consequence: "Incident goes unnoticed for 8 hours", score: { detection: 0, response: 0 } },
+                                { text: "Camera alert pops up but nobody monitoring", time: 60, consequence: "Alert sits unnoticed for an hour", score: { detection: 5, response: 0 } }
+                            ]
+                        },
+                        {
+                            description: "Camera footage shows unauthorized person at trailer. Who reviews the footage?",
+                            options: [
+                                { text: "Security guard checks cameras immediately", time: 1, consequence: "Threat identified quickly", score: { detection: 20, communication: 15 } },
+                                { text: "Manager reviews remotely from home", time: 8, consequence: "Manager takes time to access system", score: { detection: 10, communication: 10 } },
+                                { text: "Wait until morning shift arrives", time: 300, consequence: "5 hours pass before anyone reviews", score: { detection: 0, communication: 0 } },
+                                { text: "No one reviews — cameras are record-only", time: 0, consequence: "Evidence exists but no real-time response", score: { detection: 0, response: 0 } }
+                            ]
+                        },
+                        {
+                            description: "Person is cutting the trailer lock. Who responds physically to the scene?",
+                            options: [
+                                { text: "Security guard responds to location", time: 3, consequence: "Professional response, thief flees", score: { response: 25, recovery: 20 } },
+                                { text: "Manager drives to facility", time: 15, consequence: "Long response time, cargo partially stolen", score: { response: 10, recovery: 5 } },
+                                { text: "Call police but no immediate response", time: 2, consequence: "Police notified but thief continues", score: { response: 15, recovery: 0 } },
+                                { text: "No physical response", time: 0, consequence: "Thief operates undisturbed", score: { response: 0, recovery: 0 } }
+                            ]
+                        },
+                        {
+                            description: "Do you call police? Who makes the call and what information do they provide?",
+                            options: [
+                                { text: "Security guard calls with detailed information", time: 2, consequence: "Police receive accurate details, quick response", score: { communication: 25, compliance: 20 } },
+                                { text: "Manager calls with basic information", time: 5, consequence: "Police get general information", score: { communication: 15, compliance: 15 } },
+                                { text: "Employee calls but lacks key details", time: 3, consequence: "Police confused about location/situation", score: { communication: 10, compliance: 10 } },
+                                { text: "Don't call police — handle internally", time: 0, consequence: "No law enforcement involvement", score: { communication: 0, compliance: 0 } }
+                            ]
+                        },
+                        {
+                            description: "Thief loads cargo and escapes. How do you document the incident?",
+                            options: [
+                                { text: "Security guard completes detailed incident report immediately", time: 15, consequence: "Comprehensive documentation for insurance/police", score: { documentation: 25, compliance: 20 } },
+                                { text: "Manager files report the next morning", time: 0, consequence: "Delayed documentation, some details lost", score: { documentation: 15, compliance: 10 } },
+                                { text: "Basic notes taken, formal report later", time: 5, consequence: "Incomplete initial documentation", score: { documentation: 10, compliance: 5 } },
+                                { text: "No formal documentation process", time: 0, consequence: "No record for insurance or investigation", score: { documentation: 0, compliance: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Professional security response within 5 minutes, immediate police notification, comprehensive documentation",
+                        financialImpact: { min: 15000, max: 75000 }
+                    }
+                },
+                {
+                    title: "Employee Injury During Off-Hours",
+                    initialTime: "11:47 PM",
+                    description: "An employee working late shift has fallen from equipment and appears injured.",
+                    steps: [
+                        {
+                            description: "Employee falls from equipment and calls for help. Who responds first?",
+                            options: [
+                                { text: "Security guard on patrol responds immediately", time: 2, consequence: "Professional first aid response", score: { response: 25, communication: 20 } },
+                                { text: "Another employee nearby responds", time: 1, consequence: "Quick response but limited training", score: { response: 15, communication: 10 } },
+                                { text: "Injured employee calls supervisor at home", time: 8, consequence: "Supervisor drives in, significant delay", score: { response: 10, communication: 15 } },
+                                { text: "No immediate response available", time: 30, consequence: "Employee waits alone, condition worsens", score: { response: 0, communication: 0 } }
+                            ]
+                        },
+                        {
+                            description: "First responder arrives. Are first aid supplies and AED available? Who's trained?",
+                            options: [
+                                { text: "Security guard with first aid certification and supplies nearby", time: 1, consequence: "Proper medical response, injury stabilized", score: { response: 25, compliance: 20 } },
+                                { text: "First aid kit available but no trained personnel", time: 5, consequence: "Basic supplies but uncertain treatment", score: { response: 10, compliance: 10 } },
+                                { text: "No first aid supplies or training available", time: 0, consequence: "No medical response capability", score: { response: 0, compliance: 0 } },
+                                { text: "Supplies locked away, no one has key", time: 10, consequence: "Delayed access to medical supplies", score: { response: 5, compliance: 5 } }
+                            ]
+                        },
+                        {
+                            description: "Employee needs emergency medical care. Who calls 911 and what information do they provide?",
+                            options: [
+                                { text: "Security guard calls with exact location, nature of injury, access instructions", time: 1, consequence: "EMS arrives quickly with clear directions", score: { communication: 25, response: 20 } },
+                                { text: "Supervisor calls with general information", time: 2, consequence: "EMS gets basic info but needs clarification", score: { communication: 15, response: 15 } },
+                                { text: "Untrained employee calls but struggles with details", time: 3, consequence: "Confused 911 call delays response", score: { communication: 10, response: 10 } },
+                                { text: "No one designated to call 911", time: 15, consequence: "Delay while people figure out who should call", score: { communication: 0, response: 0 } }
+                            ]
+                        },
+                        {
+                            description: "EMS transports employee to hospital. Who handles incident documentation and reporting?",
+                            options: [
+                                { text: "Security supervisor completes OSHA report within 24 hours", time: 60, consequence: "Compliant reporting, proper documentation", score: { documentation: 25, compliance: 25 } },
+                                { text: "Manager handles paperwork during business hours", time: 0, consequence: "Delayed reporting, potential compliance issues", score: { documentation: 15, compliance: 10 } },
+                                { text: "HR handles when they come in next week", time: 0, consequence: "Significant delay, regulatory violations", score: { documentation: 5, compliance: 0 } },
+                                { text: "No formal incident reporting process", time: 0, consequence: "No documentation, major compliance failure", score: { documentation: 0, compliance: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Immediate professional response, trained first aid, rapid EMS contact, compliant documentation",
+                        financialImpact: { min: 25000, max: 150000 }
+                    }
+                },
+                {
+                    title: "Unauthorized Vehicle Tailgates Through Gate",
+                    initialTime: "6:32 AM",
+                    description: "During shift change, an unknown vehicle follows a delivery truck through your access gate.",
+                    steps: [
+                        {
+                            description: "Unknown vehicle tailgates through gate during shift change. Who notices?",
+                            options: [
+                                { text: "Security guard at gate checkpoint notices immediately", time: 0, consequence: "Immediate detection and response", score: { detection: 25, response: 20 } },
+                                { text: "Employee notices and alerts security", time: 3, consequence: "Quick employee reporting", score: { detection: 20, communication: 15 } },
+                                { text: "Camera system captures but no one monitoring", time: 60, consequence: "Evidence exists but no real-time detection", score: { detection: 5, response: 0 } },
+                                { text: "Nobody notices the unauthorized entry", time: 300, consequence: "Intruder operates undetected for hours", score: { detection: 0, response: 0 } }
+                            ]
+                        },
+                        {
+                            description: "Unknown vehicle parks near high-value storage area. How do you respond?",
+                            options: [
+                                { text: "Security approaches vehicle professionally", time: 2, consequence: "Professional interaction, situation controlled", score: { response: 25, communication: 20 } },
+                                { text: "Employee approaches and asks questions", time: 1, consequence: "Untrained response, potential safety risk", score: { response: 10, communication: 10 } },
+                                { text: "Observe from distance and call police", time: 5, consequence: "Safe approach but delayed resolution", score: { response: 15, communication: 15 } },
+                                { text: "No direct response, hope they leave", time: 0, consequence: "No security response, vulnerability continues", score: { response: 0, communication: 0 } }
+                            ]
+                        },
+                        {
+                            description: "Driver approaches an employee asking detailed questions about operations and schedules. What happens?",
+                            options: [
+                                { text: "Security-trained employee recognizes social engineering, alerts security", time: 1, consequence: "Threat identified, proper response initiated", score: { detection: 25, communication: 20 } },
+                                { text: "Employee answers some questions but feels uncomfortable", time: 5, consequence: "Some information disclosed, late security alert", score: { detection: 15, communication: 10 } },
+                                { text: "Employee freely answers all questions", time: 10, consequence: "Operational security compromised", score: { detection: 0, communication: 0 } },
+                                { text: "No employee interaction, driver explores freely", time: 0, consequence: "Unrestricted facility reconnaissance", score: { detection: 0, response: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you document and follow up on this security incident?",
+                            options: [
+                                { text: "Security completes full incident report, reviews access procedures", time: 30, consequence: "Comprehensive analysis, procedural improvements", score: { documentation: 25, compliance: 20 } },
+                                { text: "Basic incident log entry, no analysis", time: 10, consequence: "Minimal documentation, no learning", score: { documentation: 10, compliance: 5 } },
+                                { text: "Verbal report only, no written documentation", time: 5, consequence: "No formal record, pattern not trackable", score: { documentation: 5, compliance: 0 } },
+                                { text: "No follow-up or documentation", time: 0, consequence: "Incident ignored, vulnerabilities remain", score: { documentation: 0, compliance: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Controlled access with security checkpoint, social engineering training, comprehensive incident response",
+                        financialImpact: { min: 10000, max: 50000 }
+                    }
+                }
+            ],
+            healthcare: [
+                {
+                    title: "Behavioral Health Patient Elopement",
+                    initialTime: "3:22 AM",
+                    description: "During routine patient checks, a behavioral health patient is discovered missing from their room.",
+                    steps: [
+                        {
+                            description: "Patient missing during routine check. When was the last visual confirmation and who initiates search?",
+                            options: [
+                                { text: "Security immediately begins systematic search, last seen 15 minutes ago", time: 1, consequence: "Quick response, high chance of locating patient", score: { detection: 25, response: 25 } },
+                                { text: "Nursing staff searches floor, last seen 30 minutes ago", time: 5, consequence: "Delayed response, patient has more time to leave", score: { detection: 15, response: 15 } },
+                                { text: "Supervisor notified, search begins after shift change", time: 20, consequence: "Significant delay, patient likely off property", score: { detection: 10, response: 5 } },
+                                { text: "No systematic search protocol exists", time: 30, consequence: "Unorganized response, patient whereabouts unknown", score: { detection: 0, response: 0 } }
+                            ]
+                        },
+                        {
+                            description: "Patient located heading toward main exit. How do you handle the situation?",
+                            options: [
+                                { text: "Trained security uses de-escalation techniques", time: 2, consequence: "Professional intervention, patient returns safely", score: { response: 25, compliance: 20 } },
+                                { text: "Nursing staff attempts to convince patient to return", time: 5, consequence: "Clinical approach but limited security training", score: { response: 15, compliance: 15 } },
+                                { text: "Physical restraint used immediately", time: 1, consequence: "Quick stop but potential injury/litigation risk", score: { response: 10, compliance: 0 } },
+                                { text: "Patient allowed to leave while someone calls supervisor", time: 8, consequence: "Patient exits facility, regulatory violation", score: { response: 0, compliance: 0 } }
+                            ]
+                        },
+                        {
+                            description: "Patient exits the building despite intervention attempts. What's your immediate response?",
+                            options: [
+                                { text: "Security tracks patient while nurse calls police and physician", time: 2, consequence: "Coordinated response, patient safety maintained", score: { response: 25, communication: 25 } },
+                                { text: "Staff member follows patient, calls police", time: 3, consequence: "Basic response but staff safety at risk", score: { response: 15, communication: 15 } },
+                                { text: "Call police but don't pursue patient", time: 5, consequence: "Safe for staff but patient location unknown", score: { response: 10, communication: 20 } },
+                                { text: "Wait and see if patient returns", time: 0, consequence: "No immediate action, patient at risk", score: { response: 0, communication: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you handle the regulatory reporting and documentation requirements?",
+                            options: [
+                                { text: "Security completes immediate incident report, administration notifies CMS/Joint Commission", time: 30, consequence: "Full compliance, proper reporting", score: { documentation: 25, compliance: 25 } },
+                                { text: "Nursing documents in patient record, admin reports next day", time: 0, consequence: "Basic documentation, delayed reporting", score: { documentation: 15, compliance: 10 } },
+                                { text: "Incident noted but formal reporting delayed", time: 0, consequence: "Compliance violation, regulatory risk", score: { documentation: 10, compliance: 0 } },
+                                { text: "No formal documentation of elopement", time: 0, consequence: "Major compliance failure, accreditation risk", score: { documentation: 0, compliance: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Immediate security response, professional de-escalation, coordinated pursuit, compliant reporting",
+                        financialImpact: { min: 50000, max: 200000 }
+                    }
+                },
+                {
+                    title: "Combative Individual in ER",
+                    initialTime: "9:15 PM",
+                    description: "An agitated individual in the ER waiting room is becoming increasingly hostile and threatening staff.",
+                    steps: [
+                        {
+                            description: "Individual becomes verbally aggressive toward triage nurse. Who responds first?",
+                            options: [
+                                { text: "Security officer responds immediately with de-escalation", time: 1, consequence: "Professional response, situation controlled", score: { response: 25, communication: 20 } },
+                                { text: "Charge nurse attempts to calm the individual", time: 2, consequence: "Clinical approach but limited security training", score: { response: 15, communication: 15 } },
+                                { text: "Staff calls for help but continues interaction", time: 3, consequence: "Delayed security response, escalation continues", score: { response: 10, communication: 10 } },
+                                { text: "Staff avoids individual, hopes situation improves", time: 0, consequence: "No intervention, aggressive behavior increases", score: { response: 0, communication: 0 } }
+                            ]
+                        },
+                        {
+                            description: "Situation escalates - individual throws a chair and threatens physical violence. How do you respond?",
+                            options: [
+                                { text: "Security team implements violence prevention protocol", time: 1, consequence: "Coordinated response, area secured", score: { response: 25, recovery: 20 } },
+                                { text: "Security removes individual while staff clear area", time: 2, consequence: "Direct action taken, some disruption", score: { response: 20, recovery: 15 } },
+                                { text: "Call police immediately, staff retreat", time: 5, consequence: "External help requested but delayed response", score: { response: 10, recovery: 10 } },
+                                { text: "No organized response, staff handle individually", time: 0, consequence: "Chaotic response, staff safety at risk", score: { response: 0, recovery: 0 } }
+                            ]
+                        },
+                        {
+                            description: "Other patients and families are frightened. How do you manage the broader situation?",
+                            options: [
+                                { text: "Security coordinates patient area evacuation while containing threat", time: 3, consequence: "Organized response, minimal trauma to others", score: { communication: 25, recovery: 25 } },
+                                { text: "Staff verbally reassures patients while handling incident", time: 5, consequence: "Basic communication but ongoing disruption", score: { communication: 15, recovery: 10 } },
+                                { text: "Focus only on aggressive individual", time: 0, consequence: "Other patients traumatized, negative experience", score: { communication: 5, recovery: 5 } },
+                                { text: "No coordinated response for other patients", time: 0, consequence: "Widespread fear, potential exodus of patients", score: { communication: 0, recovery: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you document this workplace violence incident and ensure staff support?",
+                            options: [
+                                { text: "Security completes detailed incident report, HR provides staff counseling", time: 45, consequence: "Comprehensive response, staff wellness addressed", score: { documentation: 25, compliance: 25 } },
+                                { text: "Basic incident report filed, informal staff check-in", time: 20, consequence: "Standard documentation but limited support", score: { documentation: 15, compliance: 10 } },
+                                { text: "Incident logged but no formal staff support", time: 10, consequence: "Administrative requirement met but staff needs ignored", score: { documentation: 10, compliance: 5 } },
+                                { text: "No formal documentation or staff follow-up", time: 0, consequence: "OSHA violation, staff trauma unaddressed", score: { documentation: 0, compliance: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Immediate security response, violence prevention protocols, coordinated patient management, comprehensive documentation",
+                        financialImpact: { min: 75000, max: 300000 }
+                    }
+                },
+                {
+                    title: "After-Hours Pharmacy Access",
+                    initialTime: "1:44 AM",
+                    description: "Door alarm triggered at the hospital pharmacy. Controlled substances are potentially at risk.",
+                    steps: [
+                        {
+                            description: "Pharmacy door alarm triggers. Who investigates and how quickly?",
+                            options: [
+                                { text: "Security responds immediately, arrives within 2 minutes", time: 2, consequence: "Rapid response, minimal exposure time", score: { detection: 25, response: 25 } },
+                                { text: "Security notified but delayed by other duties", time: 8, consequence: "Delayed response, extended vulnerability window", score: { detection: 15, response: 10 } },
+                                { text: "Alarm company calls security after delay", time: 12, consequence: "External monitoring but slow internal response", score: { detection: 10, response: 5 } },
+                                { text: "Alarm ignored as 'false alarm'", time: 0, consequence: "No response, potential controlled substance theft", score: { detection: 0, response: 0 } }
+                            ]
+                        },
+                        {
+                            description: "Security arrives to find pharmacy door propped open, controlled substance cabinet accessed. What's the immediate response?",
+                            options: [
+                                { text: "Secure area, call police immediately, notify pharmacy director", time: 3, consequence: "Proper chain of custody maintained", score: { response: 25, communication: 25 } },
+                                { text: "Conduct quick inventory, then call administrator", time: 15, consequence: "Scene disturbed before police arrival", score: { response: 15, communication: 15 } },
+                                { text: "Close door, plan to investigate during day shift", time: 1, consequence: "Evidence potentially compromised", score: { response: 5, communication: 5 } },
+                                { text: "Note the issue but wait for pharmacy staff", time: 0, consequence: "DEA reporting delay, regulatory violation", score: { response: 0, communication: 0 } }
+                            ]
+                        },
+                        {
+                            description: "Controlled substances appear to be missing. How do you handle the investigation and reporting?",
+                            options: [
+                                { text: "Security preserves scene, administration notifies DEA within required timeframe", time: 30, consequence: "Proper regulatory compliance maintained", score: { compliance: 25, documentation: 25 } },
+                                { text: "Pharmacy conducts inventory first, then reports", time: 120, consequence: "Delayed reporting but accurate count", score: { compliance: 15, documentation: 20 } },
+                                { text: "Internal investigation only, minimal external reporting", time: 60, consequence: "Regulatory violations, accreditation risk", score: { compliance: 5, documentation: 10 } },
+                                { text: "No systematic investigation or reporting", time: 0, consequence: "Major compliance failure, DEA sanctions", score: { compliance: 0, documentation: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you prevent future incidents and maintain regulatory compliance?",
+                            options: [
+                                { text: "Security reviews all access protocols, implements additional safeguards", time: 0, consequence: "Comprehensive security enhancement", score: { recovery: 25, compliance: 20 } },
+                                { text: "Add additional locks but no systematic review", time: 0, consequence: "Basic improvement but gaps remain", score: { recovery: 15, compliance: 10 } },
+                                { text: "Rely on existing procedures, no changes", time: 0, consequence: "Vulnerability continues, future incidents likely", score: { recovery: 5, compliance: 5 } },
+                                { text: "No follow-up security measures implemented", time: 0, consequence: "No learning from incident, repeated risk", score: { recovery: 0, compliance: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Immediate response, scene preservation, proper DEA reporting, enhanced security protocols",
+                        financialImpact: { min: 100000, max: 500000 }
+                    }
+                }
+            ],
+            construction: [
+                {
+                    title: "Equipment Theft Overnight",
+                    initialTime: "2:30 AM",
+                    description: "Your job site surveillance detects movement near high-value construction equipment storage.",
+                    steps: [
+                        {
+                            description: "Motion detected near equipment storage area. Who gets notified?",
+                            options: [
+                                { text: "Security guard on site responds immediately", time: 2, consequence: "Immediate on-site response", score: { detection: 25, response: 25 } },
+                                { text: "Monitoring company calls site supervisor", time: 8, consequence: "Off-site notification, delayed response", score: { detection: 15, response: 10 } },
+                                { text: "Motion sensor logged but no immediate alert", time: 0, consequence: "No real-time response capability", score: { detection: 5, response: 0 } },
+                                { text: "No monitoring system in place", time: 0, consequence: "Theft proceeds undetected", score: { detection: 0, response: 0 } }
+                            ]
+                        },
+                        {
+                            description: "Thieves loading expensive equipment onto trailer. How do you respond?",
+                            options: [
+                                { text: "Security confronts safely while calling police", time: 3, consequence: "Professional intervention, thieves flee", score: { response: 25, communication: 20 } },
+                                { text: "Supervisor arrives and calls police", time: 15, consequence: "Some equipment stolen but police notified", score: { response: 15, communication: 15 } },
+                                { text: "Observe from distance, call police only", time: 5, consequence: "Safe approach but equipment lost", score: { response: 10, communication: 20 } },
+                                { text: "No immediate response capability", time: 0, consequence: "Full equipment theft completed", score: { response: 0, communication: 0 } }
+                            ]
+                        },
+                        {
+                            description: "Police arrive but thieves have escaped with some equipment. How do you handle documentation?",
+                            options: [
+                                { text: "Security provides detailed report with serial numbers and video", time: 30, consequence: "Complete information for investigation", score: { documentation: 25, recovery: 20 } },
+                                { text: "Site supervisor provides basic information", time: 45, consequence: "General report but some details missing", score: { documentation: 15, recovery: 10 } },
+                                { text: "Minimal documentation, no video available", time: 15, consequence: "Poor investigation support", score: { documentation: 10, recovery: 5 } },
+                                { text: "No formal reporting or documentation", time: 0, consequence: "No insurance or recovery options", score: { documentation: 0, recovery: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "24/7 security presence, immediate response protocols, comprehensive equipment tracking",
+                        financialImpact: { min: 50000, max: 250000 }
+                    }
+                },
+                {
+                    title: "Trespasser Injury on Job Site",
+                    initialTime: "7:45 PM",
+                    description: "After hours, someone has entered your construction site and been injured by equipment.",
+                    steps: [
+                        {
+                            description: "Injured trespasser discovered on site. Who provides initial response?",
+                            options: [
+                                { text: "Security guard with first aid training responds", time: 2, consequence: "Professional medical response", score: { response: 25, compliance: 20 } },
+                                { text: "Site supervisor called in from home", time: 20, consequence: "Delayed response, condition worsens", score: { response: 10, compliance: 10 } },
+                                { text: "Passerby calls 911, no site response", time: 0, consequence: "No internal response capability", score: { response: 5, compliance: 5 } },
+                                { text: "Person not discovered until next morning", time: 600, consequence: "Critical delay, potential fatality", score: { response: 0, compliance: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you handle the emergency medical response and documentation?",
+                            options: [
+                                { text: "Call 911 immediately, document scene, notify insurance", time: 5, consequence: "Proper emergency and legal response", score: { communication: 25, documentation: 25 } },
+                                { text: "Call 911, basic documentation after", time: 10, consequence: "Medical response good, documentation delayed", score: { communication: 20, documentation: 15 } },
+                                { text: "Handle internally, minimal documentation", time: 0, consequence: "Inadequate response, liability exposure", score: { communication: 5, documentation: 5 } },
+                                { text: "No systematic response protocol", time: 0, consequence: "Chaotic response, legal vulnerability", score: { communication: 0, documentation: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Secure perimeter, immediate medical response, comprehensive incident documentation",
+                        financialImpact: { min: 75000, max: 500000 }
+                    }
+                },
+                {
+                    title: "Fire Watch Failure",
+                    initialTime: "11:20 PM",
+                    description: "Hot work was completed today but fire watch protocols may not have been properly followed.",
+                    steps: [
+                        {
+                            description: "Smoke detected from welding area 3 hours after work completed. Who responds?",
+                            options: [
+                                { text: "Fire watch guard investigates immediately", time: 1, consequence: "Professional fire safety response", score: { detection: 25, response: 25 } },
+                                { text: "Security patrol discovers during rounds", time: 15, consequence: "Delayed discovery but contained", score: { detection: 15, response: 15 } },
+                                { text: "Smoke alarm triggers, fire department responds", time: 8, consequence: "Automated system response", score: { detection: 10, response: 20 } },
+                                { text: "No detection until major fire develops", time: 120, consequence: "Significant fire damage", score: { detection: 0, response: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you handle the fire emergency and OSHA reporting requirements?",
+                            options: [
+                                { text: "Fire suppression, evacuation, immediate OSHA notification", time: 10, consequence: "Full compliance and safety response", score: { recovery: 25, compliance: 25 } },
+                                { text: "Basic fire response, delayed OSHA reporting", time: 30, consequence: "Safety handled but compliance delayed", score: { recovery: 20, compliance: 10 } },
+                                { text: "Fire contained but minimal reporting", time: 0, consequence: "Immediate risk handled but violations", score: { recovery: 15, compliance: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Proper fire watch protocols, immediate emergency response, compliant safety reporting",
+                        financialImpact: { min: 100000, max: 1000000 }
+                    }
+                }
+            ],
+            commercial: [
+                {
+                    title: "After-Hours Break-In",
+                    initialTime: "1:15 AM",
+                    description: "Glass breaking alarm triggered at one of your tenant offices in the commercial building.",
+                    steps: [
+                        {
+                            description: "Glass break alarm from 3rd floor tenant office. Who responds?",
+                            options: [
+                                { text: "Security guard investigates immediately", time: 3, consequence: "Fast response, intruder confronted", score: { detection: 25, response: 25 } },
+                                { text: "Alarm company calls building manager", time: 10, consequence: "External monitoring but delayed response", score: { detection: 15, response: 10 } },
+                                { text: "Police notified automatically but no on-site response", time: 0, consequence: "Law enforcement coming but intruder active", score: { detection: 15, response: 5 } },
+                                { text: "Alarm ignored as potential false alarm", time: 0, consequence: "No response, theft continues", score: { detection: 0, response: 0 } }
+                            ]
+                        },
+                        {
+                            description: "Intruder stealing office equipment and data. How do you handle the active crime?",
+                            options: [
+                                { text: "Security observes safely, provides real-time updates to police", time: 2, consequence: "Professional response, good police coordination", score: { response: 25, communication: 25 } },
+                                { text: "Confront intruder directly", time: 1, consequence: "Bold action but personal safety risk", score: { response: 15, communication: 10 } },
+                                { text: "Activate building alarm system, wait for police", time: 5, consequence: "Intruder alerted but may flee", score: { response: 10, communication: 15 } },
+                                { text: "No direct intervention capability", time: 0, consequence: "Theft continues uninterrupted", score: { response: 0, communication: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you handle tenant notification and building security after the incident?",
+                            options: [
+                                { text: "Immediate tenant notification, security assessment, temporary measures", time: 60, consequence: "Proactive tenant relations and security", score: { recovery: 25, communication: 25 } },
+                                { text: "Notify tenants in the morning, basic repairs", time: 0, consequence: "Delayed communication but cost-effective", score: { recovery: 15, communication: 10 } },
+                                { text: "Minimal tenant communication, standard repairs", time: 0, consequence: "Poor tenant relations, ongoing vulnerability", score: { recovery: 10, communication: 5 } },
+                                { text: "No proactive tenant outreach or security enhancement", time: 0, consequence: "Tenant concerns unaddressed, security gaps remain", score: { recovery: 0, communication: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "24/7 security presence, coordinated law enforcement response, proactive tenant communication",
+                        financialImpact: { min: 25000, max: 150000 }
+                    }
+                },
+                {
+                    title: "Parking Garage Assault",
+                    initialTime: "8:30 PM",
+                    description: "Scream heard from the parking garage. A tenant may be under attack.",
+                    steps: [
+                        {
+                            description: "Scream heard from parking garage level 2. Who responds first?",
+                            options: [
+                                { text: "Security guard responds immediately with radio backup", time: 1, consequence: "Immediate professional response", score: { response: 25, communication: 25 } },
+                                { text: "Building maintenance person investigates", time: 3, consequence: "Quick response but untrained for security", score: { response: 15, communication: 10 } },
+                                { text: "Front desk calls police but no immediate response", time: 0, consequence: "External help requested but victim unprotected", score: { response: 10, communication: 20 } },
+                                { text: "No immediate response - hoping it was nothing", time: 15, consequence: "No protection for potential victim", score: { response: 0, communication: 0 } }
+                            ]
+                        },
+                        {
+                            description: "Tenant found being robbed at knifepoint. How do you handle the dangerous situation?",
+                            options: [
+                                { text: "Security uses tactical communication to distract attacker, coordinates police response", time: 2, consequence: "Professional intervention, victim protected", score: { response: 25, recovery: 25 } },
+                                { text: "Call out to attacker from distance, police notified", time: 1, consequence: "Attacker flees but situation handled", score: { response: 20, recovery: 20 } },
+                                { text: "Observe and provide police with real-time information", time: 0, consequence: "Good intelligence but victim still at risk", score: { response: 15, recovery: 15 } },
+                                { text: "No trained response for violent crime", time: 0, consequence: "Victim receives no assistance", score: { response: 0, recovery: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you handle victim care and building-wide security response?",
+                            options: [
+                                { text: "Security provides victim support, implements building lockdown, tenant notification", time: 30, consequence: "Comprehensive crisis response", score: { recovery: 25, communication: 25 } },
+                                { text: "Basic victim assistance, general building alert", time: 15, consequence: "Adequate response but limited coordination", score: { recovery: 15, communication: 15 } },
+                                { text: "Focus on police cooperation only", time: 5, consequence: "Legal requirements met but tenant support lacking", score: { recovery: 10, communication: 10 } },
+                                { text: "No systematic crisis response", time: 0, consequence: "Chaotic aftermath, tenant confidence shaken", score: { recovery: 0, communication: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Immediate security response, tactical intervention training, comprehensive crisis management",
+                        financialImpact: { min: 50000, max: 300000 }
+                    }
+                },
+                {
+                    title: "Tenant Emergency — Medical Event",
+                    initialTime: "2:45 PM",
+                    description: "Tenant employee has collapsed in office lobby. Other tenants are witnessing the emergency.",
+                    steps: [
+                        {
+                            description: "Person collapses in lobby during business hours. Who provides first response?",
+                            options: [
+                                { text: "Security with first aid/AED training responds immediately", time: 1, consequence: "Professional medical response", score: { response: 25, recovery: 25 } },
+                                { text: "Front desk staff calls 911, provides basic assistance", time: 2, consequence: "Emergency services notified, limited medical help", score: { response: 15, recovery: 15 } },
+                                { text: "Other tenants assist while building staff calls for help", time: 3, consequence: "Community response but no trained personnel", score: { response: 10, recovery: 10 } },
+                                { text: "No trained first response capability", time: 0, consequence: "No immediate medical assistance", score: { response: 0, recovery: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you manage EMS access and building operations during the emergency?",
+                            options: [
+                                { text: "Security coordinates EMS access, manages crowd, maintains building operations", time: 5, consequence: "Smooth emergency response, minimal disruption", score: { communication: 25, recovery: 25 } },
+                                { text: "Basic EMS coordination, some disruption to building", time: 8, consequence: "Emergency handled but operational impact", score: { communication: 15, recovery: 15 } },
+                                { text: "EMS access provided but no crowd management", time: 10, consequence: "Medical response good but building chaos", score: { communication: 10, recovery: 10 } },
+                                { text: "No coordinated emergency management", time: 0, consequence: "Disrupted building operations, tenant concerns", score: { communication: 0, recovery: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Trained security first responders, coordinated EMS access, professional crisis management",
+                        financialImpact: { min: 15000, max: 75000 }
+                    }
+                }
+            ],
+            retail: [
+                {
+                    title: "Smash and Grab",
+                    initialTime: "10:15 PM",
+                    description: "Multiple individuals rush into your store just before closing, heading directly for high-value merchandise.",
+                    steps: [
+                        {
+                            description: "Group of 4 people rush through entrance, heading for electronics section. Who responds first?",
+                            options: [
+                                { text: "Security guard activates panic button, observes and radios police", time: 1, consequence: "Professional response, authorities notified immediately", score: { response: 25, communication: 25 } },
+                                { text: "Employee hits silent alarm, retreats to back office", time: 2, consequence: "Alarm triggered but no immediate deterrent", score: { response: 15, communication: 20 } },
+                                { text: "Manager approaches group asking if they need help", time: 1, consequence: "Brave but potentially dangerous confrontation", score: { response: 10, communication: 5 } },
+                                { text: "No trained response, employees freeze", time: 0, consequence: "No deterrent, theft proceeds unimpeded", score: { response: 0, communication: 0 } }
+                            ]
+                        },
+                        {
+                            description: "Individuals begin smashing display cases and grabbing merchandise. How do you respond?",
+                            options: [
+                                { text: "Security follows protocol: observe, document, don't intervene physically", time: 0, consequence: "Safe response, good evidence for prosecution", score: { response: 25, documentation: 25 } },
+                                { text: "Activate additional alarms, announce police are coming", time: 1, consequence: "May deter thieves but confrontational", score: { response: 15, documentation: 15 } },
+                                { text: "Staff attempts to physically stop thieves", time: 1, consequence: "High risk of injury, potential liability", score: { response: 5, documentation: 10 } },
+                                { text: "No response plan, staff act individually", time: 0, consequence: "Chaotic response, safety compromised", score: { response: 0, documentation: 0 } }
+                            ]
+                        },
+                        {
+                            description: "Thieves escape with merchandise worth $15,000. How do you handle the aftermath?",
+                            options: [
+                                { text: "Security provides police with video, witness statements, inventory list", time: 30, consequence: "Complete investigation support", score: { documentation: 25, recovery: 20 } },
+                                { text: "Manager cooperates with police, basic documentation", time: 45, consequence: "Standard cooperation but limited details", score: { documentation: 15, recovery: 10 } },
+                                { text: "Minimal cooperation, no systematic documentation", time: 15, consequence: "Poor investigation support, limited recovery", score: { documentation: 10, recovery: 5 } },
+                                { text: "No formal incident response or documentation", time: 0, consequence: "No investigation support, no insurance claim", score: { documentation: 0, recovery: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Professional security response, comprehensive documentation, coordinated law enforcement cooperation",
+                        financialImpact: { min: 20000, max: 100000 }
+                    }
+                },
+                {
+                    title: "Shoplifting Escalation to Assault",
+                    initialTime: "3:30 PM",
+                    description: "Loss prevention observes customer concealing merchandise. When approached, the situation turns violent.",
+                    steps: [
+                        {
+                            description: "Customer becomes aggressive when approached about concealed items. How do you handle the confrontation?",
+                            options: [
+                                { text: "Security uses de-escalation techniques, maintains safe distance", time: 2, consequence: "Professional approach, situation controlled", score: { response: 25, communication: 25 } },
+                                { text: "Loss prevention continues verbal engagement", time: 3, consequence: "Persistent but potentially escalating", score: { response: 15, communication: 15 } },
+                                { text: "Attempt to physically detain customer", time: 1, consequence: "Direct action but high assault risk", score: { response: 10, communication: 5 } },
+                                { text: "Let customer leave to avoid confrontation", time: 0, consequence: "Safe but theft completed", score: { response: 5, communication: 10 } }
+                            ]
+                        },
+                        {
+                            description: "Customer strikes employee and runs toward exit. What's your immediate response?",
+                            options: [
+                                { text: "Security aids injured employee, gets medical help, preserves evidence", time: 3, consequence: "Employee welfare prioritized, evidence protected", score: { response: 25, recovery: 25 } },
+                                { text: "Pursue suspect while calling police", time: 2, consequence: "Active response but injured employee unattended", score: { response: 15, recovery: 10 } },
+                                { text: "Focus on stopping theft, minimal employee assistance", time: 1, consequence: "Loss prevention prioritized over safety", score: { response: 10, recovery: 5 } },
+                                { text: "No systematic response to assault", time: 0, consequence: "Employee injury unaddressed, poor evidence", score: { response: 0, recovery: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you handle the assault documentation and employee support?",
+                            options: [
+                                { text: "Security completes assault report, HR provides employee support, OSHA notification", time: 60, consequence: "Comprehensive response and compliance", score: { documentation: 25, compliance: 25 } },
+                                { text: "Basic incident report, employee gets medical attention", time: 30, consequence: "Standard response but limited compliance", score: { documentation: 15, compliance: 15 } },
+                                { text: "Incident logged but minimal employee support", time: 15, consequence: "Administrative requirement met but employee needs ignored", score: { documentation: 10, compliance: 5 } },
+                                { text: "No formal documentation or employee follow-up", time: 0, consequence: "Workplace violence unaddressed, regulatory violation", score: { documentation: 0, compliance: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "De-escalation training, employee safety priority, comprehensive assault response protocols",
+                        financialImpact: { min: 30000, max: 200000 }
+                    }
+                },
+                {
+                    title: "Employee Theft Discovery",
+                    initialTime: "6:45 AM",
+                    description: "Security cameras reveal an employee accessing the cash office after hours using unauthorized credentials.",
+                    steps: [
+                        {
+                            description: "Video shows employee in cash office during closed hours. How do you handle the investigation?",
+                            options: [
+                                { text: "Security documents evidence, notifies management, preserves scene", time: 30, consequence: "Professional investigation approach", score: { documentation: 25, compliance: 25 } },
+                                { text: "Manager confronts employee immediately", time: 15, consequence: "Direct approach but potentially compromised investigation", score: { documentation: 15, compliance: 15 } },
+                                { text: "Continue surveillance to gather more evidence", time: 0, consequence: "More evidence but continued losses", score: { documentation: 20, compliance: 10 } },
+                                { text: "No systematic investigation process", time: 0, consequence: "Poor handling of internal theft", score: { documentation: 0, compliance: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you handle the employee interview and potential termination?",
+                            options: [
+                                { text: "HR conducts formal interview with security present, follows termination procedures", time: 60, consequence: "Legal compliance and documentation", score: { compliance: 25, documentation: 25 } },
+                                { text: "Manager handles informally with basic documentation", time: 30, consequence: "Issue addressed but limited legal protection", score: { compliance: 15, documentation: 15 } },
+                                { text: "Immediate termination with minimal process", time: 10, consequence: "Quick resolution but potential legal exposure", score: { compliance: 10, documentation: 10 } },
+                                { text: "No formal process for internal theft", time: 0, consequence: "Inadequate response, legal and operational risk", score: { compliance: 0, documentation: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Professional investigation, HR compliance, comprehensive documentation, access control review",
+                        financialImpact: { min: 25000, max: 150000 }
+                    }
+                }
+            ],
+            hoa: [
+                {
+                    title: "Residential Break-In Spree",
+                    initialTime: "2:20 AM",
+                    description: "Multiple break-ins reported in the community within 2 hours. Residents are calling for immediate security response.",
+                    steps: [
+                        {
+                            description: "Third break-in call received from residents. How does your community respond?",
+                            options: [
+                                { text: "Security patrol increases presence, coordinates with police, alerts all residents", time: 5, consequence: "Proactive security response, community informed", score: { response: 25, communication: 25 } },
+                                { text: "Security patrol checks affected areas, basic resident notification", time: 10, consequence: "Standard response but limited community coordination", score: { response: 15, communication: 15 } },
+                                { text: "Residents advised to call police individually", time: 0, consequence: "No coordinated security response", score: { response: 5, communication: 10 } },
+                                { text: "No community security response capability", time: 0, consequence: "Residents left to handle alone", score: { response: 0, communication: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you coordinate with law enforcement and provide resident support?",
+                            options: [
+                                { text: "Security liaisons with police, provides community access, coordinates resident communications", time: 15, consequence: "Professional law enforcement coordination", score: { communication: 25, recovery: 25 } },
+                                { text: "Basic police cooperation, informal resident updates", time: 30, consequence: "Standard cooperation but limited community management", score: { communication: 15, recovery: 15 } },
+                                { text: "Police handle independently, minimal community involvement", time: 0, consequence: "No community coordination or resident support", score: { communication: 5, recovery: 5 } },
+                                { text: "No systematic law enforcement coordination", time: 0, consequence: "Poor police cooperation, resident frustration", score: { communication: 0, recovery: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "24/7 security patrol, coordinated law enforcement response, comprehensive resident communication",
+                        financialImpact: { min: 75000, max: 300000 }
+                    }
+                },
+                {
+                    title: "Pool Area Medical Emergency",
+                    initialTime: "7:15 PM",
+                    description: "Child found unresponsive in community pool area. Family members are panicking and other residents are gathering.",
+                    steps: [
+                        {
+                            description: "Child pulled from pool, appears unconscious. Who provides immediate response?",
+                            options: [
+                                { text: "Security with CPR/AED training begins life support immediately", time: 1, consequence: "Professional life-saving response", score: { response: 25, recovery: 25 } },
+                                { text: "Resident with medical training provides CPR while security calls 911", time: 2, consequence: "Community response with professional backup", score: { response: 20, recovery: 20 } },
+                                { text: "Security calls 911, provides basic assistance", time: 3, consequence: "Emergency services notified but limited medical capability", score: { response: 15, recovery: 15 } },
+                                { text: "No trained emergency response available", time: 0, consequence: "No immediate life-saving capability", score: { response: 0, recovery: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you manage EMS access and crowd control during the emergency?",
+                            options: [
+                                { text: "Security coordinates EMS access, manages crowd, supports family", time: 5, consequence: "Professional emergency management", score: { communication: 25, recovery: 25 } },
+                                { text: "Basic crowd control, EMS access provided", time: 8, consequence: "Standard emergency response", score: { communication: 15, recovery: 15 } },
+                                { text: "EMS access only, no crowd or family management", time: 10, consequence: "Medical response supported but community chaos", score: { communication: 10, recovery: 10 } },
+                                { text: "No coordinated emergency management", time: 0, consequence: "Chaotic scene, family and community trauma", score: { communication: 0, recovery: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Trained emergency responders, comprehensive crowd management, family crisis support",
+                        financialImpact: { min: 50000, max: 500000 }
+                    }
+                },
+                {
+                    title: "Domestic Dispute Escalation",
+                    initialTime: "9:30 PM",
+                    description: "Loud argument and possible domestic violence reported in residential unit. Neighbors are concerned and calling for help.",
+                    steps: [
+                        {
+                            description: "Multiple noise complaints about domestic dispute. How do you respond?",
+                            options: [
+                                { text: "Security responds professionally, calls police if violence suspected", time: 3, consequence: "Appropriate professional intervention", score: { response: 25, communication: 25 } },
+                                { text: "Security makes welfare check, documents situation", time: 5, consequence: "Community response but limited authority", score: { response: 15, communication: 15 } },
+                                { text: "Advise residents to call police directly", time: 0, consequence: "No community intervention capability", score: { response: 10, communication: 10 } },
+                                { text: "No response to domestic situations", time: 0, consequence: "Residents left without support", score: { response: 0, communication: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you coordinate with law enforcement while protecting resident privacy?",
+                            options: [
+                                { text: "Security provides police with access and situational information while respecting privacy", time: 10, consequence: "Professional law enforcement coordination", score: { communication: 25, compliance: 25 } },
+                                { text: "Basic police cooperation, standard community access", time: 15, consequence: "Standard response but limited coordination", score: { communication: 15, compliance: 15 } },
+                                { text: "Police handle independently with minimal community involvement", time: 0, consequence: "No community support for law enforcement", score: { communication: 10, compliance: 10 } },
+                                { text: "No systematic approach to domestic situations", time: 0, consequence: "Poor community safety response", score: { communication: 0, compliance: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Professional intervention training, coordinated law enforcement response, resident privacy protection",
+                        financialImpact: { min: 25000, max: 200000 }
+                    }
+                }
+            ],
+            events: [
+                {
+                    title: "Concert Crowd Emergency",
+                    initialTime: "9:45 PM",
+                    description: "During peak concert performance, crowd surge creates dangerous conditions near the stage area.",
+                    steps: [
+                        {
+                            description: "Dangerous crowd crush developing near stage. Who coordinates the emergency response?",
+                            options: [
+                                { text: "Security team leader activates crowd control protocol, coordinates with venue management", time: 2, consequence: "Professional crowd management response", score: { response: 25, communication: 25 } },
+                                { text: "Individual security guards act independently", time: 5, consequence: "Uncoordinated response, mixed effectiveness", score: { response: 15, communication: 10 } },
+                                { text: "Venue staff handle without security coordination", time: 3, consequence: "Limited training for crowd emergencies", score: { response: 10, communication: 15 } },
+                                { text: "No systematic crowd emergency response", time: 0, consequence: "Dangerous situation continues to escalate", score: { response: 0, communication: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you manage performer/show interruption and crowd communication?",
+                            options: [
+                                { text: "Security coordinates with show management for controlled performance stop and crowd guidance", time: 3, consequence: "Professional show management, crowd safely redirected", score: { communication: 25, recovery: 25 } },
+                                { text: "Basic communication to performer, standard crowd control", time: 5, consequence: "Show managed but limited crowd coordination", score: { communication: 15, recovery: 15 } },
+                                { text: "Focus on crowd control only, no show coordination", time: 2, consequence: "Crowd managed but show chaos continues", score: { communication: 10, recovery: 10 } },
+                                { text: "No coordinated performance or crowd management", time: 0, consequence: "Dangerous conditions persist", score: { communication: 0, recovery: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Crowd control protocols, performer coordination, comprehensive emergency management",
+                        financialImpact: { min: 100000, max: 1000000 }
+                    }
+                },
+                {
+                    title: "Food Poisoning Outbreak",
+                    initialTime: "8:20 PM",
+                    description: "Multiple event attendees reporting illness, possibly from food service. Health department may need notification.",
+                    steps: [
+                        {
+                            description: "Growing reports of attendee illness. How do you handle the potential health emergency?",
+                            options: [
+                                { text: "Security coordinates medical response, documents cases, notifies health authorities", time: 15, consequence: "Professional health emergency response", score: { response: 25, compliance: 25 } },
+                                { text: "Basic medical assistance, informal illness tracking", time: 30, consequence: "Medical needs met but limited documentation", score: { response: 15, compliance: 10 } },
+                                { text: "Individual medical responses, no systematic tracking", time: 10, consequence: "People helped but no pattern recognition", score: { response: 10, compliance: 5 } },
+                                { text: "No coordinated health emergency response", time: 0, consequence: "Potential outbreak unmanaged", score: { response: 0, compliance: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you manage food service shutdown and attendee communication?",
+                            options: [
+                                { text: "Security coordinates food service suspension, comprehensive attendee notification", time: 10, consequence: "Professional crisis management", score: { recovery: 25, communication: 25 } },
+                                { text: "Basic food service halt, general announcement", time: 20, consequence: "Standard response but limited detail", score: { recovery: 15, communication: 15 } },
+                                { text: "Continue service with warnings", time: 5, consequence: "Limited protection for attendees", score: { recovery: 10, communication: 10 } },
+                                { text: "No systematic food safety response", time: 0, consequence: "Potential continued exposure", score: { recovery: 0, communication: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Health emergency protocols, regulatory compliance, comprehensive crisis communication",
+                        financialImpact: { min: 150000, max: 750000 }
+                    }
+                },
+                {
+                    title: "Weather Emergency During Outdoor Event",
+                    initialTime: "4:10 PM",
+                    description: "Severe weather warning issued during large outdoor festival. Thousands of attendees need potential evacuation.",
+                    steps: [
+                        {
+                            description: "Weather service issues severe weather warning. How do you initiate emergency procedures?",
+                            options: [
+                                { text: "Security activates weather emergency plan, coordinates mass notification", time: 5, consequence: "Systematic emergency activation", score: { response: 25, communication: 25 } },
+                                { text: "General announcement made, basic crowd guidance", time: 10, consequence: "Standard warning but limited coordination", score: { response: 15, communication: 15 } },
+                                { text: "Individual security guards provide local guidance", time: 15, consequence: "Uncoordinated response, mixed messaging", score: { response: 10, communication: 10 } },
+                                { text: "No weather emergency procedures", time: 0, consequence: "No systematic protection for attendees", score: { response: 0, communication: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you manage mass evacuation and shelter coordination?",
+                            options: [
+                                { text: "Security coordinates systematic evacuation to designated shelters", time: 15, consequence: "Professional mass evacuation management", score: { recovery: 25, response: 25 } },
+                                { text: "General evacuation guidance, basic shelter direction", time: 25, consequence: "People directed but limited coordination", score: { recovery: 15, response: 15 } },
+                                { text: "Self-evacuation with minimal guidance", time: 5, consequence: "No systematic protection", score: { recovery: 10, response: 10 } },
+                                { text: "No evacuation coordination capability", time: 0, consequence: "Attendees left to manage alone", score: { recovery: 0, response: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Weather monitoring, mass evacuation procedures, designated shelter coordination",
+                        financialImpact: { min: 200000, max: 2000000 }
+                    }
+                }
+            ],
+            education: [
+                {
+                    title: "Campus Intruder Alert",
+                    initialTime: "10:20 AM",
+                    description: "Unauthorized individual reported on campus behaving erratically and refusing to leave when asked.",
+                    steps: [
+                        {
+                            description: "Erratic individual on campus refusing to leave. How do you respond?",
+                            options: [
+                                { text: "Security responds immediately, initiates lockdown procedures if necessary", time: 3, consequence: "Professional threat assessment and response", score: { response: 25, communication: 25 } },
+                                { text: "Staff member continues to engage while calling security", time: 5, consequence: "Continued engagement but backup requested", score: { response: 15, communication: 15 } },
+                                { text: "Call police immediately, no internal response", time: 8, consequence: "External help but no immediate protection", score: { response: 10, communication: 20 } },
+                                { text: "No systematic intruder response protocol", time: 0, consequence: "No coordinated response to threat", score: { response: 0, communication: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you manage campus-wide communication and safety procedures?",
+                            options: [
+                                { text: "Security activates emergency communication system, coordinates with administration", time: 5, consequence: "Campus-wide safety coordination", score: { communication: 25, recovery: 25 } },
+                                { text: "Basic campus alert, standard safety procedures", time: 10, consequence: "Standard notification but limited coordination", score: { communication: 15, recovery: 15 } },
+                                { text: "Local area response only, no campus-wide alert", time: 2, consequence: "Limited protection for broader campus", score: { communication: 10, recovery: 10 } },
+                                { text: "No systematic campus safety communication", time: 0, consequence: "Campus community unprotected", score: { communication: 0, recovery: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Professional threat assessment, campus-wide communication systems, coordinated law enforcement response",
+                        financialImpact: { min: 75000, max: 500000 }
+                    }
+                },
+                {
+                    title: "Student Medical Emergency",
+                    initialTime: "1:15 PM",
+                    description: "Student collapses during class. Multiple students and faculty are witnessing the medical emergency.",
+                    steps: [
+                        {
+                            description: "Student medical emergency during class. Who provides immediate response?",
+                            options: [
+                                { text: "Security with medical training responds immediately while teacher manages class", time: 2, consequence: "Professional medical response, classroom managed", score: { response: 25, recovery: 25 } },
+                                { text: "Teacher provides first aid while students call for help", time: 3, consequence: "Immediate care but limited training", score: { response: 15, recovery: 15 } },
+                                { text: "Students call 911, basic assistance provided", time: 5, consequence: "Emergency services notified but delayed response", score: { response: 10, recovery: 10 } },
+                                { text: "No trained emergency response on campus", time: 0, consequence: "No immediate medical capability", score: { response: 0, recovery: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you coordinate EMS access and manage student/parent notification?",
+                            options: [
+                                { text: "Security coordinates EMS, administration handles parent notification per policy", time: 10, consequence: "Professional emergency and family coordination", score: { communication: 25, compliance: 25 } },
+                                { text: "Basic EMS coordination, standard parent contact", time: 15, consequence: "Standard emergency response", score: { communication: 15, compliance: 15 } },
+                                { text: "EMS access provided, informal parent notification", time: 20, consequence: "Medical needs met but limited family communication", score: { communication: 10, compliance: 10 } },
+                                { text: "No systematic emergency or parent notification", time: 0, consequence: "Poor family communication, potential violations", score: { communication: 0, compliance: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Campus medical responders, coordinated EMS access, proper parent notification protocols",
+                        financialImpact: { min: 25000, max: 150000 }
+                    }
+                },
+                {
+                    title: "After-Hours Vandalism Discovery",
+                    initialTime: "6:30 AM",
+                    description: "Significant vandalism discovered on campus buildings and grounds. Classes start in 2 hours.",
+                    steps: [
+                        {
+                            description: "Extensive vandalism discovered before school day. How do you handle the situation?",
+                            options: [
+                                { text: "Security documents scene, coordinates cleanup, assesses safety impact", time: 30, consequence: "Professional incident management", score: { documentation: 25, recovery: 25 } },
+                                { text: "Basic documentation, immediate cleanup focus", time: 45, consequence: "Campus ready but limited investigation support", score: { documentation: 15, recovery: 20 } },
+                                { text: "Focus on cleanup only, minimal documentation", time: 20, consequence: "Campus operational but poor evidence", score: { documentation: 10, recovery: 15 } },
+                                { text: "No systematic vandalism response", time: 0, consequence: "Poor campus preparation, no investigation", score: { documentation: 0, recovery: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you coordinate with law enforcement and communicate with school community?",
+                            options: [
+                                { text: "Security works with police on investigation, administration communicates appropriately", time: 60, consequence: "Comprehensive response and communication", score: { communication: 25, compliance: 25 } },
+                                { text: "Basic police cooperation, general community notification", time: 30, consequence: "Standard response but limited detail", score: { communication: 15, compliance: 15 } },
+                                { text: "Police notified, minimal community communication", time: 15, consequence: "Legal requirements met but community uninformed", score: { communication: 10, compliance: 20 } },
+                                { text: "No coordinated law enforcement or community response", time: 0, consequence: "Poor investigation and community relations", score: { communication: 0, compliance: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Comprehensive incident documentation, coordinated law enforcement cooperation, appropriate community communication",
+                        financialImpact: { min: 15000, max: 100000 }
+                    }
+                }
+            ],
+            hospitality: [
+                {
+                    title: "Hotel Guest Assault in Parking Garage",
+                    initialTime: "11:30 PM",
+                    description: "Hotel guest attacked in parking garage. Suspect fled but guest is injured and other guests witnessed the incident.",
+                    steps: [
+                        {
+                            description: "Guest attacked in parking garage. Who provides immediate response?",
+                            options: [
+                                { text: "Security responds immediately, provides first aid, secures scene", time: 2, consequence: "Professional emergency response", score: { response: 25, recovery: 25 } },
+                                { text: "Front desk calls 911, sends maintenance to assist", time: 5, consequence: "Emergency services notified but delayed professional response", score: { response: 15, recovery: 15 } },
+                                { text: "Other guests provide assistance while hotel calls for help", time: 8, consequence: "Community response but limited training", score: { response: 10, recovery: 10 } },
+                                { text: "No immediate hotel response capability", time: 0, consequence: "Guest receives no immediate assistance", score: { response: 0, recovery: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you handle the investigation and ensure ongoing guest safety?",
+                            options: [
+                                { text: "Security preserves evidence, coordinates with police, increases patrol", time: 30, consequence: "Professional investigation support and enhanced security", score: { documentation: 25, recovery: 25 } },
+                                { text: "Basic police cooperation, standard security measures", time: 45, consequence: "Investigation supported but limited security enhancement", score: { documentation: 15, recovery: 15 } },
+                                { text: "Minimal investigation cooperation, no security changes", time: 15, consequence: "Poor investigation support, ongoing vulnerability", score: { documentation: 10, recovery: 10 } },
+                                { text: "No systematic response to guest assault", time: 0, consequence: "Guest safety unaddressed, liability exposure", score: { documentation: 0, recovery: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "24/7 security presence, immediate emergency response, comprehensive investigation support",
+                        financialImpact: { min: 50000, max: 300000 }
+                    }
+                },
+                {
+                    title: "Kitchen Fire During Dinner Service",
+                    initialTime: "7:45 PM",
+                    description: "Fire breaks out in restaurant kitchen during peak dinner service. Guests and staff need immediate evacuation.",
+                    steps: [
+                        {
+                            description: "Kitchen fire during dinner rush. Who coordinates the emergency response?",
+                            options: [
+                                { text: "Security activates fire emergency plan, coordinates guest evacuation", time: 2, consequence: "Systematic emergency response", score: { response: 25, communication: 25 } },
+                                { text: "Kitchen staff handles fire while servers evacuate dining room", time: 3, consequence: "Departmental response but limited coordination", score: { response: 15, communication: 15 } },
+                                { text: "Individual staff responses, no coordinated plan", time: 5, consequence: "Unorganized response, potential confusion", score: { response: 10, communication: 10 } },
+                                { text: "No fire emergency procedures in place", time: 0, consequence: "Chaotic response, guest safety compromised", score: { response: 0, communication: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you manage guest services and business continuity during the emergency?",
+                            options: [
+                                { text: "Security coordinates guest safety and comfort, management handles business impact", time: 15, consequence: "Professional guest care and business management", score: { recovery: 25, communication: 25 } },
+                                { text: "Basic guest assistance, standard business closure procedures", time: 30, consequence: "Guest needs met but limited business coordination", score: { recovery: 15, communication: 15 } },
+                                { text: "Focus on evacuation only, no guest service coordination", time: 5, consequence: "Safety handled but poor guest experience", score: { recovery: 10, communication: 10 } },
+                                { text: "No systematic guest services during emergency", time: 0, consequence: "Guest needs unaddressed, reputation damage", score: { recovery: 0, communication: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Fire emergency procedures, coordinated evacuation, comprehensive guest services",
+                        financialImpact: { min: 75000, max: 400000 }
+                    }
+                },
+                {
+                    title: "Intoxicated Guest Disturbance",
+                    initialTime: "12:45 AM",
+                    description: "Heavily intoxicated guest causing disturbance in hotel lobby, bothering other guests and staff.",
+                    steps: [
+                        {
+                            description: "Intoxicated guest causing disturbance in lobby. How do you handle the situation?",
+                            options: [
+                                { text: "Security uses professional de-escalation techniques", time: 3, consequence: "Situation controlled without incident", score: { response: 25, communication: 25 } },
+                                { text: "Front desk staff attempts to calm guest", time: 5, consequence: "Basic intervention but limited training", score: { response: 15, communication: 15 } },
+                                { text: "Call police immediately without internal intervention", time: 8, consequence: "External help but no immediate guest service", score: { response: 10, communication: 10 } },
+                                { text: "Hope guest calms down on their own", time: 0, consequence: "No intervention, continued disturbance", score: { response: 0, communication: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you manage the impact on other guests and hotel operations?",
+                            options: [
+                                { text: "Security manages situation while staff attends to other guests", time: 10, consequence: "Minimal disruption to other guests", score: { recovery: 25, communication: 25 } },
+                                { text: "Basic guest reassurance, standard operations", time: 15, consequence: "Other guests somewhat accommodated", score: { recovery: 15, communication: 15 } },
+                                { text: "Focus only on problem guest, no attention to others", time: 5, consequence: "Other guests inconvenienced", score: { recovery: 10, communication: 10 } },
+                                { text: "No systematic guest services during incident", time: 0, consequence: "Poor guest experience for all", score: { recovery: 0, communication: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Professional guest relations, de-escalation training, coordinated guest services",
+                        financialImpact: { min: 20000, max: 100000 }
+                    }
+                }
+            ],
+            manufacturing: [
+                {
+                    title: "Chemical Spill During Night Shift",
+                    initialTime: "2:10 AM",
+                    description: "Hazardous chemical spill in production area. Few staff on duty and emergency systems may be compromised.",
+                    steps: [
+                        {
+                            description: "Hazardous chemical spill discovered during night shift. Who coordinates the emergency response?",
+                            options: [
+                                { text: "Security activates chemical spill protocol, coordinates with shift supervisor", time: 3, consequence: "Professional hazmat emergency response", score: { response: 25, compliance: 25 } },
+                                { text: "Production supervisor handles spill response", time: 8, consequence: "Technical knowledge but limited emergency training", score: { response: 15, compliance: 15 } },
+                                { text: "Workers attempt to contain spill themselves", time: 5, consequence: "Quick action but potential safety violations", score: { response: 10, compliance: 10 } },
+                                { text: "No systematic chemical emergency response", time: 0, consequence: "Uncontrolled hazmat situation", score: { response: 0, compliance: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you handle evacuation and emergency services notification?",
+                            options: [
+                                { text: "Security coordinates facility evacuation, notifies fire department and environmental authorities", time: 10, consequence: "Full compliance and safety response", score: { response: 25, compliance: 25 } },
+                                { text: "Basic evacuation, fire department notified", time: 15, consequence: "Safety handled but limited regulatory compliance", score: { response: 20, compliance: 15 } },
+                                { text: "Partial evacuation, delayed external notification", time: 30, consequence: "Incomplete safety response", score: { response: 15, compliance: 10 } },
+                                { text: "No systematic evacuation or emergency notification", time: 0, consequence: "Worker safety compromised, regulatory violations", score: { response: 0, compliance: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you handle documentation and regulatory reporting requirements?",
+                            options: [
+                                { text: "Security documents incident comprehensively, ensures all regulatory notifications", time: 60, consequence: "Full compliance with OSHA and EPA requirements", score: { documentation: 25, compliance: 25 } },
+                                { text: "Basic incident documentation, standard regulatory reporting", time: 120, consequence: "Compliance met but limited detail", score: { documentation: 15, compliance: 20 } },
+                                { text: "Minimal documentation, delayed reporting", time: 180, consequence: "Regulatory violations likely", score: { documentation: 10, compliance: 10 } },
+                                { text: "No formal documentation or regulatory reporting", time: 0, consequence: "Major compliance failures, significant penalties", score: { documentation: 0, compliance: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Hazmat response protocols, coordinated evacuation procedures, comprehensive regulatory compliance",
+                        financialImpact: { min: 200000, max: 1000000 }
+                    }
+                },
+                {
+                    title: "Industrial Accident with Injury",
+                    initialTime: "10:30 AM",
+                    description: "Employee seriously injured by machinery. OSHA reporting required and production may need to stop.",
+                    steps: [
+                        {
+                            description: "Serious machinery injury during production. Who provides immediate response?",
+                            options: [
+                                { text: "Security with industrial first aid training responds while production supervisor secures area", time: 2, consequence: "Professional medical response and area secured", score: { response: 25, compliance: 25 } },
+                                { text: "Production supervisor provides first aid, coworkers assist", time: 3, consequence: "Quick response but limited medical training", score: { response: 15, compliance: 15 } },
+                                { text: "Coworkers provide basic assistance while calling for help", time: 5, consequence: "Community response but no professional training", score: { response: 10, compliance: 10 } },
+                                { text: "No trained industrial emergency response", time: 0, consequence: "No immediate professional medical capability", score: { response: 0, compliance: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you handle scene preservation and OSHA compliance?",
+                            options: [
+                                { text: "Security preserves accident scene, coordinates OSHA notification within required timeframe", time: 30, consequence: "Full regulatory compliance and investigation support", score: { documentation: 25, compliance: 25 } },
+                                { text: "Basic scene documentation, standard OSHA reporting", time: 60, consequence: "Compliance met but limited investigation support", score: { documentation: 15, compliance: 20 } },
+                                { text: "Minimal scene preservation, delayed OSHA reporting", time: 120, consequence: "Regulatory violations, poor investigation", score: { documentation: 10, compliance: 10 } },
+                                { text: "No systematic accident documentation or reporting", time: 0, consequence: "Major OSHA violations, significant penalties", score: { documentation: 0, compliance: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you manage production shutdown and workforce communication?",
+                            options: [
+                                { text: "Security coordinates production halt, management communicates with workforce", time: 20, consequence: "Professional crisis management and workforce support", score: { recovery: 25, communication: 25 } },
+                                { text: "Production stopped, basic workforce notification", time: 30, consequence: "Safety prioritized but limited communication", score: { recovery: 20, communication: 15 } },
+                                { text: "Partial production halt, informal worker communication", time: 10, consequence: "Incomplete safety response", score: { recovery: 15, communication: 10 } },
+                                { text: "No systematic production or workforce management", time: 0, consequence: "Ongoing safety risks, worker concerns unaddressed", score: { recovery: 0, communication: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Industrial first responders, comprehensive accident investigation, full OSHA compliance",
+                        financialImpact: { min: 150000, max: 750000 }
+                    }
+                },
+                {
+                    title: "Sabotage Discovery",
+                    initialTime: "5:45 AM",
+                    description: "Evidence of potential sabotage found on critical production equipment. Production integrity and worker safety at risk.",
+                    steps: [
+                        {
+                            description: "Potential sabotage discovered on production equipment. How do you handle the investigation?",
+                            options: [
+                                { text: "Security immediately secures scene, stops affected production, notifies law enforcement", time: 15, consequence: "Professional investigation and safety response", score: { documentation: 25, response: 25 } },
+                                { text: "Production supervisor investigates, basic documentation", time: 30, consequence: "Technical assessment but contaminated evidence", score: { documentation: 15, response: 15 } },
+                                { text: "Continue production while informally investigating", time: 5, consequence: "Evidence destroyed, ongoing safety risk", score: { documentation: 10, response: 10 } },
+                                { text: "No systematic sabotage investigation process", time: 0, consequence: "Security threat unaddressed", score: { documentation: 0, response: 0 } }
+                            ]
+                        },
+                        {
+                            description: "How do you coordinate with law enforcement and manage business continuity?",
+                            options: [
+                                { text: "Security preserves evidence for police, management assesses production impact", time: 60, consequence: "Professional law enforcement cooperation and business management", score: { compliance: 25, recovery: 25 } },
+                                { text: "Basic police cooperation, standard business procedures", time: 90, consequence: "Investigation supported but limited business coordination", score: { compliance: 15, recovery: 15 } },
+                                { text: "Minimal police involvement, focus on production restart", time: 30, consequence: "Business prioritized over investigation", score: { compliance: 10, recovery: 20 } },
+                                { text: "No coordinated law enforcement or business response", time: 0, consequence: "Poor investigation and business management", score: { compliance: 0, recovery: 0 } }
+                            ]
+                        }
+                    ],
+                    debrief: {
+                        bestPractice: "Professional security investigation, coordinated law enforcement response, systematic business continuity",
+                        financialImpact: { min: 100000, max: 500000 }
+                    }
+                }
+            ]
+        };
+
+        // Initialize clock
+        let clockInterval;
+        let currentScenarioStartTime = 0;
+
+        // Phase navigation
+        function goToPhase(phaseNum) {
+            // Hide all phases
+            document.querySelectorAll('.phase').forEach(phase => {
+                phase.classList.remove('active');
+            });
+            
+            // Show target phase
+            document.getElementById(`phase${phaseNum}`).classList.add('active');
+            
+            // Update progress bar
+            document.querySelectorAll('.progress-step').forEach(step => {
+                step.classList.remove('active', 'completed');
+            });
+            
+            document.querySelectorAll('.progress-step').forEach((step, index) => {
+                if (index + 1 < phaseNum) {
+                    step.classList.add('completed');
+                } else if (index + 1 === phaseNum) {
+                    step.classList.add('active');
+                }
+            });
+        }
+
+        // Form submissions
+        document.getElementById('operationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            assessmentData.operation = {
+                businessName: document.getElementById('businessName').value,
+                industry: document.getElementById('industry').value,
+                facilitySize: parseInt(document.getElementById('facilitySize').value),
+                floors: parseInt(document.getElementById('floors').value),
+                entryPoints: parseInt(document.getElementById('entryPoints').value),
+                operatingHours: document.getElementById('operatingHours').value,
+                assets: document.getElementById('assets').value,
+                securityMeasures: Array.from(document.querySelectorAll('input[name="security"]:checked')).map(cb => cb.value)
+            };
+            
+            goToPhase(2);
+        });
+
+        document.getElementById('teamForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect team data
+            assessmentData.team = {
+                decisionMaker: document.getElementById('decisionMaker').value,
+                decisionTitle: document.getElementById('decisionTitle').value,
+                decisionPhone: document.getElementById('decisionPhone').value,
+                emergencyContact: document.getElementById('emergencyContact').value,
+                emergencyPhone: document.getElementById('emergencyPhone').value,
+                keyHolders: parseInt(document.getElementById('keyHolders').value),
+                hasERP: document.getElementById('hasERP').value,
+                meetingPoint: document.getElementById('meetingPoint').value,
+                policeCaller: document.getElementById('policeCaller').value,
+                communication: Array.from(document.querySelectorAll('input[name="communication"]:checked')).map(cb => cb.value)
+            };
+            
+            // Initialize scenarios
+            initializeScenarios();
+            goToPhase(3);
+        });
+
+        document.getElementById('leadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect lead data
+            assessmentData.lead = {
+                name: document.getElementById('leadName').value,
+                email: document.getElementById('leadEmail').value,
+                phone: document.getElementById('leadPhone').value,
+                title: document.getElementById('leadTitle').value
+            };
+            
+            // Submit to CRM
+            submitToCRM();
+        });
+
+        // Scenario management
+        function initializeScenarios() {
+            const industry = assessmentData.operation.industry;
+            const industryScenarios = scenarios[industry] || scenarios.warehouse; // Default to warehouse
+            
+            assessmentData.currentScenario = 0;
+            assessmentData.currentStep = 0;
+            assessmentData.scenarios = [];
+            
+            // Initialize scoring
+            assessmentData.scores = {
+                detection: 0,
+                response: 0,
+                communication: 0,
+                documentation: 0,
+                compliance: 0,
+                recovery: 0
+            };
+            
+            loadScenario(industryScenarios[0]);
+        }
+
+        function loadScenario(scenario) {
+            document.getElementById('scenarioTitle').textContent = scenario.title;
+            document.getElementById('scenarioTime').textContent = scenario.initialTime;
+            
+            // Reset clock
+            currentScenarioStartTime = Date.now();
+            assessmentData.scenarioElapsedTime = 0;
+            startClock();
+            
+            loadScenarioStep(scenario, 0);
+        }
+
+        function loadScenarioStep(scenario, stepIndex) {
+            const step = scenario.steps[stepIndex];
+            document.getElementById('scenarioDescription').innerHTML = step.description;
+            
+            const optionsContainer = document.getElementById('scenarioOptions');
+            optionsContainer.innerHTML = '';
+            
+            step.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'scenario-option';
+                optionDiv.innerHTML = `
+                    <div><strong>Option ${index + 1}:</strong> ${option.text}</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;">Time impact: +${option.time} minutes</div>
+                `;
+                
+                optionDiv.addEventListener('click', function() {
+                    selectOption(option, stepIndex);
+                    optionsContainer.querySelectorAll('.scenario-option').forEach(opt => opt.classList.remove('selected'));
+                    optionDiv.classList.add('selected');
+                    
+                    // Show consequence
+                    optionDiv.innerHTML += `<div class="scenario-consequence">${option.consequence}</div>`;
+                    
+                    // Show next button
+                    document.getElementById('scenarioButtons').style.display = 'flex';
+                });
+                
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            document.getElementById('scenarioButtons').style.display = 'none';
+        }
+
+        function selectOption(option, stepIndex) {
+            // Add time to clock
+            assessmentData.scenarioElapsedTime += option.time;
+            
+            // Update scores
+            Object.keys(option.score || {}).forEach(category => {
+                assessmentData.scores[category] += option.score[category];
+            });
+            
+            // Store choice
+            const industry = assessmentData.operation.industry;
+            const industryScenarios = scenarios[industry] || scenarios.warehouse;
+            const currentScenario = industryScenarios[assessmentData.currentScenario];
+            
+            if (!assessmentData.scenarios[assessmentData.currentScenario]) {
+                assessmentData.scenarios[assessmentData.currentScenario] = {
+                    title: currentScenario.title,
+                    choices: [],
+                    totalTime: 0
+                };
+            }
+            
+            assessmentData.scenarios[assessmentData.currentScenario].choices.push({
+                step: stepIndex,
+                option: option,
+                timeAdded: option.time
+            });
+        }
+
+        function nextScenarioStep() {
+            const industry = assessmentData.operation.industry;
+            const industryScenarios = scenarios[industry] || scenarios.warehouse;
+            const currentScenario = industryScenarios[assessmentData.currentScenario];
+            
+            assessmentData.currentStep++;
+            
+            if (assessmentData.currentStep >= currentScenario.steps.length) {
+                // Scenario complete
+                finishScenario(currentScenario);
+            } else {
+                loadScenarioStep(currentScenario, assessmentData.currentStep);
+            }
+        }
+
+        function finishScenario(scenario) {
+            // Stop clock
+            clearInterval(clockInterval);
+            
+            // Store total time
+            assessmentData.scenarios[assessmentData.currentScenario].totalTime = assessmentData.scenarioElapsedTime;
+            
+            // Show debrief
+            showScenarioDebrief(scenario);
+        }
+
+        function showScenarioDebrief(scenario) {
+            const debriefHtml = `
+                <div class="debrief-card">
+                    <h3>Scenario Complete: ${scenario.title}</h3>
+                    <div style="font-size: 1.2rem; margin: 1rem 0;">
+                        <strong>Total Response Time: ${Math.floor(assessmentData.scenarioElapsedTime / 60)}h ${assessmentData.scenarioElapsedTime % 60}m</strong>
+                    </div>
+                    <p><strong>What Happened:</strong> Based on your choices, your response took ${assessmentData.scenarioElapsedTime} minutes and exposed several gaps in your emergency response capabilities.</p>
+                    <p><strong>Best Practice:</strong> ${scenario.debrief.bestPractice}</p>
+                    <p><strong>Financial Impact:</strong> Similar incidents typically cost $${scenario.debrief.financialImpact.min.toLocaleString()} - $${scenario.debrief.financialImpact.max.toLocaleString()} when response gaps exist.</p>
+                    <div class="btn-group" style="margin-top: 2rem;">
+                        <button class="btn" onclick="nextScenario()">
+                            ${assessmentData.currentScenario < 2 ? 'Next Scenario' : 'View Gap Analysis'}
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('scenarioContainer').innerHTML = debriefHtml;
+        }
+
+        function nextScenario() {
+            assessmentData.currentScenario++;
+            
+            if (assessmentData.currentScenario >= 3) {
+                // All scenarios complete
+                calculateGapAnalysis();
+                goToPhase(4);
+            } else {
+                // Load next scenario
+                const industry = assessmentData.operation.industry;
+                const industryScenarios = scenarios[industry] || scenarios.warehouse;
+                assessmentData.currentStep = 0;
+                loadScenario(industryScenarios[assessmentData.currentScenario]);
+            }
+        }
+
+        function startClock() {
+            const clockElement = document.getElementById('clock');
+            clockElement.classList.add('ticking');
+            
+            clockInterval = setInterval(() => {
+                const elapsed = Math.floor((Date.now() - currentScenarioStartTime) / 1000) + assessmentData.scenarioElapsedTime * 60;
+                const minutes = Math.floor(elapsed / 60);
+                const seconds = elapsed % 60;
+                clockElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        // Gap analysis
+        function calculateGapAnalysis() {
+            // Calculate scores (max 25 per category per scenario = 75 total per category)
+            const maxScore = 75;
+            const scoreCategories = ['detection', 'response', 'communication', 'documentation', 'compliance', 'recovery'];
+            
+            // Normalize scores to 0-100
+            scoreCategories.forEach(category => {
+                assessmentData.scores[category] = Math.round((assessmentData.scores[category] / maxScore) * 100);
+            });
+            
+            // Calculate financial exposure
+            const baseFacilityRisk = assessmentData.operation.facilitySize * 0.5; // $0.50 per sq ft base risk
+            const industryMultipliers = {
+                warehouse: 2.5,
+                healthcare: 4.0,
+                commercial: 2.0,
+                retail: 3.0,
+                construction: 3.5,
+                hoa: 1.5,
+                events: 4.5,
+                education: 2.5,
+                hospitality: 2.8,
+                manufacturing: 3.8
+            };
+            
+            const industryMultiplier = industryMultipliers[assessmentData.operation.industry] || 2.0;
+            const averageScore = scoreCategories.reduce((sum, cat) => sum + assessmentData.scores[cat], 0) / scoreCategories.length;
+            const gapMultiplier = Math.max(1.0, (100 - averageScore) / 20); // Higher gaps = higher risk
+            
+            const minExposure = Math.round(baseFacilityRisk * industryMultiplier * gapMultiplier);
+            const maxExposure = Math.round(minExposure * 2.5);
+            
+            assessmentData.financialExposure = { min: minExposure, max: maxExposure };
+            assessmentData.averageScore = Math.round(averageScore);
+            
+            displayGapAnalysis();
+        }
+
+        function displayGapAnalysis() {
+            // Display financial exposure
+            document.getElementById('exposureAmount').textContent = 
+                `$${assessmentData.financialExposure.min.toLocaleString()} - $${assessmentData.financialExposure.max.toLocaleString()}`;
+            
+            // Display scorecard
+            const scorecard = document.getElementById('gapScorecard');
+            const scoreCategories = [
+                { key: 'detection', name: 'Threat Detection', description: 'How quickly security threats are identified' },
+                { key: 'response', name: 'Response Time', description: 'Speed and quality of emergency response' },
+                { key: 'communication', name: 'Communication', description: 'Coordination between team members and authorities' },
+                { key: 'documentation', name: 'Documentation', description: 'Incident reporting and evidence preservation' },
+                { key: 'compliance', name: 'Compliance', description: 'Regulatory and legal requirement adherence' },
+                { key: 'recovery', name: 'Recovery', description: 'Business continuity and crisis management' }
+            ];
+            
+            scorecard.innerHTML = scoreCategories.map(category => {
+                const score = assessmentData.scores[category.key];
+                let scoreClass = 'low';
+                if (score >= 70) scoreClass = 'high';
+                else if (score >= 40) scoreClass = 'medium';
+                
+                return `
+                    <div class="score-item">
+                        <div class="score-label">${category.name}</div>
+                        <div class="score-bar">
+                            <div class="score-fill ${scoreClass}" style="width: ${score}%"></div>
+                        </div>
+                        <div class="score-value">${score}/100</div>
+                        <div style="font-size: 0.8rem; color: var(--medium-gray); margin-top: 0.25rem;">
+                            ${category.description}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            // Display timeline analysis
+            const timeline = document.getElementById('timelineAnalysis');
+            timeline.innerHTML = assessmentData.scenarios.map((scenario, index) => `
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <strong>${scenario.title}</strong><br>
+                        Your Response: ${Math.floor(scenario.totalTime / 60)}h ${scenario.totalTime % 60}m<br>
+                        <span style="color: var(--green);">Best Practice: &lt;5 minutes</span>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Display benchmark
+            document.getElementById('averageScore').textContent = assessmentData.averageScore;
+        }
+
+        function generatePlan() {
+            const planContent = createEmergencyResponsePlan();
+            document.getElementById('planPreview').innerHTML = planContent;
+            goToPhase(5);
+        }
+
+        function createEmergencyResponsePlan() {
+            const data = assessmentData;
+            const currentDate = new Date().toLocaleDateString();
+            
+            return `
+                <div class="print-header" style="display: none;">
+                    <h1>${data.operation.businessName} Emergency Response Plan</h1>
+                    <p>Prepared by Salient Group | ${currentDate} | CONFIDENTIAL</p>
+                </div>
+                
+                <div class="plan-section">
+                    <h3>Executive Summary</h3>
+                    <p>This Emergency Response Plan has been developed specifically for <strong>${data.operation.businessName}</strong> based on a comprehensive security assessment conducted by Salient Group. Our analysis identified significant gaps in your current emergency response capabilities that expose your organization to substantial financial and operational risks.</p>
+                    <p><strong>Key Finding:</strong> Your facility's average security readiness score is ${data.averageScore}/100, significantly below the industry standard of 85+ for professionally secured facilities.</p>
+                </div>
+                
+                <div class="plan-section">
+                    <h3>Facility Overview</h3>
+                    <ul>
+                        <li><strong>Business:</strong> ${data.operation.businessName}</li>
+                        <li><strong>Industry:</strong> ${getIndustryName(data.operation.industry)}</li>
+                        <li><strong>Facility Size:</strong> ${data.operation.facilitySize.toLocaleString()} sq ft</li>
+                        <li><strong>Floors:</strong> ${data.operation.floors}</li>
+                        <li><strong>Entry/Exit Points:</strong> ${data.operation.entryPoints}</li>
+                        <li><strong>Operating Hours:</strong> ${data.operation.operatingHours}</li>
+                        <li><strong>High-Value Assets:</strong> ${data.operation.assets || 'Not specified'}</li>
+                        <li><strong>Current Security:</strong> ${data.operation.securityMeasures.join(', ') || 'None specified'}</li>
+                    </ul>
+                </div>
+                
+                <div class="plan-section">
+                    <h3>Current State Assessment</h3>
+                    <p>Our scenario-based testing revealed critical weaknesses across all emergency response categories:</p>
+                    <ul>
+                        <li><strong>Threat Detection:</strong> ${data.scores.detection}/100 ${data.scores.detection < 40 ? '<span class="gap-highlight">CRITICAL GAP</span>' : data.scores.detection < 70 ? '<span class="gap-highlight">NEEDS IMPROVEMENT</span>' : ''}</li>
+                        <li><strong>Response Time:</strong> ${data.scores.response}/100 ${data.scores.response < 40 ? '<span class="gap-highlight">CRITICAL GAP</span>' : data.scores.response < 70 ? '<span class="gap-highlight">NEEDS IMPROVEMENT</span>' : ''}</li>
+                        <li><strong>Communication:</strong> ${data.scores.communication}/100 ${data.scores.communication < 40 ? '<span class="gap-highlight">CRITICAL GAP</span>' : data.scores.communication < 70 ? '<span class="gap-highlight">NEEDS IMPROVEMENT</span>' : ''}</li>
+                        <li><strong>Documentation:</strong> ${data.scores.documentation}/100 ${data.scores.documentation < 40 ? '<span class="gap-highlight">CRITICAL GAP</span>' : data.scores.documentation < 70 ? '<span class="gap-highlight">NEEDS IMPROVEMENT</span>' : ''}</li>
+                        <li><strong>Compliance:</strong> ${data.scores.compliance}/100 ${data.scores.compliance < 40 ? '<span class="gap-highlight">CRITICAL GAP</span>' : data.scores.compliance < 70 ? '<span class="gap-highlight">NEEDS IMPROVEMENT</span>' : ''}</li>
+                        <li><strong>Recovery:</strong> ${data.scores.recovery}/100 ${data.scores.recovery < 40 ? '<span class="gap-highlight">CRITICAL GAP</span>' : data.scores.recovery < 70 ? '<span class="gap-highlight">NEEDS IMPROVEMENT</span>' : ''}</li>
+                    </ul>
+                    <p><strong>Annual Risk Exposure:</strong> Based on identified gaps, your facility faces an estimated <strong>$${data.financialExposure.min.toLocaleString()} - $${data.financialExposure.max.toLocaleString()}</strong> in potential annual losses from security incidents.</p>
+                </div>
+                
+                <div class="plan-section">
+                    <h3>Emergency Contact Chain</h3>
+                    <ul>
+                        <li><strong>Primary Decision Maker:</strong> ${data.team.decisionMaker} (${data.team.decisionTitle}) - ${data.team.decisionPhone}</li>
+                        <li><strong>After-Hours Contact:</strong> ${data.team.emergencyContact} - ${data.team.emergencyPhone}</li>
+                        <li><strong>Police Emergency Contact:</strong> ${data.team.policeCaller === 'specific' ? data.team.decisionMaker : data.team.policeCaller === 'guard' ? 'Security Guard' : '<span class="gap-highlight">NOT ASSIGNED</span>'}</li>
+                        <li><strong>Key Holders:</strong> ${data.team.keyHolders} people ${data.team.keyHolders < 3 ? '<span class="gap-highlight">(INSUFFICIENT COVERAGE)</span>' : ''}</li>
+                        <li><strong>Communication System:</strong> ${data.team.communication.join(', ') || '<span class="gap-highlight">NO FORMAL SYSTEM</span>'}</li>
+                    </ul>
+                </div>
+                
+                <div class="plan-section">
+                    <h3>Incident Response Protocols</h3>
+                    ${createIncidentProtocols(data.operation.industry)}
+                </div>
+                
+                <div class="plan-section">
+                    <h3>Recommended Security Program</h3>
+                    ${createSecurityRecommendations(data)}
+                </div>
+                
+                <div class="plan-section">
+                    <h3>Implementation Timeline</h3>
+                    <h4>30 Days (Critical Actions)</h4>
+                    <ul>
+                        <li>Establish 24/7 security coverage</li>
+                        <li>Implement emergency communication system</li>
+                        <li>Designate and train emergency responders</li>
+                        <li>Create incident documentation procedures</li>
+                    </ul>
+                    <h4>60 Days (Enhanced Capabilities)</h4>
+                    <ul>
+                        <li>Deploy monitoring technology</li>
+                        <li>Conduct emergency response training</li>
+                        <li>Establish law enforcement partnerships</li>
+                        <li>Implement access control systems</li>
+                    </ul>
+                    <h4>90 Days (Optimization)</h4>
+                    <ul>
+                        <li>Complete security system integration</li>
+                        <li>Conduct comprehensive emergency drill</li>
+                        <li>Finalize compliance documentation</li>
+                        <li>Establish ongoing security program</li>
+                    </ul>
+                </div>
+                
+                <div class="plan-section">
+                    <h3>Investment Analysis</h3>
+                    <p><strong>Recommended Security Program Cost:</strong> $${calculateSecurityCosts(data).min.toLocaleString()} - $${calculateSecurityCosts(data).max.toLocaleString()} per month</p>
+                    <p><strong>Potential Annual Loss Exposure (Current State):</strong> $${data.financialExposure.min.toLocaleString()} - $${data.financialExposure.max.toLocaleString()}</p>
+                    <p><strong>Return on Investment:</strong> Professional security programs typically reduce incident-related losses by 85-95%, providing a positive ROI within the first year.</p>
+                    <p><strong>Cost-Benefit Analysis:</strong> The recommended security investment represents less than ${Math.round((calculateSecurityCosts(data).max * 12) / data.financialExposure.min * 100)}% of your potential annual risk exposure.</p>
+                </div>
+                
+                <div class="plan-section">
+                    <h3>Next Steps</h3>
+                    <ol>
+                        <li><strong>Schedule Security Consultation:</strong> Meet with a Salient Group security expert to review these findings and develop an implementation strategy.</li>
+                        <li><strong>Conduct Site Assessment:</strong> Complete detailed on-site evaluation of your facility's specific security needs.</li>
+                        <li><strong>Develop Custom Program:</strong> Create tailored security solution addressing your identified gaps.</li>
+                        <li><strong>Begin Implementation:</strong> Start with critical 30-day actions to immediately reduce risk exposure.</li>
+                    </ol>
+                </div>
+                
+                <div class="plan-section">
+                    <h3>About Salient Group</h3>
+                    <p>Salient Group is a nationwide provider of professional security services, specializing in comprehensive emergency response programs for facilities like yours. Our team of security professionals brings decades of experience in risk assessment, emergency management, and security operations.</p>
+                    <p><strong>Contact Information:</strong><br>
+                    Phone: (317) 983-6601<br>
+                    Website: salient-group.com<br>
+                    Email: info@salient-group.com</p>
+                </div>
+                
+                <div style="page-break-before: always;">
+                    <h3>Appendix A: Emergency Contact Card Template</h3>
+                    <div style="border: 2px solid var(--navy); padding: 1rem; background: #f8f9fa;">
+                        <h4 style="color: var(--navy); text-align: center; margin-bottom: 1rem;">${data.operation.businessName}<br>Emergency Contacts</h4>
+                        <p><strong>Police:</strong> 911</p>
+                        <p><strong>Fire:</strong> 911</p>
+                        <p><strong>Medical:</strong> 911</p>
+                        <p><strong>Primary Contact:</strong> ${data.team.decisionMaker} - ${data.team.decisionPhone}</p>
+                        <p><strong>After Hours:</strong> ${data.team.emergencyContact} - ${data.team.emergencyPhone}</p>
+                        <p><strong>Facility Address:</strong> _______________________</p>
+                        <p><strong>Security Company:</strong> Salient Group - (317) 983-6601</p>
+                    </div>
+                </div>
+                
+                <div style="page-break-before: always;">
+                    <h3>Appendix B: Incident Report Template</h3>
+                    <div style="border: 2px solid var(--navy); padding: 1rem; background: #f8f9fa;">
+                        <h4 style="color: var(--navy); text-align: center; margin-bottom: 1rem;">Security Incident Report</h4>
+                        <p><strong>Date/Time:</strong> _______________ <strong>Location:</strong> _______________</p>
+                        <p><strong>Type of Incident:</strong> _______________________________________________</p>
+                        <p><strong>Individuals Involved:</strong> ______________________________________</p>
+                        <p><strong>Description of Events:</strong></p>
+                        <p>_________________________________________________________________</p>
+                        <p>_________________________________________________________________</p>
+                        <p><strong>Actions Taken:</strong> ___________________________________________</p>
+                        <p><strong>Law Enforcement Notified:</strong> ☐ Yes ☐ No <strong>Time:</strong> _______</p>
+                        <p><strong>Report Prepared By:</strong> _________________________ <strong>Date:</strong> _____</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getIndustryName(industry) {
+            const names = {
+                warehouse: 'Warehouse/Distribution',
+                healthcare: 'Healthcare',
+                commercial: 'Commercial Real Estate',
+                retail: 'Retail',
+                construction: 'Construction',
+                hoa: 'HOA/Residential',
+                events: 'Events/Entertainment',
+                education: 'Education',
+                hospitality: 'Hospitality',
+                manufacturing: 'Manufacturing'
+            };
+            return names[industry] || industry;
+        }
+
+        function createIncidentProtocols(industry) {
+            const protocols = {
+                warehouse: `
+                    <h4>Cargo Theft Response</h4>
+                    <ol>
+                        <li>Security guard immediately responds to alarm</li>
+                        <li>Assess situation safely, do not confront suspects directly</li>
+                        <li>Call 911 with specific location and suspect description</li>
+                        <li>Document incident with photos/video if safe to do so</li>
+                        <li>Preserve evidence for law enforcement</li>
+                        <li>Complete incident report within 2 hours</li>
+                    </ol>
+                `,
+                healthcare: `
+                    <h4>Patient Elopement Response</h4>
+                    <ol>
+                        <li>Immediately initiate search protocol</li>
+                        <li>Security searches facility systematically</li>
+                        <li>If patient exits facility, security follows at safe distance</li>
+                        <li>Call 911 and attending physician immediately</li>
+                        <li>Document all actions for regulatory compliance</li>
+                        <li>Complete incident report per CMS requirements</li>
+                    </ol>
+                `,
+                retail: `
+                    <h4>Theft/Robbery Response</h4>
+                    <ol>
+                        <li>Activate silent alarm if available</li>
+                        <li>Do not physically confront suspects</li>
+                        <li>Observe and document suspect descriptions</li>
+                        <li>Call 911 immediately during active incident</li>
+                        <li>Preserve video evidence</li>
+                        <li>Complete loss prevention report</li>
+                    </ol>
+                `
+            };
+            
+            return protocols[industry] || protocols.warehouse;
+        }
+
+        function calculateSecurityCosts(data) {
+            const baseCost = Math.ceil(data.operation.facilitySize / 50000) * 4000; // Base cost per 50k sq ft
+            const hoursMultiplier = {
+                '24/7': 1.0,
+                'extended': 0.7,
+                'business': 0.4
+            };
+            
+            const multiplier = hoursMultiplier[data.operation.operatingHours] || 1.0;
+            const min = Math.round(baseCost * multiplier);
+            const max = Math.round(min * 1.5);
+            
+            return { min, max };
+        }
+
+        function downloadPlan() {
+            // Prepare for printing
+            document.getElementById('printCompanyName').textContent = assessmentData.operation.businessName;
+            
+            // Use browser print functionality
+            window.print();
+        }
+
+        async function submitToCRM() {
+            try {
+                const submissionData = {
+                    timestamp: new Date().toISOString(),
+                    operation: assessmentData.operation,
+                    team: assessmentData.team,
+                    scenarios: assessmentData.scenarios,
+                    scores: assessmentData.scores,
+                    financialExposure: assessmentData.financialExposure,
+                    averageScore: assessmentData.averageScore,
+                    lead: assessmentData.lead,
+                    source: 'erp-builder',
+                    userAgent: navigator.userAgent
+                };
+                
+                const response = await fetch('https://crm.salient-group.com/api/webhooks/assessment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(submissionData)
+                });
+                
+                if (response.ok) {
+                    // Show download section
+                    document.getElementById('downloadSection').style.display = 'block';
+                    
+                    // Hide form
+                    document.getElementById('leadForm').style.display = 'none';
+                } else {
+                    // Even if CRM fails, still allow download
+                    document.getElementById('downloadSection').style.display = 'block';
+                    document.getElementById('leadForm').style.display = 'none';
+                }
+            } catch (error) {
+                console.error('CRM submission failed:', error);
+                // Still allow download even if CRM fails
+                document.getElementById('downloadSection').style.display = 'block';
+                document.getElementById('leadForm').style.display = 'none';
+            }
+        }
+
+        // Prevent back button issues
+        window.addEventListener('beforeunload', function(e) {
+            if (assessmentData.currentScenario > 0) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Salient Group Emergency Response Plan Builder Loaded');
+        });
+    </script>
+</body>
+</html>
