@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SENTINEL — Command Center</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --navy-deep: #0a0e1a;
+    --navy: #111827;
+    --slate: #1e293b;
+    --slate-light: #334155;
+    --slate-text: #94a3b8;
+    --text: #e2e8f0;
+    --text-bright: #f8fafc;
+    --amber: #f59e0b;
+    --amber-dim: rgba(245, 158, 11, 0.12);
+    --green: #22c55e;
+    --green-dim: rgba(34, 197, 94, 0.15);
+    --red: #ef4444;
+    --red-dim: rgba(239, 68, 68, 0.12);
+    --blue: #3b82f6;
+    --blue-dim: rgba(59, 130, 246, 0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--navy-deep);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Header */
+  .header {
+    padding: 20px 32px;
+    background: var(--navy);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 16px; }
+  .logo {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--amber) 0%, #d97706 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 700;
+    color: var(--navy-deep);
+    box-shadow: 0 4px 16px rgba(245,158,11,0.3);
+  }
+  .header-title {
+    font-size: 20px; font-weight: 700;
+    color: var(--text-bright);
+    letter-spacing: 0.5px;
+  }
+  .header-subtitle {
+    font-size: 12px; color: var(--slate-text);
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 2px;
+  }
+  .header-right {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .header-badge {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.5px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .badge-online {
+    background: var(--green-dim);
+    color: var(--green);
+  }
+  .badge-alert {
+    background: var(--red-dim);
+    color: var(--red);
+  }
+
+  /* Main Grid Layout */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 24px;
+    padding: 24px 32px;
+    min-height: calc(100vh - 100px);
+  }
+
+  /* Left Column */
+  .left-col {
+    display: flex; flex-direction: column; gap: 24px;
+  }
+
+  /* Right Column */
+  .right-col {
+    display: flex; flex-direction: column; gap: 24px;
+  }
+
+  /* Card Base */
+  .card {
+    background: var(--slate);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .card-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .card-title {
+    font-size: 14px; font-weight: 600;
+    color: var(--text-bright);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .card-meta {
+    font-size: 11px; color: var(--slate-text);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Live Map */
+  .map-card {
+    height: 420px;
+    background: linear-gradient(135deg, #1a2332 0%, #0f1419 100%);
+    position: relative;
+  }
+  .map-placeholder {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    color: var(--slate-text);
+    opacity: 0.2;
+    text-align: center;
+  }
+  .guard-marker {
+    position: absolute;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 12px var(--green);
+  }
+  .marker-1 { top: 30%; left: 25%; }
+  .marker-2 { top: 55%; left: 60%; }
+  .marker-3 { top: 70%; left: 40%; }
+
+  /* Stats Grid */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 20px;
+  }
+  .stat-card {
+    background: var(--navy);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .stat-label {
+    font-size: 11px; font-weight: 500;
+    color: var(--slate-text);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .stat-value {
+    font-size: 32px; font-weight: 700;
+    color: var(--text-bright);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .stat-value.green { color: var(--green); }
+  .stat-value.amber { color: var(--amber); }
+  .stat-value.red { color: var(--red); }
+
+  /* Shift List */
+  .shift-list {
+    display: flex; flex-direction: column;
+  }
+  .shift-item {
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.02);
+    display: flex; align-items: center; gap: 12px;
+    transition: background 0.15s;
+    cursor: pointer;
+  }
+  .shift-item:hover {
+    background: rgba(255,255,255,0.02);
+  }
+  .shift-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue) 0%, #2563eb 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    color: white;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .shift-info {
+    flex: 1;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .shift-name {
+    font-size: 14px; font-weight: 600;
+    color: var(--text-bright);
+  }
+  .shift-location {
+    font-size: 12px; color: var(--slate-text);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .shift-status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 10px; font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+  }
+  .status-active {
+    background: var(--green-dim);
+    color: var(--green);
+  }
+  .status-break {
+    background: var(--amber-dim);
+    color: var(--amber);
+  }
+  .status-late {
+    background: var(--red-dim);
+    color: var(--red);
+  }
+
+  /* Alert Feed */
+  .alert-list {
+    display: flex; flex-direction: column;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+  .alert-list::-webkit-scrollbar {
+    width: 6px;
+  }
+  .alert-list::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.02);
+  }
+  .alert-list::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+  }
+
+  .alert-item {
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.02);
+    display: flex; align-items: flex-start; gap: 12px;
+    transition: background 0.15s;
+    cursor: pointer;
+  }
+  .alert-item:hover {
+    background: rgba(255,255,255,0.02);
+  }
+  .alert-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .icon-warning {
+    background: var(--amber-dim);
+    color: var(--amber);
+  }
+  .icon-info {
+    background: var(--blue-dim);
+    color: var(--blue);
+  }
+  .icon-critical {
+    background: var(--red-dim);
+    color: var(--red);
+  }
+  .alert-content {
+    flex: 1;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .alert-title {
+    font-size: 13px; font-weight: 600;
+    color: var(--text-bright);
+  }
+  .alert-details {
+    font-size: 12px; color: var(--slate-text);
+  }
+  .alert-time {
+    font-size: 10px; color: var(--slate-text);
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 4px;
+  }
+
+  /* Ambient BG */
+  body::before {
+    content: '';
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(245,158,11,0.04) 0%, transparent 40%),
+      radial-gradient(ellipse at 80% 100%, rgba(34,197,94,0.03) 0%, transparent 40%);
+    pointer-events: none; z-index: 0;
+  }
+  body > * { position: relative; z-index: 1; }
+
+  @media (max-width: 1200px) {
+    .main-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-left">
+    <div class="logo">S</div>
+    <div>
+      <div class="header-title">Command Center</div>
+      <div class="header-subtitle">Last updated: 2 min ago</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="header-badge badge-online">●  3 Guards Active</span>
+    <span class="header-badge badge-alert">2 Alerts</span>
+  </div>
+</div>
+
+<!-- Main Grid -->
+<div class="main-grid">
+
+  <!-- Left Column -->
+  <div class="left-col">
+
+    <!-- Live Map -->
+    <div class="card map-card">
+      <div class="map-placeholder">
+        🗺️<br>Live Guard Map
+      </div>
+      <div class="guard-marker marker-1"></div>
+      <div class="guard-marker marker-2"></div>
+      <div class="guard-marker marker-3"></div>
+    </div>
+
+    <!-- Stats -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Today's Overview</span>
+        <span class="card-meta">Feb 24, 2026</span>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-label">Active Shifts</span>
+          <span class="stat-value green">3</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Patrols Done</span>
+          <span class="stat-value amber">12</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Incidents</span>
+          <span class="stat-value red">2</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Avg Response</span>
+          <span class="stat-value">4m</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">On Break</span>
+          <span class="stat-value">1</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Late Check-Ins</span>
+          <span class="stat-value">0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Shifts -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Active Shifts</span>
+        <span class="card-meta">3 guards on duty</span>
+      </div>
+      <div class="shift-list">
+        <div class="shift-item">
+          <div class="shift-avatar">MB</div>
+          <div class="shift-info">
+            <span class="shift-name">Mike Brown</span>
+            <span class="shift-location">Gate 3 • Warehouse District • 09:00–17:00</span>
+          </div>
+          <span class="shift-status status-active">Active</span>
+        </div>
+        <div class="shift-item">
+          <div class="shift-avatar">SC</div>
+          <div class="shift-info">
+            <span class="shift-name">Sarah Chen</span>
+            <span class="shift-location">Main Lobby • HQ Building • 08:00–16:00</span>
+          </div>
+          <span class="shift-status status-break">Break</span>
+        </div>
+        <div class="shift-item">
+          <div class="shift-avatar">DJ</div>
+          <div class="shift-info">
+            <span class="shift-name">David Jones</span>
+            <span class="shift-location">Parking Lot • North Campus • 12:00–20:00</span>
+          </div>
+          <span class="shift-status status-active">Active</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Right Column -->
+  <div class="right-col">
+
+    <!-- Alert Feed -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Alerts & Activity</span>
+        <span class="card-meta">Real-time</span>
+      </div>
+      <div class="alert-list">
+        <div class="alert-item">
+          <div class="alert-icon icon-critical">⚠️</div>
+          <div class="alert-content">
+            <span class="alert-title">Missed Patrol — Zone B</span>
+            <span class="alert-details">Mike Brown scheduled for 14:30, now 14:52</span>
+            <span class="alert-time">22 min ago</span>
+          </div>
+        </div>
+        <div class="alert-item">
+          <div class="alert-icon icon-warning">🚨</div>
+          <div class="alert-content">
+            <span class="alert-title">Incident Reported</span>
+            <span class="alert-details">Trespassing attempt at East Loading Dock</span>
+            <span class="alert-time">1 hr ago</span>
+          </div>
+        </div>
+        <div class="alert-item">
+          <div class="alert-icon icon-info">✓</div>
+          <div class="alert-content">
+            <span class="alert-title">Patrol Completed</span>
+            <span class="alert-details">Sarah Chen • Route A • 4/4 checkpoints</span>
+            <span class="alert-time">1 hr ago</span>
+          </div>
+        </div>
+        <div class="alert-item">
+          <div class="alert-icon icon-info">☕</div>
+          <div class="alert-content">
+            <span class="alert-title">Break Started</span>
+            <span class="alert-details">Sarah Chen • 15 min break approved</span>
+            <span class="alert-time">2 hr ago</span>
+          </div>
+        </div>
+        <div class="alert-item">
+          <div class="alert-icon icon-info">✓</div>
+          <div class="alert-content">
+            <span class="alert-title">Shift Check-In</span>
+            <span class="alert-details">Mike Brown • Gate 3 • On time</span>
+            <span class="alert-time">5 hr ago</span>
+          </div>
+        </div>
+        <div class="alert-item">
+          <div class="alert-icon icon-info">✓</div>
+          <div class="alert-content">
+            <span class="alert-title">Shift Check-In</span>
+            <span class="alert-details">Sarah Chen • Main Lobby • On time</span>
+            <span class="alert-time">6 hr ago</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
